@@ -1,0 +1,102 @@
+/////////////////////////////////////////////
+// HEADER OF CREDITS ABOUT THE WD NOTES
+
+.HeaderCredits {
+    position: absolute;
+    top: 0;
+    right: 4rem;
+    height: 8rem;
+    width: 30%;
+    color: white;
+}
+
+.HeaderCredits_Checkbox {
+    visibility: hidden;
+}
+
+.HeaderCredits_Button {
+    position: absolute;
+    bottom: calc(100% - 2.4rem);
+    left: 50%;
+    transform: translateX(-50%);
+
+    //height: 4rem;
+    border-radius: 0 0 1.6rem 1.6rem;
+    background-color: red;
+    padding: .4rem 1.6rem;
+
+    display: inline-block;
+
+    z-index: 1;
+
+    cursor: pointer;
+
+    transition: all .5s ease-in-out;
+}
+
+.HeaderCredits_ButtonContent {
+    color: white;
+    font-size: 1.2rem;
+    letter-spacing: .4rem;
+    text-align: center;
+    //line-height: 3rem; // Necessary to vertically align the text within the <div>.
+    //transform: translateY(46%);
+    display: flex;
+
+    transition: all .5s ease-in-out;
+
+    &::before {
+        content: '\21C3';
+        font-weight: bold;
+        display: inline-block;
+        //transform: rotate(180deg) translateY(-10%);
+        margin: 0 .8rem;
+    }
+
+    &::after {
+        content: '\21C2';
+        font-weight: bold;
+        display: inline-block;
+        //transform: rotate(180deg) translateY(-10%);
+        margin: 0 .8rem;
+    }
+}
+
+.HeaderCredits_Curtain {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    
+    height: 100%;
+    width: 100%;
+    border-radius: 0 0 .8rem .8rem;
+    padding: .8rem 1.2rem;
+
+    background-color: rgba(0, 0, 0, 0.9);
+
+    transition: all .5s ease-in-out;
+}
+
+.HeaderCredits_Checkbox:checked ~ .HeaderCredits_Curtain {
+    bottom: 0;
+}
+
+.HeaderCredits_Checkbox:checked ~ .HeaderCredits_Button {
+    bottom: -2.4rem;
+
+    & .HeaderCredits_ButtonContent {
+        //transform: translateY(-46%);
+
+        &::before {
+            content: '\21BF';
+            // display: inline-block;
+            // transform: rotate(0deg);
+        }
+
+        &::after {
+            content: '\21BE';
+            // display: inline-block;
+            // transform: rotate(0deg);
+        }
+    }
+}

@@ -1,0 +1,98 @@
+@import '../../sass/abstracts/variables.scss';
+@import '../../sass/abstracts/mixins.scss';
+
+.positionMainElements {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.Container {
+    display: flex;
+
+    @include responsiveDesign(800) {
+        flex-direction: column;
+    }
+}
+
+// LEFT SIDE
+.FormContainer {
+    width: 50%;
+    height: 100vh;
+    padding: 2.8rem 4rem 4rem 4rem;
+    background-color: #000033;
+
+    @include responsiveDesign(800) {
+        width: 100%;
+        height: auto;
+        padding: 6rem;
+    }
+}
+
+
+// RIGHT SIDE
+.OtherContactMeansContainer {
+    width: 50%;
+    padding: 4rem;
+    background-color: #333366;
+
+    @include responsiveDesign(800) {
+        width: 100%;
+        padding: 6rem 6rem 14rem 6rem;
+    }
+
+    @include responsiveDesign(400) {
+        width: 100%;
+    }
+}
+
+.OtherContactMeansContainer h2 {
+    font-size: 3.2rem;
+    letter-spacing: .24rem;
+    color: $color-pale-grey;
+    margin-bottom: 1.6rem;
+}
+
+.OtherContactMeansContainer h3 {
+    font-size: 2.4rem;
+    letter-spacing: .16rem;
+    color: $color-pale-grey;
+    margin-bottom: 1.6rem;
+}
+
+.OtherContactMeansContainer ul {
+    padding: 2.4rem 0;
+    margin-left: 5%;
+}
+
+.OtherContactMeansContainer li {
+    list-style: none;
+    margin-bottom: 2.4rem;
+
+    & a {
+        text-decoration: none;
+        font-size: 2rem;
+        font-weight: bold;
+        color: $color-intense-grey;
+        letter-spacing: .16rem;
+
+        display: inline-flex;
+
+        & span {
+            margin-right: 1.6rem;
+        }
+    }
+}
+
+.OtherContactMeansContainer p {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: $color-pale-grey;
+    text-align: justify;
+    letter-spacing: .14rem;
+    line-height: 2.55rem;
+}
+
+.ContactLogos {
+    fill: red;
+}

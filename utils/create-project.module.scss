@@ -1,0 +1,15 @@
+@import '../sass/abstracts/variables.scss';
+
+.CurtainDetails_Element {
+    margin: 2rem 1.6rem;
+    font-size: 1.6rem;
+    font-family: $texts-fonts;
+
+    // List element style
+    &::before {
+        content: '\27A4';
+        position: absolute;
+        left: 1.5rem;
+        line-height: 2rem;
+    }
+}

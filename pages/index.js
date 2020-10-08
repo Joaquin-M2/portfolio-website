@@ -1,209 +1,164 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import Link from 'next/link';
+import {useRouter} from 'next/router';
+import {useEffect, useRef, useMemo, useState} from 'react';
+import NavBarBottom from '../components/nav-bar-bottom/nav-bar-bottom';
+
+import ButtonFromNavBarBottom from '../components/nav-bar-bottom/button/button';
+
+import {promiseSingleTimeout, promiseTwoTimeouts} from '../utils/selfwriting-phrases';
+
+import styles from './index.module.scss';
 
 export default function Home() {
+  const router = useRouter();
+  const dropsWrap = useRef(null);
+
+  const [questionContent, setQuestionContent] = useState([]);
+  const [answerContent, setAnswerContent] = useState([]);
+
+
+  let backgroundDrops = [];
+  for (let i = 0; i < 5; i++) {
+    backgroundDrops.push(<div className={styles.binaryDropLine} key={backgroundDrops.length}><p>01010000011010010110111001100101011000010111000001110000011011000110010100100000011100000110100101111010011110100110000100100000011010010111001100100000011101000110100001100101001000000110001001100101011100110111010000101110</p></div>)
+  }
+  useEffect(() => {
+    ///////////////////////////////////////////////////////////////
+    // RANDOM VERTICAL LINES WITH BINARY CODE IN THE BACKGROUND
+
+    const dropAnimationDuration = 15;
+    const binaryNumbersSizeAnimation = 10;
+
+    const allDivFromDropsAnimation = dropsWrap.current.querySelectorAll('div');
+    const allPFromDropsAnimation = dropsWrap.current.querySelectorAll('p');
+
+    const dropsLeftPosition = [];
+    
+    function randomPosition() {
+      
+      allDivFromDropsAnimation.forEach(div => {
+        let newRandomLeftPosition = Math.random() * 100;
+        if (dropsLeftPosition.length >= 1 && 
+            dropsLeftPosition.find(elem => Math.abs(elem - newRandomLeftPosition) < 3.5)
+        ) {
+          while (dropsLeftPosition.find(elem => Math.abs(elem - newRandomLeftPosition) < 3.5)) {
+            newRandomLeftPosition += 5;
+            if (newRandomLeftPosition >= 95) {
+              newRandomLeftPosition -= 90
+            }
+          }
+          dropsLeftPosition.push(newRandomLeftPosition);
+        } else {
+          if (newRandomLeftPosition >= 95) {
+            newRandomLeftPosition -= 90;
+            while (dropsLeftPosition.find(elem => Math.abs(elem - newRandomLeftPosition) < 3.5)) {
+              newRandomLeftPosition += 5;
+              if (newRandomLeftPosition >= 95) {
+                newRandomLeftPosition -= 90;
+              }
+            }
+          }
+          dropsLeftPosition.push(newRandomLeftPosition);
+        }
+
+        div.style.left = `${dropsLeftPosition[dropsLeftPosition.length - 1]}%`;
+        if (dropsLeftPosition.length >= 5) {
+          dropsLeftPosition.splice(0)
+        }
+      });
+      allDivFromDropsAnimation.forEach(div => div.style.marginTop = `-${Math.random() * 20}rem`);
+    }
+
+    randomPosition();
+
+    allDivFromDropsAnimation.forEach(div => div.style.animationDuration = `${dropAnimationDuration}s`);
+    allPFromDropsAnimation.forEach(p => p.style.fontSize = `${binaryNumbersSizeAnimation}px`);
+
+    const randomMarginGeneration = setInterval(() => {
+      randomPosition()
+    }, 1000 * dropAnimationDuration)
+
+    /////////////////////////////////////
+    // SELF-WRITING QUESTION & ANSWER
+
+    const question = 'Do you need a ninja-level web developer for your project?'.split('');
+
+    const answerBeginningUntilComma = 'If so,'.split('');
+    const answerBeginningAfterComma = ' have a look at '.split('');
+    const myPortfolioSpan = <Link href="/portfolio/projects" key={'my portoflio button'}><a><ButtonFromNavBarBottom additionalStyles={styles.answerButtons} >my portfolio</ButtonFromNavBarBottom></a></Link>
+    const answerAnd = ' and '.split('');
+    const dropMeALineSpan = <Link href="/contact" key={'drop me a line button'}><a><ButtonFromNavBarBottom additionalStyles={styles.answerButtons} >drop me a line</ButtonFromNavBarBottom></a></Link>
+    const answerPeriod = ' .';
+    
+    const typingSpeed = 35;
+    const questionLineTimeout = 3000;
+    const waitingAfterComma = 500;
+    let writeText = true;
+
+    async function selfWritingText() {
+      // QUESTION LINE --> "Do you need a ninja-level web developer for your project?"
+      const questionWrittenCharacters = [];
+      await promiseTwoTimeouts(question, questionWrittenCharacters, setQuestionContent, typingSpeed, questionLineTimeout, writeText);
+
+      // ANSWER LINE --- SPLIT DUE TO THE NEED OF DIFFERENT TIMEOUTS AND TO INCLUDE BUTTONS
+      const answerWrittenBeginningUntilComma = [];
+      await promiseTwoTimeouts(answerBeginningUntilComma, answerWrittenBeginningUntilComma, setAnswerContent, typingSpeed, 1000, writeText);
+
+      const answerWrittenBeginningAfterComma = [];
+      await promiseTwoTimeouts(answerBeginningAfterComma, answerWrittenBeginningAfterComma, setAnswerContent, typingSpeed, waitingAfterComma, writeText);
+      await promiseSingleTimeout(myPortfolioSpan, setAnswerContent, 0, writeText);
+
+      const answerWrittenAnd = []
+      await promiseTwoTimeouts(answerAnd, answerWrittenAnd, setAnswerContent, typingSpeed, 1000, writeText);
+      await promiseSingleTimeout(dropMeALineSpan, setAnswerContent, 0, writeText);
+      await promiseSingleTimeout(answerPeriod, setAnswerContent, 1000, writeText);
+    }
+    selfWritingText();
+
+    return () => {
+      // Stop the "setInterval()" - "binaryNumbersGeneration" function execution as soon the URL changes.
+      router.events.off('routeChangeStart', () => {
+        clearInterval(randomMarginGeneration);
+      });
+      writeText = false;
+    };
+    
+  }, [])
+
+  const content = useMemo(() => {
+    return (
+      <>
+      <div className={styles.title}>
+        <h1 className={styles.welcome}>Welcome to Joaquín M2’s Website</h1>
+        <h2 className={styles.position}>Full-Stack Web Developer</h2>
+      </div>
+      <div className={styles.questionAnswer}>
+        <p className={styles.question}>
+          {questionContent}
+        </p>
+        <p className={styles.answer}>
+          {answerContent}
+        </p>
+      </div>
+      </>
+    )
+  })
+
   return (
-    <div className="container">
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>JM2 Website</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className={styles.wrap} ref={dropsWrap}>
+          {backgroundDrops}
         </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
+        <div className={styles.positionMainElements}>
+          <main className={styles.container}>
+            {content}
+          </main>
+          <NavBarBottom />
+        </div>
+    </>
   )
 }

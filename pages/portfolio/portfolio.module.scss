@@ -1,0 +1,185 @@
+@import '../../sass/abstracts/variables.scss';
+@import '../../sass/abstracts/mixins.scss';
+
+.SupraMainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.MainContainer {
+    //height: 100%;
+    // display: grid;
+    // grid-template: 15vh 60vh 10vh / 1fr 5fr
+    display: flex;
+}
+
+.SlideAndButtonsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    height: 70%;
+    padding: 2rem 0rem;
+}
+
+// .SliderContainer {
+//     height: 100%;
+//     @include responsiveDesign(400) {
+//         width: 100%;
+//         padding: 0 4rem;
+//     }
+
+//     & .PortfolioSlider {
+//         //grid-area: 2 / 2 / 3 / 3
+//         @include responsiveDesign(400) {
+//             width: 100%;
+//         }
+//     }
+// }
+
+.PortfolioFiltersBar {
+    //grid-area: 1 / 1 / 4 / 2
+}
+
+.NoFiltersContainer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: calc(100vh - 9.5rem);
+    
+}
+
+.NextToFiltersContainer_TopNavBar {
+    //grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+
+.activateLabelStyle {
+    box-shadow: 0 0 0 .8rem green;
+    // outline: 1rem solid green;
+    // border-radius: .5rem;
+}
+
+.nonActiveThumbnailImage {
+    border-radius: 0rem !important;
+}
+
+// .CurtainDetails_Element {
+//     margin: 2rem 1.6rem;
+//     font-size: 1.6rem;
+//     font-family: $texts-fonts;
+
+//     // List element style
+//     &::before {
+//         content: '\27A4';
+//         position: absolute;
+//         left: 1.5rem;
+//         line-height: 2rem;
+//     }
+// }
+
+
+.NavBarBottom {
+    //position: sticky !important;
+}
+
+
+/////////////////////////////
+// PREV - NEXT BUTTONS
+
+.PrevButton:hover div {
+    animation: moveArrowPrevious 1.5s infinite;
+}
+
+@keyframes moveArrowPrevious {
+    0% {
+        transform: translateX(0)
+    }
+    50% {
+        transform: translateX(1.6rem)
+    }
+    100% {
+        transform: translateX(0)
+    }
+}
+
+.NextButton:hover div {
+    animation: moveArrowNext 1.5s infinite;
+}
+
+@keyframes moveArrowNext {
+    0% {
+        transform: translateX(0)
+    }
+    50% {
+        transform: translateX(2rem)
+    }
+    100% {
+        transform: translateX(0)
+    }
+}
+
+.PrevButton {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+
+// //////////////////////////////////
+// // TOUCH - TRANSITION FOR NEW SLIDE
+
+// .OldSlide {
+//     animation: fadeOldSlide .3s linear;
+// }
+
+// @keyframes fadeOldSlide {
+//     0% {
+//         opacity: 1;
+//     }
+//     50% {
+//         opacity: 0;
+//     }
+//     100% {
+//         opacity: 0;
+//     }
+// }
+
+// .NewSlideFromRight {
+//     animation: appearNewSlideFromRight .6s linear;
+// }
+
+// @keyframes appearNewSlideFromRight {
+//     0% {
+//         opacity: 0;
+//         transform: translateX(50%);
+//     }
+//     30% {
+//         opacity: 0;
+//     }
+//     100% {
+//         opacity: 1;
+//         transform: translateX(0%);
+//     }
+// }
+
+// .NewSlideFromLeft {
+//     animation: appearNewSlideFromLeft .6s linear;
+// }
+
+// @keyframes appearNewSlideFromLeft {
+//     0% {
+//         opacity: 0;
+//         transform: translateX(-50%);
+//     }
+//     30% {
+//         opacity: 0;
+//     }
+//     100% {
+//         opacity: 1;
+//         transform: translateX(0%);
+//     }
+// }

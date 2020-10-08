@@ -1,0 +1,45 @@
+.Container {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    border-radius: 2.4rem;
+    cursor: pointer;
+    transition: all .2s ease-out;
+}
+
+.Container:hover {
+    box-shadow: 0 0 .8rem .8rem white;
+}
+
+.TechTag {
+    padding: .6rem 1.6rem;
+    background-color: red;
+    font-weight: bold;
+    color: white;
+    letter-spacing: .16rem;
+    white-space: nowrap;
+
+    border: .32rem solid red;
+    border-right: none;
+    border-left: none;
+    border-top-left-radius: 2.4rem;
+    border-bottom-left-radius: 2.4rem;
+}
+
+.ProgressBarContainer {
+    position: relative;
+    width: 100%;
+    padding: .6rem 0rem;
+    text-align: center;
+    background-color: white;
+
+    border: .32rem solid red;
+    border-left: none;
+    border-top-right-radius: 2.4rem;
+    border-bottom-right-radius: 2.4rem;
+}
+
+.PercentageQuantity {
+    position: relative;
+    z-index: 1;
+}
