@@ -2,9 +2,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useEffect, useRef, useMemo, useState} from 'react';
-import NavBarBottom from '../components/nav-bar-bottom/nav-bar-bottom';
+import NavBarBottom from '../components/projects/portfolio-website/nav-bar-bottom/nav-bar-bottom';
 
-import ButtonFromNavBarBottom from '../components/nav-bar-bottom/button/button';
+import ButtonFromNavBarBottom from '../components/projects/portfolio-website/nav-bar-bottom/button/button';
 
 import {promiseSingleTimeout, promiseTwoTimeouts} from '../utils/selfwriting-phrases';
 

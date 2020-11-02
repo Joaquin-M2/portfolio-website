@@ -1,0 +1,41 @@
+.seatsLegend {
+    display: flex;
+
+    padding: 0.7rem;
+    margin: 2rem 0;
+
+    background-color: rgba(0, 0, 0, 0.1);
+
+    border-radius: 0.5rem;
+}
+
+.seatsLegend li {
+    display: flex;
+    align-items: center;
+    margin: 0 0.8rem;
+}
+
+.seatsLegend p {
+    font-size: 1.5rem;
+    color: #d4d4d4;
+}
+
+.seat {
+    height: 1.5rem;
+    width: 2rem;
+    border-top-left-radius: 0.7rem;
+    border-top-right-radius: 0.7rem;
+    margin: 0.5rem;
+}
+
+.free {
+    background-color: #646464;
+}
+
+.selected {
+    background-color: #00ffff;
+}
+
+.occupied {
+    background-color: white;
+}

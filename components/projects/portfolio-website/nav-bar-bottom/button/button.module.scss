@@ -1,0 +1,83 @@
+@import '../../../../../sass/abstracts/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+.navBarButton {
+    background-color: $main-color-button;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: .08rem;
+    color: black;
+
+    width: 12rem;
+    padding: 1.6rem .8rem;
+
+    border: none;
+
+    cursor: pointer;
+
+    border: .16rem solid $color-intense-grey;
+    border-radius: 1rem;
+    background: $color-pale-grey;
+    transform-style: preserve-3d;
+
+
+    box-shadow: .2rem .2rem .4rem 0em #000;
+    position: relative;
+    overflow: hidden;
+    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+
+    &::after {
+        background: #FFF;
+        border: 0px solid $color-intense-grey;
+        content: "";
+        height: 12rem;
+        left: -6.5rem;
+        opacity: .8;
+        position: absolute;
+        top: -4rem;
+        -webkit-transform: rotate(35deg);
+                transform: rotate(35deg);
+        width: 4rem;
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);/*easeOutCirc*/
+        z-index: 1;
+    }
+
+    &:hover {
+        background: $color-pale-grey;
+
+        &::after {
+            background: #FFF;
+            border: 1.5rem solid $color-intense-grey;
+            opacity: 0;
+            left: 120%;
+            -webkit-transform: rotate(40deg);
+                    transform: rotate(40deg);
+        }
+
+        &:active::after {
+            display: none;
+        }
+    }
+
+    &:active {
+        background-image: radial-gradient($color-intense-green 40%, $color-pale-green);
+        box-shadow: .2rem .2rem .1rem .1rem #000 inset;
+        border-color: #999999;
+
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.buttonCheckedAsActive:checked .navBarButton {
+    background-image: radial-gradient($color-intense-green 40%, $color-pale-green);
+    box-shadow: .2rem .2rem .1rem .1rem #000 inset;
+    border-color: #999999;
+
+        &:hover::after {
+            display: none;
+        }
+}

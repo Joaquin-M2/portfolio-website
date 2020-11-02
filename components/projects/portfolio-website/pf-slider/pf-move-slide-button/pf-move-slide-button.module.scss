@@ -1,0 +1,28 @@
+@import '../../../../../sass/abstracts/mixins.scss';
+
+.Button {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.7);
+
+    height: 100%;
+    width: 12rem;
+
+
+    background-color: rgba(51,51,51,0.5);
+    border: none;
+
+    cursor: pointer;
+
+    @include responsiveDesign(400) {
+        display: none;
+    }
+}
+
+.Button:focus {
+    outline: none;
+}
+
+.Button:active {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(51,51,51,0.7);
+}

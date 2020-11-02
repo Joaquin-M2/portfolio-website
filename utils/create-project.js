@@ -1,9 +1,19 @@
 import styles from './create-project.module.scss';
 
 export default class Project {
-    constructor(id, image, techs, desc, linkToCode, linkToProject, ...details) {
+    constructor(
+        id,
+        image,
+        thumbnail,
+        techs,
+        desc,
+        linkToCode,
+        linkToProject,
+        ...details
+    ) {
         this.id = id;
         this.image = image;
+        this.thumbnail = thumbnail;
         this.technologies = techs;
         this.description = desc;
         this.linkToCode = linkToCode;
@@ -12,9 +22,16 @@ export default class Project {
     }
 
     createDetail(details) {
-        let allDetails = []
+        let allDetails = [];
         for (const detail of details) {
-            allDetails.push(<li className={styles.CurtainDetails_Element} key={`${this.id}-${Math.random()}`}>{detail}</li>)
+            allDetails.push(
+                <li
+                    className={styles.CurtainDetails_Element}
+                    key={`${this.id}-${Math.random()}`}
+                >
+                    {detail}
+                </li>
+            );
         }
         return allDetails;
     }

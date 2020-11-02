@@ -1,0 +1,300 @@
+@import '../../../../sass/abstracts/a-master';
+@import '../../../../sass/abstracts/variables';
+
+.Container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    height: 100%;
+    padding: 2rem 4rem;
+
+    background-color: green;
+}
+
+.Slider {
+    display: flex;
+    height: 100%;
+    width: 50vw;
+    background-color: $color-pale-grey;
+
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    position: relative;
+    z-index: 0;
+
+    @include responsiveDesign(1000) {
+        flex-direction: column;
+    }
+
+    @include responsiveDesign(400) {
+        width: 100%;
+        margin: 0 4rem;
+    }
+}
+
+.ImageContainer {
+    position: relative;
+    height: 100%;
+    width: 65%;
+    background: linear-gradient(
+        270deg,
+        rgba($color-pale-grey, 1) 0%,
+        rgba($color-pale-grey, 0.5) 25%,
+        rgba($color-pale-grey, 0) 50%
+    );
+
+    //background-size: 100% 100%;
+    overflow: hidden;
+
+    @include responsiveDesign(1000) {
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(
+            0deg,
+            rgba($color-pale-grey, 1) 0%,
+            rgba($color-pale-grey, 0.5) 25%,
+            rgba($color-pale-grey, 0) 50%
+        );
+    }
+}
+
+.Image img {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+/////////////////////////////////////////////
+// CURTAIN OF DETAILS ABOUT THE PROJECT
+
+.CurtainCheckbox {
+    visibility: hidden;
+}
+
+.CurtainButton {
+    position: absolute;
+    top: calc(100% - 1.6rem);
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 3.2rem;
+    border-radius: 1.6rem;
+    background-color: red;
+    padding: 0.8rem 1.6rem;
+
+    display: inline-block;
+    white-space: nowrap;
+
+    z-index: 1;
+
+    cursor: pointer;
+
+    transition: all 0.5s ease-in-out;
+}
+
+.CurtainButtonContent {
+    color: white;
+    font-size: 1.2rem;
+    letter-spacing: 0.8rem;
+    text-align: center;
+    //line-height: 3rem; // Necessary to vertically align the text within the <div>.
+    transform: translateY(-46%);
+
+    transition: all 0.5s ease-in-out;
+}
+
+.CurtainButtonContent::before {
+    content: '\21BF';
+    font-weight: bold;
+    transform: rotate(0deg) translateY(-10%);
+    margin: 0 0.8rem;
+}
+
+.CurtainButtonContent::after {
+    content: '\21BE';
+    font-weight: bold;
+    transform: rotate(0deg) translateY(-10%);
+    margin: 0 0.8rem;
+}
+
+.Curtain {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgba(0, 0, 0, 0.9);
+
+    transition: all 0.5s ease-in-out;
+}
+
+.CurtainRelativeContainer {
+    position: relative;
+    height: 100%;
+    overflow: auto;
+
+    display: flex;
+}
+
+.CurtainDetails {
+    color: white;
+    margin: auto 2.8rem;
+    //list-style-position: outside;
+    list-style-type: none;
+
+    justify-self: center;
+}
+
+.CurtainDetails_CheckCodeLink {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+
+    display: block;
+    margin: 1rem;
+    align-self: flex-end;
+}
+
+.CurtainCheckbox:checked ~ .Curtain {
+    top: 0;
+}
+
+.CurtainCheckbox:checked ~ .CurtainButton {
+    top: -1.6rem;
+}
+
+.CurtainCheckbox:checked ~ .CurtainButton .CurtainButtonContent {
+    transform: translateY(46%);
+}
+
+.CurtainCheckbox:checked ~ .CurtainButton .CurtainButtonContent::before {
+    display: inline-block;
+    transform: rotateX(180deg);
+}
+
+.CurtainCheckbox:checked ~ .CurtainButton .CurtainButtonContent::after {
+    display: inline-block;
+    transform: rotateX(180deg);
+}
+
+/////////////////////////////////////////////
+// DESCRIPTION OF PROJECT IN MAIN SLIDER.
+
+.Description {
+    height: 100%;
+    width: 35%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //justify-content: space-between;
+
+    padding: 2.4rem;
+
+    @include responsiveDesign(1000) {
+        width: 100%;
+        height: 50%;
+    }
+}
+
+.Description_Title {
+    margin-bottom: 1.6rem;
+
+    font-size: 1.6rem;
+    letter-spacing: 0.16rem;
+}
+
+.Description_TextContainer {
+    height: 100%;
+    overflow: auto;
+    margin-bottom: 2rem;
+}
+
+.Description_Text {
+    margin-bottom: auto;
+
+    font-family: $texts-fonts;
+    font-size: 1.35rem;
+}
+
+.Description_ButtonCheckProject {
+    border: none;
+    cursor: pointer;
+
+    padding: 1.2rem 1.6rem;
+
+    font-size: 1.2rem;
+    font-family: $titles-fonts;
+    font-weight: bold;
+    letter-spacing: 0.4rem;
+    text-transform: uppercase;
+
+    background-color: $color-intense-green;
+}
+
+.Description_ButtonCheckProject:focus {
+    outline: none;
+}
+
+//////////////////////////////////
+// TOUCH - TRANSITION FOR NEW SLIDE
+
+.OldSlide {
+    animation: fadeOldSlide 0.3s linear;
+}
+
+@keyframes fadeOldSlide {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.NewSlideFromRight {
+    animation: appearNewSlideFromRight 0.6s linear;
+}
+
+@keyframes appearNewSlideFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+    30% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+.NewSlideFromLeft {
+    animation: appearNewSlideFromLeft 0.6s linear;
+}
+
+@keyframes appearNewSlideFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+    30% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}

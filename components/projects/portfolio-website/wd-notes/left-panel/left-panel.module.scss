@@ -1,0 +1,185 @@
+@import '../../../../../sass/abstracts/mixins.scss';
+@import '../../../../../sass/abstracts/variables.scss';
+
+.LeftPanelCheckbox {
+    display: none;
+
+    &:checked ~ .Container {
+        width: 0rem;
+        transform: translateX(-100%);
+        margin-right: 1.6rem;
+
+        & *:not(.LeftPanelButton) {
+            width: 0rem;
+            transform: translateX(-550%);
+            opacity: 0;
+            //display: none;
+            //visibility: hidden;
+        }
+
+        & .LeftPanelButton::after {
+            // content: '>>';
+            content: 'TOPIC';
+            display: block;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+
+            // @include responsiveDesign(800) {
+            //     content: 'TOPIC';
+            //     writing-mode: vertical-rl;
+            //     text-orientation: upright;
+            // }
+        }
+    }
+
+    &:checked ~ .blackSail {
+        display: none;
+    }
+}
+
+.LeftPanelButton {
+    position: absolute;
+    top: .4rem;
+    // right: -2.8rem;
+    right: -3.3rem;
+    cursor: pointer;
+    padding: .8rem;
+    font-size: 1.6rem;
+    color: white;
+    background-color: red;
+    border-radius: 0 1rem 1rem 0;
+
+    // @include responsiveDesign(800) {
+    //     right: -3.3rem;
+    // }
+
+    &::after {
+        // content: '<<';
+        content: 'TOPIC';
+        display: block;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        transition: all .5s ease-out;
+
+        @include responsiveDesign(800) {
+            content: 'TOPIC';
+            display: block;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+    }
+}
+
+.Container {
+    position: sticky;
+    top: 0;
+    //background-color: white;
+    background-image: linear-gradient(to left, transparent 0%, white 2%);
+    height: 100vh;
+    width: 20%;
+    padding: .8rem;
+    margin-right: 3.2rem;
+    //display: inline-block;
+    z-index: 3;
+
+    transition: all .5s ease-out;
+
+    & * {
+        transition: all .5s ease-out;
+    }
+
+    @include responsiveDesign(800) {
+        position: fixed;
+    }
+
+    @include responsiveDesign(600) {
+        width: 35%;
+    }
+}
+
+// .Container::after {
+//     content: '';
+//     width: 4rem;
+//     height: 2rem;
+//     background-color: red;
+//     position: absolute;
+//     top: .5rem;
+//     right: -3.5rem;
+//     cursor: pointer;
+// }
+
+.TitleContainer {
+    border-bottom: .08rem solid black;
+    text-align: center;
+    padding: 0 2.4rem;
+}
+
+.Title {
+    font-size: 3.2rem;
+    letter-spacing: .24rem;
+    color: black;
+    padding: .8rem 0rem;
+}
+
+.List {
+    list-style: none;
+    list-style-position: inside;
+    margin: 1.6rem 0;
+    padding-left: .8rem;
+}
+
+.ListElement:link, .ListElement:visited {
+    display: block;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: .08rem;
+    position: relative;
+
+    &:not(:last-child) {
+        margin-bottom: .8rem;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        background-color: pink;
+        width: .24rem;
+        height: 100%;
+        transform: scaleY(0);
+
+        transition: transform .2s,
+                    width .4s cubic-bezier(1,0,0,1) .2s; // Atención al transition delay de ".2s", para que el inicio del "transition: width" coincida con el final de la ejecución de "transition: transform .2s".
+    }
+
+    &:hover::before {
+        transform: scaleY(1);
+        width: 100%;
+    }
+
+    & li {
+        position: relative;
+        padding: .8rem;
+        //z-index: 1;
+    }
+}
+
+.active {
+    background-color: pink;
+}
+
+////////////////////////
+// BLACKSAIL
+
+.blackSail {
+    display: none;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+}

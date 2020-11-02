@@ -1,10 +1,10 @@
 import Head from 'next/head';
 
-import NavBarBottom from '../../components/nav-bar-bottom/nav-bar-bottom';
+import NavBarBottom from '../../components/projects/portfolio-website/nav-bar-bottom/nav-bar-bottom';
 
-import LeftPanel from '../../components/wd-notes/left-panel/left-panel';
-import RightPanel from '../../components/wd-notes/right-panel/right-panel';
-import CorePanel from '../../components/wd-notes/core-panel/core-panel';
+import LeftPanel from '../../components/projects/portfolio-website/wd-notes/left-panel/left-panel';
+import RightPanel from '../../components/projects/portfolio-website/wd-notes/right-panel/right-panel';
+import CorePanel from '../../components/projects/portfolio-website/wd-notes/core-panel/core-panel';
 
 import styles from './wd-notes.module.scss';
 

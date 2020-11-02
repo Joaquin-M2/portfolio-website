@@ -1,0 +1,164 @@
+@import '../../../../../sass/abstracts/variables.scss';
+
+.Fieldset {
+    padding: 2.4rem;
+}
+
+.Legend {
+    color: $color-pale-grey;
+    font-size: 3.2rem;
+    padding: 0 1.2rem;
+}
+
+.FormField {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 2.4rem;
+}
+
+.FormField:not(:last-of-type) {
+    margin-bottom: 2.4rem;
+}
+
+.ContactFormInput {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.6rem;
+    display: block;
+    box-shadow: 0 .4rem .8rem rgba(0, 0, 0, .1);
+    outline: none;
+    border-radius: .4rem;
+    border: .32rem solid transparent;
+    color: $color-more-intense-grey;
+    
+    transition: all .3s;
+
+    &::-webkit-input-placeholder { // El texto que escribe el usuario en un campo de texto.
+        color: inherit;
+        font-weight: inherit;
+        font-family: $texts-fonts;
+        //font-size: 1.5rem;
+      }
+
+      &:placeholder-shown + label { // El CSS de <label> (.ContactFormLabel) está justo abajo. :placeholder-shown hace referencia al campo de texto cuando todavía se muestra el placeholder por defecto (es decir, antes de que el usuario escriba en él).
+        order: -1;
+        transform: translateY(4rem);
+        opacity: 0; // No se usa solamente "visibility" porque es una propiedad CSS que no puede ser animada ("transition"). "opacity" sí que puede serlo.
+        visibility: hidden; // "opacity" lo oculta, "visibility" directamente lo quita (así no cambia el ratón al pasar por encima).
+      }
+}
+
+.ContactFormLabel {
+    order: -1;
+    display: inline-block;
+    margin-left: .8rem;
+    margin-bottom: .4rem;
+    font-family: $titles-fonts;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: $color-intense-grey;
+    transition: all .3s;
+}
+
+// ERROR MESSAGES
+
+.FormField small {
+    display: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.95rem;
+    letter-spacing: .08rem;
+    margin: .16rem 0 -1.35rem .4rem;
+}
+
+.ContactFormInputError {
+    border: .32rem solid red;
+}
+
+.ContactFormInputSuccess {
+    border: .32rem solid green;
+}
+
+// FORM BUTTON
+
+.ButtonSendForm {
+    display: block;
+    padding: .8rem;
+    margin: auto;
+
+    font-family: $titles-fonts;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.deactivateButton {
+    cursor: not-allowed;
+    background-color: $color-intense-grey;
+    color: black;
+}
+
+.activateButton {
+    cursor: pointer;
+    background-color: lighten($color-intense-grey, 50%);
+    color: black;
+}
+
+// SENDING FORM SPINNER
+
+.spinner {
+    display: none;
+    margin: 3.6rem auto 1.2rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .spinner > div {
+    width: 1.45rem;
+    height: 1.45rem;
+    margin: 0 .4rem;
+    background-color: #333;
+  
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  }
+  
+  .spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+  
+  .spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+  
+  @-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0) }
+    40% { -webkit-transform: scale(1.0) }
+  }
+  
+  @keyframes sk-bouncedelay {
+    0%, 80%, 100% { 
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 40% { 
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+    }
+  }
+
+  // FORM SENT MESSAGE
+
+  .formSentMessage {
+      display: none;
+      margin: .8rem auto;
+      text-align: center;
+      color: white;
+      font-size: 2.4rem;
+  }

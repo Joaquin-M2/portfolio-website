@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import NavBarBottom from '../../components/nav-bar-bottom/nav-bar-bottom';
+import NavBarBottom from '../../components/projects/portfolio-website/nav-bar-bottom/nav-bar-bottom';
 import styles from './skills.module.scss';
 
-import NavBarTopButton from '../../components/nav-bar-top/nav-bar-top';
-import SkillsBlock from '../../components/skills-block/skills-block';
-import SkillBar from '../../components/skills-block/skill-bar/skill-bar';
-import SkillModal from '../../components/skills-block/skill-modal/skill-modal';
+import NavBarTopButton from '../../components/projects/portfolio-website/nav-bar-top/nav-bar-top';
+import SkillsBlock from '../../components/projects/portfolio-website/skills-block/skills-block';
+import SkillBar from '../../components/projects/portfolio-website/skills-block/skill-bar/skill-bar';
+import SkillModal from '../../components/projects/portfolio-website/skills-block/skill-modal/skill-modal';
 
 import technologies from '../../data/skills-backend';
 import tech from '../../data/techs-names';

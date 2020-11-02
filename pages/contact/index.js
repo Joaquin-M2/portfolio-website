@@ -1,8 +1,8 @@
 import Head from 'next/head';
 
-import NavBarBottom from '../../components/nav-bar-bottom/nav-bar-bottom';
+import NavBarBottom from '../../components/projects/portfolio-website/nav-bar-bottom/nav-bar-bottom';
 
-import ContactForm from '../../components/contact/contact-form/contact-form';
+import ContactForm from '../../components/projects/portfolio-website/contact/contact-form/contact-form';
 
 import EmailLogo from '../../components/SVG-icons/email';
 import LinkedinLogo from '../../components/SVG-icons/linkedin';
