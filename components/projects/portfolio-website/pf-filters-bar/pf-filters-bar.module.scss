@@ -10,14 +10,13 @@
     justify-content: flex-start;
 
     width: 24rem;
-    //height: 105%;
     height: 100vh;
 
     background-color: #000048;
 
     z-index: 2;
 
-    transition: all .5s ease-out;
+    transition: all 0.5s ease-out;
 
     @include responsiveDesign(1280) {
         position: fixed;
@@ -27,12 +26,11 @@
 
 .FiltersBar_Title {
     font-size: 2.8rem;
-    letter-spacing: .24rem;
+    letter-spacing: 0.24rem;
     color: $color-pale-grey;
 
-    border-bottom: .08rem solid $color-intense-grey;
+    border-bottom: 0.08rem solid $color-intense-grey;
 
-    // align-self: center;
     text-align: center;
 
     padding: 1.6rem;
@@ -44,64 +42,56 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    
-    height: calc(100vh - 10.5rem - 10rem) ; // 100% height - .FiltersBar_Title - NavBarBottom (approx. measurement);
+
+    height: calc(
+        100vh - 10.5rem - 10rem
+    ); // 100% height - .FiltersBar_Title - NavBarBottom (approx. measurement);
     overflow: auto;
 
     &::-webkit-scrollbar {
         width: 2.4rem;
-        //background-color: red;
     }
 
     &::-webkit-scrollbar-thumb {
         border-radius: 2.4rem;
-        border: .4rem solid #000048;
-        width: .4rem;
+        border: 0.4rem solid #000048;
+        width: 0.4rem;
         background-color: darkgrey;
-        //outline: .08rem solid slategrey;
-      }
+    }
 }
-
 
 //////////////////////////////////
 // ACTIVATION FILTERS PANEL BUTTON (for screens < 1280px)
 
 .FiltersPanelCheckbox {
     display: none;
-
-    &:checked ~ .FiltersBar {
-        width: 0rem;
-        transform: translateX(-100%);
-        //margin-right: 1.6rem;
-
-        & *:not(.FiltersPanelButton) {
-            //width: 0rem;
+    @include responsiveDesign(1280) {
+        &:checked ~ .FiltersBar {
+            width: 0rem;
             transform: translateX(-100%);
-            //opacity: 0;
-            //display: none;
-            //visibility: hidden;
-        }
 
-        & .FiltersPanelButton::after {
-            // content: '>>';
-            content: 'FILTERS';
-            display: block;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
+            & *:not(.FiltersPanelButton) {
+                transform: translateX(-100%);
+            }
+
+            & .FiltersPanelButton::after {
+                content: 'FILTERS';
+                display: block;
+                writing-mode: vertical-rl;
+                text-orientation: upright;
+            }
         }
     }
 }
-
 
 .FiltersPanelButton {
     display: none;
     position: absolute;
     top: 50%;
     transform: translateY(-70%);
-    // right: -2.8rem;
     right: -3.3rem;
     cursor: pointer;
-    padding: .8rem;
+    padding: 0.8rem;
     font-size: 1.6rem;
     color: white;
     background-color: red;
@@ -113,12 +103,11 @@
     }
 
     &::after {
-        // content: '<<';
         content: 'FILTERS';
         display: block;
         writing-mode: vertical-rl;
         text-orientation: upright;
-        transition: all .5s ease-out;
+        transition: all 0.5s ease-out;
 
         @include responsiveDesign(800) {
             content: 'FILTERS';

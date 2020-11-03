@@ -18,7 +18,7 @@ export default function PortfolioSliderThumbnail(props) {
                 <div className={styles.ThumbnailImageContainer}>
                     <img
                         className={`${styles.ThumbnailImageContainer_Image} ${props.styleNonActiveThumbnail}`}
-                        src={props.image}
+                        src={`${props.image}-thumbnail.jpg`}
                     />
                 </div>
             </label>

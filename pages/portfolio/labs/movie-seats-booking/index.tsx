@@ -88,7 +88,7 @@ const MovieSeatsBookingLab: React.FC = () => {
     }, [currentMovie]);
 
     /**
-     * The component itself.
+     * Renders the component.
      */
     return (
         <>
@@ -113,7 +113,7 @@ const MovieSeatsBookingLab: React.FC = () => {
                     totalPrice={moviePrice * selectedSeats}
                 />
             </div>
-            <TonguesContainer CheckCodePath="https://google.com" />
+            <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/movie-seats-booking/index.tsx" />
         </>
     );
 };

@@ -39,7 +39,7 @@ export default function Labs() {
                 <PortfolioSliderThumbnail
                     forAttribute={projects[project.id - 1].id}
                     id={projects[project.id - 1].id}
-                    image={projects[project.id - 1].thumbnail}
+                    image={projects[project.id - 1].image}
                     key={projects[project.id - 1].id}
                     updateStateForActiveThumbnail={() =>
                         setActiveThumbnail(projects[project.id - 1].id)
@@ -127,13 +127,13 @@ export default function Labs() {
                             tech.JAVASCRIPT,
                             tech.TYPESCRIPT,
                             tech.REACT,
-                            tech.NEXT,
-                            tech.NODEJS,
-                            tech.EXPRESS,
-                            tech.KOTLIN,
-                            tech.PYTHON,
-                            tech.SQL,
-                            tech.NOSQL,
+                            // tech.NEXT,
+                            // tech.NODEJS,
+                            // tech.EXPRESS,
+                            // tech.KOTLIN,
+                            // tech.PYTHON,
+                            // tech.SQL,
+                            // tech.NOSQL,
                         ]}
                     />
                     <div className={styles.NoFiltersContainer}>
@@ -157,6 +157,9 @@ export default function Labs() {
                             />
                             <PortfolioSlider
                                 additionalStyles={styles.PortfolioSlider}
+                                projectTitle={
+                                    projects[currentSelectedProject].title
+                                }
                                 srcAttribute={
                                     projects[currentSelectedProject].image
                                 }

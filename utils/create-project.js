@@ -3,8 +3,8 @@ import styles from './create-project.module.scss';
 export default class Project {
     constructor(
         id,
+        title,
         image,
-        thumbnail,
         techs,
         desc,
         linkToCode,
@@ -12,8 +12,8 @@ export default class Project {
         ...details
     ) {
         this.id = id;
+        this.title = title;
         this.image = image;
-        this.thumbnail = thumbnail;
         this.technologies = techs;
         this.description = desc;
         this.linkToCode = linkToCode;

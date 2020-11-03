@@ -29,7 +29,6 @@
     }
 }
 
-
 // RIGHT SIDE
 .OtherContactMeansContainer {
     width: 50%;
@@ -48,14 +47,14 @@
 
 .OtherContactMeansContainer h2 {
     font-size: 3.2rem;
-    letter-spacing: .24rem;
+    letter-spacing: 0.24rem;
     color: $color-pale-grey;
     margin-bottom: 1.6rem;
 }
 
 .OtherContactMeansContainer h3 {
     font-size: 2.4rem;
-    letter-spacing: .16rem;
+    letter-spacing: 0.16rem;
     color: $color-pale-grey;
     margin-bottom: 1.6rem;
 }
@@ -74,9 +73,10 @@
         font-size: 2rem;
         font-weight: bold;
         color: $color-intense-grey;
-        letter-spacing: .16rem;
+        letter-spacing: 0.16rem;
 
         display: inline-flex;
+        align-items: center;
 
         & span {
             margin-right: 1.6rem;
@@ -89,7 +89,7 @@
     font-weight: bold;
     color: $color-pale-grey;
     text-align: justify;
-    letter-spacing: .14rem;
+    letter-spacing: 0.14rem;
     line-height: 2.55rem;
 }
 

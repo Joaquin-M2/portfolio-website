@@ -3,6 +3,7 @@ export default function GithubLogo(props) {
         <a href={props.link} target="_blank">
             <span>
                 <svg
+                    className={props.GithubLogoStyles}
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"

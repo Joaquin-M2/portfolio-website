@@ -153,7 +153,9 @@ export default function PortfolioSlider(props) {
                     </div>
                 </div>
                 <div className={styles.Description}>
-                    <h4 className={styles.Description_Title}>Description</h4>
+                    <h4 className={styles.Description_Title}>
+                        {props.projectTitle}
+                    </h4>
                     <div className={styles.Description_TextContainer}>
                         <p className={styles.Description_Text}>
                             {props.projectDescription}
@@ -166,7 +168,7 @@ export default function PortfolioSlider(props) {
                                     styles.Description_ButtonCheckProject
                                 }
                             >
-                                Check Project
+                                Check the Project
                             </button>
                         </a>
                     </Link>
