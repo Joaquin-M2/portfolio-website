@@ -1,0 +1,78 @@
+@import '../../../../../sass/abstracts/variables.scss';
+@import '../../../../../sass/abstracts/mixins.scss';
+
+.button {
+  &,
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 2rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    position: relative;
+    font-size: $TP_default-font-size;
+
+    border: none;
+    cursor: pointer;
+
+    @include responsiveDesign(800) {
+      padding: 3rem 6rem;
+      font-size: 2.5rem;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(black, 0.2);
+  }
+
+  // &--white {
+  //     background-color: white;
+  //     color: $color-more-intense-grey;
+
+  //     &::after {
+  //         background-color: white;
+  //     }
+  // }
+
+  // &--green {
+  //     background-color: $TP_color-primary;
+  //     color: white;
+
+  //     &::after {
+  //         background-color: $TP_color-primary;
+  //     }
+  // }
+
+  &::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
+  }
+}

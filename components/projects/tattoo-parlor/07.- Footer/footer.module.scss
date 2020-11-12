@@ -1,0 +1,94 @@
+@import '../../../../sass/abstracts/mixins.scss';
+@import '../../../../sass/abstracts/variables.scss';
+
+.footer {
+  background-color: $TP_color-grey-dark-4;
+  padding: 10rem 0;
+  font-size: 1.4rem;
+  color: $TP_color-pale-grey;
+
+  @include responsiveDesign(800) {
+    padding: 8rem 0;
+  }
+}
+
+.logoBox {
+  margin-bottom: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include responsiveDesign(800) {
+    margin-bottom: 6rem;
+  }
+
+  & .logo {
+    width: 15rem;
+    height: auto;
+  }
+
+  & .isotype {
+    fill: black;
+    // stroke: white;
+    // stroke-width: 0.7;
+    height: 10rem;
+
+    margin-bottom: 1rem;
+  }
+
+  & .logotype {
+    fill: black;
+    // stroke: white;
+    // stroke-width: 0.25;
+    height: 6rem;
+  }
+}
+
+.blocksContainer {
+  display: flex;
+  justify-content: space-around;
+
+  @include responsiveDesign(800) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.list {
+  list-style: none;
+
+  & .listItem {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+.navBlock {
+  display: inline-block;
+
+  @include responsiveDesign(800) {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+}
+
+.copyrightBlock {
+  text-align: center;
+}
+
+.copyright {
+  color: $TP_color-pale-grey-2;
+  font-size: 1.7rem;
+  line-height: 2.5rem;
+
+  @include responsiveDesign(800) {
+    width: 100%;
+
+    font-size: inherit;
+  }
+}

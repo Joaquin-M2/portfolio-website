@@ -1,0 +1,52 @@
+@import '../../../../../sass/abstracts/variables.scss';
+@import '../../../../../sass/abstracts/mixins.scss';
+
+.container {
+  background-color: rgba(white, 0.8);
+  font-size: 1.5rem;
+  width: 20%;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 0.3rem;
+  box-shadow: 0 1.5rem 4rem rgba(black, 0.15);
+  transition: transform 0.3s;
+
+  @include responsiveDesign(800) {
+    padding: 2rem;
+    width: 50%;
+    margin: 3rem 0rem;
+    font-size: 2rem;
+  }
+
+  &:hover {
+    transform: translateY(-1.5rem) scale(1.03);
+  }
+}
+
+.icon {
+  margin-bottom: 2rem;
+  & svg {
+    fill: url(#Gradient-1);
+  }
+
+  @include responsiveDesign(800) {
+    margin-bottom: 2rem;
+  }
+}
+
+.title {
+  font-size: $TP_default-font-size;
+  font-weight: 700;
+  color: $TP_font-grey;
+  text-transform: uppercase;
+  margin-bottom: 1.7rem;
+
+  @include responsiveDesign(800) {
+    font-size: 2.2rem;
+  }
+}
+
+.text {
+  color: $TP_font-grey;
+  line-height: 2.5rem;
+}

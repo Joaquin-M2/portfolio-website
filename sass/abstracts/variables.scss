@@ -2,7 +2,6 @@
 
 $main-color-button: white;
 
-
 // // // // // // // // // // ----- COLORS -----
 
 // Shades of blue
@@ -17,14 +16,11 @@ $color-more-intense-grey: #5e5e5e;
 $color-intense-grey: #838282;
 $color-pale-grey: #d6d6d6;
 
-
 // Active Button Top NavBar + Background
 $active-top-navbar: rgba(255, 255, 255, 0.404);
 
-
 // Page Index - Home
 $body-text: white;
-
 
 // // // // // // // // // // ----- FONTS -----
 
@@ -33,3 +29,43 @@ $titles-fonts: 'Orbitron', sans-serif;
 
 // Text
 $texts-fonts: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+
+// // // // // // // // // // ----- THEMES -----
+
+// Font-Size
+$TP_default-font-size: 1.6rem;
+
+// Font-Color
+$TP_font-grey: #333;
+$TP_font-grey-dark: #333;
+
+// Colors
+// $TP_color-primary: #55c57a;
+// $TP_color-primary-light: #7ed56f;
+// $TP_color-primary-dark: #28b485;
+
+// $TP_color-secondary-light: #ffb900;
+// $TP_color-secondary-dark: #ff7730;
+
+// $TP_color-tertiary-light: #2998ff;
+// $TP_color-tertiary-dark: #5643fa;
+
+$TP_color-primary: #4a148c;
+$TP_color-primary-light: #7c43bd;
+$TP_color-primary-lighter: #c158dc;
+$TP_color-primary-dark: #12005e;
+
+$TP_color-secondary-light: #f05545;
+$TP_color-secondary-dark: #7f0000;
+
+$TP_color-tertiary-light: #777;
+$TP_color-tertiary-dark: #333;
+
+$TP_color-pale-grey: #f7f7f7;
+$TP_color-pale-grey-2: #eee;
+$TP_color-pale-grey-3: #ccc;
+
+$TP_color-grey-dark: #777;
+$TP_color-grey-dark-2: #999;
+$TP_color-grey-dark-3: #333;
+$TP_color-grey-dark-4: #444;

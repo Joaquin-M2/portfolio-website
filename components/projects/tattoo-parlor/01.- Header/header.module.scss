@@ -1,0 +1,132 @@
+@import '../../../../sass/abstracts/variables.scss';
+@import '../../../../sass/abstracts/mixins.scss';
+
+.header {
+  position: relative;
+  height: 95vh;
+  background-image: linear-gradient(
+      135deg,
+      rgba($TP_color-primary-light, 0.8),
+      rgba($TP_color-primary-dark, 0.8)
+    ),
+    url(/projects/TattooParlor/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 75vh, 0% 100%);
+
+  @include responsiveDesign(400) {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 85vh, 0% 100%);
+  }
+}
+
+.logotype {
+  animation: changeColor 20s infinite;
+  // stroke: white;
+  // stroke-width: 0.4;
+}
+
+@keyframes changeColor {
+  0% {
+    fill: white;
+  }
+  25% {
+    fill: black;
+  }
+  90% {
+    fill: black;
+  }
+  100% {
+    fill: white;
+  }
+}
+
+// NEON SUBTITLE
+
+@font-face {
+  font-family: 'neonregular';
+  src: url('neon_font-webfont.woff2') format('woff2'),
+    url('neon_font-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// NEON SUBTITLE BLINKING - CREDITS: https://codepen.io/dudleystorey/pen/xJkhG
+
+.subtitle {
+  font-family: 'neonregular', sans-serif;
+  -webkit-text-stroke: 0.2px red;
+  color: rgba(pink, 0.8);
+  animation: neonLight 1s 3s forwards;
+  text-shadow: 0 0 20px rgba(255, 0, 84, 0.6), 0 0 40px rgba(255, 0, 84, 0.4),
+    0 0 60px rgba(255, 0, 84, 0.2), 0 0 80px rgba(255, 0, 84, 0.1);
+
+  & .blinkingLetter_1 {
+    animation: neonBlink 15s 3s infinite;
+  }
+  & .blinkingLetter_2 {
+    animation: neonBlink 10s 1s infinite;
+  }
+  & .blinkingLetter_3 {
+    animation: neonBlink 20s 2s infinite;
+  }
+}
+
+@keyframes neonLight {
+  0% {
+    text-shadow: none;
+  }
+  30% {
+    text-shadow: 0 0 30px rgba(255, 0, 84, 0.6);
+  }
+  60% {
+    text-shadow: 0 0 30px rgba(255, 0, 84, 0.6), 0 0 60px rgba(255, 0, 84, 0.4);
+  }
+  80% {
+    text-shadow: none;
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(255, 0, 84, 0.6), 0 0 60px rgba(255, 0, 84, 0.4),
+      0 0 100px rgba(255, 0, 84, 0.2), 0 0 90px rgba(255, 0, 84, 0.1);
+  }
+}
+
+@keyframes neonBlink {
+  0% {
+    text-shadow: none;
+    -webkit-text-stroke: 0px grey;
+    color: grey;
+  }
+  30% {
+    text-shadow: 0 0 30px rgba(255, 0, 84, 0.6), 0 0 60px rgba(255, 0, 84, 0.4),
+      0 0 100px rgba(255, 0, 84, 0.2), 0 0 90px rgba(255, 0, 84, 0.1);
+    -webkit-text-stroke: 0.2px red;
+    color: rgba(pink, 0.8);
+  }
+  40% {
+    text-shadow: none;
+    -webkit-text-stroke: 0px grey;
+    color: grey;
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 0, 84, 0.6), 0 0 60px rgba(255, 0, 84, 0.4),
+      0 0 100px rgba(255, 0, 84, 0.2), 0 0 90px rgba(255, 0, 84, 0.1);
+    -webkit-text-stroke: 0.2px red;
+    color: rgba(pink, 0.8);
+  }
+  55% {
+    text-shadow: none;
+    -webkit-text-stroke: 0px grey;
+    color: grey;
+  }
+  90% {
+    text-shadow: 0 0 30px rgba(255, 0, 84, 0.6), 0 0 60px rgba(255, 0, 84, 0.4),
+      0 0 100px rgba(255, 0, 84, 0.2), 0 0 90px rgba(255, 0, 84, 0.1);
+    -webkit-text-stroke: 0.2px red;
+    color: rgba(pink, 0.8);
+  }
+  100% {
+    text-shadow: none;
+    -webkit-text-stroke: 0px grey;
+    color: grey;
+  }
+}

@@ -1,0 +1,26 @@
+@import '../../../../../../sass/abstracts/variables.scss';
+@import '../../../../../../sass/abstracts/mixins.scss';
+
+.picture {
+  width: 55%;
+  box-shadow: 0 1.5rem 4rem rgba(black, 0.4);
+  border-radius: 2px;
+  position: absolute;
+  //z-index: 0;
+  transition: all 0.2s;
+  outline-offset: 2rem;
+
+  @include responsiveDesign(800) {
+    float: left;
+    position: relative;
+    width: 33.33333333%;
+    box-shadow: 0 1.5rem 3rem rgba(black, 0.2);
+  }
+
+  &:hover {
+    outline: 1.5rem solid $TP_color-primary;
+    transform: scale(1.05) translateY(-0.5rem);
+    box-shadow: 0 2.5rem 4rem rgba(black, 0.5);
+    z-index: 20;
+  }
+}

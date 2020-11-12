@@ -1,0 +1,20 @@
+@import '../../../../../../sass/abstracts/variables.scss';
+
+.button {
+  &:link,
+  &:visited {
+    color: $TP_color-pale-grey-2;
+    background-color: $TP_color-grey-dark-4;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  &:hover,
+  &:active {
+    color: $TP_color-primary-lighter;
+    box-shadow: 0 1rem 2rem rgba(black, 0.4);
+    transform: rotate(5deg) scale(1.3);
+  }
+}

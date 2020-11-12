@@ -1,0 +1,15 @@
+@import '../../../../sass/abstracts/mixins.scss';
+@import '../../../../sass/abstracts/variables.scss';
+
+.sectionContact {
+  padding: 15rem 0;
+  background-image: linear-gradient(
+    to right bottom,
+    $TP_color-primary-light,
+    $TP_color-primary-dark
+  );
+
+  @include responsiveDesign(800) {
+    padding: 10rem 0;
+  }
+}

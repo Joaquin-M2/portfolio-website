@@ -1,0 +1,169 @@
+@import '../../../../../../sass/abstracts/variables.scss';
+@import '../../../../../../sass/abstracts/mixins.scss';
+
+.formContainer {
+  width: 50%;
+  padding: 6rem;
+
+  color: $TP_color-grey-dark;
+
+  @include responsiveDesign(1000) {
+    width: 65%;
+  }
+
+  @include responsiveDesign(800) {
+    width: 100%;
+  }
+}
+
+.form {
+  & .formGroup {
+    display: flex;
+    flex-direction: column;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+
+    &.marginBottom {
+      margin-bottom: 4rem;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  & .formInput {
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 0.2rem;
+    background-color: rgba(white, 0.5);
+    border: none;
+    border-bottom: 0.3rem solid transparent;
+    width: 90%;
+    display: block;
+    transition: all 0.3s;
+
+    @include responsiveDesign(800) {
+      width: 100%;
+
+      font-size: 2rem;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba(black, 0.1);
+      border-bottom: 0.3rem solid $TP_color-primary;
+    }
+
+    &:focus:invalid {
+      border-bottom: 0.3rem solid $TP_color-secondary-dark;
+    }
+
+    &::-webkit-input-placeholder {
+      color: $TP_color-grey-dark-2;
+    }
+
+    &:placeholder-shown + .formLabel {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4rem);
+    }
+  }
+
+  & .formLabel {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+    display: block;
+    color: $TP_color-grey-dark;
+    transition: all 0.3s;
+  }
+
+  & .formRadioGroup {
+    width: 49%;
+    display: inline-block;
+
+    @include responsiveDesign(800) {
+      width: 100%;
+    }
+
+    &:not(:last-of-type) {
+      @include responsiveDesign(800) {
+        width: 100%;
+        margin-bottom: 3rem;
+      }
+    }
+  }
+
+  & .formRadioInput {
+    display: none;
+
+    &:checked ~ .formRadioLabel .formRadioButton::after {
+      opacity: 1;
+    }
+  }
+
+  & .formRadioLabel {
+    position: relative;
+
+    font-size: $TP_default-font-size;
+    color: $TP_font-grey;
+
+    padding-left: 4.5rem;
+    cursor: pointer;
+
+    @include responsiveDesign(800) {
+      font-size: 2.2rem;
+    }
+  }
+
+  & .formRadioButton {
+    height: 3rem;
+    width: 3rem;
+
+    border: 0.5rem solid $TP_color-primary;
+    border-radius: 50%;
+
+    display: inline-block;
+
+    position: absolute;
+    left: 0;
+    top: -0.4rem;
+
+    &::after {
+      content: '';
+      display: block;
+      height: 1.3rem;
+      width: 1.3rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $TP_color-primary;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    @include responsiveDesign(800) {
+      top: 0;
+    }
+  }
+}
+
+.title {
+  margin-bottom: 5rem;
+}
+
+.greenMainButton {
+  background-color: $TP_color-primary;
+  color: white;
+  align-self: flex-start;
+
+  &::after {
+    background-color: $TP_color-primary;
+  }
+}

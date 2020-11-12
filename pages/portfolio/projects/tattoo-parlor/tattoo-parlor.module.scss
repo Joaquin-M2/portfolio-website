@@ -1,0 +1,20 @@
+@import '../../../../sass/abstracts/variables.scss';
+@import '../../../../sass/abstracts/mixins.scss';
+
+.body {
+  position: relative;
+
+  font-family: 'Lato', sans-serif;
+
+  padding: 3rem;
+  background-color: $TP_color-pale-grey-3;
+
+  @include responsiveDesign(800) {
+    padding: 0;
+  }
+
+  & *::selection {
+    background-color: $TP_color-primary;
+    color: white;
+  }
+}

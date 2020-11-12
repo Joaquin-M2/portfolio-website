@@ -1,0 +1,119 @@
+@import '../../../../sass/abstracts/variables.scss';
+@import '../../../../sass/abstracts/mixins.scss';
+
+.container {
+  background-color: $TP_color-pale-grey-3;
+  padding: 25rem 0 15rem 0;
+  margin-top: -10rem;
+
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
+}
+
+.cardsContainer {
+  display: flex;
+  justify-content: space-around;
+
+  @include responsiveDesign(800) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/////////////////////
+// CARD 1
+
+.headingCard_1 {
+  background-image: linear-gradient(
+    to right bottom,
+    rgba($TP_color-secondary-light, 0.85),
+    rgba($TP_color-secondary-dark, 0.85)
+  );
+}
+
+.frontCardImage_1 {
+  background-image: linear-gradient(
+      to right bottom,
+      $TP_color-secondary-light,
+      $TP_color-secondary-dark
+    ),
+    url(/projects/TattooParlor/tattoo-card/tattoo-2.jpg);
+}
+
+.backCard_1 {
+  background-image: linear-gradient(
+    to right bottom,
+    $TP_color-secondary-light,
+    $TP_color-secondary-dark
+  );
+}
+
+/////////////////////
+// CARD 2
+
+.headingCard_2 {
+  background-image: linear-gradient(
+    to right bottom,
+    rgba($TP_color-primary-light, 0.85),
+    rgba($TP_color-primary-dark, 0.85)
+  );
+}
+
+.frontCardImage_2 {
+  background-image: linear-gradient(
+      to right bottom,
+      $TP_color-primary-light,
+      $TP_color-primary-dark
+    ),
+    url(/projects/TattooParlor/piercing-card/piercing-tongue.jpg);
+}
+
+.backCard_2 {
+  background-image: linear-gradient(
+    to right bottom,
+    $TP_color-primary-light,
+    $TP_color-primary-dark
+  );
+}
+
+/////////////////////
+// CARD 3
+
+.headingCard_3 {
+  background-image: linear-gradient(
+    to right bottom,
+    rgba($TP_color-tertiary-light, 0.85),
+    rgba($TP_color-tertiary-dark, 0.85)
+  );
+}
+
+.frontCardImage_3 {
+  background-image: linear-gradient(
+      to right bottom,
+      $TP_color-tertiary-light,
+      $TP_color-tertiary-dark
+    ),
+    url(/projects/TattooParlor/tattoo-removal-card/tattoo-removal-2.jpg);
+}
+
+.backCard_3 {
+  background-image: linear-gradient(
+    to right bottom,
+    $TP_color-tertiary-light,
+    $TP_color-tertiary-dark
+  );
+}
+
+.discoverButton {
+  background-color: $TP_color-primary;
+  color: white;
+
+  align-self: center;
+
+  margin-top: 10rem;
+
+  &::after {
+    background-color: $TP_color-primary;
+  }
+}

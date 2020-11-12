@@ -1,0 +1,128 @@
+@import '../../../../../sass/abstracts/variables.scss';
+
+.container {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(black, 0.8);
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+
+  @supports (-webkit-backdrop-filter: blur(1rem)) or
+    (backdrop-filter: blur(1rem)) {
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
+    background-color: rgba(black, 0.3);
+  }
+
+  //Open states
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:target .infoContainer {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.infoContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 75%;
+  background-color: white;
+  box-shadow: 0 2rem 4rem rgba(black, 0.2);
+  border-radius: 0.3rem;
+  display: flex;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.25);
+  transition: all 0.5s 0.2s;
+
+  & .leftSide {
+    width: 33.33%;
+
+    & .image {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  & .rightSide {
+    width: 66.67%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 5rem;
+
+    & .text {
+      font-size: 1.5rem;
+      line-height: 2.6rem;
+      color: $TP_color-grey-dark;
+      margin-bottom: 4rem;
+
+      -moz-column-count: 2;
+      -moz-column-gap: 4rem;
+      -moz-column-rule: 1px solid $TP_color-pale-grey-2;
+
+      column-count: 2;
+      column-gap: 4rem;
+      column-rule: 0.1rem solid $TP_color-pale-grey-2;
+
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+
+    & .closeButton {
+      &:link,
+      &:visited {
+        color: $TP_color-grey-dark;
+        position: absolute;
+        top: 2.5rem;
+        right: 2.5rem;
+        font-size: 3rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s;
+        line-height: 1;
+      }
+
+      &:hover {
+        color: $TP_color-primary;
+      }
+    }
+  }
+}
+
+.mainTitle {
+  margin-bottom: 4rem;
+}
+
+.secondaryTitle {
+  font-size: $TP_default-font-size;
+  font-weight: 700;
+  color: $TP_font-grey;
+  text-transform: uppercase;
+  margin-bottom: 1.7rem;
+
+  align-self: flex-start;
+}
+
+.actionButton {
+  background-color: $TP_color-primary;
+  color: white;
+
+  &::after {
+    background-color: $TP_color-primary;
+  }
+}

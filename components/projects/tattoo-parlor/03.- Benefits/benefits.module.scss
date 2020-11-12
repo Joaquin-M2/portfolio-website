@@ -1,0 +1,36 @@
+@import '../../../../sass/abstracts/variables.scss';
+@import '../../../../sass/abstracts/mixins.scss';
+
+.container {
+  backface-visibility: hidden;
+  padding: 20rem 0;
+  background-image: linear-gradient(
+      135deg,
+      rgba($TP_color-primary-light, 0.8),
+      rgba($TP_color-primary-dark, 0.8)
+    ),
+    url(/projects/TattooParlor/benefits.jpg);
+  background-size: cover;
+  transform: skewY(-7deg);
+  margin-top: -10rem;
+
+  & > * {
+    transform: skewY(
+      7deg
+    ); // Compensa la inclinación de -7deg para enderezar elementos.
+  }
+
+  @include responsiveDesign(800) {
+    padding: 10rem 0;
+  }
+}
+
+.subcontainer {
+  display: flex;
+  justify-content: space-evenly;
+
+  @include responsiveDesign(800) {
+    flex-direction: column;
+    align-items: center;
+  }
+}

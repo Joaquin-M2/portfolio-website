@@ -1,0 +1,29 @@
+@import '../../../../../../sass/abstracts/variables.scss';
+@import '../../../../../../sass/abstracts/mixins.scss';
+
+.title {
+  font-size: $TP_default-font-size;
+  font-weight: 700;
+  color: $TP_font-grey;
+  text-transform: uppercase;
+  margin-bottom: 1.7rem;
+
+  @include responsiveDesign(800) {
+    font-size: 2.1rem;
+  }
+}
+
+.paragraph {
+  font-size: $TP_default-font-size;
+  color: $TP_font-grey;
+  line-height: 3rem;
+  text-align: justify;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+
+  @include responsiveDesign(800) {
+    font-size: 2rem;
+  }
+}

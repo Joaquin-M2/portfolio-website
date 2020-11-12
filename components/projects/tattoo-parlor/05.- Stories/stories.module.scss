@@ -1,0 +1,36 @@
+@import '../../../../sass/abstracts/mixins.scss';
+
+.container {
+  position: relative;
+  padding: 15rem 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include responsiveDesign(800) {
+    padding: 10rem;
+  }
+}
+
+.backgroundVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  opacity: 0.15;
+  overflow: hidden;
+
+  & .backgroundVideoContent {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.secondaryButton {
+  margin: 4rem auto 0rem;
+  z-index: 10;
+}
