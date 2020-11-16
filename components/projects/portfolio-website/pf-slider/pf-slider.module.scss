@@ -15,7 +15,7 @@
 .Slider {
   display: flex;
   height: 100%;
-  width: 50vw;
+  width: 60vw;
   background-color: $color-pale-grey;
 
   border-radius: 0.5rem;
@@ -210,6 +210,7 @@
 
   font-size: 1.8rem;
   letter-spacing: 0.16rem;
+  text-align: center;
 }
 
 .Description_TextContainer {

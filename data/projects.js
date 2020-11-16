@@ -81,16 +81,34 @@ const projects = [
   ),
   new Project(
     3,
-    'Test project 3',
-    '/test-projects-3',
-    ['HTML', 'CSS', 'JavaScript'],
-    '33333 Project: Vestibulum felis orci, efficitur sit amet gravida ut, bibendum non mauris. Nullam quam nibh, euismod a enim ac, elementum hendrerit tortor. Ut porta aliquet tellus, eget laoreet ipsum ultricies non. Nam porttitor id risus ac euismod. In eleifend, dui semper aliquet facilisis, felis mauris egestas risus, imperdiet finibus urna tortor ut velit. Curabitur purus justo, fringilla quis egestas vitae, pharetra porta magna. Praesent ut malesuada ligula, eget volutpat sem. Nunc quis eros augue. Aenean scelerisque laoreet diam id euismod. Aenean placerat metus eu nibh dapibus viverra. Morbi pellentesque cursus ex, sit amet vulputate orci faucibus a. Phasellus vehicula metus non tortor tempus, eu sollicitudin nisl congue.',
-    'https://www.google.com',
-    '/portfolio/projects/project3',
-    'Blibli',
-    'Blibli Blibli',
-    'Blibli Blibli Blibli',
-    'Blibli BlibliBlibliBlibli'
+    'Legal Hub',
+    '/legal-hub',
+    [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
+    (
+      <span>
+        Description page of a test business user (a law firm) offering its
+        services to visitors of "Legal Hub".
+        <br />
+        <br />
+        The page consists of a small demonstration part of a whole business
+        project I am developing.
+        <br />
+        <br />
+        The design is inspired on the "Trillo" project of Jonas Schmedtmann.
+        Therefore, there will be many changes and adaptations of the design to
+        the needs of the full project.
+        <br />
+        <br />
+        This demonstration page has been transformed from just HTML and CSS
+        (SCSS), to React + TypeScript.
+      </span>
+    ),
+    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/legal-hub/index.tsx',
+    '/portfolio/projects/legal-hub',
+    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
+    'Description page of a law firm offering its services;',
+    'It is part of a full business project I am developing;',
+    'Design inspired on Jonas Schmedtmann\'s "Trillo" project. It will be modified in order to adapt it to the needs of the full project.'
   ),
   new Project(
     4,

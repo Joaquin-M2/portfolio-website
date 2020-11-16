@@ -1,0 +1,10 @@
+@import '../../../../../../sass/abstracts/variables.scss';
+
+.emptyGavel {
+  fill: white;
+  stroke: $LH_color-primary;
+  stroke-width: 2;
+
+  height: 1.75rem;
+  width: 1.75rem;
+}

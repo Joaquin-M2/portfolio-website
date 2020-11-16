@@ -1,0 +1,77 @@
+@import '../../../../../../../sass/abstracts/variables.scss';
+@import '../../../../../../../sass/abstracts/mixins.scss';
+
+.container {
+  box-shadow: $LH_shadow-color-light;
+
+  padding: 3rem;
+  margin-bottom: 4rem;
+
+  position: relative;
+  overflow: hidden;
+
+  width: 90%;
+
+  @include responsiveDesign(1000) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  &::before {
+    // Para la creación de las comillas ( " ) "gigantes" en la esquina superior izquierda de cada "review".
+    content: '\201C';
+
+    font-family: sans-serif;
+    font-size: 20rem;
+    color: $LH_color-grey-light-2;
+
+    position: absolute;
+    top: -8.6rem;
+    left: -1rem;
+  }
+
+  & .text {
+    position: relative;
+    z-index: 1;
+  }
+
+  & .userDetails {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+
+    & .userPicture {
+      height: 4.5rem;
+      width: 4.5rem;
+      border-radius: 50%;
+      margin-right: 1.5rem;
+    }
+
+    & .userNameAndDate_container {
+      display: flex;
+      flex-direction: column;
+      margin-right: auto;
+
+      & > * {
+        padding: 0.2rem;
+      }
+
+      & .userNameAndDate_name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      & .userNameAndDate_date {
+        font-size: 1rem;
+        color: $LH_color-grey-dark-3;
+      }
+    }
+
+    & .userRating {
+      font-size: 2rem;
+      font-weight: 300;
+      color: $LH_color-primary;
+    }
+  }
+}

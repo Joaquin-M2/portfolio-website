@@ -1,0 +1,34 @@
+@import '../../../../sass/abstracts/variables.scss';
+@import '../../../../sass/abstracts/mixins.scss';
+
+.container {
+  background-color: $LH_color-grey-dark-1;
+  color: $LH_color-grey-light-1;
+
+  flex: 0 0 18%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navButtonsList {
+  list-style: none;
+  margin-top: 3rem;
+
+  @include responsiveDesign(1000) {
+    display: flex;
+    margin: 0;
+  }
+}
+
+.legalNotice {
+  font-size: 1.2rem;
+  color: $LH_color-grey-light-4;
+  text-align: center;
+  padding: 2.5rem;
+
+  @include responsiveDesign(1000) {
+    display: none;
+  }
+}

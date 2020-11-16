@@ -1,0 +1,20 @@
+@import '../../../../../sass/abstracts/mixins.scss';
+
+.avatarImage {
+  height: 3.75rem;
+  border-radius: 50%;
+}
+
+.stackedAvatars {
+  box-sizing: content-box; // Valor por defecto de esta propiedad (así se sobrescribe el valor "border-box" dado en "_base.scss" al elemento "html". Con este valor, el borde (propiedad "border" indicada más abajo) es externo a la imagen y no interno.
+
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: 0.3rem solid #fff;
+  margin-right: -2rem;
+
+  @include responsiveDesign(800) {
+    margin-right: -3rem;
+  }
+}

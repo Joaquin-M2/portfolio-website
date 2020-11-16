@@ -1,0 +1,92 @@
+@import '../../../../../sass/abstracts/variables.scss';
+@import '../../../../../sass/abstracts/mixins.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $LH_color-grey-light-2;
+
+  & .title h1 {
+    font-size: 2.25rem;
+    font-weight: 300;
+    padding: 0.5rem 3rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+
+    @include responsiveDesign(800) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
+  }
+
+  & .rating {
+    margin-right: auto;
+    // "margin-righ: auto" en vez de "flex: 1" para que el <div> de las estrellas
+    //  se separe/empuje al <div> de "location" pero sin ocupar todo el espacio. Ello
+    //  evita que al hacer "hover" con el ratón por dicho espacio, el navegador
+    //  considere que lo estamos haciendo sobre el <div> de las estrellas.
+    display: flex;
+
+    & .ratingIcon {
+      height: 1.75rem;
+      width: 1.75rem;
+      fill: $LH_color-primary;
+    }
+  }
+
+  & .location {
+    display: flex;
+    font-size: 1.2rem;
+
+    @include responsiveDesign(500) {
+      margin: 0 2rem;
+    }
+
+    & .locationIcon {
+      height: 1.75rem;
+      width: 1.75rem;
+      fill: $LH_color-primary;
+    }
+  }
+
+  & .overallRating {
+    background-color: $LH_color-primary;
+    color: #fff;
+
+    padding: 0.7rem 1.5rem;
+    margin-left: 2rem;
+
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @include responsiveDesign(800) {
+      padding: 0 1.5rem;
+    }
+
+    & .meanRating {
+      font-size: 2rem;
+      font-weight: 300;
+
+      @include responsiveDesign(800) {
+        font-size: 1.8rem;
+      }
+    }
+
+    & .totalVotes {
+      font-weight: 300;
+      text-align: center;
+
+      @include responsiveDesign(800) {
+        font-size: 0.5rem;
+      }
+
+      @include responsiveDesign(500) {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}

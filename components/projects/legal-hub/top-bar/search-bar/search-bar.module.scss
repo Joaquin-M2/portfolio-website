@@ -1,0 +1,64 @@
+@import '../../../../../sass/abstracts/variables.scss';
+@import '../../../../../sass/abstracts/mixins.scss';
+
+.searchForm {
+  width: 40%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include responsiveDesign(500) {
+    order: 1;
+    width: 100%;
+    background-color: $LH_color-grey-light-2;
+  }
+
+  & .searchForm_input {
+    font-family: inherit;
+    font-size: inherit;
+
+    border-radius: 30px;
+    border: none;
+    width: 90%;
+
+    margin-right: -3.5rem;
+    padding: 1rem 3.5rem;
+    background-color: $LH_color-grey-light-2;
+
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: $LH_color-grey-light-3;
+
+      & + .search__button {
+        background-color: $LH_color-grey-light-3;
+      }
+    }
+
+    &::-webkit-input-placeholder {
+      color: $LH_color-grey-dark-3;
+      font-weight: 100;
+    }
+  }
+
+  & .searchForm_button {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    outline: none;
+    background-color: $LH_color-grey-light-2;
+
+    &:active {
+      transform: translateY(0.2rem);
+    }
+
+    & .searchForm_icon {
+      width: 2rem;
+      height: 2rem;
+      fill: $LH_color-grey-dark-2; // Colorea el icono SVG.
+    }
+  }
+}

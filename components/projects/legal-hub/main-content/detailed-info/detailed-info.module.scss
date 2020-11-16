@@ -1,0 +1,19 @@
+@import '../../../../../sass/abstracts/variables.scss';
+@import '../../../../../sass/abstracts/mixins.scss';
+
+.container {
+  display: flex;
+  padding: 4.5rem;
+  border-bottom: $LH_line;
+  background-color: $LH_color-grey-light-1;
+
+  font-size: 1.4rem;
+
+  @include responsiveDesign(1000) {
+    padding: 3rem;
+  }
+
+  @include responsiveDesign(500) {
+    flex-direction: column;
+  }
+}

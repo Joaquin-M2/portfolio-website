@@ -5,14 +5,15 @@ interface ButtonProps {
   children: string;
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
+const Button: React.FC<ButtonProps> = props => {
   return (
     <a
       href={props.path}
       className={styles.button}
       target={
-        props.path.includes('/portfolio/projects/tattoo') ||
-        props.path.includes('#')
+        (props.path.includes('/portfolio/projects/tattoo') ||
+          props.path.includes('#')) &&
+        !props.path.includes('github')
           ? null
           : '_blank'
       }

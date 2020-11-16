@@ -1,0 +1,15 @@
+@import '../../../../../../../sass/abstracts/mixins.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+
+  & .textLine {
+    margin-right: auto; // Empuja al "flex-item" que está a su izquierda tanto como sea posible (pero sin salirse del "flex-container").
+    font-size: 1.3rem;
+  }
+
+  & .avatarsContainer {
+    margin-right: 2rem;
+  }
+}

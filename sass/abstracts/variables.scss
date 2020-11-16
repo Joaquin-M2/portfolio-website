@@ -31,6 +31,7 @@ $titles-fonts: 'Orbitron', sans-serif;
 $texts-fonts: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
 
 // // // // // // // // // // ----- THEMES -----
+// ----------- THEMES: Tatto Parlor
 
 // Font-Size
 $TP_default-font-size: 1.6rem;
@@ -38,17 +39,6 @@ $TP_default-font-size: 1.6rem;
 // Font-Color
 $TP_font-grey: #333;
 $TP_font-grey-dark: #333;
-
-// Colors
-// $TP_color-primary: #55c57a;
-// $TP_color-primary-light: #7ed56f;
-// $TP_color-primary-dark: #28b485;
-
-// $TP_color-secondary-light: #ffb900;
-// $TP_color-secondary-dark: #ff7730;
-
-// $TP_color-tertiary-light: #2998ff;
-// $TP_color-tertiary-dark: #5643fa;
 
 $TP_color-primary: #4a148c;
 $TP_color-primary-light: #7c43bd;
@@ -69,3 +59,21 @@ $TP_color-grey-dark: #777;
 $TP_color-grey-dark-2: #999;
 $TP_color-grey-dark-3: #333;
 $TP_color-grey-dark-4: #444;
+
+// ----------- THEMES: Legal Hub
+$LH_color-primary: #cc9400;
+$LH_color-primary-light: #fc4;
+$LH_color-primary-dark: #886300;
+$LH_color-secondary: #eb2f64;
+$LH_color-secondary-light: #ff3366;
+$LH_color-secondary-dark: #ba265d;
+$LH_color-grey-light-1: #faf9f9;
+$LH_color-grey-light-2: #f4f2f2;
+$LH_color-grey-light-3: #f0eeee;
+$LH_color-grey-light-4: #ccc;
+$LH_color-grey-dark-1: #333;
+$LH_color-grey-dark-2: #777;
+$LH_color-grey-dark-3: #999;
+$LH_shadow-color: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+$LH_shadow-color-light: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+$LH_line: 1px solid $LH_color-grey-light-3;

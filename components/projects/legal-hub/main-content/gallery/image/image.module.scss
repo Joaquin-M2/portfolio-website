@@ -1,0 +1,8 @@
+.imageContainer {
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+  display: block; // ¡¡Importante!! Las imágenes responsivas deben ir acompañadas de "width: 100%" y "display: block". De lo contrario habrá problemas con los tamaños de los contenedores de las imágenes.
+}
