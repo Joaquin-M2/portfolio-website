@@ -2,25 +2,26 @@
 @import '../../../../sass/abstracts/variables.scss';
 
 .NavBarTopButton {
-    font-size: 4rem;
-    color: $color-intense-grey;
-    text-decoration: none;
+  font-size: 3rem;
+  color: $color-intense-grey;
+  text-decoration: none;
 
-    //padding: .8rem 1.6rem 1.6rem 1.6rem;
-    padding: 1.2rem 3rem;
-    margin-top: .8rem;
+  //padding: .8rem 1.6rem 1.6rem 1.6rem;
+  padding: 1rem 2.5rem;
+  margin-top: 0.8rem;
 
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
 
-    @include responsiveDesign(800) {
-        font-size: 4.5vw;
-      }
+  @include responsiveDesign(1024) {
+    font-size: 4vw;
+    padding: 2rem 3.5rem;
+  }
 }
 
 .Active {
-    color: white;
-    background-color: $active-top-navbar;
-    border-radius: 2rem;
+  color: white;
+  background-color: $active-top-navbar;
+  border-radius: 2rem;
 }

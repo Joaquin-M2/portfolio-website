@@ -2,19 +2,18 @@
 @import '../../../../../sass/abstracts/mixins.scss';
 
 .container {
-  padding: 3.5rem 0;
+  padding: 3rem 0;
   text-align: center;
-  //background-color: #fff;
 
   @include responsiveDesign(1000) {
-    padding: 2.5rem 0;
+    padding: 2.1rem 0;
   }
 
   & .title {
-    padding-bottom: 2rem;
+    padding-bottom: 1.6rem;
 
     font-weight: 300;
-    font-size: 2rem;
+    font-size: 1.6rem;
     text-transform: uppercase;
   }
 
@@ -44,13 +43,13 @@
     }
 
     & .buttonVisible {
-      padding: 2rem 7rem;
+      padding: 1.6rem 5.6rem;
       // El padding hay que ponerlo aquí y no en el botón (&__button). De lo
       // contrario, la propiedad "transform" utilizada en "&:hover &-visible" no
       // moverá este elemento lo suficientemente hacia abajo.
 
       @include responsiveDesign(1000) {
-        padding: 2rem 10rem;
+        padding: 1.6rem 8rem;
       }
     }
 
@@ -60,7 +59,7 @@
 
     & .buttonInvisible {
       position: absolute;
-      padding: 2rem 0;
+      padding: 1.6rem 0;
       // Es necesario indicarle el mismo padding superior e inferior que a "&-visible".
       // De esta manera, al hacer "hover" (&:hover &-invisible) e indicar "top: 0", el
       // elemento/texto se centra en el botón en vez de quedarse pegado al borde superior.

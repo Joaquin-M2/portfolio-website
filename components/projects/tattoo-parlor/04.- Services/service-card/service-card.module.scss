@@ -11,7 +11,7 @@
 
   &:hover .side.front {
     transform: rotateY(-180deg);
-    @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    @media only screen and (max-width: 50em), only screen and (hover: none) {
       transform: rotateY(0);
     }
   }
@@ -19,8 +19,12 @@
     transform: rotateY(0);
   }
 
+  @include responsiveDesign(1024) {
+    width: calc((100% - 2 * 5rem) / 3);
+  }
+
   //@include responsiveDesign(800) {
-  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  @media only screen and (max-width: 50em), only screen and (hover: none) {
     height: auto;
     border-radius: 3px;
     background-color: white;
@@ -35,7 +39,7 @@
 }
 
 .side {
-  height: 52rem;
+  height: 43rem;
   transition: all 0.8s ease;
   position: absolute;
   top: 0;
@@ -48,7 +52,7 @@
   box-shadow: 0 1.5rem 4rem rgba(black, 0.15);
 
   //@include responsiveDesign(800) {
-  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  @media only screen and (max-width: 50em), only screen and (hover: none) {
     height: auto;
     position: relative;
     box-shadow: none;
@@ -62,7 +66,7 @@
     transform: rotateY(180deg);
 
     //@include responsiveDesign(800) {
-    @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    @media only screen and (max-width: 50em), only screen and (hover: none) {
       transform: rotateY(0);
       clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
     }
@@ -71,7 +75,7 @@
 
 .picture {
   background-size: cover;
-  height: 23rem;
+  height: 18rem;
   background-blend-mode: screen;
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
@@ -84,13 +88,13 @@
 }
 
 .heading {
-  font-size: 2.8rem;
+  font-size: 2.3rem;
   font-weight: 300;
   text-transform: uppercase;
   text-align: right;
   color: white;
   position: absolute;
-  top: 14rem;
+  top: 10.5rem;
   right: 0rem;
   width: 75%;
 
@@ -103,7 +107,7 @@
 
   @include responsiveDesign(800) {
     font-size: 4rem;
-    top: 15rem;
+    top: 18rem;
   }
 }
 
@@ -111,9 +115,9 @@
   padding: 3rem;
 
   //@include responsiveDesign(800) {
-  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
-    padding: 1rem 3rem;
-  }
+  // @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  //   padding: 1rem 3rem;
+  // }
 
   ul {
     list-style: none;
@@ -122,7 +126,7 @@
 
     li {
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       padding: 1rem;
 
       &:not(:last-child) {
@@ -131,6 +135,7 @@
 
       @include responsiveDesign(800) {
         font-size: 2.1rem;
+        padding: 2rem;
       }
     }
   }
@@ -145,7 +150,7 @@
   text-align: center;
 
   //@include responsiveDesign(800) {
-  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  @media only screen and (max-width: 50em), only screen and (hover: none) {
     position: relative;
     top: 0%;
     left: 0;
@@ -161,7 +166,7 @@
   margin-bottom: 8rem;
 
   //@include responsiveDesign(800) {
-  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  @media only screen and (max-width: 50em), only screen and (hover: none) {
     margin-bottom: 3rem;
   }
 }
@@ -180,7 +185,7 @@
   font-weight: 100;
 
   //@include responsiveDesign(800) {
-  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  @media only screen and (max-width: 50em), only screen and (hover: none) {
     font-size: 7rem;
   }
 }

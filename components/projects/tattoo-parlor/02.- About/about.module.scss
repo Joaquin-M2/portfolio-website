@@ -3,17 +3,17 @@
 
 .container {
   background-color: $TP_color-pale-grey-3;
-  padding: 25rem 0;
+  padding: 20rem 0;
   margin-top: -20vh; // 95vh que mide el alto del header - 75vh que mide la parte derecha del header (antes del clip-path) = 20vh que debe subirse hacia arriba el bloque de "section" para cubrir el triángulo blanco creado en el header con la propiedad clip-path.
 
   @include responsiveDesign(800) {
-    padding: 20rem 0;
+    padding: 30rem 0;
   }
 }
 
 .subsectionContainer {
   display: flex;
-  max-width: 125rem;
+  max-width: 100rem;
   margin: 0 auto;
 
   @include responsiveDesign(800) {

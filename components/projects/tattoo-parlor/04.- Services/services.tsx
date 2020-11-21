@@ -10,7 +10,7 @@ interface ServicesProps {
   id: string;
 }
 
-const Services: React.FC<ServicesProps> = (props) => {
+const Services: React.FC<ServicesProps> = props => {
   return (
     <section className={styles.container} id={props.id}>
       <SectionTitle>Our Main Services</SectionTitle>
@@ -51,7 +51,7 @@ const Services: React.FC<ServicesProps> = (props) => {
       </MainButton>
       <Popup
         id="popup_1"
-        mainTitle="Popup 1"
+        mainTitle="Popup Service 1"
         secondaryTitle="Título secundario. Prueba popup 1."
         pathImg_1="/projects/TattooParlor/tattoo-card/tattoo-1.jpg"
         pathImg_2="/projects/TattooParlor/tattoo-card/tattoo-2.jpg"
@@ -74,7 +74,7 @@ const Services: React.FC<ServicesProps> = (props) => {
       </Popup>
       <Popup
         id="popup_2"
-        mainTitle="Start booking now"
+        mainTitle="Popup Service 2"
         secondaryTitle="Important &ndash; Please read these terms before booking"
         pathImg_1="/projects/TattooParlor/piercing-card/piercing-studio.jpg"
         pathImg_2="/projects/TattooParlor/piercing-card/piercing-tongue.jpg"
@@ -97,7 +97,7 @@ const Services: React.FC<ServicesProps> = (props) => {
       </Popup>
       <Popup
         id="popup_3"
-        mainTitle="Título principal del popup #3"
+        mainTitle="Popup Service 3"
         secondaryTitle="Título secundario del popup 3"
         pathImg_1="/projects/TattooParlor/tattoo-removal-card/tattoo-removal-2.jpg"
         pathImg_2="/projects/TattooParlor/tattoo-removal-card/tattoo-removal-1.jpg"

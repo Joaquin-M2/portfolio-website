@@ -1,10 +1,16 @@
+@import '../../../../../sass/abstracts/mixins.scss';
+
 .container {
   position: absolute;
-  left: 4rem;
-  top: 4rem;
+  left: 3rem;
+  top: 3rem;
 }
 
 .logo {
-  height: 7.5rem;
+  height: 5.5rem;
   fill: black;
+
+  @include responsiveDesign(800) {
+    height: 7rem;
+  }
 }

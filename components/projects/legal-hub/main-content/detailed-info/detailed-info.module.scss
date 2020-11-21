@@ -7,7 +7,7 @@
   border-bottom: $LH_line;
   background-color: $LH_color-grey-light-1;
 
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 
   @include responsiveDesign(1000) {
     padding: 3rem;
@@ -15,5 +15,6 @@
 
   @include responsiveDesign(500) {
     flex-direction: column;
+    font-size: 2rem;
   }
 }

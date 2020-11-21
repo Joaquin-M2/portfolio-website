@@ -9,7 +9,7 @@
     $LH_color-primary-light,
     $LH_color-primary-dark
   );
-  padding: 0 5.5rem;
+  padding: 0 4.5rem;
 
   @include responsiveDesign(1280) {
     padding: 0;
@@ -19,7 +19,7 @@
 .container {
   max-width: 130rem; // Para que el <div> "container" ocupe 1200px, de manera que el contenido no se encoja mientras la pantalla tenga un ancho (resolución) superior a 1200px.
   min-height: 50rem;
-  margin: 5rem auto;
+  margin: 4rem auto;
 
   background-color: $LH_color-grey-light-1;
   box-shadow: $LH_shadow-color;

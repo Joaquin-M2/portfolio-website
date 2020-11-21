@@ -1,47 +1,52 @@
 @import '../../../../sass/abstracts/variables.scss';
 
 .navBarBottom {
-    position: fixed;
-    bottom: 0rem;
+  position: fixed;
+  bottom: 0rem;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 
-    width: 100%;
-    padding: 2.5rem 0 2.5rem 0;
-    background-color: #999999;
+  width: 100%;
+  padding: 2rem 0;
+  background-color: #999999;
 
-    box-shadow: inset 0rem 0rem .4rem 1.44rem rgba(255, 255, 255, 0.3), inset 0rem 0rem .4rem .4rem rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0rem 0rem 0.4rem 1.44rem rgba(255, 255, 255, 0.3),
+    inset 0rem 0rem 0.4rem 0.4rem rgba(255, 255, 255, 0.7);
 
-    border-top-left-radius: 35%;
-    border-top-right-radius: 35%;
+  border-top-left-radius: 35%;
+  border-top-right-radius: 35%;
 
-    // & a button:first-of-type {
-    //     border-top-left-radius: 40%;
-    // }
+  // & a button:first-of-type {
+  //     border-top-left-radius: 40%;
+  // }
 
-    // & a button:nth-last-of-type(1) {
-    //     border-top-right-radius: 40%;
-    // }
-    z-index: 3;
-    margin-top: auto;
+  // & a button:nth-last-of-type(1) {
+  //     border-top-right-radius: 40%;
+  // }
+  z-index: 3;
+  margin-top: auto;
 }
 
 .firstButton {
-    border-top-left-radius: 40%;
+  border-top-left-radius: 40%;
 }
 
 .lastButton {
-    border-top-right-radius: 40%;
+  border-top-right-radius: 40%;
 }
 
-.active:hover, .active {
-    background-image: radial-gradient($color-intense-green 40%, $color-pale-green);
-    box-shadow: .2rem .2rem .1rem .1rem #000 inset;
-    border-color: #999999;
+.active:hover,
+.active {
+  background-image: radial-gradient(
+    $color-intense-green 40%,
+    $color-pale-green
+  );
+  box-shadow: 0.2rem 0.2rem 0.1rem 0.1rem #000 inset;
+  border-color: #999999;
 
-    &:hover::after {
-        display: none;
-    }
+  &:hover::after {
+    display: none;
+  }
 }

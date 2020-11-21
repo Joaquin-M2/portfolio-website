@@ -1,15 +1,30 @@
 @import '../sass/abstracts/variables.scss';
+@import '../sass/abstracts/mixins.scss';
 
 .CurtainDetails_Element {
-    margin: 2rem 1.6rem;
-    font-size: 1.6rem;
-    font-family: $texts-fonts;
+  margin: 2rem 2.5rem;
+  font-size: 1.5rem;
+  font-family: $texts-fonts;
 
-    // List element style
-    &::before {
-        content: '\27A4';
-        position: absolute;
-        left: 1.5rem;
-        line-height: 2rem;
+  // List element style
+  &::before {
+    content: '\27A4';
+    position: absolute;
+    left: 2.5rem;
+    line-height: 2rem;
+
+    @include responsiveDesign(400) {
+      left: 3rem;
+      line-height: 3rem;
     }
+  }
+
+  @include responsiveDesign(600) {
+    font-size: 1.7rem;
+  }
+
+  @include responsiveDesign(400) {
+    margin: 2rem 5rem;
+    font-size: 2.5rem;
+  }
 }

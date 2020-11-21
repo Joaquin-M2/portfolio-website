@@ -32,11 +32,11 @@
 
   & .navButton {
     background-color: white;
-    height: 7rem;
-    width: 7rem;
+    height: 5rem;
+    width: 5rem;
     position: fixed;
-    top: 6rem;
-    right: 6rem;
+    top: 5rem;
+    right: 5rem;
     border-radius: 50%;
     z-index: 3;
     box-shadow: 0 1rem 3rem rgba(black, 0.1);
@@ -44,34 +44,69 @@
     cursor: pointer;
 
     @include responsiveDesign(800) {
-      top: 4rem;
-      right: 4rem;
+      top: 4.5rem;
+      right: 4.5rem;
+
+      height: 7.5rem;
+      width: 7.5rem;
     }
 
     @include responsiveDesign(400) {
-      top: 3rem;
-      right: 3rem;
+      height: 10rem;
+      width: 10rem;
     }
 
     &:hover .navIcon::before {
-      top: -1rem;
+      top: -1.1rem;
+
+      @include responsiveDesign(800) {
+        top: -1.4rem;
+      }
+
+      @include responsiveDesign(400) {
+        top: -1.7rem;
+      }
     }
 
     &:hover .navIcon::after {
-      top: 1rem;
+      top: 1.1rem;
+
+      @include responsiveDesign(800) {
+        top: 1.4rem;
+      }
+
+      @include responsiveDesign(400) {
+        top: 1.7rem;
+      }
     }
 
     & .navIcon {
       position: relative;
-      margin-top: 3.5rem;
+      margin-top: 2.5rem;
+
+      @include responsiveDesign(800) {
+        margin-top: 3.7rem;
+      }
+
+      @include responsiveDesign(400) {
+        margin-top: 5.2rem;
+      }
 
       &,
       &::before,
       &::after {
-        width: 3rem;
-        height: 2px;
+        width: 2.5rem;
+        height: 0.2rem;
         background-color: $TP_color-grey-dark-3;
         display: inline-block;
+
+        @include responsiveDesign(800) {
+          width: 3.5rem;
+        }
+
+        @include responsiveDesign(400) {
+          width: 5.5rem;
+        }
       }
 
       &::before,
@@ -83,21 +118,37 @@
       }
 
       &::before {
-        top: -0.8rem;
+        top: -0.71rem;
+
+        @include responsiveDesign(800) {
+          top: -1.2rem;
+        }
+
+        @include responsiveDesign(400) {
+          top: -1.4rem;
+        }
       }
       &::after {
-        top: 0.8rem;
+        top: 0.71rem;
+
+        @include responsiveDesign(800) {
+          top: 1.2rem;
+        }
+
+        @include responsiveDesign(400) {
+          top: 1.4rem;
+        }
       }
     }
   }
 
   & .navBackground {
-    height: 6rem;
-    width: 6rem;
+    height: 5rem;
+    width: 5rem;
     border-radius: 50%;
     position: fixed;
-    top: 6.5rem;
-    right: 6.5rem;
+    top: 5rem;
+    right: 5rem;
     background-image: radial-gradient(
       $TP_color-primary-light,
       $TP_color-primary-dark
@@ -108,11 +159,14 @@
     @include responsiveDesign(800) {
       top: 4.5rem;
       right: 4.5rem;
+
+      height: 7.5rem;
+      width: 7.5rem;
     }
 
     @include responsiveDesign(400) {
-      top: 3.5rem;
-      right: 3.5rem;
+      height: 10rem;
+      width: 10rem;
     }
   }
 

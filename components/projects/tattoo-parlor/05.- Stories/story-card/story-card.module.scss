@@ -7,7 +7,7 @@
   box-shadow: 0 3rem 6rem rgba(black, 0.1);
   background-color: rgba($TP_color-pale-grey-2, 0.6);
   border-radius: 0.3rem;
-  padding: 6rem;
+  padding: 4rem;
   padding-left: 9rem;
   font-size: $TP_default-font-size;
   transform: skewX(-12deg);
@@ -18,7 +18,7 @@
     padding-left: 7rem;
   }
 
-  @include responsiveDesign(400) {
+  @include responsiveDesign(600) {
     transform: skewX(0);
   }
 
@@ -34,8 +34,8 @@
 }
 
 .pictureContainerShape {
-  width: 15rem;
-  height: 15rem;
+  width: 12rem;
+  height: 12rem;
   float: left;
   transform: translateX(-3rem) skewX(12deg);
   position: relative;
@@ -51,8 +51,15 @@
     border-radius: none;
   }
 
-  @include responsiveDesign(400) {
+  @include responsiveDesign(600) {
     transform: translateX(-3rem) skewX(0);
+  }
+
+  @include responsiveDesign(500) {
+    width: 15rem;
+    height: 15rem;
+
+    margin-bottom: 1.5rem;
   }
 
   & .picture {
@@ -82,22 +89,32 @@
 
   transform: skewX(12deg);
 
-  @include responsiveDesign(400) {
+  @include responsiveDesign(600) {
     transform: skewX(0);
   }
 
   & p {
-    font-size: 1.7rem;
+    font-size: $TP_default-font-size;
     line-height: 3rem;
 
     @include responsiveDesign(800) {
       font-size: 2rem;
     }
+
+    @include responsiveDesign(500) {
+      font-size: 2.5rem;
+      line-height: 3.5rem;
+    }
+
+    @include responsiveDesign(400) {
+      font-size: 3rem;
+      line-height: 4rem;
+    }
   }
 }
 
 .title {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: $TP_font-grey;
   text-transform: uppercase;
@@ -105,5 +122,15 @@
 
   @include responsiveDesign(800) {
     font-size: 2.2rem;
+  }
+
+  @include responsiveDesign(500) {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+
+  @include responsiveDesign(400) {
+    font-size: 2.5rem;
+    line-height: 3.5rem;
   }
 }

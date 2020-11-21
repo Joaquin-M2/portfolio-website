@@ -131,7 +131,7 @@
   display: flex;
   flex-direction: column;
 
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.95);
 
   transition: all 0.5s ease-in-out;
 }
@@ -161,6 +161,10 @@
   display: block;
   margin: 1rem;
   align-self: flex-end;
+
+  @include responsiveDesign(600) {
+    font-size: 1.5rem;
+  }
 }
 
 .CurtainCheckbox:checked ~ .Curtain {
@@ -206,11 +210,15 @@
 }
 
 .Description_Title {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   letter-spacing: 0.16rem;
   text-align: center;
+
+  @include responsiveDesign(800) {
+    font-size: 2.5rem;
+  }
 }
 
 .Description_TextContainer {
@@ -243,7 +251,15 @@
   margin-bottom: auto;
 
   font-family: $texts-fonts;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
+
+  @include responsiveDesign(800) {
+    font-size: 1.5rem;
+  }
+
+  @include responsiveDesign(500) {
+    font-size: 1.9rem;
+  }
 }
 
 .Description_ButtonCheckProject {
@@ -252,7 +268,7 @@
 
   padding: 1.2rem 1.6rem;
 
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-family: $titles-fonts;
   font-weight: bold;
   letter-spacing: 0.4rem;

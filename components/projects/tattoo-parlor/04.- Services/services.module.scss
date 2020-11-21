@@ -111,7 +111,11 @@
 
   align-self: center;
 
-  margin-top: 10rem;
+  margin-top: 2rem;
+
+  @include responsiveDesign(800) {
+    margin-top: 10rem;
+  }
 
   &::after {
     background-color: $TP_color-primary;

@@ -2,135 +2,211 @@
 @import '../../sass/abstracts/mixins.scss';
 
 .positionMainElements {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
-    @include responsiveDesign(800) {
-        min-height: 100vh;
-    }
+  @include responsiveDesign(800) {
+    min-height: 100vh;
+  }
 }
 
 .MainContainer {
-    display: flex;
+  display: flex;
 }
 
 /////////////////////////////////////////
 // RIGHT PANEL
 
 .RightPanel {
-    & p {
-        font-family: $texts-fonts;
-        font-size: 1.6rem;
+  & p {
+    font-family: $texts-fonts;
+    font-size: 1.6rem;
+  }
+
+  & a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 0.4rem;
+
+    & span {
+      // Necessary to avoid using the property "z-index", which causes an undesired effect.
+      position: relative;
     }
 
-    & a {
-        display: inline-block;
-        text-decoration: none;
-        color: black;
-        margin-bottom: .4rem;
-
-        & span { // Necessary to avoid using the property "z-index", which causes an undesired effect.
-            position: relative;
-        }
-
-        &:hover {
-            font-weight: bold;
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-    
-            background-color: pink;
-            width: .24rem;
-            height: 100%;
-            transform: scaleY(0);
-    
-            transition: transform .2s,
-                        width .4s cubic-bezier(1,0,0,1) .2s; // Atención al transition delay de ".2s", para que el inicio del "transition: width" coincida con el final de la ejecución de "transition: transform .2s".
-        }
-    
-        &:hover::before {
-            transform: scaleY(1);
-            width: 100%;
-            //z-index: -1;
-        }
-    }
-
-    & ul {
-        font-family: $texts-fonts;
-        font-size: 1.6rem;
-        margin-left: 1.1rem;
-
-        @include responsiveDesign(800) {
-            margin-left: 2.1rem;
-        }
-
-        & a {
-            display: block;
-            position: relative;
-            padding: .24rem;
-        }
-
-        & ul {
-            margin-left: 1.2rem;
-
-            & ul {
-                margin-left: 1.6rem;
-            }
-        }
-    }
-}
-
-.activeIndexElement {
-    font-weight: bold;
-    color: red;
-
-    & span { // Necessary to avoid using the property "z-index", which causes an undesired effect.
-        position: relative;
+    &:hover {
+      font-weight: bold;
     }
 
     &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        //z-index: -1;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
 
-        background-color: pink;
-        width: .24rem;
-        height: 100%;
-        transform: scaleY(0);
+      background-color: pink;
+      width: 0.24rem;
+      height: 100%;
+      transform: scaleY(0);
 
-        transition: transform .2s,
-                    width .4s cubic-bezier(1,0,0,1) .2s; // Atención al transition delay de ".2s", para que el inicio del "transition: width" coincida con el final de la ejecución de "transition: transform .2s".
+      transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s; // Atención al transition delay de ".2s", para que el inicio del "transition: width" coincida con el final de la ejecución de "transition: transform .2s".
     }
 
-    &:link::before { // ???? For some reason it needs to be the ":link" selector.
-        transform: scaleY(1);
-        width: 100%;
-        //z-index: -1;
+    &:hover::before {
+      transform: scaleY(1);
+      width: 100%;
+      //z-index: -1;
     }
+  }
+
+  & ul {
+    font-family: $texts-fonts;
+    font-size: 1.6rem;
+    margin-left: 1.1rem;
+
+    @include responsiveDesign(800) {
+      margin-left: 2.1rem;
+    }
+
+    & a {
+      display: block;
+      position: relative;
+      padding: 0.24rem;
+    }
+
+    & ul {
+      margin-left: 1.2rem;
+
+      & ul {
+        margin-left: 1.6rem;
+      }
+    }
+  }
+}
+
+.activeIndexElement {
+  font-weight: bold;
+  color: red;
+
+  & span {
+    // Necessary to avoid using the property "z-index", which causes an undesired effect.
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    //z-index: -1;
+
+    background-color: pink;
+    width: 0.24rem;
+    height: 100%;
+    transform: scaleY(0);
+
+    transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s; // Atención al transition delay de ".2s", para que el inicio del "transition: width" coincida con el final de la ejecución de "transition: transform .2s".
+  }
+
+  &:link::before {
+    // ???? For some reason it needs to be the ":link" selector.
+    transform: scaleY(1);
+    width: 100%;
+    //z-index: -1;
+  }
 }
 
 ///////////////////
 // CORE PANEL
 
 .CorePanel {
-    
-    & h1, h2, h3, h4, h5, h6 {
-        font-family: $titles-fonts;
-        text-decoration: underline;
-        margin-bottom: 2.4rem;
-        text-align: left;
+  & h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $titles-fonts;
+    margin-bottom: 2.4rem;
+    text-align: left;
+  }
+
+  & h1 {
+    font-size: 2.5rem;
+    text-decoration: underline;
+
+    @include responsiveDesign(800) {
+      font-size: 4.5rem;
+    }
+  }
+
+  & h2 {
+    font-size: 2.3rem;
+    text-decoration: underline;
+
+    @include responsiveDesign(800) {
+      font-size: 4.3rem;
+    }
+  }
+
+  & h3 {
+    font-size: 2.1rem;
+    text-decoration: underline;
+
+    @include responsiveDesign(800) {
+      font-size: 4.1rem;
+    }
+  }
+
+  & h4 {
+    font-size: 1.9rem;
+
+    @include responsiveDesign(800) {
+      font-size: 3.9rem;
+    }
+  }
+
+  & h5 {
+    font-size: 1.7rem;
+
+    @include responsiveDesign(800) {
+      font-size: 3.7rem;
+    }
+  }
+
+  & h6 {
+    font-size: 1.5rem;
+
+    @include responsiveDesign(800) {
+      font-size: 3.5rem;
+    }
+  }
+
+  & p {
+    font-family: $texts-fonts;
+    font-size: 1.7rem;
+    margin-bottom: 1.6rem;
+
+    @include responsiveDesign(800) {
+      min-height: 100vh;
+      font-size: 2.8rem;
     }
 
-    & p {
-        font-family: $texts-fonts;
-        font-size: 2rem;
-        margin-bottom: 1.6rem;
+    @include responsiveDesign(400) {
+      font-size: 3.5rem;
     }
+  }
+
+  & .creditsText {
+    font-size: 1.3rem;
+
+    @include responsiveDesign(800) {
+      font-size: 2.8rem;
+    }
+
+    @include responsiveDesign(400) {
+      font-size: 2rem;
+    }
+  }
 }

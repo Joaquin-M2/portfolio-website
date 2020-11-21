@@ -2,29 +2,29 @@
 @import '../../../../sass/abstracts/mixins.scss';
 
 .header {
-  height: 7rem;
+  height: 6rem;
   background-color: #fff;
   border-bottom: $LH_line;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.4rem; // Se le da a "header" esta propiedad relacionada con fuentes para que su valor sea heredado por sus hijos.
+  font-size: 1.2rem; // Se le da a "header" esta propiedad relacionada con fuentes para que su valor sea heredado por sus hijos.
 
   @include responsiveDesign(500) {
     flex-wrap: wrap;
     align-content: space-around;
-    height: 11rem;
+    height: 9rem;
   }
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
-  height: 4.25rem;
+  height: 3.5rem;
   margin-left: 2rem;
 
-  font-size: 2rem;
+  font-size: 1.7rem;
   text-decoration: none;
   color: black;
 
@@ -35,7 +35,6 @@
 }
 
 .userNav {
-  //height: 100%;
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -48,26 +47,31 @@
     cursor: pointer;
     position: relative; // Necesario para el "position: absolute" del contador ("&__counter").
 
+    &:last-of-type {
+      padding: 0rem 2rem 0 0;
+      margin-left: 2rem;
+    }
+
     &:hover {
       background-color: $LH_color-grey-light-3;
     }
 
     & .userNav_icon {
-      width: 2.25rem;
-      height: 2.25rem;
+      width: 1.5rem;
+      height: 1.5rem;
       fill: $LH_color-grey-dark-2;
     }
 
     & .userNav_icon_counter {
       position: absolute;
       top: 0rem;
-      right: 1rem;
+      right: 1.2rem;
 
-      font-size: 1rem;
+      font-size: 0.8rem;
       color: #fff;
 
-      height: 2rem; // Para hacer el círculo se debe establecer la altura y anchura mediante "height" y
-      width: 2rem; // "width". Hacerlo con "padding" deforma el contenido en base al tamaño de su contenido.
+      height: 1.6rem; // Para hacer el círculo se debe establecer la altura y anchura mediante "height" y
+      width: 1.6rem; // "width". Hacerlo con "padding" deforma el contenido en base al tamaño de su contenido.
       border-radius: 50%;
       background-color: $LH_color-primary;
 

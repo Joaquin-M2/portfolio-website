@@ -57,6 +57,7 @@
 
 .list {
   list-style: none;
+  font-size: 1rem;
 
   & .listItem {
     display: inline-block;
@@ -64,11 +65,16 @@
     &:not(:last-child) {
       margin-right: 1.5rem;
     }
+    @include responsiveDesign(800) {
+      font-size: 2.5rem;
+      line-height: 4rem;
+    }
   }
 }
 
 .navBlock {
   display: inline-block;
+  text-align: center;
 
   @include responsiveDesign(800) {
     width: 100%;
@@ -83,12 +89,19 @@
 
 .copyright {
   color: $TP_color-pale-grey-2;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   line-height: 2.5rem;
 
   @include responsiveDesign(800) {
     width: 100%;
 
     font-size: inherit;
+  }
+
+  @include responsiveDesign(500) {
+    width: 100%;
+
+    font-size: 2.5rem;
+    line-height: 3.5rem;
   }
 }

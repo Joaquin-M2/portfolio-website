@@ -7,7 +7,7 @@
   &:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 2rem 4rem;
+    padding: 1.5rem 3rem;
     display: inline-block;
     border-radius: 10rem;
     transition: all 0.2s;
@@ -18,7 +18,7 @@
     cursor: pointer;
 
     @include responsiveDesign(800) {
-      padding: 3rem 6rem;
+      padding: 1.5rem 3rem;
       font-size: 2.5rem;
     }
   }

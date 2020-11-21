@@ -8,23 +8,23 @@
 }
 
 .container {
-    height: 80vh;
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  height: 80vh;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
-    & a .answerButtons {
-      width: auto;
-      white-space: nowrap;
-      font-size: 2rem;
-      font-weight: bold;
-      letter-spacing: .16rem;
-      padding: 1rem .8rem;
-    
-      opacity: 0;
-      animation: appear 1s linear forwards;
-    }
+  & a .answerButtons {
+    width: auto;
+    white-space: nowrap;
+    font-size: 1.7rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    padding: 0.7rem 0.8rem;
+
+    opacity: 0;
+    animation: appear 1s linear forwards;
+  }
 }
 
 @keyframes appear {
@@ -40,14 +40,14 @@
 }
 
 .welcome {
-    display: inline-block;
+  display: inline-block;
 
-    color: $body-text;
+  color: $body-text;
 
-    font-size: 5.6rem;
-    letter-spacing: .24rem;
-    
-    animation: welcomeTitle 1s ease-in-out;
+  font-size: 4rem;
+  letter-spacing: 0.2rem;
+
+  animation: welcomeTitle 1s ease-in-out;
 }
 
 @keyframes welcomeTitle {
@@ -62,16 +62,16 @@
 }
 
 .position {
-    margin-top: 2rem;
+  margin-top: 2rem;
 
-    color: $body-text;
+  color: $body-text;
 
-    font-size: 3.2rem;
-    font-style: italic;
-    letter-spacing: .24rem;
-    animation: hide 1.3s, positionTitle 1.2s 1.3s ease-in-out;
-  }
-  
+  font-size: 2.2rem;
+  font-style: italic;
+  letter-spacing: 0.3rem;
+  animation: hide 1.3s, positionTitle 1.2s 1.3s ease-in-out;
+}
+
 @keyframes hide {
   0% {
     opacity: 0;
@@ -84,7 +84,7 @@
 
 @keyframes positionTitle {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
 
   100% {
@@ -93,36 +93,35 @@
 }
 
 .question {
-    display: inline-block;
-    color: $body-text;
+  display: inline-block;
+  color: $body-text;
 
-    height: 2.4rem; // HEIGHT is necessary to set an space on screen before the text appears. Otherwise, it will vertically move during the animation due to flexbox positioning.
-                  
-    font-size: 2.4rem;
-    font-weight: bold;
-    letter-spacing: .28rem;
+  height: 2.5rem; // HEIGHT is necessary to set an space on screen before the text appears. Otherwise, it will vertically move during the animation due to flexbox positioning.
 
-    @include responsiveDesign(800) {
-      height: 5rem; // The HEIGHT of this element is doubled + an extra, so there is no change in the position of elements on the layout when the question element "<p>" occupies two lines.
-    }
+  font-size: 1.9rem;
+  font-weight: bold;
+  letter-spacing: 0.3rem;
+
+  @include responsiveDesign(800) {
+    height: 5rem; // The HEIGHT of this element is doubled + an extra, so there is no change in the position of elements on the layout when the question element "<p>" occupies two lines.
+  }
 }
 
 .answer {
-    color: $body-text;
+  color: $body-text;
 
-    margin-top: 2rem;
-    height: 2.4rem; // HEIGHT is necessary to set an space on screen before the text appears. Otherwise, it will vertically move during the animation due to flexbox positioning.
-    line-height: 5rem; // LINE-HEIGHT is necessary to avoid any vertically movement of the "answer" line when the buttons are added.
-    font-size: 2.4rem;
-    letter-spacing: .16rem;
+  margin-top: 2rem;
+  height: 2rem; // HEIGHT is necessary to set an space on screen before the text appears. Otherwise, it will vertically move during the animation due to flexbox positioning.
+  line-height: 5rem; // LINE-HEIGHT is necessary to avoid any vertically movement of the "answer" line when the buttons are added.
+  font-size: 1.7rem;
+  letter-spacing: 0.2rem;
 }
-
 
 //////////////////////////////
 // BACKGROUND DROPS
 
 $total: 5;
-$dotSize: .9;
+$dotSize: 0.9;
 
 .wrap {
   position: fixed;
@@ -149,19 +148,19 @@ $dotSize: .9;
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
-    width: $dotSize+vw;
-    height: $dotSize+vw;
+    width: $dotSize + vw;
+    height: $dotSize + vw;
     border-radius: 50%;
     left: 50%;
     bottom: 0;
-    margin-left: -($dotSize/2)+vw;
+    margin-left: -($dotSize/2) + vw;
   }
 }
 
 @for $i from 1 through $total {
-  .binaryDropLine:nth-child(#{$i}){
+  .binaryDropLine:nth-child(#{$i}) {
     background-color: black;
     animation-delay: random(150) / (100) * 1s;
     &:after {
@@ -172,25 +171,25 @@ $dotSize: .9;
 
 @keyframes drop {
   80% {
-      opacity: 0;
-}
-100% {
+    opacity: 0;
+  }
+  100% {
     height: 150vh;
     opacity: 0;
   }
 }
 
 .binaryDropLine p {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    color: rgba(255, 255, 255, .8);
-    display: block;
-    
-    @include responsiveDesign(800) {
-      font-size: .6rem !important;
-    }
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  color: rgba(255, 255, 255, 0.8);
+  display: block;
 
-    @include responsiveDesign(500) {
-      font-size: .4rem !important;
-    }
+  @include responsiveDesign(800) {
+    font-size: 0.6rem !important;
+  }
+
+  @include responsiveDesign(500) {
+    font-size: 0.4rem !important;
+  }
 }

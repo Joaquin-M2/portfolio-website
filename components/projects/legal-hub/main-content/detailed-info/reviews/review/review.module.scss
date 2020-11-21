@@ -44,7 +44,12 @@
       height: 4.5rem;
       width: 4.5rem;
       border-radius: 50%;
-      margin-right: 1.5rem;
+      margin-right: 1rem;
+
+      @include responsiveDesign(500) {
+        height: 5rem;
+        width: 5rem;
+      }
     }
 
     & .userNameAndDate_container {
@@ -53,25 +58,37 @@
       margin-right: auto;
 
       & > * {
-        padding: 0.2rem;
+        padding: 0.1rem;
       }
 
       & .userNameAndDate_name {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 600;
         text-transform: uppercase;
+
+        @include responsiveDesign(500) {
+          font-size: 1.5rem;
+        }
       }
 
       & .userNameAndDate_date {
-        font-size: 1rem;
+        font-size: 0.9rem;
         color: $LH_color-grey-dark-3;
+
+        @include responsiveDesign(500) {
+          font-size: 1.4rem;
+        }
       }
     }
 
     & .userRating {
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: 300;
       color: $LH_color-primary;
+
+      @include responsiveDesign(500) {
+        font-size: 3rem;
+      }
     }
   }
 }

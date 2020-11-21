@@ -23,7 +23,7 @@
     width: 90%;
 
     margin-right: -3.5rem;
-    padding: 1rem 3.5rem;
+    padding: 0.6rem 2.5rem;
     background-color: $LH_color-grey-light-2;
 
     transition: all 0.2s;
@@ -32,6 +32,10 @@
       outline: none;
       width: 100%;
       background-color: $LH_color-grey-light-3;
+
+      @include responsiveDesign(500) {
+        width: 90%;
+      }
 
       & + .search__button {
         background-color: $LH_color-grey-light-3;
@@ -45,19 +49,21 @@
   }
 
   & .searchForm_button {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     border: none;
     outline: none;
     background-color: $LH_color-grey-light-2;
+
+    display: flex;
 
     &:active {
       transform: translateY(0.2rem);
     }
 
     & .searchForm_icon {
-      width: 2rem;
-      height: 2rem;
+      width: 1.5rem;
+      height: 1.5rem;
       fill: $LH_color-grey-dark-2; // Colorea el icono SVG.
     }
   }

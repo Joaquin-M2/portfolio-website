@@ -1,45 +1,59 @@
+@import '../../../../../sass/abstracts/mixins.scss';
+
 .Container {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    border-radius: 2.4rem;
-    cursor: pointer;
-    transition: all .2s ease-out;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  border-radius: 2.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  @include responsiveDesign(1024) {
+    font-size: 2rem;
+  }
 }
 
 .Container:hover {
-    box-shadow: 0 0 .8rem .8rem white;
+  box-shadow: 0 0 0.8rem 0.8rem white;
 }
 
 .TechTag {
-    padding: .6rem 1.6rem;
-    background-color: red;
-    font-weight: bold;
-    color: white;
-    letter-spacing: .16rem;
-    white-space: nowrap;
+  padding: 0.6rem 1.5rem;
+  background-color: red;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 0.16rem;
+  white-space: nowrap;
 
-    border: .32rem solid red;
-    border-right: none;
-    border-left: none;
-    border-top-left-radius: 2.4rem;
-    border-bottom-left-radius: 2.4rem;
+  border: 0.32rem solid red;
+  border-right: none;
+  border-left: none;
+  border-top-left-radius: 2.4rem;
+  border-bottom-left-radius: 2.4rem;
+
+  @include responsiveDesign(1024) {
+    padding: 1rem 3rem;
+  }
 }
 
 .ProgressBarContainer {
-    position: relative;
-    width: 100%;
-    padding: .6rem 0rem;
-    text-align: center;
-    background-color: white;
+  position: relative;
+  width: 100%;
+  padding: 0.6rem 0rem;
+  text-align: center;
+  background-color: white;
 
-    border: .32rem solid red;
-    border-left: none;
-    border-top-right-radius: 2.4rem;
-    border-bottom-right-radius: 2.4rem;
+  border: 0.32rem solid red;
+  border-left: none;
+  border-top-right-radius: 2.4rem;
+  border-bottom-right-radius: 2.4rem;
+
+  @include responsiveDesign(1024) {
+    padding: 1rem 0rem;
+  }
 }
 
 .PercentageQuantity {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }

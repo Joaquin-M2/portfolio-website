@@ -6,10 +6,14 @@
 
   & .textLine {
     margin-right: auto; // Empuja al "flex-item" que está a su izquierda tanto como sea posible (pero sin salirse del "flex-container").
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+
+    @include responsiveDesign(500) {
+      font-size: 2rem;
+    }
   }
 
   & .avatarsContainer {
-    margin-right: 2rem;
+    margin-right: 1.6rem;
   }
 }
