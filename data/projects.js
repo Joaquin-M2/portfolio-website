@@ -13,7 +13,7 @@ const projects = [
   new Project(
     1,
     'Portfolio website',
-    '/portfolio-website',
+    '/projects/portfolio-website/portfolio-website',
     [
       techs.HTML,
       techs.CSS,
@@ -53,7 +53,7 @@ const projects = [
   new Project(
     2,
     'Tattoo Parlor',
-    '/tattoo-parlor',
+    '/projects/tattoo-parlor/tattoo-parlor',
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     (
       <span>
@@ -82,7 +82,7 @@ const projects = [
   new Project(
     3,
     'Legal Hub',
-    '/legal-hub',
+    '/projects/legal-hub/legal-hub',
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     (
       <span>
