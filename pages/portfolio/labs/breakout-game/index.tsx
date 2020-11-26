@@ -104,7 +104,7 @@ const BreakoutGame: React.FC = () => {
 
     function drawText() {
       ctx.font = `${canvas.width / 40}px Arial`;
-      ctx.fillText(`Score: ${score}`, canvas.width * 0.88, canvas.height / 12);
+      ctx.fillText(`Score: ${score}`, canvas.width * 0.84, canvas.height / 12);
     }
 
     function drawBricks() {
@@ -190,12 +190,12 @@ const BreakoutGame: React.FC = () => {
         })
       );
 
-      // Lose and restart game
+      // Lose and restart the game
       if (
         ballProperties.yAxisPosition + ballProperties.radiusSize >
         canvas.height
       ) {
-        restart(); // Function define some lines below.
+        restart(); // Function defined some lines below.
         score = 0;
       }
     }
@@ -209,7 +209,10 @@ const BreakoutGame: React.FC = () => {
     }
 
     function nextLevel() {
-      if (score / (BRICKS_PER_ROW * BRICKS_PER_COLUMN) === 1) {
+      if (
+        score / (BRICKS_PER_ROW * BRICKS_PER_COLUMN) >= 1 &&
+        score % (BRICKS_PER_ROW * BRICKS_PER_COLUMN) === 0
+      ) {
         restart();
       }
     }
