@@ -1,8 +1,8 @@
 import Lab from '../utils/create-project';
+import techs from './techs-names';
 
 // id --> The ID of the first element has to be 1.
 // default image path
-// thumbnail path
 // technologies used --> array
 // description
 // linkToCode --> GitHub
@@ -13,8 +13,8 @@ const projects = [
   new Lab(
     1,
     'Cinema Seats Booking',
-    '/cinema-seats-booking',
-    ['HTML, CSS, JavaScript, TypeScript, React'],
+    '/labs/cinema-seats-booking/cinema-seats-booking',
+    [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     'Small application in which you can book seats in a movie theater.',
     'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/movie-seats-booking/index.tsx',
     '/portfolio/labs/movie-seats-booking',
@@ -23,15 +23,25 @@ const projects = [
   ),
   new Lab(
     2,
-    'Test lab 2',
-    '/test-labs-2',
-    ['HTML', 'CSS'],
-    '22222 Dollars dollars.',
-    'https://www.google.com',
-    '/portfolio/projects/project2',
-    'Bleble',
-    'Bleble Bleble',
-    'BlebleBleble Bleble'
+    'Breakout Game',
+    '/labs/breakout-game/breakout-game',
+    [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
+    (
+      <span>
+        Basic Breakout game.
+        <br />
+        <br />
+        For its creation it was used a dynamic HTML5 canvas.
+        <br />
+        <br />
+        You can move the paddle with your keyboard arrow keys!
+      </span>
+    ),
+    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/breakout-game/index.tsx',
+    '/portfolio/labs/breakout-game',
+    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
+    'The application consists of a dynamic HTML5 canvas.',
+    'Use your keyboard arrow keys to move the paddle!'
   ),
   new Lab(
     3,
