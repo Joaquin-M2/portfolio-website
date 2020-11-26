@@ -2,7 +2,10 @@ import React, { useState, useEffect, forwardRef } from 'react';
 
 import styles from './canvas.module.scss';
 
-// More info: https://stackoverflow.com/questions/60052450/in-react-using-typescript-how-do-i-pass-a-ref-to-a-custom-component-using-reff
+/**
+ * More info about giving refs to functional components:
+ * https://stackoverflow.com/questions/60052450/in-react-using-typescript-how-do-i-pass-a-ref-to-a-custom-component-using-reff
+ */
 
 const Canvas = forwardRef<HTMLCanvasElement>((props, ref) => {
   const [width, setWidth] = useState(800);
