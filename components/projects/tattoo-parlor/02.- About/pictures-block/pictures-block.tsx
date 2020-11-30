@@ -7,20 +7,20 @@ const PicturesBlock: React.FC = () => {
     <div className={styles.container}>
       <DemoPicture
         additionalStyles={styles.pictureOne}
-        imgSrcSet="/projects/TattooParlor/About/tattoo-creation.jpg 300w, /projects/TattooParlor/About/tattoo-creation-big.jpg 1000w"
-        imgSrc="/projects/TattooParlor/About/tattoo-creation-big.jpg"
+        imgSrcSet="/projects/tattoo-parlor/About/tattoo-creation.jpg 300w, /projects/TattooParlor/About/tattoo-creation-big.jpg 1000w"
+        imgSrc="/projects/tattoo-parlor/About/tattoo-creation-big.jpg"
         imgAlt="Tattoo picture #1"
       />
       <DemoPicture
         additionalStyles={styles.pictureTwo}
-        imgSrcSet="/projects/TattooParlor/About/piercing-top-nose.jpg 300w, /projects/TattooParlor/About/piercing-top-nose-big.jpg 1000w"
-        imgSrc="/projects/TattooParlor/About/piercing-top-nose-big.jpg"
+        imgSrcSet="/projects/tattoo-parlor/About/piercing-top-nose.jpg 300w, /projects/TattooParlor/About/piercing-top-nose-big.jpg 1000w"
+        imgSrc="/projects/tattoo-parlor/About/piercing-top-nose-big.jpg"
         imgAlt="Piercing picture #2"
       />
       <DemoPicture
         additionalStyles={styles.pictureThree}
-        imgSrcSet="/projects/TattooParlor/About/tattoo-studio.jpg 300w, /projects/TattooParlor/About/tattoo-creation-big.jpg 1000w"
-        imgSrc="/projects/TattooParlor/About/tattoo-studio-big.jpg"
+        imgSrcSet="/projects/tattoo-parlor/About/tattoo-studio.jpg 300w, /projects/TattooParlor/About/tattoo-creation-big.jpg 1000w"
+        imgSrc="/projects/tattoo-parlor/About/tattoo-studio-big.jpg"
         imgAlt="Tattoo picture #3"
       />
     </div>

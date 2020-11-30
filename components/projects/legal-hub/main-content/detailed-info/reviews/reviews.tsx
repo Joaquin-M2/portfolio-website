@@ -7,7 +7,7 @@ const Reviews: React.FC = () => {
   return (
     <div className={styles.container}>
       <Review
-        avatarImagePath="/projects/LegalHub/user-1.jpg"
+        avatarImagePath="/projects/legal-hub/user-1.jpg"
         avatarImageAltText="User 1"
         userName="Felipe Núñez"
         date="June 24th, 2020"
@@ -17,7 +17,7 @@ const Reviews: React.FC = () => {
         doloremque architecto dicta animi, totam, itaque officia ex.
       </Review>
       <Review
-        avatarImagePath="/projects/LegalHub/user-2.jpg"
+        avatarImagePath="/projects/legal-hub/user-2.jpg"
         avatarImageAltText="User 2"
         userName="Olga Zhukova"
         date="January 29th, 2020"

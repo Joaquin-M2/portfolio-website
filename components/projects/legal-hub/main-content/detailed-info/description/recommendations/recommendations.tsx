@@ -11,22 +11,22 @@ const Recommendations: React.FC = () => {
       <div className={styles.avatarsContainer}>
         <AvatarImage
           stackedAvatar
-          src="/projects/LegalHub/user-3.jpg"
+          src="/projects/legal-hub/user-3.jpg"
           alt="User 3"
         />
         <AvatarImage
           stackedAvatar
-          src="/projects/LegalHub/user-4.jpg"
+          src="/projects/legal-hub/user-4.jpg"
           alt="User 4"
         />
         <AvatarImage
           stackedAvatar
-          src="/projects/LegalHub/user-5.jpg"
+          src="/projects/legal-hub/user-5.jpg"
           alt="User 5"
         />
         <AvatarImage
           stackedAvatar
-          src="/projects/LegalHub/user-6.jpg"
+          src="/projects/legal-hub/user-6.jpg"
           alt="User 6"
         />
       </div>

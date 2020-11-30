@@ -26,7 +26,7 @@ const TopBar: React.FC = () => {
         </div>
         <div className={styles.userNav_iconBox}>
           <AvatarImage
-            src="/projects/LegalHub/user.jpg"
+            src="/projects/legal-hub/user.jpg"
             alt="User avatar"
             additionalStyles={styles.userNav_picture}
           />

@@ -7,17 +7,17 @@ interface StoriesProps {
   id: string;
 }
 
-const Stories: React.FC<StoriesProps> = (props) => {
+const Stories: React.FC<StoriesProps> = props => {
   return (
     <section className={styles.container} id={props.id}>
       <div className={styles.backgroundVideo}>
         <video className={styles.backgroundVideoContent} autoPlay muted loop>
           <source
-            src="/projects/TattooParlor/stories-video.webm"
+            src="/projects/tattoo-parlor/stories-video.webm"
             type="video/webm"
           />
           <source
-            src="/projects/TattooParlor/stories-video.mp4"
+            src="/projects/tattoo-parlor/stories-video.mp4"
             type="video/mp4"
           />
           Your browser is not supported!
@@ -26,7 +26,7 @@ const Stories: React.FC<StoriesProps> = (props) => {
       <StoryCard
         clientName="Eddie Smith"
         title="The best tattoo studio of the whole city!!"
-        imgPath="/projects/TattooParlor/Stories/client-1.jpg"
+        imgPath="/projects/tattoo-parlor/Stories/client-1.jpg"
         imgAlt="Tattoed client on the phone."
       >
         Mauris ornare augue neque, nec commodo sapien semper sed. Vivamus at
@@ -39,7 +39,7 @@ const Stories: React.FC<StoriesProps> = (props) => {
       <StoryCard
         clientName="Megan Wayne"
         title="Highly skilled professionals. 100% recommended!"
-        imgPath="/projects/TattooParlor/Stories/client-2.jpg"
+        imgPath="/projects/tattoo-parlor/Stories/client-2.jpg"
         imgAlt="Piercings client sticking out her tongue."
       >
         In aliquam lorem ut risus finibus, vel suscipit orci tincidunt.

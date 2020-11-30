@@ -53,8 +53,8 @@ const Services: React.FC<ServicesProps> = props => {
         id="popup_1"
         mainTitle="Popup Service 1"
         secondaryTitle="Título secundario. Prueba popup 1."
-        pathImg_1="/projects/TattooParlor/tattoo-card/tattoo-1.jpg"
-        pathImg_2="/projects/TattooParlor/tattoo-card/tattoo-2.jpg"
+        pathImg_1="/projects/tattoo-parlor/tattoo-card/tattoo-1.jpg"
+        pathImg_2="/projects/tattoo-parlor/tattoo-card/tattoo-2.jpg"
         altImg_1="Tour photo 1"
         altImg_2="Tour photo 2"
       >
@@ -76,8 +76,8 @@ const Services: React.FC<ServicesProps> = props => {
         id="popup_2"
         mainTitle="Popup Service 2"
         secondaryTitle="Important &ndash; Please read these terms before booking"
-        pathImg_1="/projects/TattooParlor/piercing-card/piercing-studio.jpg"
-        pathImg_2="/projects/TattooParlor/piercing-card/piercing-tongue.jpg"
+        pathImg_1="/projects/tattoo-parlor/piercing-card/piercing-studio.jpg"
+        pathImg_2="/projects/tattoo-parlor/piercing-card/piercing-tongue.jpg"
         altImg_1="Tour photo 1"
         altImg_2="Tour photo 2"
       >
@@ -99,8 +99,8 @@ const Services: React.FC<ServicesProps> = props => {
         id="popup_3"
         mainTitle="Popup Service 3"
         secondaryTitle="Título secundario del popup 3"
-        pathImg_1="/projects/TattooParlor/tattoo-removal-card/tattoo-removal-2.jpg"
-        pathImg_2="/projects/TattooParlor/tattoo-removal-card/tattoo-removal-1.jpg"
+        pathImg_1="/projects/tattoo-parlor/tattoo-removal-card/tattoo-removal-2.jpg"
+        pathImg_2="/projects/tattoo-parlor/tattoo-removal-card/tattoo-removal-1.jpg"
         altImg_1="Tour photo 1"
         altImg_2="Tour photo 2"
       >
