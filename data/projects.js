@@ -24,9 +24,6 @@ const projects = [
     ],
     (
       <span>
-        This is the first "big" project designed and coded from 0 by myself.
-        <br />
-        <br />
         The design (which I will change and improve in coming iterations) aims
         to divide the content on indiviual pages in order to avoid to the user
         the need of scrolling. The navigation is made through the use of routing
