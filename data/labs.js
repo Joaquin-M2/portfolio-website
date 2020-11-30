@@ -40,20 +40,31 @@ const projects = [
     'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/breakout-game/index.tsx',
     '/portfolio/labs/breakout-game',
     'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
-    'The application consists of a dynamic HTML5 canvas.',
+    'The application consists of a dynamic HTML5 canvas;',
     'Use your keyboard arrow keys to move the paddle!'
   ),
   new Lab(
     3,
-    'Test lab 3',
-    '/test-labs-3',
-    ['HTML', 'CSS', 'JavaScript'],
-    '33333 Moni moni Moni moni Moni moni.',
-    'https://www.google.com',
-    '/portfolio/projects/project3',
-    'Blibli',
-    'Blibli Blibli',
-    'Blibli Blibli Blibli'
+    'Custom Video Player',
+    '/labs/custom-video-player/custom-video-player',
+    [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
+    (
+      <span>
+        Basic custom video player: The shape of the video player, size and
+        thumbnail (image before playing the video) are fully customized. The
+        same applies to the controls bar, which uses vectors (SVG) for the
+        buttons and custom fonts for the timer; the progress bar also uses some
+        custom styles.
+        <br />
+        <br />
+        For the creation of this video player it was used the HTML5 video API.
+      </span>
+    ),
+    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-video-player/index.tsx',
+    '/portfolio/labs/custom-video-player',
+    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
+    'The application consists of a basic (but fully customized) video player;',
+    'It uses the HTML5 video API.'
   ),
   new Lab(
     4,

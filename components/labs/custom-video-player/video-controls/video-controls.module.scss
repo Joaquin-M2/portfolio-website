@@ -1,0 +1,173 @@
+@import '../../../../sass/abstracts/variables.scss';
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60%;
+
+  padding: 1rem 1rem 1.3rem;
+
+  background-color: $CVP_grey;
+
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+
+  & button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+}
+
+.button {
+  width: 2rem;
+  height: 2rem;
+
+  cursor: pointer;
+}
+
+.play {
+  fill: green;
+}
+
+.pause {
+  fill: white;
+}
+
+.stop {
+  fill: red;
+
+  margin: 0 0.8rem 0 0.5rem;
+}
+
+.timestampContainer {
+  width: 5rem;
+  margin: 0 0.5rem 0 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.timestamp {
+  margin: 0 1rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+/////////////////
+// PROGRESS BAR
+
+/* SOURCE: https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
+
+.progress[type='range'] {
+  -webkit-appearance: none; // Hides the slider so that custom slider can be made.
+  width: 100%; // Specific width is required for Firefox.
+  background: transparent; // Otherwise white in Chrome.
+}
+
+.progress[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.progress[type='range']:focus {
+  outline: none; // Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though.
+}
+
+.progress[type='range']::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  // Hides the slider so custom styles can be added.
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+// Special styling for WebKit/Blink.
+.progress[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -14px; // You need to specify a margin in Chrome, but in Firefox and IE it is automatic.
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; // Add cool effects to your sliders!
+}
+
+// All the same stuff for Firefox
+.progress[type='range']::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+// All the same stuff for IE.
+.progress[type='range']::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.progress[type='range']::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+.progress[type='range']:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+
+.progress[type='range']::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+.progress[type='range']::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+.progress[type='range']::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+.progress[type='range']:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+.progress[type='range']::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+.progress[type='range']:focus::-ms-fill-upper {
+  background: #367ebd;
+}
