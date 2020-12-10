@@ -68,27 +68,45 @@ const projects = [
   ),
   new Lab(
     4,
-    'Test lab 4',
-    '/test-labs-4',
-    ['HTML', 'CSS', 'JavaScript', 'TypeScript'],
-    '44444 Euros euros.',
-    'https://www.google.com',
-    '/portfolio/projects/project4',
-    'Bloblo',
-    'Bloblo Bloblo',
-    'Bloblo Bloblo Bloblo'
+    'Custom Audio Player',
+    '/labs/custom-audio-player/custom-audio-player',
+    [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
+    (
+      <span>
+        This lab consists of a basic custom audio player. Its shape is fully
+        customized, an it includes some visual effects such as a spinning disc
+        (with a themed image) when the song is playing. The buttons are SVG.
+        <br />
+        <br />
+        In addition to the minimum features a music player should have (play &
+        pause, next song, previous song), the progress bar is clickable, so you
+        can go to a specific moment in the song.
+        <br />
+        <br />
+        For the creation of this audio player it was used the HTML5 audio API.
+        <br />
+        <br />
+        There will be a good bunch of improvements in the future, such as a
+        volume manager and a songs picker, among others.
+      </span>
+    ),
+    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-audio-player/index.tsx',
+    '/portfolio/labs/custom-audio-player',
+    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
+    'Basic custom audio player with some CSS effects;',
+    'It uses the HTML5 audio API.'
   ),
   new Lab(
     5,
     'Test lab 5',
     '/test-labs-5',
     ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React'],
-    '55555 Moni moni Moni moni Moni moni.',
+    '55555 Test.',
     'https://www.google.com',
     '/portfolio/projects/project5',
-    'Blublu',
-    'Blublu Blublu',
-    'Blublu Blublu Blublu'
+    'Test',
+    'Test Test',
+    'Test Test Test'
   ),
 ];
 

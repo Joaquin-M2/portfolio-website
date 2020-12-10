@@ -1,0 +1,16 @@
+@import '../../../../sass/abstracts/variables.scss';
+
+.musicContainer {
+  position: relative;
+
+  width: 50rem;
+  padding: 3rem 2rem;
+
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 245, 246);
+  border-radius: 2rem;
+  box-shadow: 0 3rem 3rem 0 rgba($CMP_secondary, 0.5);
+
+  z-index: 0;
+}

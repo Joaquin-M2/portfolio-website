@@ -1,0 +1,47 @@
+.container {
+  position: absolute;
+  bottom: 2rem;
+  left: 3rem;
+
+  height: 15rem;
+  width: 15rem;
+
+  animation: rotate 10s linear infinite;
+  animation-play-state: paused;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+
+    height: 3rem;
+    width: 3rem;
+
+    background-color: white;
+
+    border: 1px solid black;
+    border-radius: 50%;
+  }
+
+  &.spin {
+    animation-play-state: running;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.image {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+}
