@@ -8,7 +8,7 @@ import styles from './video-screen.module.scss';
  *
  * For this purpose, it was used the "forwardRef" function/method (imported from "react") together
  * with two generics (the first one is the HTML element in which the "ref" will be applied to) and
- * the interface that will be applied to the whole component. See line 22.
+ * the TypeScript interface that will be applied to the whole component. See line 22.
  *
  * Additionally, it is also necessary to use a second parameter together with "props": "ref".
  */

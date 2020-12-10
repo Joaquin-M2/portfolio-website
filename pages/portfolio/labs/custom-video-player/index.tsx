@@ -13,8 +13,6 @@ import TonguesContainer from '../../../../components/common/tongues-container/to
 const CustomVideoPlayer: React.FC = () => {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
-  const [progressBarValue, setProgressBarValue] = useState('0');
-
   /**
    * These states, used by the timer (check the returned componed given by this React.FC), need to
    * be of type "string" even though they are numbers.
