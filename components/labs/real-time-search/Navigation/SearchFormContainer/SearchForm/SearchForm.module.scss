@@ -1,0 +1,45 @@
+@import '../../../../../../sass/abstracts/variables.scss';
+
+.form {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+
+  &::after {
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: $RTS_main;
+    border: 1px solid $RTS_main-dark2;
+    border-bottom: none;
+
+    position: absolute;
+    bottom: -2.08rem;
+    transform: rotate(45deg);
+    clip-path: polygon(0% 0%, 100% 0%, 55% 55%, 0% 100%);
+
+    z-index: 2;
+
+    display: none;
+  }
+
+  .input {
+    background-color: $RTS_main;
+    border-radius: 0.5rem;
+    border: none;
+
+    width: 100%;
+    padding: 1rem 1.5rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.displayForm {
+  &::after {
+    display: block;
+  }
+}

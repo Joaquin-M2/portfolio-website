@@ -1,0 +1,27 @@
+@import '../../../../../../../../sass/abstracts/variables.scss';
+
+.titleContainer {
+  grid-area: 1 / 2 / 2 / 5;
+
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+
+  &::after {
+    content: '';
+    height: 2.8rem;
+    width: 20%;
+    background-image: linear-gradient(315deg, $RTS_main 25%, transparent);
+    position: absolute;
+    right: 0px;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  color: black;
+  font-weight: bold;
+  white-space: nowrap;
+
+  display: inline-block;
+}

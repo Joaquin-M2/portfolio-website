@@ -1,0 +1,46 @@
+@import '../../../../../../sass/abstracts/variables.scss';
+
+.container {
+  background-color: $RTS_main;
+  margin-top: 1.2rem;
+  width: 50rem;
+  max-height: 30rem;
+
+  position: absolute;
+
+  // Why this "calc()"?:
+  // -25rem (half of the width of this element) +
+  // + 22.5rem (half of the width of the "SearchFormContainer" element).
+  right: calc(-25rem + 22.5rem);
+
+  overflow: auto;
+
+  border: 1px solid $RTS_main-dark2;
+  border-radius: 0 0.55rem 0.55rem 0;
+
+  display: none;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+
+  &::-webkit-scrollbar {
+    width: 2.4rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 0 0.55rem 0.55rem 0;
+    background-color: $RTS_main-dark2;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0 2.4rem 2.4rem 0;
+    border: 0.4rem solid $RTS_main-dark2;
+    width: 0.4rem;
+    background-color: $RTS_main;
+  }
+}
+
+.displayContainer {
+  display: block;
+}

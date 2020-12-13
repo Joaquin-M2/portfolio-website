@@ -1,0 +1,16 @@
+@import '../../../../../../../sass/abstracts/variables.scss';
+
+.container {
+  display: grid;
+  grid-template: 1fr, 3fr, 1fr / 1fr, 2fr, 1fr;
+  grid-gap: 1rem;
+  padding: 1rem;
+
+  min-height: 20rem;
+
+  background-color: $RTS_main;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $RTS_main-dark;
+  }
+}
