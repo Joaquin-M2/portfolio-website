@@ -1,0 +1,41 @@
+@import '../../../sass/abstracts/variables.scss';
+@import '../../../sass/abstracts/mixins.scss';
+
+.tag,
+.tagButton {
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  border: black;
+  border-radius: 0.5rem;
+  background: $color-pale-grey;
+
+  white-space: nowrap;
+
+  transition: all 0.2s;
+}
+
+.tagButton {
+  display: flex;
+  gap: 0.5rem;
+
+  cursor: pointer;
+
+  &:empty {
+    display: none;
+  }
+
+  &::after {
+    content: '\2715';
+  }
+
+  &:hover {
+    background-color: $color-intense-grey;
+    color: white;
+  }
+}
+
+.divider {
+  height: 100%;
+  width: 1px;
+  background: black;
+}

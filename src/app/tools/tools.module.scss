@@ -1,0 +1,16 @@
+.mainContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2rem;
+
+  padding: 7rem 1rem 10rem;
+
+  min-height: 100%;
+}
+
+.notFoundTitle {
+  margin: auto;
+  align-self: center;
+  color: white;
+}

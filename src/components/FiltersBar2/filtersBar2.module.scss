@@ -1,0 +1,72 @@
+@import '../../sass/abstracts/variables.scss';
+@import '../../sass/abstracts/mixins.scss';
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 12.5%;
+  width: 75%;
+
+  border-bottom-left-radius: 35%;
+  border-bottom-right-radius: 35%;
+
+  box-shadow: 0 0 1rem 0.1rem black;
+}
+
+.innerContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  //justify-content: space-evenly;
+
+  padding: 2rem 6rem;
+  background-color: #999999;
+
+  box-shadow: inset 0rem 0rem 0.4rem 1.44rem rgba(255, 255, 255, 0.3),
+    inset 0rem 0rem 0.4rem 0.4rem rgba(255, 255, 255, 0.7);
+
+  border-bottom-left-radius: 35%;
+  border-bottom-right-radius: 35%;
+  z-index: 3;
+  margin-top: auto;
+}
+
+.titleFieldset,
+.tagFieldset {
+  padding: 1rem;
+}
+
+.tagFieldset {
+  display: flex;
+  gap: 1.5rem;
+
+  width: 100%;
+  border-bottom-right-radius: 20%;
+
+  & .tagsContainer {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    max-height: 7rem;
+    overflow: auto;
+  }
+}
+
+.titleLegend,
+.tagLegend {
+  font-size: 1.3rem;
+}
+
+.searchInput {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  width: 30rem;
+}
+
+.selectInput {
+  border-radius: 1rem;
+  min-width: 10rem;
+  padding: 0.5rem;
+}

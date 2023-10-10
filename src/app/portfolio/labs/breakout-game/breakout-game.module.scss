@@ -1,0 +1,11 @@
+@import '../../../../sass/abstracts/variables.scss';
+
+.Container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  z-index: 4;
+  background-color: $color-intense-blue;
+}

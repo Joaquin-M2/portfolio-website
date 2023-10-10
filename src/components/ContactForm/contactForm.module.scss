@@ -1,0 +1,210 @@
+@import '../../sass/abstracts/variables.scss';
+@import '../../sass/abstracts/mixins.scss';
+
+.Fieldset {
+  padding: 2.4rem;
+
+  position: relative;
+}
+
+.Legend {
+  color: $color-pale-grey;
+  font-size: 2.5rem;
+  padding: 0 1rem;
+
+  @include responsiveDesign(800) {
+    font-size: 3.5rem;
+  }
+}
+
+.FormField {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.FormField:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
+.ContactFormInput {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  display: block;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+  outline: none;
+  border-radius: 0.4rem;
+  border: 0.32rem solid transparent;
+  color: $color-more-intense-grey;
+
+  transition: all 0.3s;
+
+  @include responsiveDesign(800) {
+    padding: 2rem;
+    font-size: 3rem;
+  }
+
+  &::-webkit-input-placeholder {
+    // El texto que escribe el usuario en un campo de texto.
+    color: inherit;
+    font-weight: inherit;
+    font-family: $texts-fonts;
+    //font-size: 1.5rem;
+  }
+
+  &:placeholder-shown + label {
+    // El CSS de <label> (.ContactFormLabel) está justo abajo. :placeholder-shown hace referencia al campo de texto cuando todavía se muestra el placeholder por defecto (es decir, antes de que el usuario escriba en él).
+    order: -1;
+    transform: translateY(4rem);
+    opacity: 0; // No se usa solamente "visibility" porque es una propiedad CSS que no puede ser animada ("transition"). "opacity" sí que puede serlo.
+    visibility: hidden; // "opacity" lo oculta, "visibility" directamente lo quita (así no cambia el ratón al pasar por encima).
+  }
+}
+
+.ContactFormLabel {
+  order: -1;
+  display: inline-block;
+  margin-left: 0.8rem;
+  margin-bottom: 0.4rem;
+  font-family: $titles-fonts;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: $color-intense-grey;
+  transition: all 0.3s;
+
+  @include responsiveDesign(800) {
+    font-size: 2.2rem;
+    letter-spacing: 0.2rem;
+    margin-top: 2rem;
+  }
+}
+
+// ERROR MESSAGES
+
+.FormField small {
+  display: none;
+}
+
+.error {
+  color: red;
+  font-size: 1rem;
+  letter-spacing: 0.08rem;
+  margin: 0.16rem 0 -1.4rem 0.4rem;
+
+  @include responsiveDesign(800) {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
+}
+
+.ContactFormInputError {
+  border: 0.32rem solid red;
+}
+
+.ContactFormInputSuccess {
+  border: 0.32rem solid green;
+}
+
+// FORM BUTTON
+
+.ButtonSendForm {
+  display: block;
+  padding: 0.8rem;
+  margin: 3rem auto 0;
+
+  font-family: $titles-fonts;
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  @include responsiveDesign(800) {
+    margin: 3rem auto 0;
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+  }
+}
+
+.deactivateButton {
+  cursor: not-allowed;
+  background-color: $color-intense-grey;
+  color: black;
+}
+
+.activateButton {
+  cursor: pointer;
+  background-color: lighten($color-intense-grey, 50%);
+  color: black;
+}
+
+// SENDING FORM SPINNER
+
+.spinner {
+  display: none;
+  margin: 4rem auto 1.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner > div {
+  width: 1.45rem;
+  height: 1.45rem;
+  margin: 0 0.4rem;
+  background-color: #333;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+// FORM SENT MESSAGE
+
+.formSentMessage {
+  display: none;
+  margin: 4rem auto 1rem;
+  text-align: center;
+  color: white;
+  font-size: 1.8rem;
+
+  @include responsiveDesign(800) {
+    margin: 3rem auto 0;
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+  }
+}

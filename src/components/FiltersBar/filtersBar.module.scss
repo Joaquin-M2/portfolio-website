@@ -1,0 +1,137 @@
+@import '../../sass/abstracts/variables.scss';
+@import '../../sass/abstracts/mixins.scss';
+
+.FiltersBar {
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  width: 20rem;
+  height: 100vh;
+
+  background-color: #000048;
+
+  z-index: 2;
+
+  transition: all 0.5s ease-out;
+
+  @include responsiveDesign(1280) {
+    position: fixed;
+    left: 0;
+  }
+
+  @include responsiveDesign(500) {
+    width: 24rem;
+  }
+}
+
+.FiltersBar_Title {
+  font-size: 2rem;
+  letter-spacing: 0.24rem;
+  color: $color-pale-grey;
+
+  border-bottom: 0.08rem solid $color-intense-grey;
+
+  text-align: center;
+
+  padding: 1.6rem;
+
+  @include responsiveDesign(500) {
+    font-size: 2.5rem;
+  }
+}
+
+.FiltersBar_List {
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  height: calc(
+    100vh - 10.5rem - 10rem
+  ); // 100% height - .FiltersBar_Title - NavBarBottom (approx. measurement);
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 2.4rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2.4rem;
+    border: 0.4rem solid #000048;
+    width: 0.4rem;
+    background-color: darkgrey;
+  }
+}
+
+//////////////////////////////////
+// ACTIVATION FILTERS PANEL BUTTON (for screens < 1280px)
+
+.FiltersPanelCheckbox {
+  display: none;
+  @include responsiveDesign(1280) {
+    &:checked ~ .FiltersBar {
+      width: 0rem;
+      transform: translateX(-100%);
+
+      & *:not(.FiltersPanelButton) {
+        transform: translateX(-100%);
+      }
+
+      & .FiltersPanelButton::after {
+        content: 'FILTERS';
+        display: block;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+      }
+    }
+  }
+}
+
+.FiltersPanelButton {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-70%);
+  right: -3.3rem;
+  cursor: pointer;
+  padding: 0.8rem;
+  font-size: 1.6rem;
+  color: white;
+  background-color: red;
+  border-radius: 0 1rem 1rem 0;
+  z-index: 2;
+
+  @include responsiveDesign(1280) {
+    display: block;
+  }
+
+  &::after {
+    content: 'FILTERS';
+    display: block;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    transition: all 0.5s ease-out;
+
+    @include responsiveDesign(800) {
+      content: 'FILTERS';
+      display: block;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+    }
+  }
+}
+
+.blackSail {
+  display: none;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1;
+}

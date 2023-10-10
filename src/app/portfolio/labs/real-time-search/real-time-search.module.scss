@@ -1,0 +1,8 @@
+@import '../../../../sass/abstracts/variables.scss';
+
+.container {
+  height: 100%;
+  position: relative;
+  z-index: 4;
+  background-color: $color-intense-blue;
+}

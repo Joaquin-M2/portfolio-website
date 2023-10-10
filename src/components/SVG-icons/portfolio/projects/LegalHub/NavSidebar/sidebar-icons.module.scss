@@ -1,0 +1,22 @@
+@import '../../../../../../../sass/abstracts/mixins.scss';
+
+.icon {
+  height: 1.75rem;
+  width: 1.75rem;
+
+  margin-right: 2rem;
+
+  fill: currentColor; // Toma el color que utiliza el elemento padre.
+
+  @include responsiveDesign(800) {
+    margin-right: 0;
+    margin-bottom: 0.7rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  @include responsiveDesign(500) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}

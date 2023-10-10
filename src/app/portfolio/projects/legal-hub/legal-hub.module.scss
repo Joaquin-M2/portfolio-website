@@ -1,0 +1,47 @@
+@import '../../../../sass/abstracts/variables.scss';
+@import '../../../../sass/abstracts/mixins.scss';
+
+.mainContainer {
+  position: absolute;
+  top: 0;
+  background-image: linear-gradient(
+    45deg,
+    $LH_color-primary-light,
+    $LH_color-primary-dark
+  );
+  padding: 0 4.5rem;
+
+  z-index: 4;
+
+  @include responsiveDesign(1280) {
+    padding: 0;
+  }
+}
+
+.container {
+  max-width: 130rem; // Para que el <div> "container" ocupe 1200px, de manera que el contenido no se encoja mientras la pantalla tenga un ancho (resolución) superior a 1200px.
+  min-height: 50rem;
+  margin: 4rem auto;
+
+  background-color: $LH_color-grey-light-1;
+  box-shadow: $LH_shadow-color;
+
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: $LH_color-grey-dark-2;
+
+  @include responsiveDesign(1280) {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.content {
+  display: flex;
+
+  @include responsiveDesign(1000) {
+    flex-direction: column;
+  }
+}

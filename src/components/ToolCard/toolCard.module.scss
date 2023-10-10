@@ -1,0 +1,94 @@
+@import '../../sass/abstracts/variables.scss';
+@import '../../sass/abstracts/mixins.scss';
+
+.cardLink {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration: none;
+  color: black;
+
+  display: block;
+  width: calc(50% - 1rem);
+
+  @include responsiveDesign(600) {
+    width: 100%;
+  }
+}
+
+.container {
+  background-color: white;
+  border-radius: 1rem;
+
+  padding: 1rem;
+}
+
+.upperHalfContainer {
+  display: flex;
+}
+
+.logoContainer {
+  display: grid;
+  align-content: center;
+  margin-right: 1rem;
+}
+
+.titleHeartDescriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  width: 100%;
+
+  & p {
+    font-size: 1.6rem;
+  }
+}
+
+.titleHeartContainer {
+  display: flex;
+  justify-content: space-between;
+
+  & .cardTitle {
+    font-size: 2.5rem;
+  }
+}
+
+.toggleHeartContainer {
+  margin-top: -0.5rem; // So the top of the heart icon is at the same height as the top of the card title.
+}
+
+.tagsContainer {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.horizontalBar {
+  height: 1px;
+  width: 100%;
+  background: black;
+  margin: 1rem 0;
+}
+
+// HEART - FAVORITE BUTTON
+
+.toggleHeartInput {
+  position: absolute;
+  left: -100vw;
+
+  &:checked + .toggleHeartLabel {
+    color: #e2264d;
+  }
+}
+
+.toggleHeartLabel {
+  color: #aab8c2;
+  font-size: 3rem;
+  cursor: pointer;
+  align-self: center;
+
+  transition: all 0.3s;
+
+  &:hover {
+    color: #686b6e;
+  }
+}

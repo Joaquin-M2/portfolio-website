@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 
 let globalState = {};
@@ -23,7 +25,7 @@ export const useStore = (shouldListen = true) => {
 
     return () => {
       if (shouldListen) {
-        listeners = listeners.filter(li => li !== setState);
+        listeners = listeners.filter((li) => li !== setState);
       }
     };
   }, [setState, shouldListen]);
