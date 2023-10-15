@@ -14,7 +14,7 @@ interface ToolCardProps {
   logo: string | StaticImageData;
   title: string;
   description: string;
-  tags: string[];
+  tags: {_id: string, name: string}[];
 }
 
 export default function ToolCard({
@@ -87,7 +87,7 @@ export default function ToolCard({
           <div className={styles.horizontalBar}></div>
           <div className={styles.tagsContainer}>
             {tags.map((tag, id) => (
-              <Tag key={id}>{tag}</Tag>
+              <Tag key={id}>{tag.name}</Tag>
             ))}
           </div>
         </div>

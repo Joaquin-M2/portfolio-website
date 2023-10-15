@@ -1,26 +1,27 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { toolsFiltersTags } from '../../data/tools-filter-tags';
-import Tag from '../ToolCard/Tag/Tag';
+import Tag from "../ToolCard/Tag/Tag";
 
-import styles from './filtersBar2.module.scss';
+import styles from "./filtersBar2.module.scss";
 
 function FiltersBar2({
   filterBySearchFunction,
   filterByTagFunction,
-  filterTags,
+  selectedFilterTags,
   handleRemoveFilterTag,
+  tags,
 }) {
-  useEffect(() => {}, [filterTags]);
-
-  const dropdownOptions = toolsFiltersTags
-    .filter((toolFilterTag) => !filterTags.includes(toolFilterTag))
-    .map((filterTag, id) => (
-      <option key={id} value={filterTag}>
-        {filterTag}
-      </option>
-    ));
+  const dropdownOptions = tags.length ? (
+    tags
+      .filter((tag) => !selectedFilterTags.includes(tag.name))
+      .map((tag, id) => (
+        <option key={id} value={tag.name} onClick={filterByTagFunction}>
+          {tag.name}
+        </option>
+      ))
+  ) : (
+    <option>Loading...</option>
+  );
   return (
     <>
       <div className={styles.container}>
@@ -29,24 +30,19 @@ function FiltersBar2({
             <legend className={styles.titleLegend}>Filter by Title</legend>
             <input
               className={styles.searchInput}
-              type='search'
-              placeholder='Search by tool title - Case sensitive'
+              type="search"
+              placeholder="Search by tool title - Case sensitive"
               maxLength={25}
               onChange={filterBySearchFunction}
             />
           </fieldset>
           <fieldset className={styles.tagFieldset}>
             <legend className={styles.tagLegend}>Filter by Tag</legend>
-            <select
-              className={styles.selectInput}
-              name='tags'
-              onClick={filterByTagFunction}
-              multiple
-            >
+            <select className={styles.selectInput} name="tags" multiple>
               {dropdownOptions}
             </select>
             <div className={styles.tagsContainer}>
-              {filterTags.map((tag, id) => (
+              {selectedFilterTags.map((tag, id) => (
                 <Tag
                   key={id}
                   isFilterButton

@@ -1,44 +1,75 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import toolsData from '../../data/tools';
+import ToolCard from "../../components/ToolCard/ToolCard";
+import FiltersBar2 from "../../components/FiltersBar2/FiltersBar2";
 
-import ToolCard from '../../components/ToolCard/ToolCard';
-import FiltersBar2 from '../../components/FiltersBar2/FiltersBar2';
+import styles from "./tools.module.scss";
 
-import styles from './tools.module.scss';
+interface Tool {
+  _id: string;
+  title: string;
+  description: string;
+  tags: [
+    {
+      _id: string;
+      name: string;
+    }
+  ];
+  iconUrl: string;
+  url: string;
+}
 
 function Page() {
   const [toolsInLocalstorage, setToolsInLocalstorage] = useState([]);
-  const [filteredTools, setFilteredTools] = useState([]);
-  const [searchFieldValue, setSearchFieldValue] = useState('');
-  const [filterTags, setFilterTags] = useState([]);
-  const previousFilterTagsQuantity = useRef(filterTags.length);
+  const [tools, setTools] = useState([]);
+  const [filteredTools, setFilteredTools] = useState<Tool[]>();
+  const [searchFieldValue, setSearchFieldValue] = useState("");
+  const [selectedFilterTags, setSelectedFilterTags] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const previousFilterTagsQuantity = useRef(selectedFilterTags.length);
   const searchFieldTools = useRef([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/tools')
+    fetch("http://localhost:4000/tools")
       .then((response) => response.json())
-      .then((data) => setFilteredTools(data.tools))
+      .then((data) => setTools(data.tools))
+      .then(() => setIsLoading(false))
+      .catch((error) => console.log(error));
+    if (tools) {
+      setFilteredTools(tools);
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/tags")
+      .then((response) => response.json())
+      .then((data) => setTags(data.tags))
       .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
     if (
-      typeof window !== 'undefined' &&
-      JSON.parse(localStorage.getItem('toolsId'))
+      typeof window !== "undefined" &&
+      JSON.parse(localStorage.getItem("toolsId"))
     ) {
-      setToolsInLocalstorage(JSON.parse(localStorage.getItem('toolsId')));
+      setToolsInLocalstorage(JSON.parse(localStorage.getItem("toolsId")));
     } else {
       setToolsInLocalstorage([]);
     }
   }, []);
 
-  // TODO: 'setFilteredTools()' tiene que usar siempre "prevValue". Si uso "toolsData", ignora el resto de filtros (ya sea del input de
+  // TODO: 'setFilteredTools()' tiene que usar siempre "prevValue". Si uso "toolsData" ignora el resto de filtros (ya sea del input de
   // búsqueda o de las etiquetas seleccionadas).
 
   const filterBySearch = (event) => {
+    console.log(
+      event.target.value.length,
+      searchFieldValue.length,
+      selectedFilterTags
+    );
     if (event.target.value.length > searchFieldValue.length) {
       setFilteredTools((prevValue) =>
         prevValue.filter((tool) => {
@@ -46,11 +77,12 @@ function Page() {
         })
       );
     } else {
-      if (filterTags) {
-        setFilteredTools(
-          toolsData.filter((tool) => {
-            return filterTags.every((filterTag) =>
-              tool.tags.includes(filterTag)
+      if (selectedFilterTags.length) {
+        console.log("lol", selectedFilterTags);
+        setFilteredTools((prevValue) =>
+          prevValue.filter((tool) => {
+            return selectedFilterTags.every((filterTag) =>
+              tool.tags.some((tag) => tag.name === filterTag)
             );
           })
         );
@@ -60,83 +92,94 @@ function Page() {
           })
         );
       } else {
+        console.log("lmao");
         setFilteredTools(
-          toolsData.filter((tool) => {
+          tools.filter((tool) => {
             return tool.title.includes(event.target.value);
           })
         );
       }
     }
     setSearchFieldValue(event.target.value);
-    searchFieldTools.current = toolsData.filter((tool) => {
+    searchFieldTools.current = tools.filter((tool) => {
       return tool.title.includes(searchFieldValue);
     });
   };
 
   const filterByTag = (event) => {
-    setFilterTags((prevValue) => [...prevValue, event.target.value]);
+    console.log(tools);
+    setSelectedFilterTags((prevValue) => [...prevValue, event.target.value]);
   };
   const handleRemoveFilterTag = (event) => {
-    setFilterTags((prevValue) =>
+    setSelectedFilterTags((prevValue) =>
       prevValue.filter((tag) => tag !== event.target.textContent)
     );
   };
   useEffect(() => {
-    // Required in order to have "filterTags" updated before executing "setFilteredTools".
-    searchFieldTools.current = toolsData.filter((tool) => {
+    // Required in order to have "selectedFilterTags" updated before executing "setFilteredTools".
+    searchFieldTools.current = tools.filter((tool) => {
       return tool.title.includes(searchFieldValue);
     });
 
-    if (filterTags.length > previousFilterTagsQuantity.current) {
+    if (selectedFilterTags.length > previousFilterTagsQuantity.current) {
+      console.log(filteredTools, selectedFilterTags);
       setFilteredTools((prevValue) =>
         prevValue.filter((tool) => {
-          return filterTags.every((filterTag) => tool.tags.includes(filterTag));
+          return selectedFilterTags.every((filterTag) =>
+            tool.tags.some((tag) => tag.name === filterTag)
+          );
         })
       );
-    } else if (filterTags.length < previousFilterTagsQuantity.current) {
+    } else if (selectedFilterTags.length < previousFilterTagsQuantity.current) {
       setFilteredTools(
         searchFieldTools.current.filter((tool) => {
-          return filterTags.every((filterTag) => tool.tags.includes(filterTag));
+          return selectedFilterTags.every((filterTag) =>
+            tool.tags.some((tag) => tag.name === filterTag)
+          );
         })
       );
     }
 
-    previousFilterTagsQuantity.current = filterTags.length;
-  }, [filterTags]);
+    previousFilterTagsQuantity.current = selectedFilterTags.length;
+  }, [selectedFilterTags]);
+
+  const renderToolCards: () => JSX.Element | JSX.Element[] = () => {
+    if (isLoading) {
+      return <h1 className={styles.notFoundTitle}>Loading...</h1>;
+    } else if (!isLoading && filteredTools.length) {
+      return filteredTools
+        .sort(
+          (a, b) =>
+            toolsInLocalstorage.indexOf(b._id.toString()) -
+            toolsInLocalstorage.indexOf(a._id.toString())
+        )
+        .map(({ _id, iconUrl, title, description, tags, url }) => (
+          <ToolCard
+            toolsInLocalstorage={toolsInLocalstorage}
+            key={_id}
+            id={_id.toString()}
+            url={url}
+            logo={iconUrl}
+            title={title}
+            description={description}
+            tags={tags}
+          />
+        ));
+    } else {
+      return <h1 className={styles.notFoundTitle}>No tools found.</h1>;
+    }
+  };
 
   return (
     <>
       <FiltersBar2
         filterBySearchFunction={filterBySearch}
         filterByTagFunction={filterByTag}
-        filterTags={filterTags}
+        selectedFilterTags={selectedFilterTags}
         handleRemoveFilterTag={handleRemoveFilterTag}
+        tags={tags}
       />
-      <main className={styles.mainContainer}>
-        {filteredTools
-          ? filteredTools
-              .sort(
-                (a, b) =>
-                  toolsInLocalstorage.indexOf(b.id.toString()) -
-                  toolsInLocalstorage.indexOf(a.id.toString())
-              )
-              .map(({ _id, toolImage, title, description, tags }) => (
-                <ToolCard
-                  toolsInLocalstorage={toolsInLocalstorage}
-                  key={_id}
-                  id={_id.toString()}
-                  url={'123'}
-                  logo={toolImage}
-                  title={title}
-                  description={description}
-                  tags={tags}
-                />
-              ))
-          : 'Loading...'}
-        {!filteredTools.length && (
-          <h1 className={styles.notFoundTitle}>No tools found.</h1>
-        )}
-      </main>
+      <main className={styles.mainContainer}>{renderToolCards()}</main>
     </>
   );
 }
