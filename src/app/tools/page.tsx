@@ -35,13 +35,13 @@ function Page() {
   useEffect(() => {
     fetch("http://localhost:4000/tools")
       .then((response) => response.json())
-      .then((data) => setTools(data.tools))
+      .then((data) => {
+        setTools(data.tools);
+        setFilteredTools(data.tools);
+      })
       .then(() => setIsLoading(false))
       .catch((error) => console.log(error));
-    if (tools) {
-      setFilteredTools(tools);
-    }
-  }, [isLoading]);
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:4000/tags")
