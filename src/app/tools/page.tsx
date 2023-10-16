@@ -65,11 +65,6 @@ function Page() {
   // búsqueda o de las etiquetas seleccionadas).
 
   const filterBySearch = (event) => {
-    console.log(
-      event.target.value.length,
-      searchFieldValue.length,
-      selectedFilterTags
-    );
     if (event.target.value.length > searchFieldValue.length) {
       setFilteredTools((prevValue) =>
         prevValue.filter((tool) => {
@@ -78,7 +73,6 @@ function Page() {
       );
     } else {
       if (selectedFilterTags.length) {
-        console.log("lol", selectedFilterTags);
         setFilteredTools((prevValue) =>
           prevValue.filter((tool) => {
             return selectedFilterTags.every((filterTag) =>
@@ -92,7 +86,6 @@ function Page() {
           })
         );
       } else {
-        console.log("lmao");
         setFilteredTools(
           tools.filter((tool) => {
             return tool.title.includes(event.target.value);
@@ -107,7 +100,6 @@ function Page() {
   };
 
   const filterByTag = (event) => {
-    console.log(tools);
     setSelectedFilterTags((prevValue) => [...prevValue, event.target.value]);
   };
   const handleRemoveFilterTag = (event) => {
