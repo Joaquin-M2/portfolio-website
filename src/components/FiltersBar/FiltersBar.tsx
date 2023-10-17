@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useRef, useEffect, useState } from 'react';
-import FilterButton from './FilterButton/FilterButton';
+import { useRef, useEffect, useState } from "react";
+import FilterButton from "./FilterButton/FilterButton";
 
-import styles from './filtersBar.module.scss';
+import styles from "./filtersBar.module.scss";
 
 export default function FiltersBar(props) {
   const toggleButton = useRef<HTMLInputElement>();
@@ -25,17 +25,11 @@ export default function FiltersBar(props) {
     return allTechFilters;
   }
 
-  /////////////////////////////
-  // RESPONSIVE FUNCTIONALITY
-
   useEffect(() => {
-    if (window.innerWidth > 1279) {
-      setButtonIsChecked(false);
-    }
-    if (window.innerWidth <= 1279 && toggleButton.current.checked === false) {
-      blackSail.current.style.display = 'block';
+    if (toggleButton.current.checked === false) {
+      blackSail.current.style.display = "block";
     } else {
-      blackSail.current.style.display = 'none';
+      blackSail.current.style.display = "none";
     }
   }, [buttonIsChecked]);
 
@@ -44,9 +38,9 @@ export default function FiltersBar(props) {
       <input
         ref={toggleButton}
         className={styles.FiltersPanelCheckbox}
-        type='checkbox'
-        id='filters-panel'
-        name='slider-filters-panel'
+        type="checkbox"
+        id="filters-panel"
+        name="slider-filters-panel"
         checked={buttonIsChecked}
         onChange={() => {
           setButtonIsChecked((prevState) => !prevState);
@@ -55,7 +49,7 @@ export default function FiltersBar(props) {
       <aside className={`${styles.FiltersBar} ${props.additionalStyles}`}>
         <label
           className={styles.FiltersPanelButton}
-          htmlFor='filters-panel'
+          htmlFor="filters-panel"
         ></label>
         <h3 className={styles.FiltersBar_Title}>Filter per Technology</h3>
         <ul className={styles.FiltersBar_List}>

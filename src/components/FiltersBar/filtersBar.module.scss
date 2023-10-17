@@ -1,7 +1,8 @@
-@import '../../sass/abstracts/variables.scss';
-@import '../../sass/abstracts/mixins.scss';
+@import "../../sass/abstracts/variables.scss";
+@import "../../sass/abstracts/mixins.scss";
 
 .FiltersBar {
+  position: absolute;
   left: 0;
 
   display: flex;
@@ -17,11 +18,6 @@
   z-index: 2;
 
   transition: all 0.5s ease-out;
-
-  @include responsiveDesign(1280) {
-    position: fixed;
-    left: 0;
-  }
 
   @include responsiveDesign(500) {
     width: 24rem;
@@ -73,27 +69,25 @@
 
 .FiltersPanelCheckbox {
   display: none;
-  @include responsiveDesign(1280) {
-    &:checked ~ .FiltersBar {
-      width: 0rem;
+  &:checked ~ .FiltersBar {
+    width: 0rem;
+    transform: translateX(-100%);
+
+    & *:not(.FiltersPanelButton) {
       transform: translateX(-100%);
+    }
 
-      & *:not(.FiltersPanelButton) {
-        transform: translateX(-100%);
-      }
-
-      & .FiltersPanelButton::after {
-        content: 'FILTERS';
-        display: block;
-        writing-mode: vertical-rl;
-        text-orientation: upright;
-      }
+    & .FiltersPanelButton::after {
+      content: "FILTERS";
+      display: block;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
     }
   }
 }
 
 .FiltersPanelButton {
-  display: none;
+  display: block;
   position: absolute;
   top: 50%;
   transform: translateY(-70%);
@@ -106,19 +100,15 @@
   border-radius: 0 1rem 1rem 0;
   z-index: 2;
 
-  @include responsiveDesign(1280) {
-    display: block;
-  }
-
   &::after {
-    content: 'FILTERS';
+    content: "FILTERS";
     display: block;
     writing-mode: vertical-rl;
     text-orientation: upright;
     transition: all 0.5s ease-out;
 
     @include responsiveDesign(800) {
-      content: 'FILTERS';
+      content: "FILTERS";
       display: block;
       writing-mode: vertical-rl;
       text-orientation: upright;
