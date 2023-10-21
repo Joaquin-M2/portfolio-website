@@ -1,0 +1,77 @@
+@import "../../sass/abstracts/variables.scss";
+
+.button {
+  background-color: $main-color-button;
+
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  color: black;
+
+  min-width: 10rem;
+  padding: 1.3rem 0.5rem;
+
+  border: none;
+
+  cursor: pointer;
+
+  border: 0.16rem solid $color-intense-grey;
+  border-radius: 1rem;
+  background: $color-pale-grey;
+  transform-style: preserve-3d;
+
+  box-shadow: 0.2rem 0.2rem 0.4rem 0em #000;
+  position: relative;
+  overflow: hidden;
+  transition: all 175ms cubic-bezier(0, 0, 1, 1);
+
+  &::after {
+    background: #fff;
+    border: 0px solid $color-intense-grey;
+    content: "";
+    height: 12rem;
+    left: -6.5rem;
+    opacity: 0.8;
+    position: absolute;
+    top: -4rem;
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+    width: 4rem;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1); /*easeOutCirc*/
+    z-index: 1;
+  }
+
+  &:hover {
+    background: $color-pale-grey;
+
+    &::after {
+      background: #fff;
+      border: 1.5rem solid $color-intense-grey;
+      opacity: 0;
+      left: 120%;
+      -webkit-transform: rotate(40deg);
+      transform: rotate(40deg);
+    }
+
+    &:active::after {
+      display: none;
+    }
+  }
+
+  &:active {
+    background-image: radial-gradient(
+      $color-intense-green 40%,
+      $color-pale-green
+    );
+    box-shadow: 0.2rem 0.2rem 0.1rem 0.1rem #000 inset;
+    border-color: #999999;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.buttonSmall {
+  padding: 1rem;
+}
