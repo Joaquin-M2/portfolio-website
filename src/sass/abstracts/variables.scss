@@ -1,6 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
 
 $main-color-button: white;
+
+$default-transition: all 0.5s ease-out;
 
 // // // // // // // // // // ----- COLORS -----
 
@@ -25,10 +27,10 @@ $body-text: white;
 // // // // // // // // // // ----- FONTS -----
 
 // Titles
-$titles-fonts: 'Orbitron', sans-serif;
+$titles-fonts: "Orbitron", sans-serif;
 
 // Text
-$texts-fonts: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+$texts-fonts: Verdana, Geneva, Tahoma, sans-serif;
 
 // // // // // // // // // // ----- THEMES -----
 // ----------- PROJECT: Tatto Parlor
