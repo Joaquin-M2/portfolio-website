@@ -1,0 +1,58 @@
+@import "../../sass/abstracts/variables.scss";
+
+.container {
+  position: absolute;
+  top: 20vh;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: white;
+  font-size: 2rem;
+  font-family: $texts-fonts;
+
+  max-width: 70%;
+  margin: auto;
+
+  border-radius: 1rem;
+
+  z-index: 4;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.containerIsShown {
+  top: 30vh;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s ease-in-out;
+}
+
+.title {
+  background-color: $color-intense-blue;
+  border-radius: 1rem 1rem 0 0;
+  color: white;
+  font-family: $titles-fonts;
+  padding: 1rem 2rem;
+}
+
+.mainContent {
+  padding: 2rem;
+}
+
+.displayNone {
+  display: none;
+}
+
+.bottomButtonsContainer {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+
+  border-radius: 0 0 1rem 1rem;
+  border-top: 1px solid $color-intense-grey;
+
+  background-color: $color-pale-grey;
+}
