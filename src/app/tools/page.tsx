@@ -140,7 +140,7 @@ function Page() {
 
   const renderToolCards: () => JSX.Element | JSX.Element[] = () => {
     if (isLoading) {
-      return <h1 className={styles.notToolsTitle}>Loading...</h1>;
+      return <h1 className={styles.noToolsTitle}>Loading...</h1>;
     } else if (!isLoading && filteredTools.length) {
       return filteredTools
         .sort(
@@ -161,7 +161,7 @@ function Page() {
           />
         ));
     } else {
-      return <h1 className={styles.notToolsTitle}>No tools found.</h1>;
+      return <h1 className={styles.noToolsTitle}>No tools found.</h1>;
     }
   };
 
