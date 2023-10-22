@@ -9,6 +9,7 @@ interface ModalProps {
   bottomButtons?: JSX.Element | JSX.Element[];
   children: JSX.Element | JSX.Element[];
   isShown: boolean;
+  modalId: string;
   setModalIsShown: Dispatch<SetStateAction<boolean>>;
   title: string;
 }
@@ -17,8 +18,9 @@ function Modal({
   bottomButtons,
   children,
   isShown,
-  title,
+  modalId,
   setModalIsShown,
+  title,
 }: ModalProps) {
   return (
     <>
@@ -26,7 +28,7 @@ function Modal({
         <div
           role="dialog"
           aria-labelledby="modal-title"
-          aria-describedby="modal-content"
+          aria-describedby={modalId}
           className={`${styles.container} ${
             isShown && styles.containerIsShown
           }`}
@@ -34,7 +36,7 @@ function Modal({
           <h4 className={styles.title} id="modal-title">
             {title}
           </h4>
-          <div className={styles.mainContent} id="modal-content">
+          <div className={styles.mainContent} id={modalId}>
             {children}
           </div>
           <div
