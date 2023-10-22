@@ -2,37 +2,37 @@
 
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
-import styles from "./blackSail.module.scss";
+import styles from "./backdrop.module.scss";
 
-interface BlackSailProps {
+interface BackdropProps {
   additionalStyles?: string;
   children: JSX.Element | JSX.Element[];
   forLeftAside?: boolean;
   forTopAside?: boolean;
   isChecked: boolean;
-  setBlackSailIsShown?: Dispatch<SetStateAction<boolean>>;
+  setBackdropIsShown?: Dispatch<SetStateAction<boolean>>;
 }
 
-function BlackSail({
+function Backdrop({
   children,
   forLeftAside,
   forTopAside,
   isChecked,
-  setBlackSailIsShown,
-}: BlackSailProps) {
+  setBackdropIsShown,
+}: BackdropProps) {
   const toggleButton = useRef<HTMLInputElement>();
-  const blackSail = useRef<HTMLDivElement>();
+  const backdrop = useRef<HTMLDivElement>();
 
   useEffect(() => {
     if (isChecked === true) {
-      blackSail.current.style.visibility = "visible";
-      blackSail.current.style.transition = "all 0.5s ease-in-out";
-      blackSail.current.style.opacity = "1";
+      backdrop.current.style.visibility = "visible";
+      backdrop.current.style.transition = "all 0.5s ease-in-out";
+      backdrop.current.style.opacity = "1";
       toggleButton.current.checked = true;
     } else {
-      blackSail.current.style.visibility = "hidden";
-      blackSail.current.style.transition = "all 0.5s ease-in-out";
-      blackSail.current.style.opacity = "0";
+      backdrop.current.style.visibility = "hidden";
+      backdrop.current.style.transition = "all 0.5s ease-in-out";
+      backdrop.current.style.opacity = "0";
       toggleButton.current.checked = false;
     }
   }, [isChecked]);
@@ -42,7 +42,7 @@ function BlackSail({
       <input
         ref={toggleButton}
         className={`
-        ${styles.blackSailCheckbox} 
+        ${styles.backdropCheckbox} 
         ${forTopAside && styles.forTopAside} 
         ${forLeftAside && styles.forLeftAside}
         `}
@@ -52,14 +52,14 @@ function BlackSail({
       />
       {children}
       <div
-        ref={blackSail}
-        className={styles.blackSail}
+        ref={backdrop}
+        className={styles.backdrop}
         onClick={() => {
-          setBlackSailIsShown(false);
+          setBackdropIsShown(false);
         }}
       ></div>
     </>
   );
 }
 
-export default BlackSail;
+export default Backdrop;

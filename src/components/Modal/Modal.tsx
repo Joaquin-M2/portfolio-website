@@ -1,7 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
-import BlackSail from "../BlackSail/BlackSail";
+import Backdrop from "../Backdrop/Backdrop";
 
 import styles from "./modal.module.scss";
 
@@ -22,7 +22,7 @@ function Modal({
 }: ModalProps) {
   return (
     <>
-      <BlackSail isChecked={isShown} setBlackSailIsShown={setModalIsShown}>
+      <Backdrop isChecked={isShown} setBackdropIsShown={setModalIsShown}>
         <div
           role="dialog"
           aria-labelledby="modal-title"
@@ -45,7 +45,7 @@ function Modal({
             {bottomButtons}
           </div>
         </div>
-      </BlackSail>
+      </Backdrop>
     </>
   );
 }

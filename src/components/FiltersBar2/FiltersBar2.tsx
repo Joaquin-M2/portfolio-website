@@ -4,7 +4,7 @@ import { useState } from "react";
 import Tag from "../ToolCard/Tag/Tag";
 
 import styles from "./filtersBar2.module.scss";
-import BlackSail from "../BlackSail/BlackSail";
+import Backdrop from "../Backdrop/Backdrop";
 
 function FiltersBar2({
   filterBySearchFunction,
@@ -29,10 +29,10 @@ function FiltersBar2({
 
   return (
     <>
-      <BlackSail
+      <Backdrop
         forTopAside
         isChecked={buttonIsChecked}
-        setBlackSailIsShown={setButtonIsChecked}
+        setBackdropIsShown={setButtonIsChecked}
       >
         <aside className={styles.container}>
           <label
@@ -69,7 +69,7 @@ function FiltersBar2({
             </div>
           </fieldset>
         </aside>
-      </BlackSail>
+      </Backdrop>
     </>
   );
 }

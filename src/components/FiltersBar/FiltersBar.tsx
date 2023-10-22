@@ -4,7 +4,7 @@ import { useState } from "react";
 import FilterButton from "./FilterButton/FilterButton";
 
 import styles from "./filtersBar.module.scss";
-import BlackSail from "../BlackSail/BlackSail";
+import Backdrop from "../Backdrop/Backdrop";
 
 export default function FiltersBar({
   additionalStyles,
@@ -30,10 +30,10 @@ export default function FiltersBar({
 
   return (
     <>
-      <BlackSail
+      <Backdrop
         forLeftAside
         isChecked={buttonIsChecked}
-        setBlackSailIsShown={setButtonIsChecked}
+        setBackdropIsShown={setButtonIsChecked}
       >
         <aside className={`${styles.FiltersBar} ${additionalStyles}`}>
           <label
@@ -47,7 +47,7 @@ export default function FiltersBar({
             {createFilterButton(filterButtons)}
           </ul>
         </aside>
-      </BlackSail>
+      </Backdrop>
     </>
   );
 }

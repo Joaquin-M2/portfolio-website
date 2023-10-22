@@ -1,6 +1,6 @@
 @import "../../sass/abstracts/variables.scss";
 
-.blackSailCheckbox {
+.backdropCheckbox {
   display: none;
 }
 
@@ -24,7 +24,7 @@
   transform: translateY(0%);
 }
 
-.blackSail {
+.backdrop {
   visibility: hidden;
   opacity: 0;
   position: fixed;
