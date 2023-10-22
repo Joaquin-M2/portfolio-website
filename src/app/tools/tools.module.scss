@@ -9,6 +9,27 @@
   min-height: 100%;
 }
 
+.buttonsContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  gap: 2rem;
+
+  padding-right: 1rem;
+
+  & .logInButton,
+  .signUpButton {
+    padding: 0;
+
+    & label {
+      display: block;
+      padding: 0.5rem;
+    }
+  }
+}
+
 .notFoundTitle {
   margin: auto;
   align-self: center;

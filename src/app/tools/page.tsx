@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import Modal from "../../components/Modal/Modal";
 import ToolCard from "../../components/ToolCard/ToolCard";
 import FiltersBar2 from "../../components/FiltersBar2/FiltersBar2";
 
 import styles from "./tools.module.scss";
+import Button from "../../components/Button.tsx/Button";
 
 interface Tool {
   _id: string;
@@ -29,6 +31,8 @@ function Page() {
   const [selectedFilterTags, setSelectedFilterTags] = useState([]);
   const [tags, setTags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loginModalIsShown, setLoginModalIsShown] = useState(false);
+  const [signupModalIsShown, setSignupModalIsShown] = useState(false);
   const previousFilterTagsQuantity = useRef(selectedFilterTags.length);
   const searchFieldTools = useRef([]);
 
@@ -114,7 +118,6 @@ function Page() {
     });
 
     if (selectedFilterTags.length > previousFilterTagsQuantity.current) {
-      console.log(filteredTools, selectedFilterTags);
       setFilteredTools((prevValue) =>
         prevValue.filter((tool) => {
           return selectedFilterTags.every((filterTag) =>
@@ -171,6 +174,52 @@ function Page() {
         handleRemoveFilterTag={handleRemoveFilterTag}
         tags={tags}
       />
+      <div className={styles.buttonsContainer}>
+        <button
+          className={styles.logInButton}
+          onClick={() => {
+            setLoginModalIsShown(true);
+          }}
+        >
+          <label htmlFor="log-in-modal">Log In</label>
+        </button>
+        <button
+          className={styles.signUpButton}
+          onClick={() => {
+            setSignupModalIsShown(true);
+          }}
+        >
+          <label htmlFor="sign-up-modal">Sign Up</label>
+        </button>
+      </div>
+      <Modal
+        bottomButtons={
+          <>
+            <Button small>Accept</Button>
+            <Button small>Cancel</Button>
+          </>
+        }
+        isShown={loginModalIsShown}
+        modalId="log-in-modal"
+        setModalIsShown={setLoginModalIsShown}
+        title="Test - Log in Modal"
+      >
+        <p>Testing login modal</p>
+      </Modal>
+      <Modal
+        bottomButtons={
+          <>
+            <Button small>Accept</Button>
+            <Button small>Cancel</Button>
+          </>
+        }
+        isShown={signupModalIsShown}
+        modalId="sign-up-modal"
+        setModalIsShown={setSignupModalIsShown}
+        title="Test - Sign up Modal"
+      >
+        <p>Testing signup modal</p>
+      </Modal>
       <main className={styles.mainContainer}>{renderToolCards()}</main>
     </>
   );
