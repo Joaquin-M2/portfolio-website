@@ -7,15 +7,16 @@ import styles from "./blackSail.module.scss";
 interface BlackSailProps {
   additionalStyles?: string;
   children: JSX.Element | JSX.Element[];
-  inputId: string;
+  forLeftAside?: boolean;
+  forTopAside?: boolean;
   isChecked: boolean;
-  setBlackSailIsShown: Dispatch<SetStateAction<boolean>>;
+  setBlackSailIsShown?: Dispatch<SetStateAction<boolean>>;
 }
 
 function BlackSail({
-  additionalStyles,
   children,
-  inputId,
+  forLeftAside,
+  forTopAside,
   isChecked,
   setBlackSailIsShown,
 }: BlackSailProps) {
@@ -27,10 +28,12 @@ function BlackSail({
       blackSail.current.style.visibility = "visible";
       blackSail.current.style.transition = "all 0.5s ease-in-out";
       blackSail.current.style.opacity = "1";
+      toggleButton.current.checked = true;
     } else {
       blackSail.current.style.visibility = "hidden";
       blackSail.current.style.transition = "all 0.5s ease-in-out";
       blackSail.current.style.opacity = "0";
+      toggleButton.current.checked = false;
     }
   }, [isChecked]);
 
@@ -38,9 +41,12 @@ function BlackSail({
     <>
       <input
         ref={toggleButton}
-        className={`${styles.blackSailCheckbox} ${additionalStyles}`}
+        className={`
+        ${styles.blackSailCheckbox} 
+        ${forTopAside && styles.forTopAside} 
+        ${forLeftAside && styles.forLeftAside}
+        `}
         type="checkbox"
-        id={inputId}
         name="black-sail"
         defaultChecked={isChecked}
       />

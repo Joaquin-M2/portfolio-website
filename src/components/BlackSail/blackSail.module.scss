@@ -2,14 +2,26 @@
 
 .blackSailCheckbox {
   display: none;
-  /* &:checked ~ .container {
-    transform: translateY(-100%);
+}
 
-    & .FiltersPanelButton::after {
-      content: "FILTERS";
-      display: block;
-    }
-  } */
+.forLeftAside,
+.forTopAside {
+  & ~ aside {
+    z-index: 3;
+  }
+
+  &:checked ~ aside {
+    z-index: 4;
+    transition: $default-transition, z-index 0.5s 0s !important;
+  }
+}
+
+.forLeftAside:checked ~ aside {
+  transform: translateX(0%);
+}
+
+.forTopAside:checked ~ aside {
+  transform: translateY(0%);
 }
 
 .blackSail {
