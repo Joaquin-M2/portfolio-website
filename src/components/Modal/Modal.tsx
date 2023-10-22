@@ -22,18 +22,21 @@ function Modal({
 }: ModalProps) {
   return (
     <>
-      <BlackSail
-        inputId="modal-card"
-        isChecked={isShown}
-        setBlackSailIsShown={setModalIsShown}
-      >
+      <BlackSail isChecked={isShown} setBlackSailIsShown={setModalIsShown}>
         <div
+          role="dialog"
+          aria-labelledby="modal-title"
+          aria-describedby="modal-content"
           className={`${styles.container} ${
             isShown && styles.containerIsShown
           }`}
         >
-          <h4 className={styles.title}>{title}</h4>
-          <div className={styles.mainContent}>{children}</div>
+          <h4 className={styles.title} id="modal-title">
+            {title}
+          </h4>
+          <div className={styles.mainContent} id="modal-content">
+            {children}
+          </div>
           <div
             className={
               bottomButtons ? styles.bottomButtonsContainer : styles.displayNone
