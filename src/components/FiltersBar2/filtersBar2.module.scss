@@ -13,12 +13,14 @@
   border-bottom-left-radius: 35%;
   border-bottom-right-radius: 35%;
 
-  transition: $default-transition;
+  transition: $default-transition, z-index 0.5s 0.5s;
 }
 
 .container {
   align-items: flex-start;
   gap: 1rem;
+
+  transform: translateY(-100%);
 
   padding: 2rem 6rem;
   background-color: #999999;
@@ -73,16 +75,9 @@
 //////////////////////////////////
 // ACTIVATION FILTERS PANEL BUTTON
 
-.FiltersPanelCheckbox {
-  display: none;
-  &:checked ~ .container {
-    transform: translateY(-100%);
-
-    & .FiltersPanelButton::after {
-      content: "FILTERS";
-      display: block;
-    }
-  }
+.FiltersPanelButton::after {
+  content: "FILTERS";
+  display: block;
 }
 
 .FiltersPanelButton {
