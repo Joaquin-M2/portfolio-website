@@ -1,38 +1,53 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import styles from "./input.module.scss";
 
 interface InputProps {
   error: string;
+  formIsOpen: boolean;
   id: string;
   placeholder: string;
   type: string;
   [x: string]: any;
 }
 
-function Input({ error, id, placeholder, type, ...props }: InputProps) {
+function Input({
+  error,
+  formIsOpen,
+  id,
+  placeholder,
+  type,
+  ...props
+}: InputProps) {
   const inputField = useRef<HTMLInputElement>();
   const errorText = useRef<HTMLElement>();
+
+  useEffect(() => {
+    if (formIsOpen === false) {
+      inputField.current.classList.remove(styles.inputSuccess);
+      inputField.current.classList.remove(styles.inputError);
+      inputField.current.value = "";
+      errorText.current.style.display = "none";
+    }
+  }, [formIsOpen]);
 
   let timeout = null;
 
   function showError(input, message) {
     input.current.classList.remove(styles.inputSuccess);
     input.current.classList.add(styles.inputError);
-    const errorMessage = errorText;
-    errorMessage.current.classList.add(styles.error);
-    errorMessage.current.style.display = "inline-block";
-    errorMessage.current.textContent = message;
+    errorText.current.classList.add(styles.error);
+    errorText.current.style.display = "inline-block";
+    errorText.current.textContent = message;
   }
 
   function showSuccess(input) {
     input.current.classList.remove(styles.inputError);
     input.current.classList.add(styles.inputSuccess);
-    const errorMessage = errorText;
-    errorMessage.current.style.display = "none";
-    errorMessage.current.classList.remove(styles.error);
+    errorText.current.style.display = "none";
+    errorText.current.classList.remove(styles.error);
   }
 
   function checkTextField() {
