@@ -1,0 +1,85 @@
+@import "../../../sass/abstracts/variables.scss";
+@import "../../../sass/abstracts/mixins.scss";
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2rem;
+
+  &:not(:last-of-type) {
+    margin-bottom: 2rem;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  display: block;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.5);
+  outline: none;
+  border-radius: 0.4rem;
+  border: 0.32rem solid transparent;
+  color: $color-more-intense-grey;
+
+  transition: all 0.3s;
+
+  @include responsiveDesign(800) {
+    padding: 2rem;
+    font-size: 3rem;
+  }
+
+  &::-webkit-input-placeholder {
+    // El texto que escribe el usuario en un campo de texto.
+    color: inherit;
+    font-weight: inherit;
+    font-family: $texts-fonts;
+    //font-size: 1.5rem;
+  }
+
+  &:placeholder-shown + label {
+    order: -1;
+    transform: translateY(4rem);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.inputError {
+  border: 0.32rem solid red;
+}
+
+.inputSuccess {
+  border: 0.32rem solid green;
+}
+
+.label {
+  order: -1;
+  display: inline-block;
+  margin: 1rem 0 0.4rem 0.8rem;
+  font-family: $titles-fonts;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: $color-intense-grey;
+  transition: all 0.3s;
+
+  @include responsiveDesign(800) {
+    font-size: 2.2rem;
+    letter-spacing: 0.2rem;
+    margin-top: 2rem;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 1rem;
+  letter-spacing: 0.08rem;
+  margin: 1rem 0 -1.4rem 0.4rem;
+
+  @include responsiveDesign(800) {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
+}
