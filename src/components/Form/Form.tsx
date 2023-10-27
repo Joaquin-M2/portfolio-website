@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FormEventHandler } from "react";
+import React, { FormEventHandler, useEffect, useRef } from "react";
 
 import styles from "./form.module.scss";
 
@@ -10,18 +10,32 @@ interface FormProps {
   id?: string;
   legend?: string;
   onSubmit: FormEventHandler<HTMLFormElement>;
+  resetFormValues?: boolean;
 }
 
-function Form({ children, hasFieldset, id, legend, onSubmit }: FormProps) {
+function Form({
+  children,
+  hasFieldset,
+  id,
+  legend,
+  onSubmit,
+  resetFormValues,
+}: FormProps) {
+  const form = useRef<HTMLFormElement>();
+
+  useEffect(() => {
+    if (resetFormValues) form.current.reset();
+  }, [resetFormValues]);
+
   return hasFieldset ? (
-    <form id={id} onSubmit={onSubmit}>
+    <form id={id} onSubmit={onSubmit} ref={form}>
       <fieldset className={styles.fieldset}>
         <legend className={styles.legend}>{legend}</legend>
         {children}
       </fieldset>
     </form>
   ) : (
-    <form id={id} onSubmit={onSubmit}>
+    <form id={id} onSubmit={onSubmit} ref={form}>
       {children}
     </form>
   );
