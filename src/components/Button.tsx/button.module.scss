@@ -75,3 +75,17 @@
 .buttonSmall {
   padding: 1rem;
 }
+
+.buttonDisabled,
+.buttonDisabled:hover {
+  background-color: $color-intense-grey;
+  cursor: not-allowed;
+
+  &:active {
+    background-image: radial-gradient($color-intense-red 40%, $color-pale-red);
+  }
+
+  &::after {
+    display: none;
+  }
+}
