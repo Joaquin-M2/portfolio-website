@@ -5,9 +5,12 @@ import { useEffect, useRef, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import ToolCard from "../../components/ToolCard/ToolCard";
 import FiltersBar2 from "../../components/FiltersBar2/FiltersBar2";
+import Button from "../../components/Button.tsx/Button";
+
+import LogInForm from "./LogInForm";
 
 import styles from "./tools.module.scss";
-import Button from "../../components/Button.tsx/Button";
+import { createRequest } from "../../utils/requests";
 
 interface Tool {
   _id: string;
@@ -24,7 +27,7 @@ interface Tool {
 }
 
 function Page() {
-  const [toolsInLocalstorage, setToolsInLocalstorage] = useState([]);
+  const [toolsInLocalStorage, setToolsInLocalStorage] = useState([]);
   const [tools, setTools] = useState([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>();
   const [searchFieldValue, setSearchFieldValue] = useState("");
@@ -32,12 +35,12 @@ function Page() {
   const [tags, setTags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loginModalIsShown, setLoginModalIsShown] = useState(false);
-  const [signupModalIsShown, setSignupModalIsShown] = useState(false);
+  const [signUpModalIsShown, setSignUpModalIsShown] = useState(false);
   const previousFilterTagsQuantity = useRef(selectedFilterTags.length);
   const searchFieldTools = useRef([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/tools")
+    fetch(createRequest({ urlPath: "/tools" }))
       .then((response) => response.json())
       .then((data) => {
         setTools(data.tools);
@@ -48,7 +51,7 @@ function Page() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:4000/tags")
+    fetch(createRequest({ urlPath: "/tags" }))
       .then((response) => response.json())
       .then((data) => setTags(data.tags))
       .catch((error) => console.log(error));
@@ -59,9 +62,9 @@ function Page() {
       typeof window !== "undefined" &&
       JSON.parse(localStorage.getItem("toolsId"))
     ) {
-      setToolsInLocalstorage(JSON.parse(localStorage.getItem("toolsId")));
+      setToolsInLocalStorage(JSON.parse(localStorage.getItem("toolsId")));
     } else {
-      setToolsInLocalstorage([]);
+      setToolsInLocalStorage([]);
     }
   }, []);
 
@@ -145,12 +148,12 @@ function Page() {
       return filteredTools
         .sort(
           (a, b) =>
-            toolsInLocalstorage.indexOf(b._id.toString()) -
-            toolsInLocalstorage.indexOf(a._id.toString())
+            toolsInLocalStorage.indexOf(b._id.toString()) -
+            toolsInLocalStorage.indexOf(a._id.toString())
         )
         .map(({ _id, iconUrl, title, description, tags, url }) => (
           <ToolCard
-            toolsInLocalstorage={toolsInLocalstorage}
+            toolsInLocalStorage={toolsInLocalStorage}
             key={_id}
             id={_id.toString()}
             url={url}
@@ -186,7 +189,7 @@ function Page() {
         <button
           className={styles.signUpButton}
           onClick={() => {
-            setSignupModalIsShown(true);
+            setSignUpModalIsShown(true);
           }}
         >
           <label htmlFor="sign-up-modal">Sign Up</label>
@@ -195,30 +198,53 @@ function Page() {
       <Modal
         bottomButtons={
           <>
-            <Button small>Accept</Button>
-            <Button small>Cancel</Button>
+            <Button form="login-form" type="submit" small>
+              Accept
+            </Button>
+            <Button
+              form="login-form"
+              onClick={() => {
+                setLoginModalIsShown(false);
+              }}
+              type="reset"
+              small
+            >
+              Close
+            </Button>
           </>
         }
         isShown={loginModalIsShown}
         modalId="log-in-modal"
         setModalIsShown={setLoginModalIsShown}
-        title="Test - Log in Modal"
+        title="Log In"
       >
-        <p>Testing login modal</p>
+        <LogInForm
+          resetFormValues={!loginModalIsShown}
+          formIsOpen={loginModalIsShown}
+        />
       </Modal>
       <Modal
         bottomButtons={
           <>
-            <Button small>Accept</Button>
-            <Button small>Cancel</Button>
+            <Button type="submit" small>
+              Accept
+            </Button>
+            <Button
+              onClick={() => {
+                setLoginModalIsShown(false);
+              }}
+              small
+            >
+              Close
+            </Button>
           </>
         }
-        isShown={signupModalIsShown}
+        isShown={signUpModalIsShown}
         modalId="sign-up-modal"
-        setModalIsShown={setSignupModalIsShown}
+        setModalIsShown={setSignUpModalIsShown}
         title="Test - Sign up Modal"
       >
-        <p>Testing signup modal</p>
+        <p>Testing sign up modal</p>
       </Modal>
       <main className={styles.mainContainer}>{renderToolCards()}</main>
     </>
