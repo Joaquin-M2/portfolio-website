@@ -78,7 +78,7 @@ function LogInForm({ resetFormValues, formIsOpen }: LogInFormProps) {
         watchedValue={watch("email")}
         error={errors.email && "Invalid email. Accepted format: ****@****.**"}
         formIsOpen={formIsOpen}
-        id="email-input"
+        id="login-email-input"
         placeholder="Email"
         required
         type="email"
@@ -91,7 +91,7 @@ function LogInForm({ resetFormValues, formIsOpen }: LogInFormProps) {
           errors.password && "Password needs to be between 6 and 20 characters."
         }
         formIsOpen={formIsOpen}
-        id="password-input"
+        id="login-password-input"
         placeholder="Password"
         required
         type="password"
