@@ -11,6 +11,7 @@ import LogInForm from "./LogInForm";
 
 import styles from "./tools.module.scss";
 import { createRequest } from "../../utils/requests";
+import SignUpForm from "./SignUpForm";
 
 interface Tool {
   _id: string;
@@ -226,12 +227,13 @@ function Page() {
       <Modal
         bottomButtons={
           <>
-            <Button type="submit" small>
+            <Button form="signup-form" type="submit" small>
               Accept
             </Button>
             <Button
+              form="signup-form"
               onClick={() => {
-                setLoginModalIsShown(false);
+                setSignUpModalIsShown(false);
               }}
               small
             >
@@ -242,9 +244,12 @@ function Page() {
         isShown={signUpModalIsShown}
         modalId="sign-up-modal"
         setModalIsShown={setSignUpModalIsShown}
-        title="Test - Sign up Modal"
+        title="Sign Up"
       >
-        <p>Testing sign up modal</p>
+        <SignUpForm
+          resetFormValues={!signUpModalIsShown}
+          formIsOpen={signUpModalIsShown}
+        />
       </Modal>
       <main className={styles.mainContainer}>{renderToolCards()}</main>
     </>
