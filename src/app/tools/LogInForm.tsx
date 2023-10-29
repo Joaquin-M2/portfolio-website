@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Form from "../../components/Form/Form";
 import Input from "../../components/Form/Input/Input";
 import { emailRegExp } from "../../utils/email-regexp";
+import { createRequest } from "../../utils/requests";
+
+import styles from "./logInForm.module.scss";
 
 interface LogInFormProps {
   resetFormValues: boolean;
@@ -17,6 +20,11 @@ interface LogInInputs {
 }
 
 function LogInForm({ resetFormValues, formIsOpen }: LogInFormProps) {
+  const [formResponse, setFormResponse] = useState({
+    status: 500,
+    message: "",
+  });
+
   const {
     register,
     handleSubmit,
@@ -25,10 +33,36 @@ function LogInForm({ resetFormValues, formIsOpen }: LogInFormProps) {
     watch,
   } = useForm<LogInInputs>();
 
-  const onSubmit: SubmitHandler<LogInInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LogInInputs> = async (data) => {
+    try {
+      const response = await fetch(
+        createRequest({
+          urlPath: "/user/login",
+          method: "POST",
+          requestBody: data,
+        })
+      );
+
+      const result = await response.json();
+
+      setFormResponse({
+        status: response.status,
+        message: result.message,
+      });
+
+      if (response.status >= 200 && response.status < 400) {
+        localStorage.setItem("userToken", result.token);
+      }
+    } catch (error) {
+      throw error.message;
+    }
+  };
 
   useEffect(() => {
-    if (!formIsOpen) reset();
+    if (!formIsOpen) {
+      reset();
+      setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
+    }
   }, [formIsOpen]);
 
   return (
@@ -67,6 +101,15 @@ function LogInForm({ resetFormValues, formIsOpen }: LogInFormProps) {
           maxLength: 20,
         })}
       />
+      <p
+        className={`${styles.formMessage} ${
+          +formResponse.status >= 400
+            ? styles.formMessageError
+            : styles.formMessageSuccess
+        }`}
+      >
+        {formResponse.message}
+      </p>
     </Form>
   );
 }
