@@ -33,7 +33,8 @@ export default function ToolCard({
   }, [toolsInLocalStorage]);
 
   const handleCheck = () => {
-    let favoritedTools = JSON.parse(localStorage.getItem("toolsId")) || [];
+    let favoritedTools =
+      JSON.parse(localStorage.getItem("favoritedToolsId")) || [];
     if (favoritedTools.includes(id)) {
       // Remove the "id" in localStorage if it is not in localStorage
       favoritedTools = favoritedTools.filter((toolId) => {
@@ -46,7 +47,7 @@ export default function ToolCard({
 
       setIsChecked(true);
     }
-    localStorage.setItem("toolsId", JSON.stringify(favoritedTools));
+    localStorage.setItem("favoritedToolsId", JSON.stringify(favoritedTools));
   };
 
   return (

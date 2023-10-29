@@ -61,9 +61,11 @@ function Page() {
   useEffect(() => {
     if (
       typeof window !== "undefined" &&
-      JSON.parse(localStorage.getItem("toolsId"))
+      JSON.parse(localStorage.getItem("favoritedToolsId"))
     ) {
-      setToolsInLocalStorage(JSON.parse(localStorage.getItem("toolsId")));
+      setToolsInLocalStorage(
+        JSON.parse(localStorage.getItem("favoritedToolsId"))
+      );
     } else {
       setToolsInLocalStorage([]);
     }
