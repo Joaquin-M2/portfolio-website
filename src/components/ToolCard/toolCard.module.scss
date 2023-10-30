@@ -31,7 +31,7 @@
   margin-right: 1rem;
 }
 
-.titleHeartDescriptionContainer {
+.titleIconsDescriptionContainer {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -43,7 +43,7 @@
   }
 }
 
-.titleHeartContainer {
+.titleIconsContainer {
   display: flex;
   justify-content: space-between;
 
@@ -52,8 +52,9 @@
   }
 }
 
-.toggleHeartContainer {
-  margin-top: -0.5rem; // So the top of the heart icon is at the same height as the top of the card title.
+.toggleIconsContainer {
+  display: flex;
+  gap: 1rem;
 }
 
 .tagsContainer {
@@ -69,26 +70,76 @@
   margin: 1rem 0;
 }
 
-// HEART - FAVORITE BUTTON
+// ICON BUTTONS
 
-.toggleHeartInput {
-  position: absolute;
-  left: -100vw;
+.toggleHeartInput,
+.toggleGearInput {
+  display: none;
 
   &:checked + .toggleHeartLabel {
-    color: #e2264d;
+    fill: #e2264d;
+  }
+
+  &:checked + .toggleGearLabel {
+    fill: black;
   }
 }
 
-.toggleHeartLabel {
-  color: #aab8c2;
+.toggleHeartLabel,
+.toggleGearLabel {
+  fill: #aab8c2;
   font-size: 3rem;
   cursor: pointer;
-  align-self: center;
+  //align-self: center;
 
   transition: all 0.3s;
 
   &:hover {
-    color: #686b6e;
+    fill: #686b6e;
+  }
+}
+
+// MENU
+.menuButtonContainer {
+  position: relative;
+}
+
+.menuCard {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(100%);
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color: white;
+
+  visibility: hidden;
+  overflow: hidden;
+  max-height: 0;
+
+  transition: $quick-transition;
+}
+
+.toggleGearInput:checked ~ .menuCard {
+  visibility: visible;
+  max-height: 10rem;
+}
+
+.menuList {
+  list-style: none;
+}
+
+.menuListElement {
+  text-wrap: nowrap;
+  padding: 1rem;
+  font-size: 1.5rem;
+  transition: $default-transition;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px dotted black;
+  }
+
+  &:hover {
+    background-color: $color-pale-grey;
   }
 }
