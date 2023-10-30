@@ -92,7 +92,7 @@
   cursor: pointer;
   //align-self: center;
 
-  transition: all 0.3s;
+  transition: $quick-transition;
 
   &:hover {
     fill: #686b6e;
