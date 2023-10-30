@@ -2,7 +2,7 @@
 @import "../../sass/abstracts/mixins.scss";
 
 .cardLink {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: $texts-fonts;
   text-decoration: none;
   color: black;
 
