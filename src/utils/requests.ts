@@ -5,11 +5,18 @@ headers.set("Content-Type", "application/json");
 
 export function createRequest({ urlPath, method = "GET", requestBody = null }) {
   setAuthorizationHeader(urlPath);
-  return new Request(apiBackendUrlDomain + urlPath, {
-    method,
-    headers,
-    body: method !== "GET" ? JSON.stringify(requestBody) : null,
-  });
+  if (requestBody === null || method === "GET") {
+    return new Request(apiBackendUrlDomain + urlPath, {
+      method,
+      headers,
+    });
+  } else {
+    return new Request(apiBackendUrlDomain + urlPath, {
+      method,
+      headers,
+      body: JSON.stringify(requestBody),
+    });
+  }
 }
 
 function setAuthorizationHeader(urlPath) {
