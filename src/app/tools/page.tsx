@@ -40,6 +40,9 @@ function Page() {
   const previousFilterTagsQuantity = useRef(selectedFilterTags.length);
   const searchFieldTools = useRef([]);
 
+  /////////////////////////////
+  // REQUESTS ON PAGE LOAD
+
   useEffect(() => {
     fetch(createRequest({ urlPath: "/tools" }))
       .then((response) => response.json())
@@ -58,21 +61,8 @@ function Page() {
       .catch((error) => console.log(error));
   }, []);
 
-  useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      JSON.parse(localStorage.getItem("favoritedToolsId"))
-    ) {
-      setToolsInLocalStorage(
-        JSON.parse(localStorage.getItem("favoritedToolsId"))
-      );
-    } else {
-      setToolsInLocalStorage([]);
-    }
-  }, []);
-
-  // TODO: 'setFilteredTools()' tiene que usar siempre "prevValue". Si uso "toolsData" ignora el resto de filtros (ya sea del input de
-  // búsqueda o de las etiquetas seleccionadas).
+  /////////////////////////////
+  // SEARCH INPUT FILTER
 
   const filterBySearch = (event) => {
     if (event.target.value.length > searchFieldValue.length) {
@@ -109,6 +99,9 @@ function Page() {
     });
   };
 
+  /////////////////////////////
+  // TAG INPUT FILTER
+
   const filterByTag = (event) => {
     setSelectedFilterTags((prevValue) => [...prevValue, event.target.value]);
   };
@@ -143,6 +136,22 @@ function Page() {
 
     previousFilterTagsQuantity.current = selectedFilterTags.length;
   }, [selectedFilterTags]);
+
+  /////////////////////////////
+  // TOOL CARDS
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      JSON.parse(localStorage.getItem("favoritedToolsId"))
+    ) {
+      setToolsInLocalStorage(
+        JSON.parse(localStorage.getItem("favoritedToolsId"))
+      );
+    } else {
+      setToolsInLocalStorage([]);
+    }
+  }, []);
 
   const renderToolCards: () => JSX.Element | JSX.Element[] = () => {
     if (isLoading) {
