@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { MouseEventHandler, useEffect, useRef } from "react";
 
 import styles from "./backdrop.module.scss";
 
@@ -9,22 +9,22 @@ interface BackdropProps {
   children: JSX.Element | JSX.Element[];
   forLeftAside?: boolean;
   forTopAside?: boolean;
-  isChecked: boolean;
-  setBackdropIsShown?: Dispatch<SetStateAction<boolean>>;
+  isShown: boolean;
+  hideBackdrop?: MouseEventHandler;
 }
 
 function Backdrop({
   children,
   forLeftAside,
   forTopAside,
-  isChecked,
-  setBackdropIsShown,
+  isShown,
+  hideBackdrop,
 }: BackdropProps) {
   const toggleButton = useRef<HTMLInputElement>();
   const backdrop = useRef<HTMLDivElement>();
 
   useEffect(() => {
-    if (isChecked === true) {
+    if (isShown === true) {
       backdrop.current.style.visibility = "visible";
       backdrop.current.style.transition = "all 0.5s ease-in-out";
       backdrop.current.style.opacity = "1";
@@ -35,7 +35,7 @@ function Backdrop({
       backdrop.current.style.opacity = "0";
       toggleButton.current.checked = false;
     }
-  }, [isChecked]);
+  }, [isShown]);
 
   return (
     <>
@@ -48,15 +48,13 @@ function Backdrop({
         `}
         type="checkbox"
         name="black-sail"
-        defaultChecked={isChecked}
+        defaultChecked={isShown}
       />
       {children}
       <div
         ref={backdrop}
         className={styles.backdrop}
-        onClick={() => {
-          setBackdropIsShown(false);
-        }}
+        onClick={hideBackdrop}
       ></div>
     </>
   );

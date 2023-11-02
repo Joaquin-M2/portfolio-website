@@ -1,50 +1,72 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { MouseEventHandler } from "react";
 import Backdrop from "../Backdrop/Backdrop";
 
 import styles from "./modal.module.scss";
+import Button from "../Button/Button";
 
 interface ModalProps {
-  bottomButtons?: JSX.Element | JSX.Element[];
+  acceptButtonTitle?: string;
+  cancelButtonTitle?: string;
+  backendResponse?: { status: number; message: string };
   children: JSX.Element | JSX.Element[];
   isShown: boolean;
-  modalId: string;
-  setModalIsShown: Dispatch<SetStateAction<boolean>>;
+  hideModal: MouseEventHandler;
+  targetForm?: string;
   title: string;
 }
 
 function Modal({
-  bottomButtons,
+  acceptButtonTitle,
+  cancelButtonTitle,
+  backendResponse,
   children,
   isShown,
-  modalId,
-  setModalIsShown,
+  hideModal,
+  targetForm,
   title,
 }: ModalProps) {
   return (
     <>
-      <Backdrop isChecked={isShown} setBackdropIsShown={setModalIsShown}>
+      <Backdrop isShown={isShown} hideBackdrop={hideModal}>
         <div
           role="dialog"
-          aria-labelledby="modal-title"
-          aria-describedby={modalId}
+          aria-labelledby={`${targetForm}-modal-title`}
+          aria-describedby={`${targetForm}-modal-description`}
           className={`${styles.container} ${
             isShown && styles.containerIsShown
           }`}
         >
-          <h4 className={styles.title} id="modal-title">
+          <h4 className={styles.title} id={`${targetForm}-modal-title`}>
             {title}
           </h4>
-          <div className={styles.mainContent} id={modalId}>
-            {children}
-          </div>
+
           <div
-            className={
-              bottomButtons ? styles.bottomButtonsContainer : styles.displayNone
-            }
+            className={styles.mainContent}
+            id={`${targetForm}-modal-description`}
           >
-            {bottomButtons}
+            {children}
+            {backendResponse && (
+              <p
+                className={`${styles.backendResponse} ${
+                  backendResponse.status >= 400
+                    ? styles.backendResponseError
+                    : styles.backendResponseSuccess
+                }`}
+                role="alert"
+              >
+                {backendResponse.message}
+              </p>
+            )}
+          </div>
+          <div className={styles.bottomButtonsContainer}>
+            <Button form={targetForm} type="submit" small>
+              {acceptButtonTitle ? acceptButtonTitle : "Accept"}
+            </Button>
+            <Button form={targetForm} onClick={hideModal} type="reset" small>
+              {cancelButtonTitle ? cancelButtonTitle : "Cancel"}
+            </Button>
           </div>
         </div>
       </Backdrop>

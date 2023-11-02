@@ -42,10 +42,6 @@
   padding: 2rem;
 }
 
-.displayNone {
-  display: none;
-}
-
 .bottomButtonsContainer {
   padding: 1rem 2rem;
   display: flex;
@@ -56,4 +52,17 @@
   border-top: 1px solid $color-intense-grey;
 
   background-color: $color-pale-grey;
+}
+
+.backendResponse {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.backendResponseError {
+  color: red;
+}
+
+.backendResponseSuccess {
+  color: green;
 }
