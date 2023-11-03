@@ -21,13 +21,8 @@
 
   & .logInButton,
   .signUpButton {
-    padding: 0;
-
-    & label {
-      display: block;
-      padding: 0.5rem;
-      cursor: pointer;
-    }
+    padding: 0.5rem;
+    cursor: pointer;
   }
 }
 
