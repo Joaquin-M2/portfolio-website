@@ -8,6 +8,7 @@ import FormInModal from "./FormInModal";
 
 import styles from "./tools.module.scss";
 import { createRequest } from "../../utils/requests";
+import MenuCard from "../../components/MenuCard/MenuCard";
 
 interface Tool {
   _id: string;
@@ -36,8 +37,16 @@ function Page() {
   const [modalsState, setModalsState] = useState({
     logInModalIsShown: false,
     signUpModalIsShown: false,
+    addToolModalIsShown: false,
+    addTagModalIsShown: false,
+    modifyTagModalIsShown: false,
+    deleteTagModalIsShown: false,
+    modifyUserModalIsShown: false,
+    deleteUserModalIsShown: false,
   });
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+  const [tagsMenuCardIsVisible, setTagsMenuCardIsVisible] = useState(false);
+  const [usersMenuCardIsVisible, setUsersMenuCardIsVisible] = useState(false);
 
   /////////////////////////////
   // REQUESTS ON PAGE LOAD
@@ -221,7 +230,7 @@ function Page() {
         {userIsLoggedIn ? (
           <>
             <button
-              className={styles.logInButton}
+              className={styles.managementButton}
               onClick={() => {
                 localStorage.removeItem("userToken");
                 setUserIsLoggedIn(false);
@@ -233,7 +242,7 @@ function Page() {
         ) : (
           <>
             <button
-              className={styles.logInButton}
+              className={styles.managementButton}
               onClick={() => {
                 setModalsState((prevValue) => ({
                   ...prevValue,
@@ -244,7 +253,7 @@ function Page() {
               Log In
             </button>
             <button
-              className={styles.signUpButton}
+              className={styles.managementButton}
               onClick={() => {
                 setModalsState((prevValue) => ({
                   ...prevValue,
@@ -260,6 +269,103 @@ function Page() {
     );
   };
 
+  /////////////////////////////
+  // ADMIN MANAGEMENT BUTTONS
+
+  const renderAdminManagementButtons: () =>
+    | JSX.Element
+    | JSX.Element[] = () => {
+    return (
+      <>
+        <button
+          className={styles.managementButton}
+          onClick={() => {
+            setModalsState((prevValue) => ({
+              ...prevValue,
+              addToolModalIsShown: true,
+            }));
+          }}
+        >
+          Add Tool
+        </button>
+        <div className={styles.menuButtonContainer}>
+          <button
+            className={styles.managementButton}
+            onClick={() => {
+              setTagsMenuCardIsVisible((prevValue) => !prevValue);
+            }}
+          >
+            Tags
+          </button>
+          <MenuCard isVisible={tagsMenuCardIsVisible} position="bottom-left">
+            <li
+              onClick={() => {
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  addTagModalIsShown: true,
+                }));
+              }}
+            >
+              Add tag
+            </li>
+            <li
+              onClick={() => {
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  modifyTagModalIsShown: true,
+                }));
+              }}
+            >
+              Modify tag
+            </li>
+            <li
+              onClick={() => {
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  deleteTagModalIsShown: true,
+                }));
+              }}
+            >
+              Delete tag
+            </li>
+          </MenuCard>
+        </div>
+        <div className={styles.menuButtonContainer}>
+          <button
+            className={styles.managementButton}
+            onClick={() => {
+              setUsersMenuCardIsVisible((prevValue) => !prevValue);
+            }}
+          >
+            Users
+          </button>
+          <MenuCard isVisible={usersMenuCardIsVisible} position="bottom-left">
+            <li
+              onClick={() => {
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  modifyUserModalIsShown: true,
+                }));
+              }}
+            >
+              Modify user
+            </li>
+            <li
+              onClick={() => {
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  deleteUserModalIsShown: true,
+                }));
+              }}
+            >
+              Delete user
+            </li>
+          </MenuCard>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       <FiltersBar2
@@ -270,7 +376,12 @@ function Page() {
         tags={tags}
       />
       <div className={styles.buttonsContainer}>
-        {renderUserManagementButtons()}
+        <div className={styles.adminManagementButtons}>
+          {renderAdminManagementButtons()}
+        </div>
+        <div className={styles.userManagementButtons}>
+          {renderUserManagementButtons()}
+        </div>
       </div>
 
       <FormInModal
