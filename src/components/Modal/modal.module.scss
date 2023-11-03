@@ -55,14 +55,22 @@
 }
 
 .backendResponse {
-  text-align: center;
+  border-radius: 2rem;
   margin-top: 1rem;
+  text-align: center;
+}
+
+.backendResponseError,
+.backendResponseSuccess {
+  padding: 0.5rem;
 }
 
 .backendResponseError {
   color: red;
+  background-image: radial-gradient($color-pale-red, white);
 }
 
 .backendResponseSuccess {
   color: green;
+  background-image: radial-gradient($color-pale-green, white);
 }

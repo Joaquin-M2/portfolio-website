@@ -2,9 +2,9 @@
 
 import { MouseEventHandler } from "react";
 import Backdrop from "../Backdrop/Backdrop";
+import Button from "../Button/Button";
 
 import styles from "./modal.module.scss";
-import Button from "../Button/Button";
 
 interface ModalProps {
   acceptButtonTitle?: string;
@@ -50,9 +50,13 @@ function Modal({
             {backendResponse && (
               <p
                 className={`${styles.backendResponse} ${
-                  backendResponse.status >= 400
-                    ? styles.backendResponseError
-                    : styles.backendResponseSuccess
+                  backendResponse.message &&
+                  backendResponse.status >= 400 &&
+                  styles.backendResponseError
+                } ${
+                  backendResponse.message &&
+                  backendResponse.status < 400 &&
+                  styles.backendResponseSuccess
                 }`}
                 role="alert"
               >
