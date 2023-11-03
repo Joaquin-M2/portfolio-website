@@ -31,8 +31,8 @@ function FiltersBar2({
     <>
       <Backdrop
         forTopAside
-        isChecked={buttonIsChecked}
-        setBackdropIsShown={setButtonIsChecked}
+        isShown={buttonIsChecked}
+        hideBackdrop={() => setButtonIsChecked(false)}
       >
         <aside className={styles.container}>
           <label
