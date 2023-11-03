@@ -79,14 +79,10 @@
   &:checked + .toggleHeartLabel {
     fill: #e2264d;
   }
-
-  &:checked + .toggleGearLabel {
-    fill: black;
-  }
 }
 
 .toggleHeartLabel,
-.toggleGearLabel {
+.gearIcon {
   fill: #aab8c2;
   font-size: 3rem;
   cursor: pointer;
@@ -99,49 +95,13 @@
   }
 }
 
+.gearIconChecked {
+  fill: black;
+}
+
 // MENU
 .menuButtonContainer {
   position: relative;
-}
-
-.menuCard {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  transform: translateY(100%);
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  background-color: white;
-
-  visibility: hidden;
-  overflow: hidden;
-  max-height: 0;
-
-  transition: $quick-transition;
-}
-
-.toggleGearInput:checked ~ .menuCard {
-  visibility: visible;
-  max-height: 10rem;
-}
-
-.menuList {
-  list-style: none;
-}
-
-.menuListElement {
-  text-wrap: nowrap;
-  padding: 1rem;
-  font-size: 1.5rem;
-  transition: $default-transition;
-
-  &:not(:last-of-type) {
-    border-bottom: 1px dotted black;
-  }
-
-  &:hover {
-    background-color: $color-pale-grey;
-  }
 }
 
 .deleteToolModalQuestion {
