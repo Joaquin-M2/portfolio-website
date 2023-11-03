@@ -29,10 +29,14 @@ function Form({
 
   return hasFieldset ? (
     <form id={id} onSubmit={onSubmit} ref={form}>
-      <fieldset className={styles.fieldset}>
-        <legend className={styles.legend}>{legend}</legend>
-        {children}
-      </fieldset>
+      {legend ? (
+        <fieldset className={styles.fieldset}>
+          <legend className={styles.legend}>{legend}</legend>
+          {children}
+        </fieldset>
+      ) : (
+        children
+      )}
     </form>
   ) : (
     <form id={id} onSubmit={onSubmit} ref={form}>
