@@ -1,0 +1,48 @@
+@import "../../sass/abstracts/variables.scss";
+
+.menuCard {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(100%);
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color: white;
+  z-index: 1;
+
+  visibility: hidden;
+  overflow: hidden;
+  max-height: 0;
+
+  transition: $quick-transition;
+}
+
+.menuCardBottomLeft {
+  right: auto;
+  left: 0;
+}
+
+.menuCardIsVisible {
+  visibility: visible;
+  max-height: 15rem;
+}
+
+.menuList {
+  list-style: none;
+
+  & li {
+    text-wrap: nowrap;
+    padding: 1rem;
+    font-size: 1.5rem;
+    transition: $default-transition;
+    cursor: pointer;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px dotted black;
+    }
+
+    &:hover {
+      background-color: $color-pale-grey;
+    }
+  }
+}
