@@ -8,12 +8,13 @@ import Modal from "../../components/Modal/Modal";
 import { emailRegExp } from "../../utils/email-regexp";
 import { createRequest } from "../../utils/requests";
 
-interface FormModalProps {
+interface FormInModalProps {
+  children?: JSX.Element | JSX.Element[];
   formIsOpen: boolean;
-  formType: "login" | "signup";
+  formType: "login" | "signup" | "delete-tool";
   hideModal: MouseEventHandler;
-  isShown: boolean;
-  resetFormValues: boolean;
+  id?: string;
+  resetFormValues?: boolean;
   requestMethod: string;
   requestUrlPath: string;
 }
@@ -23,15 +24,16 @@ interface FormInputs {
   password: string;
 }
 
-function FormModal({
+function FormInModal({
+  children,
   formIsOpen,
   formType,
   hideModal,
-  isShown,
+  id,
   requestMethod,
   requestUrlPath,
   resetFormValues,
-}: FormModalProps) {
+}: FormInModalProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
     message: "",
@@ -46,6 +48,10 @@ function FormModal({
     case "signup":
       modalTitle = "Sign Up";
       formLegend = "Sign up form";
+      break;
+    case "delete-tool":
+      modalTitle = "Delete Tool";
+      //formLegend = "Delete tool form";
       break;
     default:
       modalTitle = "Form";
@@ -78,7 +84,11 @@ function FormModal({
         message: result.message,
       });
 
-      if (response.status >= 200 && response.status < 400) {
+      if (
+        requestUrlPath === "/user/login" &&
+        response.status >= 200 &&
+        response.status < 400
+      ) {
         localStorage.setItem("userToken", result.token);
       }
     } catch (error) {
@@ -100,50 +110,57 @@ function FormModal({
   return (
     <Modal
       backendResponse={formResponse}
-      isShown={isShown}
+      isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`${formType}-form`}
+      targetForm={`${formType}-form-${id}`}
       title={modalTitle}
     >
       <Form
         hasFieldset
-        id={`${formType}-form`}
+        id={`${formType}-form-${id}`}
         legend={formLegend}
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
       >
-        <Input
-          aria-invalid={errors.email ? true : false}
-          watchedValue={watch("email")}
-          error={errors.email && "Invalid email. Accepted format: ****@****.**"}
-          formIsOpen={formIsOpen}
-          id={`${formType}-email-input`}
-          placeholder="Email"
-          required
-          type="email"
-          {...register("email", { required: true, pattern: emailRegExp })}
-        />
-        <Input
-          aria-invalid={errors.password ? true : false}
-          watchedValue={watch("password")}
-          error={
-            errors.password &&
-            "Password needs to be between 6 and 20 characters."
-          }
-          formIsOpen={formIsOpen}
-          id={`${formType}-password-input`}
-          placeholder="Password"
-          required
-          type="password"
-          {...register("password", {
-            required: true,
-            minLength: 6,
-            maxLength: 20,
-          })}
-        />
+        {(formType === "login" || formType === "signup") && (
+          <>
+            <Input
+              aria-invalid={errors.email ? true : false}
+              watchedValue={watch("email")}
+              error={
+                errors.email && "Invalid email. Accepted format: ****@****.**"
+              }
+              formIsOpen={formIsOpen}
+              id={`${formType}-email-input`}
+              placeholder="Email"
+              required
+              type="email"
+              {...register("email", { required: true, pattern: emailRegExp })}
+            />
+            <Input
+              aria-invalid={errors.password ? true : false}
+              watchedValue={watch("password")}
+              error={
+                errors.password &&
+                "Password needs to be between 6 and 20 characters."
+              }
+              formIsOpen={formIsOpen}
+              id={`${formType}-password-input`}
+              placeholder="Password"
+              required
+              type="password"
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                maxLength: 20,
+              })}
+            />
+          </>
+        )}
+        <>{children}</>
       </Form>
     </Modal>
   );
 }
 
-export default FormModal;
+export default FormInModal;
