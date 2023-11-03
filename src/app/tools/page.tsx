@@ -2,16 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import Modal from "../../components/Modal/Modal";
 import ToolCard from "../../components/ToolCard/ToolCard";
 import FiltersBar2 from "../../components/FiltersBar2/FiltersBar2";
-import Button from "../../components/Button.tsx/Button";
-
-import LogInForm from "./LogInForm";
+import FormInModal from "./FormInModal";
 
 import styles from "./tools.module.scss";
 import { createRequest } from "../../utils/requests";
-import SignUpForm from "./SignUpForm";
 
 interface Tool {
   _id: string;
@@ -35,10 +31,13 @@ function Page() {
   const [selectedFilterTags, setSelectedFilterTags] = useState([]);
   const [tags, setTags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [loginModalIsShown, setLoginModalIsShown] = useState(false);
-  const [signUpModalIsShown, setSignUpModalIsShown] = useState(false);
   const previousFilterTagsQuantity = useRef(selectedFilterTags.length);
   const searchFieldTools = useRef([]);
+  const [modalsState, setModalsState] = useState({
+    logInModalIsShown: false,
+    signUpModalIsShown: false,
+  });
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
   /////////////////////////////
   // REQUESTS ON PAGE LOAD
@@ -49,6 +48,14 @@ function Page() {
       .then((data) => {
         setTools(data.tools);
         setFilteredTools(data.tools);
+      })
+      .then(() => {
+        tools.map(({ _id }) => {
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            [`deleteToolModalIsShown${_id}`]: false,
+          }));
+        });
       })
       .then(() => setIsLoading(false))
       .catch((error) => console.log(error));
@@ -163,21 +170,94 @@ function Page() {
             toolsInLocalStorage.indexOf(b._id.toString()) -
             toolsInLocalStorage.indexOf(a._id.toString())
         )
-        .map(({ _id, iconUrl, title, description, tags, url }) => (
-          <ToolCard
-            toolsInLocalStorage={toolsInLocalStorage}
-            key={_id}
-            id={_id.toString()}
-            url={url}
-            logo={iconUrl}
-            title={title}
-            description={description}
-            tags={tags}
-          />
-        ));
+        .map(({ _id, iconUrl, title, description, tags, url }) => {
+          return (
+            <ToolCard
+              deleteToolModalIsShown={
+                modalsState[`deleteToolModalIsShown${_id}`]
+              }
+              description={description}
+              hideDeleteToolModal={() =>
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  [`deleteToolModalIsShown${_id}`]: false,
+                }))
+              }
+              setDeleteToolModalIsShown={() => {
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  [`deleteToolModalIsShown${_id}`]: true,
+                }));
+              }}
+              id={_id.toString()}
+              key={_id}
+              logo={iconUrl}
+              tags={tags}
+              title={title}
+              toolsInLocalStorage={toolsInLocalStorage}
+              url={url}
+            />
+          );
+        });
     } else {
       return <h1 className={styles.noToolsTitle}>No tools found.</h1>;
     }
+  };
+
+  /////////////////////////////
+  // USER MANAGEMENT BUTTONS
+
+  useEffect(() => {
+    if (localStorage.getItem("userToken")) {
+      setUserIsLoggedIn(true);
+    } else {
+      setUserIsLoggedIn(false);
+    }
+  }, [modalsState.logInModalIsShown]);
+
+  const renderUserManagementButtons: () => JSX.Element | JSX.Element[] = () => {
+    return (
+      <>
+        {userIsLoggedIn ? (
+          <>
+            <button
+              className={styles.logInButton}
+              onClick={() => {
+                localStorage.removeItem("userToken");
+                setUserIsLoggedIn(false);
+              }}
+            >
+              Log Out
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className={styles.logInButton}
+              onClick={() => {
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  logInModalIsShown: true,
+                }));
+              }}
+            >
+              Log In
+            </button>
+            <button
+              className={styles.signUpButton}
+              onClick={() => {
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  signUpModalIsShown: true,
+                }));
+              }}
+            >
+              Sign Up
+            </button>
+          </>
+        )}
+      </>
+    );
   };
 
   return (
@@ -190,78 +270,35 @@ function Page() {
         tags={tags}
       />
       <div className={styles.buttonsContainer}>
-        <button
-          className={styles.logInButton}
-          onClick={() => {
-            setLoginModalIsShown(true);
-          }}
-        >
-          <label htmlFor="log-in-modal">Log In</label>
-        </button>
-        <button
-          className={styles.signUpButton}
-          onClick={() => {
-            setSignUpModalIsShown(true);
-          }}
-        >
-          <label htmlFor="sign-up-modal">Sign Up</label>
-        </button>
+        {renderUserManagementButtons()}
       </div>
-      <Modal
-        bottomButtons={
-          <>
-            <Button form="login-form" type="submit" small>
-              Accept
-            </Button>
-            <Button
-              form="login-form"
-              onClick={() => {
-                setLoginModalIsShown(false);
-              }}
-              type="reset"
-              small
-            >
-              Close
-            </Button>
-          </>
+
+      <FormInModal
+        formIsOpen={modalsState.logInModalIsShown}
+        formType="login"
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            logInModalIsShown: false,
+          }))
         }
-        isShown={loginModalIsShown}
-        modalId="log-in-modal"
-        setModalIsShown={setLoginModalIsShown}
-        title="Log In"
-      >
-        <LogInForm
-          resetFormValues={!loginModalIsShown}
-          formIsOpen={loginModalIsShown}
-        />
-      </Modal>
-      <Modal
-        bottomButtons={
-          <>
-            <Button form="signup-form" type="submit" small>
-              Accept
-            </Button>
-            <Button
-              form="signup-form"
-              onClick={() => {
-                setSignUpModalIsShown(false);
-              }}
-              small
-            >
-              Close
-            </Button>
-          </>
+        requestMethod="POST"
+        requestUrlPath="/user/login"
+        resetFormValues={!modalsState.logInModalIsShown}
+      />
+      <FormInModal
+        formIsOpen={modalsState.signUpModalIsShown}
+        formType="signup"
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            signUpModalIsShown: false,
+          }))
         }
-        isShown={signUpModalIsShown}
-        modalId="sign-up-modal"
-        setModalIsShown={setSignUpModalIsShown}
-        title="Sign Up"
-      >
-        <SignUpForm
-          resetFormValues={!signUpModalIsShown}
-          formIsOpen={signUpModalIsShown}
-        />
-      </Modal>
+        requestMethod="POST"
+        requestUrlPath="/user/signup"
+        resetFormValues={!modalsState.signUpModalIsShown}
+      />
       <main className={styles.mainContainer}>{renderToolCards()}</main>
     </>
   );
