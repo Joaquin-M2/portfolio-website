@@ -1,37 +1,47 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEventHandler } from "react";
 
 import Tag from "./Tag/Tag";
+import FormInModal from "../../app/tools/FormInModal";
 
 import styles from "./toolCard.module.scss";
 
 interface ToolCardProps {
-  toolsInLocalStorage: string[];
-  id: string;
-  url: string;
-  logo: string | StaticImageData;
-  title: string;
+  backendResponseDeleteTool?: { status: number; message: string };
+  setDeleteToolModalIsShown: MouseEventHandler;
+  deleteToolModalIsShown: boolean;
   description: string;
+  hideDeleteToolModal: MouseEventHandler;
+  id: string;
+  logo: string | StaticImageData;
   tags: { _id: string; name: string }[];
+  title: string;
+  toolsInLocalStorage: string[];
+  url: string;
 }
 
 export default function ToolCard({
-  toolsInLocalStorage,
-  id,
-  url,
-  logo,
-  title,
+  setDeleteToolModalIsShown,
+  deleteToolModalIsShown,
   description,
+  hideDeleteToolModal,
+  id,
+  logo,
   tags,
+  title,
+  toolsInLocalStorage,
+  url,
 }: ToolCardProps) {
   const [favoriteButtonIsChecked, setFavoriteButtonIsChecked] = useState(false);
-
   useEffect(() => {
     toolsInLocalStorage.includes(id.toString()) &&
       setFavoriteButtonIsChecked(true);
   }, [toolsInLocalStorage]);
+
+  ////////////////////////////
+  // FAVORITE TOOLS
 
   const handleCheck = () => {
     let favoritedTools =
@@ -113,7 +123,12 @@ export default function ToolCard({
                     >
                       <ul className={styles.menuList}>
                         <li className={styles.menuListElement}>Modify tool</li>
-                        <li className={styles.menuListElement}>Delete tool</li>
+                        <li
+                          className={styles.menuListElement}
+                          onClick={setDeleteToolModalIsShown}
+                        >
+                          Delete tool
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -130,6 +145,32 @@ export default function ToolCard({
           </div>
         </div>
       </a>
+      <FormInModal
+        formIsOpen={deleteToolModalIsShown}
+        formType="delete-tool"
+        hideModal={hideDeleteToolModal}
+        id={id}
+        requestMethod="DELETE"
+        requestUrlPath={`/tools/${id}`}
+      >
+        <h5 className={styles.deleteToolModalQuestion}>
+          Delete the following tool?
+        </h5>
+        <ul className={styles.deleteToolModalList}>
+          <li className={styles.deleteToolModalListElement}>
+            <span className={styles.deleteToolModalListElementTitle}>
+              Title:
+            </span>{" "}
+            {title}
+          </li>
+          <li className={styles.deleteToolModalListElement}>
+            <span className={styles.deleteToolModalListElementTitle}>
+              Description:
+            </span>{" "}
+            {description}
+          </li>
+        </ul>
+      </FormInModal>
     </>
   );
 }
