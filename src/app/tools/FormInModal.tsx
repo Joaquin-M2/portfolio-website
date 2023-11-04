@@ -23,6 +23,7 @@ interface FormInModalProps {
   resetFormValues?: boolean;
   requestMethod: string;
   requestUrlPath: string;
+  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
 }
 
 interface FormInputs {
@@ -39,6 +40,7 @@ function FormInModal({
   requestMethod,
   requestUrlPath,
   resetFormValues,
+  setToolsFrontend,
 }: FormInModalProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
@@ -91,6 +93,8 @@ function FormInModal({
         message: result.message,
       });
 
+      // Éste es un prop que está cambiando y por tanto re-renderiza el componente.
+
       if (response.status >= 200 && response.status < 400) {
         setRequestIsSuccessful(true);
         if (requestUrlPath === "/user/login") {
@@ -112,6 +116,15 @@ function FormInModal({
       setTimeout(() => {
         setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
         setRequestIsSuccessful(false);
+      }, 500); // Time until CSS transition finishes.
+    }
+    if (
+      !formIsOpen &&
+      formResponse.message &&
+      requestUrlPath.startsWith("/tools")
+    ) {
+      setTimeout(() => {
+        setToolsFrontend((prevValue) => [...prevValue, id]);
       }, 500); // Time until CSS transition finishes.
     }
   }, [formIsOpen]);

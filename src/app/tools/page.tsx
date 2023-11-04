@@ -47,6 +47,7 @@ function Page() {
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const [tagsMenuCardIsVisible, setTagsMenuCardIsVisible] = useState(false);
   const [usersMenuCardIsVisible, setUsersMenuCardIsVisible] = useState(false);
+  const [updatedTools, setUpdatedTools] = useState([]);
 
   /////////////////////////////
   // REQUESTS ON PAGE LOAD
@@ -68,7 +69,7 @@ function Page() {
       })
       .then(() => setIsLoading(false))
       .catch((error) => console.log(error));
-  }, []);
+  }, [updatedTools]);
 
   useEffect(() => {
     fetch(createRequest({ urlPath: "/tags" }))
@@ -198,6 +199,7 @@ function Page() {
                   [`deleteToolModalIsShown${_id}`]: true,
                 }));
               }}
+              setToolsFrontend={setUpdatedTools}
               id={_id.toString()}
               key={_id}
               logo={iconUrl}

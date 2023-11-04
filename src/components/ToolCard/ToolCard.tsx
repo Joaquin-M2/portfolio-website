@@ -1,7 +1,13 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { useState, useEffect, MouseEventHandler } from "react";
+import {
+  useState,
+  useEffect,
+  MouseEventHandler,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 import Tag from "./Tag/Tag";
 import FormInModal from "../../app/tools/FormInModal";
@@ -17,6 +23,7 @@ interface ToolCardProps {
   hideDeleteToolModal: MouseEventHandler;
   id: string;
   logo: string | StaticImageData;
+  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
   tags: { _id: string; name: string }[];
   title: string;
   toolsInLocalStorage: string[];
@@ -25,6 +32,7 @@ interface ToolCardProps {
 
 export default function ToolCard({
   setDeleteToolModalIsShown,
+  setToolsFrontend,
   deleteToolModalIsShown,
   description,
   hideDeleteToolModal,
@@ -139,6 +147,7 @@ export default function ToolCard({
         id={id}
         requestMethod="DELETE"
         requestUrlPath={`/tools/${id}`}
+        setToolsFrontend={setToolsFrontend}
       >
         <h5 className={styles.deleteToolModalQuestion}>
           Delete the following tool?
