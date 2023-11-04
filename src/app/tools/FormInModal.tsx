@@ -1,4 +1,10 @@
-import { MouseEventHandler, useEffect, useState } from "react";
+import {
+  Dispatch,
+  MouseEventHandler,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -38,6 +44,7 @@ function FormInModal({
     status: 500,
     message: "",
   });
+  const [requestIsSuccessful, setRequestIsSuccessful] = useState(false);
   let modalTitle;
   let formLegend;
   switch (formType) {
@@ -84,12 +91,11 @@ function FormInModal({
         message: result.message,
       });
 
-      if (
-        requestUrlPath === "/user/login" &&
-        response.status >= 200 &&
-        response.status < 400
-      ) {
-        localStorage.setItem("userToken", result.token);
+      if (response.status >= 200 && response.status < 400) {
+        setRequestIsSuccessful(true);
+        if (requestUrlPath === "/user/login") {
+          localStorage.setItem("userToken", result.token);
+        }
       }
     } catch (error) {
       setFormResponse({
@@ -103,7 +109,10 @@ function FormInModal({
   useEffect(() => {
     if (!formIsOpen) {
       reset();
-      setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
+      setTimeout(() => {
+        setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
+        setRequestIsSuccessful(false);
+      }, 500); // Time until CSS transition finishes.
     }
   }, [formIsOpen]);
 
@@ -114,6 +123,7 @@ function FormInModal({
       hideModal={hideModal}
       targetForm={`${formType}-form-${id}`}
       title={modalTitle}
+      requestIsSuccessful={requestIsSuccessful}
     >
       <Form
         hasFieldset

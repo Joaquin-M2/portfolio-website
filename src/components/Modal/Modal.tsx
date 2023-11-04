@@ -8,25 +8,42 @@ import styles from "./modal.module.scss";
 
 interface ModalProps {
   acceptButtonTitle?: string;
-  cancelButtonTitle?: string;
   backendResponse?: { status: number; message: string };
+  cancelButtonTitle?: string;
   children: JSX.Element | JSX.Element[];
-  isShown: boolean;
   hideModal: MouseEventHandler;
+  isShown: boolean;
+  requestIsSuccessful?: boolean;
   targetForm?: string;
   title: string;
 }
 
 function Modal({
   acceptButtonTitle,
-  cancelButtonTitle,
   backendResponse,
+  cancelButtonTitle,
   children,
-  isShown,
   hideModal,
+  isShown,
+  requestIsSuccessful,
   targetForm,
   title,
 }: ModalProps) {
+  const bottomButtons = requestIsSuccessful ? (
+    <Button form={targetForm} onClick={hideModal} type="reset" small>
+      Close
+    </Button>
+  ) : (
+    <>
+      <Button form={targetForm} type="submit" small>
+        {acceptButtonTitle ? acceptButtonTitle : "Accept"}
+      </Button>
+      <Button form={targetForm} onClick={hideModal} type="reset" small>
+        {cancelButtonTitle ? cancelButtonTitle : "Cancel"}
+      </Button>
+    </>
+  );
+
   return (
     <>
       <Backdrop isShown={isShown} hideBackdrop={hideModal}>
@@ -64,14 +81,7 @@ function Modal({
               </p>
             )}
           </div>
-          <div className={styles.bottomButtonsContainer}>
-            <Button form={targetForm} type="submit" small>
-              {acceptButtonTitle ? acceptButtonTitle : "Accept"}
-            </Button>
-            <Button form={targetForm} onClick={hideModal} type="reset" small>
-              {cancelButtonTitle ? cancelButtonTitle : "Cancel"}
-            </Button>
-          </div>
+          <div className={styles.bottomButtonsContainer}>{bottomButtons}</div>
         </div>
       </Backdrop>
     </>
