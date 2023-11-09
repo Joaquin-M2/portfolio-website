@@ -75,6 +75,16 @@ const Input = forwardRef<
       }
     }
 
+    function checkSelectMultipleTagsField() {
+      if (selectedTagsAddToolForm.length < 1) {
+        setIsError(true);
+        setIsSuccess(false);
+      } else {
+        setIsSuccess(true);
+        setIsError(false);
+      }
+    }
+
     function validateEmail(email) {
       return emailRegExp.test(String(email).toLowerCase());
     }
@@ -119,20 +129,24 @@ const Input = forwardRef<
 
     function checkValidationType(inputType) {
       switch (inputType) {
-        case "text":
-          checkTextField();
-          break;
-
-        case "textarea":
-          checkTextareaField();
-          break;
-
         case "email":
           checkEmailField();
           break;
 
         case "password":
           checkPasswordField();
+          break;
+
+        case "selectMultiple":
+          checkSelectMultipleTagsField();
+          break;
+
+        case "text":
+          checkTextField();
+          break;
+
+        case "textarea":
+          checkTextareaField();
           break;
 
         case "url":

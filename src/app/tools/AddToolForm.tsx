@@ -1,3 +1,5 @@
+"use client";
+
 import React, {
   Dispatch,
   MouseEventHandler,
@@ -179,12 +181,12 @@ function AddToolForm({
           formIsOpen={formIsOpen}
           id="add-tool-select-tag(s)-input"
           placeholder="Select tag(s)"
-          //required
+          required
           type="selectMultiple"
           {...register("tags", {
-            //required: true,
+            required: true,
+            validate: () => selectedTagsAddToolForm.length > 0,
           })}
-          //onBlur={() => setValue("tags", selectedTagsAddToolForm)}
         />
         <Input
           aria-invalid={errors.iconUrl ? true : false}
