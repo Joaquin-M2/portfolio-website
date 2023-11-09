@@ -9,11 +9,11 @@ import {
   SetStateAction,
 } from "react";
 
-import Tag from "./Tag/Tag";
-import FormInModal from "../../app/tools/FormInModal";
+import Tag from "../Tag/Tag";
+import MenuCard from "../MenuCard/MenuCard";
 
 import styles from "./toolCard.module.scss";
-import MenuCard from "../MenuCard/MenuCard";
+import DeleteToolForm from "./DeleteToolForm/DeleteToolForm";
 
 interface ToolCardProps {
   backendResponseDeleteTool?: { status: number; message: string };
@@ -140,33 +140,14 @@ export default function ToolCard({
           </div>
         </div>
       </a>
-      <FormInModal
+      <DeleteToolForm
+        description={description}
         formIsOpen={deleteToolModalIsShown}
-        formType="delete-tool"
         hideModal={hideDeleteToolModal}
         id={id}
-        requestMethod="DELETE"
-        requestUrlPath={`/tools/${id}`}
         setToolsFrontend={setToolsFrontend}
-      >
-        <h5 className={styles.deleteToolModalQuestion}>
-          Delete the following tool?
-        </h5>
-        <ul className={styles.deleteToolModalList}>
-          <li className={styles.deleteToolModalListElement}>
-            <span className={styles.deleteToolModalListElementTitle}>
-              Title:
-            </span>{" "}
-            {title}
-          </li>
-          <li className={styles.deleteToolModalListElement}>
-            <span className={styles.deleteToolModalListElementTitle}>
-              Description:
-            </span>{" "}
-            {description}
-          </li>
-        </ul>
-      </FormInModal>
+        title={title}
+      />
     </>
   );
 }
