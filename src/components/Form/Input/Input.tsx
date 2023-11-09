@@ -5,7 +5,7 @@ import { forwardRef, useEffect, useState } from "react";
 import { emailRegExp, urlRegExp } from "../../../utils/regular-expressions";
 
 import styles from "./input.module.scss";
-import Tag from "../../ToolCard/Tag/Tag";
+import Tag from "../../Tag/Tag";
 
 interface InputProps {
   handleAddTag?: (event) => void;

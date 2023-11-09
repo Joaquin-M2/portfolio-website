@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Tag from "../ToolCard/Tag/Tag";
+import Tag from "../Tag/Tag";
 
 import styles from "./filtersBar2.module.scss";
 import Backdrop from "../Backdrop/Backdrop";
