@@ -375,6 +375,10 @@ function Page() {
     );
   };
 
+  useEffect(() => {
+    if (!modalsState.addToolModalIsShown) setSelectedTagsAddToolForm([]);
+  }, [modalsState.addToolModalIsShown]);
+
   return (
     <>
       <FiltersBar2
