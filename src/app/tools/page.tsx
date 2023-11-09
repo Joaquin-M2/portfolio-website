@@ -4,11 +4,12 @@ import { useEffect, useRef, useState } from "react";
 
 import ToolCard from "../../components/ToolCard/ToolCard";
 import FiltersBar2 from "../../components/FiltersBar2/FiltersBar2";
-import FormInModal from "./FormInModal";
 
 import styles from "./tools.module.scss";
 import { createRequest } from "../../utils/requests";
 import MenuCard from "../../components/MenuCard/MenuCard";
+import LoginAndSignupForms from "./LoginAndSignupForms";
+import AddToolForm from "./AddToolForm";
 
 interface Tool {
   _id: string;
@@ -48,6 +49,9 @@ function Page() {
   const [tagsMenuCardIsVisible, setTagsMenuCardIsVisible] = useState(false);
   const [usersMenuCardIsVisible, setUsersMenuCardIsVisible] = useState(false);
   const [updatedTools, setUpdatedTools] = useState([]);
+  // ADD TOOL FORM
+  const [tagsAddToolForm, setTagsAddToolForm] = useState([]);
+  const [selectedTagsAddToolForm, setSelectedTagsAddToolForm] = useState([]);
 
   /////////////////////////////
   // REQUESTS ON PAGE LOAD
@@ -74,7 +78,10 @@ function Page() {
   useEffect(() => {
     fetch(createRequest({ urlPath: "/tags" }))
       .then((response) => response.json())
-      .then((data) => setTags(data.tags))
+      .then((data) => {
+        setTags(data.tags);
+        setTagsAddToolForm(data.tags);
+      })
       .catch((error) => console.log(error));
   }, []);
 
@@ -386,7 +393,33 @@ function Page() {
         </div>
       </div>
 
-      <FormInModal
+      <AddToolForm
+        formIsOpen={modalsState.addToolModalIsShown}
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            addToolModalIsShown: false,
+          }))
+        }
+        requestMethod="POST"
+        requestUrlPath="/tools"
+        resetFormValues={!modalsState.addToolModalIsShown}
+        tags={tagsAddToolForm}
+        selectedTagsAddToolForm={selectedTagsAddToolForm}
+        setToolsFrontend={setUpdatedTools}
+        handleAddTag={(event) => {
+          setSelectedTagsAddToolForm((prevValue) => [
+            ...prevValue,
+            { name: event.target.textContent, id: event.target.value },
+          ]);
+        }}
+        handleRemoveTag={(event) => {
+          setSelectedTagsAddToolForm((prevValue) =>
+            prevValue.filter((tag) => tag.name !== event.target.textContent)
+          );
+        }}
+      />
+      <LoginAndSignupForms
         formIsOpen={modalsState.logInModalIsShown}
         formType="login"
         hideModal={() =>
@@ -399,7 +432,7 @@ function Page() {
         requestUrlPath="/user/login"
         resetFormValues={!modalsState.logInModalIsShown}
       />
-      <FormInModal
+      <LoginAndSignupForms
         formIsOpen={modalsState.signUpModalIsShown}
         formType="signup"
         hideModal={() =>
