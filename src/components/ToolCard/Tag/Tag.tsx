@@ -1,4 +1,4 @@
-import styles from './tag.module.scss';
+import styles from "./tag.module.scss";
 
 interface TagProps {
   children: string;
@@ -12,7 +12,7 @@ function Tag({ children, isFilterButton, handleRemoveFilterTag }: TagProps) {
       {isFilterButton ? (
         <button
           className={styles.tagButton}
-          type='button'
+          type="button"
           onClick={handleRemoveFilterTag}
         >
           {children}
