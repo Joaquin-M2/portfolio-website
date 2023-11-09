@@ -88,3 +88,27 @@
 .noErrorMessage {
   display: none;
 }
+
+////////////////////////////////
+/// MULTIPLE SELECT INPUT
+
+.selectTagsContainer {
+  display: flex;
+  gap: 2rem;
+  height: 15rem;
+}
+
+.tagsContainer {
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  overflow: auto;
+}
+
+.selectInput {
+  border-radius: 1rem;
+  min-width: 13rem;
+  padding: 0.5rem;
+}
