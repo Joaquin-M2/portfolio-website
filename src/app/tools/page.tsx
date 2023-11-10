@@ -67,6 +67,7 @@ function Page() {
         tools.map(({ _id }) => {
           setModalsState((prevValue) => ({
             ...prevValue,
+            [`updateToolModalIsShown${_id}`]: false,
             [`deleteToolModalIsShown${_id}`]: false,
           }));
         });
@@ -187,13 +188,12 @@ function Page() {
             toolsInLocalStorage.indexOf(b._id.toString()) -
             toolsInLocalStorage.indexOf(a._id.toString())
         )
-        .map(({ _id, iconUrl, title, description, tags, url }) => {
+        .map(({ _id, iconUrl, title, description, tags: toolTags, url }) => {
           return (
             <ToolCard
               deleteToolModalIsShown={
                 modalsState[`deleteToolModalIsShown${_id}`]
               }
-              description={description}
               hideDeleteToolModal={() =>
                 setModalsState((prevValue) => ({
                   ...prevValue,
@@ -206,12 +206,45 @@ function Page() {
                   [`deleteToolModalIsShown${_id}`]: true,
                 }));
               }}
+              selectedTagsAddToolForm={selectedTagsAddToolForm}
+              updateToolModalIsShown={
+                modalsState[`updateToolModalIsShown${_id}`]
+              }
+              hideUpdateToolModal={() =>
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  [`updateToolModalIsShown${_id}`]: false,
+                }))
+              }
+              setUpdateToolModalIsShown={() => {
+                setModalsState((prevValue) => ({
+                  ...prevValue,
+                  [`updateToolModalIsShown${_id}`]: true,
+                }));
+
+                setSelectedTagsAddToolForm(() => toolTags);
+              }}
+              handleAddTag={(event) => {
+                setSelectedTagsAddToolForm((prevValue) => [
+                  ...prevValue,
+                  { name: event.target.textContent, _id: event.target.value },
+                ]);
+              }}
+              handleRemoveTag={(event) => {
+                setSelectedTagsAddToolForm((prevValue) =>
+                  prevValue.filter(
+                    (tag) => tag.name !== event.target.textContent
+                  )
+                );
+              }}
               setToolsFrontend={setUpdatedTools}
               id={_id.toString()}
               key={_id}
               logo={iconUrl}
-              tags={tags}
+              allTags={tags}
+              toolTags={toolTags}
               title={title}
+              description={description}
               toolsInLocalStorage={toolsInLocalStorage}
               url={url}
             />
@@ -414,7 +447,7 @@ function Page() {
         handleAddTag={(event) => {
           setSelectedTagsAddToolForm((prevValue) => [
             ...prevValue,
-            { name: event.target.textContent, id: event.target.value },
+            { name: event.target.textContent, _id: event.target.value },
           ]);
         }}
         handleRemoveTag={(event) => {
