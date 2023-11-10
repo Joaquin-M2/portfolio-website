@@ -85,7 +85,7 @@ function AddToolForm({
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     data.tags = selectedTagsAddToolForm.map((selectedTag) => {
-      return selectedTag.id;
+      return selectedTag._id;
     }); // Otherwise it would just pick the tags marked in the "Select tag(s)" dropdown.
     try {
       console.log(data);
@@ -174,7 +174,7 @@ function AddToolForm({
           handleAddTag={handleAddTag}
           handleRemoveTag={handleRemoveTag}
           selectedTagsAddToolForm={selectedTagsAddToolForm}
-          tags={tags}
+          allTags={tags}
           aria-invalid={errors.tags ? true : false}
           watchedValue={watch("tags")}
           error={errors.tags && "You need to select at least 1 tag."}
@@ -185,7 +185,6 @@ function AddToolForm({
           type="selectMultiple"
           {...register("tags", {
             required: true,
-            validate: () => selectedTagsAddToolForm.length > 0,
           })}
         />
         <Input
