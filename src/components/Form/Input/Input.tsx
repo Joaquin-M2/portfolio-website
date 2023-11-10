@@ -14,9 +14,9 @@ interface InputProps {
   formIsOpen: boolean;
   handleRemoveTag?: (event) => void;
   id: string;
-  onBlur?: () => void;
   placeholder: string;
-  tags?: any[];
+  allTags?: any[];
+  toolTags?: any[];
   type: string;
   watchedValue: string;
   [x: string]: any;
@@ -36,9 +36,9 @@ const Input = forwardRef<
       error,
       formIsOpen,
       id,
-      onBlur,
       placeholder,
-      tags,
+      allTags,
+      toolTags,
       type,
       ...props
     },
@@ -160,12 +160,12 @@ const Input = forwardRef<
     }, [watchedValue]);
 
     const dropdownOptions =
-      tags && tags.length ? (
-        tags
+      allTags && allTags.length ? (
+        allTags
           .filter(
             (tag) =>
               !selectedTagsAddToolForm.some(
-                (selectedTag) => selectedTag.id === tag._id
+                (selectedTag) => selectedTag._id === tag._id
               )
           )
           .map((tag, id) => (
@@ -176,16 +176,11 @@ const Input = forwardRef<
       ) : (
         <option>Loading...</option>
       );
-
     const inputJsx = () => {
       if (type === "selectMultiple") {
         return (
           <>
-            <div
-              className={styles.selectTagsContainer}
-              onBlur={onBlur}
-              tabIndex={0}
-            >
+            <div className={styles.selectTagsContainer}>
               <select
                 className={styles.selectInput}
                 name="tags"
@@ -196,15 +191,23 @@ const Input = forwardRef<
                 {dropdownOptions}
               </select>
               <div className={styles.tagsContainer}>
-                {selectedTagsAddToolForm.map((selectedTag, id) => (
-                  <Tag
-                    key={id}
-                    isFilterButton
-                    handleRemoveFilterTag={handleRemoveTag}
-                  >
-                    {tags.find((tag) => tag._id === selectedTag.id).name}
-                  </Tag>
-                ))}
+                {allTags &&
+                allTags.length &&
+                selectedTagsAddToolForm &&
+                selectedTagsAddToolForm.length
+                  ? selectedTagsAddToolForm.map((selectedTag, id) => (
+                      <Tag
+                        key={id}
+                        isFilterButton
+                        handleRemoveFilterTag={handleRemoveTag}
+                      >
+                        {
+                          allTags.find((tag) => tag._id === selectedTag._id)
+                            .name
+                        }
+                      </Tag>
+                    ))
+                  : ""}
               </div>
             </div>
           </>
