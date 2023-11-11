@@ -10,6 +10,7 @@ import { createRequest } from "../../utils/requests";
 import MenuCard from "../../components/MenuCard/MenuCard";
 import LoginAndSignupForms from "./LoginAndSignupForms";
 import AddToolForm from "./AddToolForm";
+import AddTagForm from "./AddTagForm";
 
 interface Tool {
   _id: string;
@@ -49,6 +50,7 @@ function Page() {
   const [tagsMenuCardIsVisible, setTagsMenuCardIsVisible] = useState(false);
   const [usersMenuCardIsVisible, setUsersMenuCardIsVisible] = useState(false);
   const [updatedTools, setUpdatedTools] = useState([]);
+  const [updatedTags, setUpdatedTags] = useState([]);
   // ADD TOOL FORM
   const [tagsAddToolForm, setTagsAddToolForm] = useState([]);
   const [selectedTagsAddToolForm, setSelectedTagsAddToolForm] = useState([]);
@@ -74,7 +76,7 @@ function Page() {
       })
       .then(() => setIsLoading(false))
       .catch((error) => console.log(error));
-  }, [updatedTools]);
+  }, [updatedTools, updatedTags]);
 
   useEffect(() => {
     fetch(createRequest({ urlPath: "/tags" }))
@@ -84,7 +86,7 @@ function Page() {
         setTagsAddToolForm(data.tags);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [updatedTags]);
 
   /////////////////////////////
   // SEARCH INPUT FILTER
@@ -455,6 +457,18 @@ function Page() {
             prevValue.filter((tag) => tag.name !== event.target.textContent)
           );
         }}
+      />
+      <AddTagForm
+        formIsOpen={modalsState.addTagModalIsShown}
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            addTagModalIsShown: false,
+          }))
+        }
+        resetFormValues={!modalsState.addTagModalIsShown}
+        setToolsFrontend={setUpdatedTags}
+        tags={tags}
       />
       <LoginAndSignupForms
         formIsOpen={modalsState.logInModalIsShown}
