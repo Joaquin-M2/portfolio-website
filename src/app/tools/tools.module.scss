@@ -45,3 +45,12 @@
   position: relative;
   font-family: $texts-fonts;
 }
+
+//////////////////////////////////////////////////
+/// ADD TAG - UPDATE TAG - DELETE TAG FORMS
+.smallFormInnerContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 1rem;
+}

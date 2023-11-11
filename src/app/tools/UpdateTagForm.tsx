@@ -14,6 +14,8 @@ import Input from "../../components/Form/Input/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createRequest } from "../../utils/requests";
 
+import styles from "./tools.module.scss";
+
 interface UpdateToolFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
@@ -110,14 +112,7 @@ function UpdateTagForm({
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "2rem",
-            margin: "0 1rem",
-          }}
-        >
+        <div className={styles.smallFormInnerContainer}>
           <Input
             allTags={tags}
             formIsOpen={formIsOpen}

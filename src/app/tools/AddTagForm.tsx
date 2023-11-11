@@ -13,6 +13,8 @@ import Input from "../../components/Form/Input/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createRequest } from "../../utils/requests";
 
+import styles from "./tools.module.scss";
+
 interface AddToolFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
@@ -104,9 +106,7 @@ function AddTagForm({
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
       >
-        <div
-          style={{ display: "flex", alignItems: "center", margin: "0 1rem" }}
-        >
+        <div className={styles.smallFormInnerContainer}>
           <Input
             allTags={tags}
             formIsOpen={formIsOpen}
