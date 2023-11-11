@@ -16,7 +16,7 @@ import { createRequest } from "../../utils/requests";
 
 import styles from "./tools.module.scss";
 
-interface UpdateToolFormProps {
+interface UpdateTagFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
   id?: string;
@@ -36,7 +36,7 @@ function UpdateTagForm({
   resetFormValues,
   setToolsFrontend,
   tags,
-}: UpdateToolFormProps) {
+}: UpdateTagFormProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
     message: "",
