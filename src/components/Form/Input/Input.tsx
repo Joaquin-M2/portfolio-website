@@ -50,7 +50,7 @@ const Input = forwardRef<
     function checkTextField() {
       if (
         watchedValue.trim() === "" ||
-        watchedValue.length < 3 ||
+        watchedValue.length < 2 ||
         watchedValue.length > 50
       ) {
         setIsError(true);
