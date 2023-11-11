@@ -220,6 +220,17 @@ const Input = forwardRef<
             </div>
           </>
         );
+      } else if (type === "selectSingle") {
+        return (
+          <select
+            className={styles.selectInput}
+            name="tags"
+            ref={ref as React.Ref<HTMLSelectElement>}
+            {...props}
+          >
+            {createAllTagsList()}
+          </select>
+        );
       } else if (type === "textarea") {
         return (
           <textarea
