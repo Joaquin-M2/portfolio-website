@@ -11,6 +11,7 @@ import MenuCard from "../../components/MenuCard/MenuCard";
 import LoginAndSignupForms from "./LoginAndSignupForms";
 import AddToolForm from "./AddToolForm";
 import AddTagForm from "./AddTagForm";
+import UpdateTagForm from "./UpdateTagForm";
 
 interface Tool {
   _id: string;
@@ -41,9 +42,9 @@ function Page() {
     signUpModalIsShown: false,
     addToolModalIsShown: false,
     addTagModalIsShown: false,
-    modifyTagModalIsShown: false,
+    updateTagModalIsShown: false,
     deleteTagModalIsShown: false,
-    modifyUserModalIsShown: false,
+    updateUserModalIsShown: false,
     deleteUserModalIsShown: false,
   });
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
@@ -356,11 +357,11 @@ function Page() {
               onClick={() => {
                 setModalsState((prevValue) => ({
                   ...prevValue,
-                  modifyTagModalIsShown: true,
+                  updateTagModalIsShown: true,
                 }));
               }}
             >
-              Modify tag
+              Update tag
             </li>
             <li
               onClick={() => {
@@ -467,6 +468,18 @@ function Page() {
           }))
         }
         resetFormValues={!modalsState.addTagModalIsShown}
+        setToolsFrontend={setUpdatedTags}
+        tags={tags}
+      />
+      <UpdateTagForm
+        formIsOpen={modalsState.updateTagModalIsShown}
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            updateTagModalIsShown: false,
+          }))
+        }
+        resetFormValues={!modalsState.updateTagModalIsShown}
         setToolsFrontend={setUpdatedTags}
         tags={tags}
       />
