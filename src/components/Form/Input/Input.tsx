@@ -159,9 +159,9 @@ const Input = forwardRef<
       if (watchedValue) checkValidationType(type);
     }, [watchedValue]);
 
-    const dropdownOptions =
-      allTags && allTags.length ? (
-        allTags
+    function createAllTagsList() {
+      if (allTags && allTags.length && selectedTagsAddToolForm) {
+        return allTags
           .filter(
             (tag) =>
               !selectedTagsAddToolForm.some(
@@ -172,10 +172,18 @@ const Input = forwardRef<
             <option key={id} value={tag._id} onClick={handleAddTag}>
               {tag.name}
             </option>
-          ))
-      ) : (
-        <option>Loading...</option>
-      );
+          ));
+      } else if (allTags && allTags.length) {
+        return allTags.map((tag, id) => (
+          <option key={id} value={tag._id} onClick={handleAddTag}>
+            {tag.name}
+          </option>
+        ));
+      } else {
+        return <option>Loading...</option>;
+      }
+    }
+
     const inputJsx = () => {
       if (type === "selectMultiple") {
         return (
@@ -188,7 +196,7 @@ const Input = forwardRef<
                 ref={ref as React.Ref<HTMLSelectElement>}
                 {...props}
               >
-                {dropdownOptions}
+                {createAllTagsList()}
               </select>
               <div className={styles.tagsContainer}>
                 {allTags &&
