@@ -50,6 +50,10 @@
 /// ADD TAG - UPDATE TAG - DELETE TAG FORMS
 .smallFormInnerContainer {
   display: flex;
+}
+
+.smallFormInnerContainer,
+.smallFormInnerContainerVertical {
   align-items: center;
   gap: 2rem;
   margin: 0 1rem;
@@ -63,4 +67,13 @@
 .deleteTagQuestion {
   display: flex;
   gap: 0.5rem;
+}
+
+.deleteUserQuestion {
+  text-align: center;
+  margin-bottom: 1rem;
+
+  & .userEmail {
+    text-decoration: underline;
+  }
 }
