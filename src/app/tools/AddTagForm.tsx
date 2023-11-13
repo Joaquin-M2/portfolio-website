@@ -102,7 +102,7 @@ function AddTagForm({
       >
         <div className={styles.smallFormInnerContainer}>
           <Input
-            allTags={tags}
+            allOptions={tags}
             formIsOpen={formIsOpen}
             placeholder="All tags"
             type="selectMultiple"

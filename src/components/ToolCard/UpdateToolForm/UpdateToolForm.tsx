@@ -15,7 +15,7 @@ import { createRequest } from "../../../utils/requests";
 import { urlRegExp } from "../../../utils/regular-expressions";
 
 interface UpdateToolFormProps {
-  allTags: any[];
+  allOptions: any[];
   formIsOpen: boolean;
   handleAddTag: (event) => void;
   handleRemoveTag: (event) => void;
@@ -36,7 +36,7 @@ interface FormInputs {
 }
 
 function UpdateToolForm({
-  allTags,
+  allOptions,
   formIsOpen,
   handleAddTag,
   handleRemoveTag,
@@ -187,7 +187,7 @@ function UpdateToolForm({
           handleAddTag={handleAddTag}
           handleRemoveTag={handleRemoveTag}
           selectedTagsAddToolForm={selectedTagsAddToolForm}
-          allTags={allTags}
+          allOptions={allOptions}
           aria-invalid={errors.tags ? true : false}
           watchedValue={watch("tags")}
           error={errors.tags && "You need to select at least 1 tag."}

@@ -174,7 +174,7 @@ function AddToolForm({
           handleAddTag={handleAddTag}
           handleRemoveTag={handleRemoveTag}
           selectedTagsAddToolForm={selectedTagsAddToolForm}
-          allTags={tags}
+          allOptions={tags}
           aria-invalid={errors.tags ? true : false}
           watchedValue={watch("tags")}
           error={errors.tags && "You need to select at least 1 tag."}

@@ -108,7 +108,7 @@ function UpdateTagForm({
       >
         <div className={styles.smallFormInnerContainer}>
           <Input
-            allTags={tags}
+            allOptions={tags}
             formIsOpen={formIsOpen}
             placeholder="Choose tag"
             type="selectSingle"
