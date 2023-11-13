@@ -15,7 +15,7 @@ interface InputProps {
   handleRemoveTag?: (event) => void;
   id: string;
   placeholder: string;
-  allTags?: any[];
+  allOptions?: any[];
   toolTags?: any[];
   type: string;
   watchedValue: string;
@@ -37,7 +37,7 @@ const Input = forwardRef<
       formIsOpen,
       id,
       placeholder,
-      allTags,
+      allOptions,
       toolTags,
       type,
       ...props
@@ -159,9 +159,9 @@ const Input = forwardRef<
       if (watchedValue) checkValidationType(type);
     }, [watchedValue]);
 
-    function createAllTagsList() {
-      if (allTags && allTags.length && selectedTagsAddToolForm) {
-        return allTags
+    function createAllOptionsList() {
+      if (allOptions && allOptions.length && selectedTagsAddToolForm) {
+        return allOptions
           .filter(
             (tag) =>
               !selectedTagsAddToolForm.some(
@@ -173,10 +173,14 @@ const Input = forwardRef<
               {tag.name}
             </option>
           ));
-      } else if (allTags && allTags.length) {
-        return allTags.map((tag, id) => (
-          <option key={id} value={tag._id} onClick={handleAddTag}>
-            {tag.name}
+      } else if (allOptions && allOptions.length) {
+        return allOptions.map((option, id) => (
+          <option
+            key={id}
+            value={option._id || null}
+            onClick={handleAddTag || null}
+          >
+            {option.name || option.email || option}
           </option>
         ));
       } else {
@@ -196,11 +200,11 @@ const Input = forwardRef<
                 ref={ref as React.Ref<HTMLSelectElement>}
                 {...props}
               >
-                {createAllTagsList()}
+                {createAllOptionsList()}
               </select>
               <div className={styles.tagsContainer}>
-                {allTags &&
-                allTags.length &&
+                {allOptions &&
+                allOptions.length &&
                 selectedTagsAddToolForm &&
                 selectedTagsAddToolForm.length
                   ? selectedTagsAddToolForm.map((selectedTag, id) => (
@@ -210,7 +214,7 @@ const Input = forwardRef<
                         handleRemoveFilterTag={handleRemoveTag}
                       >
                         {
-                          allTags.find((tag) => tag._id === selectedTag._id)
+                          allOptions.find((tag) => tag._id === selectedTag._id)
                             .name
                         }
                       </Tag>
@@ -228,7 +232,7 @@ const Input = forwardRef<
             ref={ref as React.Ref<HTMLSelectElement>}
             {...props}
           >
-            {createAllTagsList()}
+            {createAllOptionsList()}
           </select>
         );
       } else if (type === "textarea") {
