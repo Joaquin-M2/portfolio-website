@@ -12,6 +12,7 @@ import LoginAndSignupForms from "./LoginAndSignupForms";
 import AddToolForm from "./AddToolForm";
 import AddTagForm from "./AddTagForm";
 import UpdateTagForm from "./UpdateTagForm";
+import DeleteTagForm from "./DeleteTagForm";
 
 interface Tool {
   _id: string;
@@ -480,6 +481,18 @@ function Page() {
           }))
         }
         resetFormValues={!modalsState.updateTagModalIsShown}
+        setToolsFrontend={setUpdatedTags}
+        tags={tags}
+      />
+      <DeleteTagForm
+        formIsOpen={modalsState.deleteTagModalIsShown}
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            deleteTagModalIsShown: false,
+          }))
+        }
+        resetFormValues={!modalsState.deleteTagModalIsShown}
         setToolsFrontend={setUpdatedTags}
         tags={tags}
       />
