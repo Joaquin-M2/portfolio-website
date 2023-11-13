@@ -18,7 +18,7 @@ function Tag({ children, isFilterButton, handleRemoveFilterTag }: TagProps) {
           {children}
         </button>
       ) : (
-        <div className={styles.tag}>{children}</div>
+        <span className={styles.tag}>{children}</span>
       )}
     </>
   );
