@@ -41,7 +41,6 @@ function UpdateTagForm({
     status: 500,
     message: "",
   });
-  const [requestIsSuccessful, setRequestIsSuccessful] = useState(false);
   const selectSingleInput = useRef<HTMLSelectElement>();
 
   useEffect(() => {
@@ -52,7 +51,6 @@ function UpdateTagForm({
       reset();
       setTimeout(() => {
         setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
-        setRequestIsSuccessful(false);
       }, 500); // Time until CSS transition finishes.
     }
   }, [formIsOpen]);
@@ -83,9 +81,6 @@ function UpdateTagForm({
         message: result.message,
       });
 
-      if (response.status >= 200 && response.status < 400) {
-        setRequestIsSuccessful(true);
-      }
       setToolsFrontend((prevValue) => [...prevValue, id]);
     } catch (error) {
       setFormResponse({
@@ -103,7 +98,6 @@ function UpdateTagForm({
       hideModal={hideModal}
       targetForm={`update-tag-form-${id}`}
       title="Update Tag"
-      requestIsSuccessful={requestIsSuccessful}
     >
       <Form
         hasFieldset

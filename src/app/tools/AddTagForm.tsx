@@ -40,14 +40,12 @@ function AddTagForm({
     status: 500,
     message: "",
   });
-  const [requestIsSuccessful, setRequestIsSuccessful] = useState(false);
 
   useEffect(() => {
     if (!formIsOpen) {
       reset();
       setTimeout(() => {
         setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
-        setRequestIsSuccessful(false);
       }, 500); // Time until CSS transition finishes.
     }
   }, [formIsOpen]);
@@ -77,9 +75,6 @@ function AddTagForm({
         message: result.message,
       });
 
-      if (response.status >= 200 && response.status < 400) {
-        setRequestIsSuccessful(true);
-      }
       setToolsFrontend((prevValue) => [...prevValue, id]);
     } catch (error) {
       setFormResponse({
@@ -97,7 +92,6 @@ function AddTagForm({
       hideModal={hideModal}
       targetForm={`add-tag-form-${id}`}
       title="Add Tag"
-      requestIsSuccessful={requestIsSuccessful}
     >
       <Form
         hasFieldset
