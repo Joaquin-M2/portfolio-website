@@ -14,6 +14,7 @@ import AddTagForm from "./AddTagForm";
 import UpdateTagForm from "./UpdateTagForm";
 import DeleteTagForm from "./DeleteTagForm";
 import UpdateUserForm from "./UpdateUserForm";
+import DeleteUserForm from "./DeleteUserForm";
 
 interface Tool {
   _id: string;
@@ -506,6 +507,16 @@ function Page() {
           }))
         }
         resetFormValues={!modalsState.updateUserModalIsShown}
+      />
+      <DeleteUserForm
+        formIsOpen={modalsState.deleteUserModalIsShown}
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            deleteUserModalIsShown: false,
+          }))
+        }
+        resetFormValues={!modalsState.deleteUserModalIsShown}
       />
       <LoginAndSignupForms
         formIsOpen={modalsState.logInModalIsShown}
