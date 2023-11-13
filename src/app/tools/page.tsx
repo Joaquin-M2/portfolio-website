@@ -13,6 +13,7 @@ import AddToolForm from "./AddToolForm";
 import AddTagForm from "./AddTagForm";
 import UpdateTagForm from "./UpdateTagForm";
 import DeleteTagForm from "./DeleteTagForm";
+import UpdateUserForm from "./UpdateUserForm";
 
 interface Tool {
   _id: string;
@@ -245,7 +246,7 @@ function Page() {
               id={_id.toString()}
               key={_id}
               logo={iconUrl}
-              allTags={tags}
+              allOptions={tags}
               toolTags={toolTags}
               title={title}
               description={description}
@@ -390,11 +391,11 @@ function Page() {
               onClick={() => {
                 setModalsState((prevValue) => ({
                   ...prevValue,
-                  modifyUserModalIsShown: true,
+                  updateUserModalIsShown: true,
                 }));
               }}
             >
-              Modify user
+              Update user
             </li>
             <li
               onClick={() => {
@@ -495,6 +496,16 @@ function Page() {
         resetFormValues={!modalsState.deleteTagModalIsShown}
         setToolsFrontend={setUpdatedTags}
         tags={tags}
+      />
+      <UpdateUserForm
+        formIsOpen={modalsState.updateUserModalIsShown}
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            updateUserModalIsShown: false,
+          }))
+        }
+        resetFormValues={!modalsState.updateUserModalIsShown}
       />
       <LoginAndSignupForms
         formIsOpen={modalsState.logInModalIsShown}
