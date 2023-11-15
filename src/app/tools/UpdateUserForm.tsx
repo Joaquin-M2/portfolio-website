@@ -37,17 +37,19 @@ function UpdateUserForm({
   const USER_ROLES = ["admin", "user"];
 
   useEffect(() => {
-    fetch(createRequest({ urlPath: "/user" }))
-      .then((response) => response.json())
-      .then((data) => {
-        setUsers(data.users);
-      })
-      .catch((error) => console.log(error));
-  }, [usersFrontend]);
+    if (users.length) {
+      setValue("email", selectSingleInput.current.selectedOptions[0].innerText);
+    }
+  }, [users]);
 
   useEffect(() => {
     if (formIsOpen) {
-      setValue("email", selectSingleInput.current.selectedOptions[0].innerText);
+      fetch(createRequest({ urlPath: "/user" }))
+        .then((response) => response.json())
+        .then((data) => {
+          setUsers(data.users);
+        })
+        .catch((error) => console.log(error));
     }
     if (!formIsOpen) {
       reset();
@@ -55,7 +57,7 @@ function UpdateUserForm({
         setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
       }, 500); // Time until CSS transition finishes.
     }
-  }, [formIsOpen]);
+  }, [formIsOpen, usersFrontend]);
 
   const {
     register,
@@ -67,7 +69,6 @@ function UpdateUserForm({
   } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-    console.log(data);
     try {
       const response = await fetch(
         createRequest({

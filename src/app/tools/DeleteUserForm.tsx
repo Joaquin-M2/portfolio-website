@@ -31,13 +31,12 @@ function DeleteUserForm({
   const [usersFrontend, setUsersFrontend] = useState([]);
 
   useEffect(() => {
-    fetch(createRequest({ urlPath: "/user" }))
-      .then((response) => response.json())
-      .then((data) => {
-        setUsers(data.users);
-      })
-      .catch((error) => console.log(error));
-  }, [usersFrontend]);
+    if (users.length) {
+      setSelectedUserEmail(
+        selectSingleInput.current.selectedOptions[0].innerText
+      );
+    }
+  }, [users]);
 
   useEffect(() => {
     if (!formIsOpen) {
@@ -46,11 +45,14 @@ function DeleteUserForm({
       }, 500); // Time until CSS transition finishes.
     }
     if (formIsOpen) {
-      setSelectedUserEmail(
-        selectSingleInput.current.selectedOptions[0].innerText
-      );
+      fetch(createRequest({ urlPath: "/user" }))
+        .then((response) => response.json())
+        .then((data) => {
+          setUsers(data.users);
+        })
+        .catch((error) => console.log(error));
     }
-  }, [formIsOpen]);
+  }, [formIsOpen, usersFrontend]);
 
   const onSubmit = async () => {
     try {
