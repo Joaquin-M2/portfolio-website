@@ -268,6 +268,11 @@ function Page() {
     }
   }, [modalsState.logInModalIsShown]);
 
+  const logoutUser = () => {
+    localStorage.removeItem("userToken");
+    setUserIsLoggedIn(false);
+  };
+
   const renderUserManagementButtons: () => JSX.Element | JSX.Element[] = () => {
     return (
       <>
@@ -275,10 +280,7 @@ function Page() {
           <>
             <button
               className={styles.managementButton}
-              onClick={() => {
-                localStorage.removeItem("userToken");
-                setUserIsLoggedIn(false);
-              }}
+              onClick={() => logoutUser()}
             >
               Log Out
             </button>
@@ -322,16 +324,16 @@ function Page() {
         ? Date.now() >
           JSON.parse(atob(localStorage.getItem("userToken").split(".")[1]))
             .exp *
-            1000
+            100
         : true;
       if (tokenHasExpired) {
         setModalsState((prevValue) => ({
           ...prevValue,
           expiredTokenModalIsShown: true,
         }));
+        logoutUser();
         return false;
       } else {
-        console.log("lol");
         setModalsState((prevValue) => ({
           ...prevValue,
           [`${affectedModal}`]: true,
