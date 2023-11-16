@@ -77,3 +77,12 @@
     text-decoration: underline;
   }
 }
+
+//////////////////////////////////////////////////
+/// EXPIRED TOKEN
+.expiredTokenMessage {
+  background-image: radial-gradient($color-pale-red, white);
+  color: red;
+  padding: 0.5rem;
+  text-align: center;
+}

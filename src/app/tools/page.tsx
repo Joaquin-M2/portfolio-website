@@ -15,6 +15,7 @@ import UpdateTagForm from "./UpdateTagForm";
 import DeleteTagForm from "./DeleteTagForm";
 import UpdateUserForm from "./UpdateUserForm";
 import DeleteUserForm from "./DeleteUserForm";
+import Modal from "../../components/Modal/Modal";
 
 interface Tool {
   _id: string;
@@ -41,6 +42,7 @@ function Page() {
   const previousFilterTagsQuantity = useRef(selectedFilterTags.length);
   const searchFieldTools = useRef([]);
   const [modalsState, setModalsState] = useState({
+    expiredTokenModalIsShown: false,
     logInModalIsShown: false,
     signUpModalIsShown: false,
     addToolModalIsShown: false,
@@ -207,10 +209,7 @@ function Page() {
                 }))
               }
               setDeleteToolModalIsShown={() => {
-                setModalsState((prevValue) => ({
-                  ...prevValue,
-                  [`deleteToolModalIsShown${_id}`]: true,
-                }));
+                checkTokenHasExpired(`deleteToolModalIsShown${_id}`);
               }}
               selectedTagsAddToolForm={selectedTagsAddToolForm}
               updateToolModalIsShown={
@@ -223,10 +222,7 @@ function Page() {
                 }))
               }
               setUpdateToolModalIsShown={() => {
-                setModalsState((prevValue) => ({
-                  ...prevValue,
-                  [`updateToolModalIsShown${_id}`]: true,
-                }));
+                checkTokenHasExpired(`updateToolModalIsShown${_id}`);
 
                 setSelectedTagsAddToolForm(() => toolTags);
               }}
@@ -320,6 +316,31 @@ function Page() {
   /////////////////////////////
   // ADMIN MANAGEMENT BUTTONS
 
+  const checkTokenHasExpired = (affectedModal) => {
+    if (typeof window !== "undefined") {
+      const tokenHasExpired = localStorage.getItem("userToken")
+        ? Date.now() >
+          JSON.parse(atob(localStorage.getItem("userToken").split(".")[1]))
+            .exp *
+            1000
+        : true;
+      if (tokenHasExpired) {
+        setModalsState((prevValue) => ({
+          ...prevValue,
+          expiredTokenModalIsShown: true,
+        }));
+        return false;
+      } else {
+        console.log("lol");
+        setModalsState((prevValue) => ({
+          ...prevValue,
+          [`${affectedModal}`]: true,
+        }));
+        return true;
+      }
+    }
+  };
+
   const renderAdminManagementButtons: () =>
     | JSX.Element
     | JSX.Element[] = () => {
@@ -328,10 +349,7 @@ function Page() {
         <button
           className={styles.managementButton}
           onClick={() => {
-            setModalsState((prevValue) => ({
-              ...prevValue,
-              addToolModalIsShown: true,
-            }));
+            checkTokenHasExpired("addToolModalIsShown");
           }}
         >
           Add Tool
@@ -348,30 +366,21 @@ function Page() {
           <MenuCard isVisible={tagsMenuCardIsVisible} position="bottom-left">
             <li
               onClick={() => {
-                setModalsState((prevValue) => ({
-                  ...prevValue,
-                  addTagModalIsShown: true,
-                }));
+                checkTokenHasExpired("addTagModalIsShown");
               }}
             >
               Add tag
             </li>
             <li
               onClick={() => {
-                setModalsState((prevValue) => ({
-                  ...prevValue,
-                  updateTagModalIsShown: true,
-                }));
+                checkTokenHasExpired("updateTagModalIsShown");
               }}
             >
               Update tag
             </li>
             <li
               onClick={() => {
-                setModalsState((prevValue) => ({
-                  ...prevValue,
-                  deleteTagModalIsShown: true,
-                }));
+                checkTokenHasExpired("deleteTagModalIsShown");
               }}
             >
               Delete tag
@@ -390,20 +399,14 @@ function Page() {
           <MenuCard isVisible={usersMenuCardIsVisible} position="bottom-left">
             <li
               onClick={() => {
-                setModalsState((prevValue) => ({
-                  ...prevValue,
-                  updateUserModalIsShown: true,
-                }));
+                checkTokenHasExpired("updateUserModalIsShown");
               }}
             >
               Update user
             </li>
             <li
               onClick={() => {
-                setModalsState((prevValue) => ({
-                  ...prevValue,
-                  deleteUserModalIsShown: true,
-                }));
+                checkTokenHasExpired("deleteUserModalIsShown");
               }}
             >
               Delete user
@@ -544,6 +547,21 @@ function Page() {
         requestUrlPath="/user/signup"
         resetFormValues={!modalsState.signUpModalIsShown}
       />
+      <Modal
+        requestIsSuccessful
+        isShown={modalsState.expiredTokenModalIsShown}
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            expiredTokenModalIsShown: false,
+          }))
+        }
+        title="Expired Token"
+      >
+        <p className={styles.expiredTokenMessage}>
+          ⛔ Expired token. Log in again ⛔
+        </p>
+      </Modal>
       <main className={styles.mainContainer}>{renderToolCards()}</main>
     </>
   );
