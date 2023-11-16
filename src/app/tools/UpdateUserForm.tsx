@@ -37,7 +37,7 @@ function UpdateUserForm({
   const USER_ROLES = ["admin", "user"];
 
   useEffect(() => {
-    if (users.length) {
+    if (users && users.length) {
       setValue("email", selectSingleInput.current.selectedOptions[0].innerText);
     }
   }, [users]);
