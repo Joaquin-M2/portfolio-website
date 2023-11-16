@@ -61,7 +61,6 @@ function LoginAndSignupForms({
         setToolsFrontend((prevValue) => [...prevValue, id]);
       }, 500); // Time until CSS transition finishes.
     }
-    //console.log(errors);
   }, [formIsOpen]);
 
   let modalTitle;

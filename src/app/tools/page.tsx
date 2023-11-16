@@ -324,7 +324,7 @@ function Page() {
         ? Date.now() >
           JSON.parse(atob(localStorage.getItem("userToken").split(".")[1]))
             .exp *
-            100
+            1000
         : true;
       if (tokenHasExpired) {
         setModalsState((prevValue) => ({
