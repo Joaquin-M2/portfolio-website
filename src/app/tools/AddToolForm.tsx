@@ -88,7 +88,6 @@ function AddToolForm({
       return selectedTag._id;
     }); // Otherwise it would just pick the tags marked in the "Select tag(s)" dropdown.
     try {
-      console.log(data);
       const response = await fetch(
         createRequest({
           urlPath: requestUrlPath,
