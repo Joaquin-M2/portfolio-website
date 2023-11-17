@@ -16,6 +16,7 @@ import DeleteTagForm from "./DeleteTagForm";
 import UpdateUserForm from "./UpdateUserForm";
 import DeleteUserForm from "./DeleteUserForm";
 import Modal from "../../components/Modal/Modal";
+import checkJwtTokenHasExpired from "../../utils/check-user-token-expiration";
 
 interface Tool {
   _id: string;
@@ -32,7 +33,7 @@ interface Tool {
 }
 
 function Page() {
-  const [toolsInLocalStorage, setToolsInLocalStorage] = useState([]);
+  const [userAllFavoriteTools, setUserAllFavoriteTools] = useState([]);
   const [tools, setTools] = useState([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>();
   const [searchFieldValue, setSearchFieldValue] = useState("");
@@ -174,17 +175,18 @@ function Page() {
   // TOOL CARDS
 
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      JSON.parse(localStorage.getItem("favoritedToolsId"))
-    ) {
-      setToolsInLocalStorage(
-        JSON.parse(localStorage.getItem("favoritedToolsId"))
-      );
-    } else {
-      setToolsInLocalStorage([]);
+    if (typeof window !== "undefined") {
+      if (JSON.parse(localStorage.getItem("accountFavoriteToolsId"))) {
+        setUserAllFavoriteTools((prevValue) => {
+          const allValues = [
+            ...JSON.parse(localStorage.getItem("accountFavoriteToolsId")),
+            ...prevValue,
+          ];
+          return [...new Set(allValues)];
+        });
+      }
     }
-  }, []);
+  }, [userIsLoggedIn]);
 
   const renderToolCards: () => JSX.Element | JSX.Element[] = () => {
     if (isLoading) {
@@ -193,8 +195,8 @@ function Page() {
       return filteredTools
         .sort(
           (a, b) =>
-            toolsInLocalStorage.indexOf(b._id.toString()) -
-            toolsInLocalStorage.indexOf(a._id.toString())
+            userAllFavoriteTools.indexOf(b._id.toString()) -
+            userAllFavoriteTools.indexOf(a._id.toString())
         )
         .map(({ _id, iconUrl, title, description, tags: toolTags, url }) => {
           return (
@@ -247,7 +249,7 @@ function Page() {
               toolTags={toolTags}
               title={title}
               description={description}
-              toolsInLocalStorage={toolsInLocalStorage}
+              userAllFavoriteTools={userAllFavoriteTools}
               url={url}
             />
           );
@@ -270,6 +272,8 @@ function Page() {
 
   const logoutUser = () => {
     localStorage.removeItem("userToken");
+    localStorage.removeItem("accountFavoriteToolsId");
+    setUserAllFavoriteTools([]);
     setUserIsLoggedIn(false);
   };
 
@@ -320,13 +324,7 @@ function Page() {
 
   const checkTokenHasExpired = (affectedModal) => {
     if (typeof window !== "undefined") {
-      const tokenHasExpired = localStorage.getItem("userToken")
-        ? Date.now() >
-          JSON.parse(atob(localStorage.getItem("userToken").split(".")[1]))
-            .exp *
-            1000
-        : true;
-      if (tokenHasExpired) {
+      if (checkJwtTokenHasExpired() === true) {
         setModalsState((prevValue) => ({
           ...prevValue,
           expiredTokenModalIsShown: true,

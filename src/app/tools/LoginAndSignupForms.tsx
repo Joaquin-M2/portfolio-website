@@ -11,6 +11,7 @@ import Input from "../../components/Form/Input/Input";
 import { emailRegExp } from "../../utils/regular-expressions";
 import Form from "../../components/Form/Form";
 import Modal from "../../components/Modal/Modal";
+import getUserId from "../../utils/get-user-id";
 
 interface LoginAndSignupFormsProps {
   formIsOpen: boolean;
@@ -109,6 +110,25 @@ function LoginAndSignupForms({
         setRequestIsSuccessful(true);
         if (requestUrlPath === "/user/login") {
           localStorage.setItem("userToken", result.token);
+          // If tools are favorited before logging in, they are kept after logging in:
+          const accountFavoriteToolsId = JSON.parse(
+            localStorage.getItem("accountFavoriteToolsId") || "[]"
+          );
+          accountFavoriteToolsId.unshift(...result.favoriteTools);
+          localStorage.setItem(
+            "accountFavoriteToolsId",
+            JSON.stringify([...new Set(accountFavoriteToolsId)])
+          );
+          // Save into the user account those tools that were favorited before logging in:
+          if (accountFavoriteToolsId.length > result.favoriteTools.length) {
+            fetch(
+              createRequest({
+                urlPath: `/user/${getUserId()}`,
+                method: "PATCH",
+                requestBody: { favoriteTools: accountFavoriteToolsId },
+              })
+            );
+          }
         }
       }
     } catch (error) {

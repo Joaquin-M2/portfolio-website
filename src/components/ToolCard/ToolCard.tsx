@@ -15,6 +15,9 @@ import MenuCard from "../MenuCard/MenuCard";
 import styles from "./toolCard.module.scss";
 import DeleteToolForm from "./DeleteToolForm/DeleteToolForm";
 import UpdateToolForm from "./UpdateToolForm/UpdateToolForm";
+import checkJwtHasExpired from "../../utils/check-user-token-expiration";
+import { createRequest } from "../../utils/requests";
+import getUserId from "../../utils/get-user-id";
 
 interface ToolCardProps {
   backendResponseDeleteTool?: { status: number; message: string };
@@ -34,7 +37,7 @@ interface ToolCardProps {
   allOptions: any[];
   toolTags: { _id: string; name: string }[];
   title: string;
-  toolsInLocalStorage: string[];
+  userAllFavoriteTools: string[];
   url: string;
 }
 
@@ -55,14 +58,18 @@ export default function ToolCard({
   allOptions,
   toolTags,
   title,
-  toolsInLocalStorage,
+  userAllFavoriteTools,
   url,
 }: ToolCardProps) {
   const [favoriteButtonIsChecked, setFavoriteButtonIsChecked] = useState(false);
   useEffect(() => {
-    toolsInLocalStorage.includes(id.toString()) &&
-      setFavoriteButtonIsChecked(true);
-  }, [toolsInLocalStorage]);
+    if (localStorage.getItem("accountFavoriteToolsId")) {
+      userAllFavoriteTools.includes(id.toString()) &&
+        setFavoriteButtonIsChecked(true);
+    } else {
+      setFavoriteButtonIsChecked(false);
+    }
+  }, [userAllFavoriteTools]);
   const [menuCardIsVisible, setMenuCardIsVisible] = useState(false);
 
   ////////////////////////////
@@ -70,9 +77,8 @@ export default function ToolCard({
 
   const handleCheck = () => {
     let favoritedTools =
-      JSON.parse(localStorage.getItem("favoritedToolsId")) || [];
+      JSON.parse(localStorage.getItem("accountFavoriteToolsId")) || [];
     if (favoritedTools.includes(id)) {
-      // Remove the "id" in localStorage if it is not in localStorage
       favoritedTools = favoritedTools.filter((toolId) => {
         return toolId !== id;
       });
@@ -83,7 +89,20 @@ export default function ToolCard({
 
       setFavoriteButtonIsChecked(true);
     }
-    localStorage.setItem("favoritedToolsId", JSON.stringify(favoritedTools));
+    localStorage.setItem(
+      "accountFavoriteToolsId",
+      JSON.stringify(favoritedTools)
+    );
+    // Update user tools saved in his account:
+    if (localStorage.getItem("userToken") && checkJwtHasExpired() === false) {
+      fetch(
+        createRequest({
+          urlPath: `/user/${getUserId()}`,
+          method: "PATCH",
+          requestBody: { favoriteTools: favoritedTools },
+        })
+      );
+    }
   };
 
   return (
