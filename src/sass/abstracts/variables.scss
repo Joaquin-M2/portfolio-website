@@ -5,7 +5,13 @@ $main-color-button: white;
 $default-transition: all 0.5s ease-out;
 $quick-transition: all 0.2s ease-out;
 
-// // // // // // // // // // ----- COLORS -----
+////////////////////////////////////
+/// BORDERS
+
+$default-border-radius: 1rem;
+
+////////////////////////////////////
+/// COLORS
 
 // Shades of blue
 $color-intense-blue: #020072;
@@ -29,7 +35,8 @@ $active-top-navbar: rgba(255, 255, 255, 0.404);
 // Page Index - Home
 $body-text: white;
 
-// // // // // // // // // // ----- FONTS -----
+////////////////////////////////////
+/// FONTS
 
 // Titles
 $titles-fonts: "Orbitron", sans-serif;
@@ -37,7 +44,9 @@ $titles-fonts: "Orbitron", sans-serif;
 // Text
 $texts-fonts: Verdana, Geneva, Tahoma, sans-serif;
 
-// // // // // // // // // // ----- THEMES -----
+////////////////////////////////////
+/// THEMES
+///
 // ----------- PROJECT: Tatto Parlor
 
 // Font-Size
