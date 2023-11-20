@@ -1,0 +1,60 @@
+@import "../../sass/abstracts/variables.scss";
+
+.mainContainer {
+  margin: 1rem 0;
+}
+
+.innerContainer {
+  border: 1px solid $color-intense-grey;
+  margin-top: 0.5rem;
+  min-width: 10rem;
+  height: 25rem;
+  border-radius: $default-border-radius;
+  overflow-y: scroll;
+}
+
+.title {
+  color: $color-intense-grey;
+  font-family: $titles-fonts;
+  font-size: 1.2rem;
+}
+
+.list {
+  list-style: none;
+}
+
+.item {
+  font-size: 1.2rem;
+  cursor: default;
+  padding: 0.5rem 1rem;
+}
+
+.itemIsClickable {
+  font-size: 1.5rem;
+  padding: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-pale-grey;
+  }
+
+  &:active {
+    background-color: $color-intense-grey;
+  }
+}
+
+.itemContainer {
+  &:first-of-type {
+    & .item,
+    .itemIsClickable {
+      padding-top: 1rem;
+    }
+  }
+
+  &:last-of-type {
+    & .itemIsClickable,
+    .item {
+      padding-bottom: 1rem;
+    }
+  }
+}
