@@ -17,6 +17,7 @@ import UpdateUserForm from "./UpdateUserForm";
 import DeleteUserForm from "./DeleteUserForm";
 import Modal from "../../components/Modal/Modal";
 import checkJwtTokenHasExpired from "../../utils/check-user-token-expiration";
+import AddIconForm from "./AddIconForm";
 
 interface Tool {
   _id: string;
@@ -39,6 +40,7 @@ function Page() {
   const [searchFieldValue, setSearchFieldValue] = useState("");
   const [selectedFilterTags, setSelectedFilterTags] = useState([]);
   const [tags, setTags] = useState([]);
+  const [icons, setIcons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const previousFilterTagsQuantity = useRef(selectedFilterTags.length);
   const searchFieldTools = useRef([]);
@@ -47,6 +49,9 @@ function Page() {
     logInModalIsShown: false,
     signUpModalIsShown: false,
     addToolModalIsShown: false,
+    addIconModalIsShown: false,
+    updateIconModalIsShown: false,
+    deleteIconModalIsShown: false,
     addTagModalIsShown: false,
     updateTagModalIsShown: false,
     deleteTagModalIsShown: false,
@@ -54,10 +59,12 @@ function Page() {
     deleteUserModalIsShown: false,
   });
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+  const [iconsMenuCardIsVisible, setIconsMenuCardIsVisible] = useState(false);
   const [tagsMenuCardIsVisible, setTagsMenuCardIsVisible] = useState(false);
   const [usersMenuCardIsVisible, setUsersMenuCardIsVisible] = useState(false);
   const [updatedTools, setUpdatedTools] = useState([]);
   const [updatedTags, setUpdatedTags] = useState([]);
+  const [updatedIcons, setUpdatedIcons] = useState([]);
   // ADD TOOL FORM
   const [tagsAddToolForm, setTagsAddToolForm] = useState([]);
   const [selectedTagsAddToolForm, setSelectedTagsAddToolForm] = useState([]);
@@ -83,7 +90,7 @@ function Page() {
       })
       .then(() => setIsLoading(false))
       .catch((error) => console.log(error));
-  }, [updatedTools, updatedTags]);
+  }, [updatedTools, updatedTags, updatedIcons]);
 
   useEffect(() => {
     fetch(createRequest({ urlPath: "/tags" }))
@@ -94,6 +101,16 @@ function Page() {
       })
       .catch((error) => console.log(error));
   }, [updatedTags]);
+
+  useEffect(() => {
+    fetch(createRequest({ urlPath: "/icons" }))
+      .then((response) => response.json())
+      .then((data) => {
+        setIcons(data.icons);
+        //setTagsAddToolForm(data.tags);
+      })
+      .catch((error) => console.log(error));
+  }, [updatedIcons]);
 
   /////////////////////////////
   // SEARCH INPUT FILTER
@@ -358,6 +375,39 @@ function Page() {
           <button
             className={styles.managementButton}
             onClick={() => {
+              setIconsMenuCardIsVisible((prevValue) => !prevValue);
+            }}
+          >
+            Icons
+          </button>
+          <MenuCard isVisible={iconsMenuCardIsVisible} position="bottom-left">
+            <li
+              onClick={() => {
+                checkTokenHasExpired("addIconModalIsShown");
+              }}
+            >
+              Add icon
+            </li>
+            <li
+              onClick={() => {
+                checkTokenHasExpired("updateIconModalIsShown");
+              }}
+            >
+              Update icon
+            </li>
+            <li
+              onClick={() => {
+                checkTokenHasExpired("deleteIconModalIsShown");
+              }}
+            >
+              Delete icon
+            </li>
+          </MenuCard>
+        </div>
+        <div className={styles.menuButtonContainer}>
+          <button
+            className={styles.managementButton}
+            onClick={() => {
               setTagsMenuCardIsVisible((prevValue) => !prevValue);
             }}
           >
@@ -464,6 +514,18 @@ function Page() {
             prevValue.filter((tag) => tag.name !== event.target.textContent)
           );
         }}
+      />
+      <AddIconForm
+        formIsOpen={modalsState.addIconModalIsShown}
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            addIconModalIsShown: false,
+          }))
+        }
+        resetFormValues={!modalsState.addIconModalIsShown}
+        setToolsFrontend={setUpdatedIcons}
+        icons={icons}
       />
       <AddTagForm
         formIsOpen={modalsState.addTagModalIsShown}
