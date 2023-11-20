@@ -14,6 +14,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { createRequest } from "../../utils/requests";
 
 import styles from "./tools.module.scss";
+import ListContainer from "../../components/ListContainer/ListContainer";
 
 interface AddToolFormProps {
   formIsOpen: boolean;
@@ -101,12 +102,7 @@ function AddTagForm({
         resetFormValues={resetFormValues}
       >
         <div className={styles.smallFormInnerContainer}>
-          <Input
-            allOptions={tags}
-            formIsOpen={formIsOpen}
-            placeholder="All tags"
-            type="selectMultiple"
-          />
+          <ListContainer items={tags} title="All tags" />
           <Input
             aria-invalid={errors.name ? true : false}
             watchedValue={watch("name")}
