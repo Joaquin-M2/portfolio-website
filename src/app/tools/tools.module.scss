@@ -50,6 +50,7 @@
 /// ADD TAG - UPDATE TAG - DELETE TAG FORMS
 .smallFormInnerContainer {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .smallFormInnerContainer,
@@ -62,6 +63,11 @@
   & .smallFormInnerContainerSection {
     flex: 1 1 auto;
   }
+}
+
+.addIconFormInputsWrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .deleteTagQuestion {
