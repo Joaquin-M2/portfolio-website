@@ -18,6 +18,7 @@ import DeleteUserForm from "./DeleteUserForm";
 import Modal from "../../components/Modal/Modal";
 import checkJwtTokenHasExpired from "../../utils/check-user-token-expiration";
 import AddIconForm from "./AddIconForm";
+import UpdateIconForm from "./UpdateIconForm";
 
 interface Tool {
   _id: string;
@@ -524,6 +525,18 @@ function Page() {
           }))
         }
         resetFormValues={!modalsState.addIconModalIsShown}
+        setToolsFrontend={setUpdatedIcons}
+        icons={icons}
+      />
+      <UpdateIconForm
+        formIsOpen={modalsState.updateIconModalIsShown}
+        hideModal={() =>
+          setModalsState((prevValue) => ({
+            ...prevValue,
+            updateIconModalIsShown: false,
+          }))
+        }
+        resetFormValues={!modalsState.updateIconModalIsShown}
         setToolsFrontend={setUpdatedIcons}
         icons={icons}
       />
