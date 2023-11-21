@@ -65,9 +65,31 @@
   }
 }
 
-.addIconFormInputsWrapper {
+.addIconFormInputsWrapper,
+.updateIconFormInputsWrapper {
   display: flex;
   flex-direction: column;
+}
+
+.iconsSelectorAndImagesContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.iconsContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.iconWrapper {
+  text-align: center;
+}
+
+.iconTitle {
+  color: $color-intense-grey;
+  font-family: $titles-fonts;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .deleteTagQuestion {
