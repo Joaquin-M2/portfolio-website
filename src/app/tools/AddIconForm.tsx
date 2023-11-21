@@ -10,6 +10,7 @@ import React, {
 import Modal from "../../components/Modal/Modal";
 import Form from "../../components/Form/Form";
 import Input from "../../components/Form/Input/Input";
+import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createRequest } from "../../utils/requests";
 
@@ -140,6 +141,18 @@ function AddIconForm({
                 pattern: urlRegExp,
               })}
             />
+            <div className={styles.iconWrapper}>
+              <h5 className={styles.iconTitle}>Icon preview</h5>
+              <Image
+                src={
+                  watch("url") ||
+                  "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/No%20image.png"
+                }
+                alt={"Icon preview"}
+                width={60}
+                height={60}
+              />
+            </div>
           </div>
         </div>
       </Form>
