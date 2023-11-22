@@ -15,8 +15,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { createRequest } from "../../utils/requests";
 
 import styles from "./tools.module.scss";
-import { urlRegExp } from "../../utils/regular-expressions";
 import ListContainer from "../../components/ListContainer/ListContainer";
+import { NO_IMAGE_ICON_URL } from "../../utils/no-image-icon-url";
 
 interface AddIconFormProps {
   formIsOpen: boolean;
@@ -63,6 +63,9 @@ function AddIconForm({
   } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    if (!data.url) {
+      data.url = NO_IMAGE_ICON_URL;
+    }
     try {
       const response = await fetch(
         createRequest({
@@ -128,26 +131,16 @@ function AddIconForm({
             <Input
               aria-invalid={errors.url ? true : false}
               watchedValue={watch("url")}
-              error={
-                errors.url && "Invalid URL. Accepted format: <domain>/<path>"
-              }
               formIsOpen={formIsOpen}
               id="add-icon-url-input"
               placeholder="Icon url"
-              required
               type="url"
-              {...register("url", {
-                required: true,
-                pattern: urlRegExp,
-              })}
+              {...register("url")}
             />
             <div className={styles.iconWrapper}>
               <h5 className={styles.iconTitle}>Icon preview</h5>
               <Image
-                src={
-                  watch("url") ||
-                  "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/No%20image.png"
-                }
+                src={watch("url") || NO_IMAGE_ICON_URL}
                 alt={"Icon preview"}
                 width={60}
                 height={60}
