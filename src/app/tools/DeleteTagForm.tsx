@@ -16,7 +16,7 @@ import { createRequest } from "../../utils/requests";
 
 import styles from "./tools.module.scss";
 
-interface DeleteToolFormProps {
+interface DeleteTagFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
   id?: string;
@@ -32,7 +32,7 @@ function DeleteTagForm({
   resetFormValues,
   setToolsFrontend,
   tags,
-}: DeleteToolFormProps) {
+}: DeleteTagFormProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
     message: "",
@@ -70,12 +70,21 @@ function DeleteTagForm({
       });
 
       if (response.status >= 200 && response.status < 400) {
-        setSelectedTagName(
-          (
-            selectSingleInput.current.selectedOptions[0]
-              .nextElementSibling as HTMLElement
-          ).innerText
-        );
+        if (selectSingleInput.current.selectedOptions[0].nextElementSibling) {
+          setSelectedTagName(
+            (
+              selectSingleInput.current.selectedOptions[0]
+                .nextElementSibling as HTMLElement
+            ).innerText
+          );
+        } else {
+          setSelectedTagName(
+            (
+              selectSingleInput.current.selectedOptions[0]
+                .parentElement[0] as HTMLElement
+            ).innerText
+          );
+        }
       }
       setToolsFrontend((prevValue) => [...prevValue, id]);
     } catch (error) {
