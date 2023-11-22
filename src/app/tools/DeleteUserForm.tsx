@@ -71,12 +71,21 @@ function DeleteUserForm({
       });
 
       if (response.status >= 200 && response.status < 400) {
-        setSelectedUserEmail(
-          (
-            selectSingleInput.current.selectedOptions[0]
-              .nextElementSibling as HTMLElement
-          ).innerText
-        );
+        if (selectSingleInput.current.selectedOptions[0].nextElementSibling) {
+          setSelectedUserEmail(
+            (
+              selectSingleInput.current.selectedOptions[0]
+                .nextElementSibling as HTMLElement
+            ).innerText
+          );
+        } else {
+          setSelectedUserEmail(
+            (
+              selectSingleInput.current.selectedOptions[0]
+                .parentElement[0] as HTMLElement
+            ).innerText
+          );
+        }
       }
       setUsersFrontend((prevValue) => [...prevValue, id]);
     } catch (error) {
