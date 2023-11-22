@@ -17,6 +17,7 @@ import { createRequest } from "../../utils/requests";
 
 import styles from "./tools.module.scss";
 import { urlRegExp } from "../../utils/regular-expressions";
+import { NO_IMAGE_ICON_URL } from "../../utils/no-image-icon-url";
 
 interface UpdateIconFormProps {
   formIsOpen: boolean;
@@ -162,10 +163,7 @@ function UpdateIconForm({
               <div className={styles.iconWrapper}>
                 <h5 className={styles.iconTitle}>Current icon</h5>
                 <Image
-                  src={
-                    currentIconUrl ||
-                    "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/No%20image.png"
-                  }
+                  src={currentIconUrl || NO_IMAGE_ICON_URL}
                   alt={"Icon preview"}
                   width={60}
                   height={60}
@@ -174,10 +172,7 @@ function UpdateIconForm({
               <div className={styles.iconWrapper}>
                 <h5 className={styles.iconTitle}>New icon</h5>
                 <Image
-                  src={
-                    watch("url") ||
-                    "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/No%20image.png"
-                  }
+                  src={watch("url") || NO_IMAGE_ICON_URL}
                   alt={"New icon preview"}
                   width={60}
                   height={60}
