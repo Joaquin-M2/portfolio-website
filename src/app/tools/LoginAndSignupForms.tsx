@@ -11,7 +11,7 @@ import Input from "../../components/Form/Input/Input";
 import { emailRegExp } from "../../utils/regular-expressions";
 import Form from "../../components/Form/Form";
 import Modal from "../../components/Modal/Modal";
-import getUserId from "../../utils/get-user-id";
+import getUserTokenData from "../../utils/get-user-token-data";
 
 interface LoginAndSignupFormsProps {
   formIsOpen: boolean;
@@ -123,7 +123,7 @@ function LoginAndSignupForms({
           if (accountFavoriteToolsId.length > result.favoriteTools.length) {
             fetch(
               createRequest({
-                urlPath: `/user/${getUserId()}`,
+                urlPath: `/user/${getUserTokenData("userId")}`,
                 method: "PATCH",
                 requestBody: { favoriteTools: accountFavoriteToolsId },
               })
