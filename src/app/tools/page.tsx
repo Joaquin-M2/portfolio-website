@@ -20,6 +20,7 @@ import checkJwtTokenHasExpired from "../../utils/check-user-token-expiration";
 import AddIconForm from "./AddIconForm";
 import UpdateIconForm from "./UpdateIconForm";
 import DeleteIconForm from "./DeleteIconForm";
+import getUserTokenData from "../../utils/get-user-token-data";
 
 interface Tool {
   _id: string;
@@ -61,6 +62,7 @@ function Page() {
     deleteUserModalIsShown: false,
   });
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+  const [userIsAdmin, setUserIsAdmin] = useState(false);
   const [iconsMenuCardIsVisible, setIconsMenuCardIsVisible] = useState(false);
   const [tagsMenuCardIsVisible, setTagsMenuCardIsVisible] = useState(false);
   const [usersMenuCardIsVisible, setUsersMenuCardIsVisible] = useState(false);
@@ -113,6 +115,10 @@ function Page() {
       })
       .catch((error) => console.log(error));
   }, [updatedIcons]);
+
+  useEffect(() => {
+    setUserIsAdmin(getUserTokenData("role") === "admin");
+  }, [modalsState.logInModalIsShown]);
 
   /////////////////////////////
   // SEARCH INPUT FILTER
@@ -303,7 +309,10 @@ function Page() {
           <>
             <button
               className={styles.managementButton}
-              onClick={() => logoutUser()}
+              onClick={() => {
+                logoutUser();
+                setUserIsAdmin(false);
+              }}
             >
               Log Out
             </button>
@@ -483,9 +492,13 @@ function Page() {
         tags={tags}
       />
       <div className={styles.buttonsContainer}>
-        <div className={styles.adminManagementButtons}>
-          {renderAdminManagementButtons()}
-        </div>
+        {userIsAdmin ? (
+          <div className={styles.adminManagementButtons}>
+            {renderAdminManagementButtons()}
+          </div>
+        ) : (
+          <div></div>
+        )}
         <div className={styles.userManagementButtons}>
           {renderUserManagementButtons()}
         </div>
