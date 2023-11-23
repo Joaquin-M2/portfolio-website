@@ -516,6 +516,7 @@ function Page() {
         requestUrlPath="/tools"
         resetFormValues={!modalsState.addToolModalIsShown}
         tags={tagsAddToolForm}
+        icons={icons}
         selectedTagsAddToolForm={selectedTagsAddToolForm}
         setToolsFrontend={setUpdatedTools}
         handleAddTag={(event) => {
