@@ -378,6 +378,9 @@ function Page() {
           className={styles.managementButton}
           onClick={() => {
             checkTokenHasExpired("addToolModalIsShown");
+            setIconsMenuCardIsVisible(false);
+            setTagsMenuCardIsVisible(false);
+            setUsersMenuCardIsVisible(false);
           }}
         >
           Add Tool
