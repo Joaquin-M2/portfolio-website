@@ -55,7 +55,8 @@
 
 .toggleIconsContainer {
   display: flex;
-  gap: 1rem;
+  align-self: flex-start;
+  border-top-right-radius: 1rem;
 }
 
 .tagsContainer {
@@ -98,6 +99,14 @@
 
 .gearIconChecked {
   fill: black;
+}
+
+.toggleHeartLabel,
+.menuButtonContainer {
+  position: relative;
+  top: -1rem;
+  right: -1rem;
+  padding: 1rem 1rem 0;
 }
 
 // MENU
