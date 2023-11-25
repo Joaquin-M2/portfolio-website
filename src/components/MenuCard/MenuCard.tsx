@@ -6,9 +6,10 @@ interface MenuCardProps {
   children: JSX.Element | JSX.Element[];
   isVisible: boolean;
   position?: "bottom-left";
+  [x: string]: any;
 }
 
-function MenuCard({ children, isVisible, position }: MenuCardProps) {
+function MenuCard({ children, isVisible, position, ...props }: MenuCardProps) {
   return (
     <div
       className={`${styles.menuCard} ${isVisible && styles.menuCardIsVisible} ${
@@ -17,6 +18,7 @@ function MenuCard({ children, isVisible, position }: MenuCardProps) {
       onClick={(e) => {
         e.preventDefault();
       }}
+      {...props}
     >
       <ul className={styles.menuList}>{children}</ul>
     </div>

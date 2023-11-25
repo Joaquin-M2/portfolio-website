@@ -387,6 +387,8 @@ function Page() {
             className={styles.managementButton}
             onClick={() => {
               setIconsMenuCardIsVisible((prevValue) => !prevValue);
+              setTagsMenuCardIsVisible(false);
+              setUsersMenuCardIsVisible(false);
             }}
           >
             Icons
@@ -419,7 +421,9 @@ function Page() {
           <button
             className={styles.managementButton}
             onClick={() => {
+              setIconsMenuCardIsVisible(false);
               setTagsMenuCardIsVisible((prevValue) => !prevValue);
+              setUsersMenuCardIsVisible(false);
             }}
           >
             Tags
@@ -452,6 +456,8 @@ function Page() {
           <button
             className={styles.managementButton}
             onClick={() => {
+              setIconsMenuCardIsVisible(false);
+              setTagsMenuCardIsVisible(false);
               setUsersMenuCardIsVisible((prevValue) => !prevValue);
             }}
           >
