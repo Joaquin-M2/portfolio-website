@@ -1,13 +1,13 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
-import NavBar from '../components/NavBar/NavBar';
-import NavBarButton from '../components/NavBar/NavBarButton/NavBarButton';
+import NavBar from "../components/NavBar/NavBar";
+import NavBarButton from "../components/NavBar/NavBarButton/NavBarButton";
 
-import '../sass/main.scss';
+import "../sass/main.scss";
 
 export const metadata: Metadata = {
-  title: 'Joaquin-M2 website',
-  description: 'Projects, technologies and tools used by Joaquin-M2',
+  title: "Joaquin-M2 website",
+  description: "Projects, technologies and tools used by Joaquin-M2",
 };
 
 export default function RootLayout({
@@ -16,30 +16,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
         {children}
         <NavBar>
           <NavBarButton
-            href='/portfolio/projects'
-            pathnameStartsWith='/portfolio'
-            borderRadiusPosition='top-left'
+            href="/portfolio/projects"
+            pathnameStartsWith="/portfolio"
+            borderRadiusPosition="top-left"
           >
             Portfolio
           </NavBarButton>
-          <NavBarButton href='/skills/frontend' pathnameStartsWith='/skills'>
+          <NavBarButton href="/skills/frontend" pathnameStartsWith="/skills">
             Skills
           </NavBarButton>
-          <NavBarButton href='/' pathnameStartsWith='/'>
-            LOGO
+          <NavBarButton href="/" pathnameStartsWith="/">
+            HOME
           </NavBarButton>
-          <NavBarButton href='/contact' pathnameStartsWith='/contact'>
+          <NavBarButton href="/contact" pathnameStartsWith="/contact">
             Contact
           </NavBarButton>
           <NavBarButton
-            href='/tools'
-            pathnameStartsWith='/tools'
-            borderRadiusPosition='top-right'
+            href="/tools"
+            pathnameStartsWith="/tools"
+            borderRadiusPosition="top-right"
           >
             Tools
           </NavBarButton>
