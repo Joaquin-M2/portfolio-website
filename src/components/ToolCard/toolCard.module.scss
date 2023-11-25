@@ -8,6 +8,7 @@
 
   display: block;
   width: calc(50% - 1rem);
+  max-width: 60rem;
   align-self: flex-start;
 
   @include responsiveDesign(600) {
