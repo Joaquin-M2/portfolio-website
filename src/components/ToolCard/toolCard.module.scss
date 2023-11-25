@@ -35,7 +35,7 @@
 .titleIconsDescriptionContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  //gap: 0.5rem;
 
   width: 100%;
 
@@ -50,6 +50,7 @@
 
   & .cardTitle {
     font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -88,7 +89,6 @@
   fill: #aab8c2;
   font-size: 3rem;
   cursor: pointer;
-  //align-self: center;
 
   transition: $quick-transition;
 
