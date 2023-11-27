@@ -1,7 +1,11 @@
-import styles from './paragraph.module.scss';
+import styles from "./paragraph.module.scss";
 
-const Paragraph: React.FC = props => {
-  return <p className={styles.paragraph}>{props.children}</p>;
-};
+interface ParagraphProps {
+  children: JSX.Element | JSX.Element[] | string;
+}
+
+function Paragraph({ children }: ParagraphProps) {
+  return <p className={styles.paragraph}>{children}</p>;
+}
 
 export default Paragraph;
