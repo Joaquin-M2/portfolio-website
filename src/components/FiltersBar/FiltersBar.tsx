@@ -32,8 +32,8 @@ export default function FiltersBar({
     <>
       <Backdrop
         forLeftAside
-        isChecked={buttonIsChecked}
-        setBackdropIsShown={setButtonIsChecked}
+        isShown={buttonIsChecked}
+        hideBackdrop={() => setButtonIsChecked(false)}
       >
         <aside className={`${styles.FiltersBar} ${additionalStyles}`}>
           <label
