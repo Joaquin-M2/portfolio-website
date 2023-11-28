@@ -37,7 +37,6 @@ interface Tool {
 }
 
 function Page() {
-  console.log(window.location);
   const [userAllFavoriteTools, setUserAllFavoriteTools] = useState([]);
   const [tools, setTools] = useState([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>();

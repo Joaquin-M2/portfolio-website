@@ -1,4 +1,4 @@
-import { apiBackendUrlDomain } from "./api-backend-url-domain";
+import getApiBackendUrlDomain from "./api-backend-url-domain";
 
 const headers = new Headers();
 headers.set("Content-Type", "application/json");
@@ -6,12 +6,12 @@ headers.set("Content-Type", "application/json");
 export function createRequest({ urlPath, method = "GET", requestBody = null }) {
   setAuthorizationHeader(urlPath);
   if (requestBody === null || method === "GET") {
-    return new Request(apiBackendUrlDomain + urlPath, {
+    return new Request(getApiBackendUrlDomain() + urlPath, {
       method,
       headers,
     });
   } else {
-    return new Request(apiBackendUrlDomain + urlPath, {
+    return new Request(getApiBackendUrlDomain() + urlPath, {
       method,
       headers,
       body: JSON.stringify(requestBody),
