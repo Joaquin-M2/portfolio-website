@@ -15,6 +15,7 @@ import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createRequest } from "../../utils/requests";
 import { urlRegExp } from "../../utils/regular-expressions";
+import { NO_IMAGE_ICON_URL } from "../../utils/no-image-icon-url";
 import styles from "./tools.module.scss";
 
 interface AddToolFormProps {
@@ -240,7 +241,7 @@ function AddToolForm({
         <div className={styles.iconWrapper}>
           <h5 className={styles.iconTitle}>Icon preview</h5>
           <Image
-            src={currentIconUrl}
+            src={currentIconUrl || NO_IMAGE_ICON_URL}
             alt={"Icon preview"}
             width={60}
             height={60}
