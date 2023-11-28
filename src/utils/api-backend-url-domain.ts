@@ -1,3 +1,4 @@
-export const apiBackendUrlDomain = process.env.PORT
-  ? "https://portfolio-website-backend.adaptable.app"
-  : "http://localhost:4000";
+export const apiBackendUrlDomain =
+  window.location.port === 3000
+    ? "http://localhost:4000"
+    : "https://portfolio-website-backend.adaptable.app";
