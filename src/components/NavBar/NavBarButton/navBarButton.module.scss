@@ -1,10 +1,9 @@
-@import '../../../sass/abstracts/variables.scss';
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import "../../../sass/abstracts/variables.scss";
 
 .navBarButton {
   background-color: $main-color-button;
 
-  font-family: 'Orbitron', sans-serif;
+  font-family: $titles-fonts;
   font-size: 1.3rem;
   letter-spacing: 0.1rem;
   color: black;
@@ -29,7 +28,7 @@
   &::after {
     background: #fff;
     border: 0px solid $color-intense-grey;
-    content: '';
+    content: "";
     height: 12rem;
     left: -6.5rem;
     opacity: 0.8;

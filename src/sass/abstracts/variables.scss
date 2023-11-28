@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
-
 $main-color-button: white;
 
 $default-transition: all 0.5s ease-out;
@@ -39,7 +37,7 @@ $body-text: white;
 /// FONTS
 
 // Titles
-$titles-fonts: "Orbitron", sans-serif;
+$titles-fonts: var(--font-orbitron), sans-serif;
 
 // Text
 $texts-fonts: Verdana, Geneva, Tahoma, sans-serif;
