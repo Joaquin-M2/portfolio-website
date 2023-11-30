@@ -7,6 +7,7 @@ import Button from "../Button/Button";
 import styles from "./modal.module.scss";
 
 interface ModalProps {
+  acceptButtonIsDisabled?: boolean;
   acceptButtonTitle?: string;
   backendResponse?: { status: number; message: string };
   cancelButtonTitle?: string;
@@ -19,6 +20,7 @@ interface ModalProps {
 }
 
 function Modal({
+  acceptButtonIsDisabled,
   acceptButtonTitle,
   backendResponse,
   cancelButtonTitle,
@@ -35,7 +37,12 @@ function Modal({
     </Button>
   ) : (
     <>
-      <Button form={targetForm} type="submit" small>
+      <Button
+        form={targetForm}
+        type="submit"
+        small
+        disabled={acceptButtonIsDisabled}
+      >
         {acceptButtonTitle ? acceptButtonTitle : "Accept"}
       </Button>
       <Button form={targetForm} onClick={hideModal} type="reset" small>

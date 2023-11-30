@@ -44,6 +44,8 @@ function LoginAndSignupForms({
     message: "",
   });
   const [requestIsSuccessful, setRequestIsSuccessful] = useState(false);
+  const [acceptButtonIsDisabled, setAcceptButtonIsDisabled] = useState(false);
+  const [acceptButtonTitle, setAcceptButtonTitle] = useState("Accept");
 
   useEffect(() => {
     if (!formIsOpen) {
@@ -91,6 +93,8 @@ function LoginAndSignupForms({
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     try {
+      setAcceptButtonIsDisabled(true);
+      setAcceptButtonTitle("Loading...");
       const response = await fetch(
         createRequest({
           urlPath: requestUrlPath,
@@ -131,6 +135,8 @@ function LoginAndSignupForms({
           }
         }
       }
+      setAcceptButtonIsDisabled(false);
+      setAcceptButtonTitle("Accept");
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -141,6 +147,8 @@ function LoginAndSignupForms({
   };
   return (
     <Modal
+      acceptButtonIsDisabled={acceptButtonIsDisabled}
+      acceptButtonTitle={acceptButtonTitle}
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
