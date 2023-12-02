@@ -6,12 +6,14 @@ import React, {
   useState,
 } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { createRequest } from "../../utils/requests";
-import Input from "../../components/Form/Input/Input";
-import { emailRegExp } from "../../utils/regular-expressions";
-import Form from "../../components/Form/Form";
-import Modal from "../../components/Modal/Modal";
-import getUserTokenData from "../../utils/get-user-token-data";
+
+import Form from "@/components/Form/Form";
+import Input from "@/components/Form/Input/Input";
+import Modal from "@/components/Modal/Modal";
+
+import { createRequest } from "@/utils/requests";
+import { emailRegExp } from "@/utils/regular-expressions";
+import getUserTokenData from "@/utils/get-user-token-data";
 
 interface LoginAndSignupFormsProps {
   formIsOpen: boolean;

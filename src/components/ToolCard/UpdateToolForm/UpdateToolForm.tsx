@@ -7,12 +7,14 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import Modal from "../../../components/Modal/Modal";
-import Form from "../../../components/Form/Form";
-import Input from "../../../components/Form/Input/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { createRequest } from "../../../utils/requests";
-import { urlRegExp } from "../../../utils/regular-expressions";
+
+import Form from "@/components/Form/Form";
+import Input from "@/components/Form/Input/Input";
+import Modal from "@/components/Modal/Modal";
+
+import { createRequest } from "@/utils/requests";
+import { urlRegExp } from "@/utils/regular-expressions";
 
 interface UpdateToolFormProps {
   allOptions: any[];

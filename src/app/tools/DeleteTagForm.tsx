@@ -8,11 +8,13 @@ import React, {
   useRef,
   useState,
 } from "react";
-import Modal from "../../components/Modal/Modal";
-import Form from "../../components/Form/Form";
-import Input from "../../components/Form/Input/Input";
-import Tag from "../../components/Tag/Tag";
-import { createRequest } from "../../utils/requests";
+
+import Form from "@/components/Form/Form";
+import Input from "@/components/Form/Input/Input";
+import Modal from "@/components/Modal/Modal";
+import Tag from "@/components/Tag/Tag";
+
+import { createRequest } from "@/utils/requests";
 
 import styles from "./tools.module.scss";
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import FilterButton from "./FilterButton/FilterButton";
 
 import styles from "./filtersBar.module.scss";
-import Backdrop from "../Backdrop/Backdrop";
+import Backdrop from "@/components/Backdrop/Backdrop";
 
 export default function FiltersBar({
   additionalStyles,

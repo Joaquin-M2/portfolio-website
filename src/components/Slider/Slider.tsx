@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useRef } from 'react';
-import styles from './slider.module.scss';
+import { useEffect, useRef } from "react";
+import Link from "next/link";
 
-import ResponsivePicture from '../ResponsivePicture/ResponsivePicture';
+import ResponsivePicture from "@/components/ResponsivePicture/ResponsivePicture";
+
+import styles from "./slider.module.scss";
 
 export default function Slider(props) {
   ///////////////////
@@ -127,11 +128,11 @@ export default function Slider(props) {
           {/* <img className={styles.Image} src={props.srcAttribute} /> */}
           <input
             className={styles.CurtainCheckbox}
-            type='checkbox'
-            id='curtain'
-            name='slider-curtain'
+            type="checkbox"
+            id="curtain"
+            name="slider-curtain"
           />
-          <label className={styles.CurtainButton} htmlFor='curtain'>
+          <label className={styles.CurtainButton} htmlFor="curtain">
             <div className={styles.CurtainButtonContent}>Details</div>
           </label>
           <div className={styles.Curtain}>
@@ -141,10 +142,10 @@ export default function Slider(props) {
             <a
               className={styles.CurtainDetails_CheckCodeLink}
               href={props.checkTheCode}
-              target='_blank'
-              rel='noopener noreferrer'
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {'>>'} Click here to check the code {'<<'}
+              {">>"} Click here to check the code {"<<"}
             </a>
           </div>
         </div>

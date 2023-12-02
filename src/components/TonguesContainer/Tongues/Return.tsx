@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import ReturnLogo from '../../SVG-icons/return';
+import ReturnLogo from "@/components/SVG-icons/return";
 
-import styles from './tongues.module.scss';
+import styles from "./tongues.module.scss";
 
 const ReturnTongue: React.FC = () => {
   const pathname = usePathname();
@@ -13,9 +13,9 @@ const ReturnTongue: React.FC = () => {
     <Link
       className={styles.link}
       href={
-        pathname.startsWith('/portfolio/projects/')
-          ? '/portfolio/projects'
-          : '/portfolio/labs'
+        pathname.startsWith("/portfolio/projects/")
+          ? "/portfolio/projects"
+          : "/portfolio/labs"
       }
     >
       <div className={`${styles.container} ${styles.return}`}>

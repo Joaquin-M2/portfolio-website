@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { Orbitron } from "next/font/google";
 
-import NavBar from "../components/NavBar/NavBar";
-import NavBarButton from "../components/NavBar/NavBarButton/NavBarButton";
+import NavBar from "@/components/NavBar/NavBar";
+import NavBarButton from "@/components/NavBar/NavBarButton/NavBarButton";
 
-import "../sass/main.scss";
+import "@/sass/main.scss";
 
 export const metadata: Metadata = {
   title: "Joaquin-M2 website",

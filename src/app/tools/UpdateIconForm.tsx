@@ -8,16 +8,18 @@ import React, {
   useRef,
   useState,
 } from "react";
-import Modal from "../../components/Modal/Modal";
-import Form from "../../components/Form/Form";
-import Input from "../../components/Form/Input/Input";
 import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { createRequest } from "../../utils/requests";
+
+import Form from "@/components/Form/Form";
+import Input from "@/components/Form/Input/Input";
+import Modal from "@/components/Modal/Modal";
+
+import { createRequest } from "@/utils/requests";
+import { NO_IMAGE_ICON_URL } from "@/utils/no-image-icon-url";
+import { urlRegExp } from "@/utils/regular-expressions";
 
 import styles from "./tools.module.scss";
-import { urlRegExp } from "../../utils/regular-expressions";
-import { NO_IMAGE_ICON_URL } from "../../utils/no-image-icon-url";
 
 interface UpdateIconFormProps {
   formIsOpen: boolean;

@@ -1,6 +1,5 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
 import {
   useState,
   useEffect,
@@ -8,16 +7,18 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import Image, { StaticImageData } from "next/image";
 
-import Tag from "../Tag/Tag";
-import MenuCard from "../MenuCard/MenuCard";
+import DeleteToolForm from "./DeleteToolForm/DeleteToolForm";
+import MenuCard from "@/components/MenuCard/MenuCard";
+import Tag from "@/components/Tag/Tag";
+import UpdateToolForm from "./UpdateToolForm/UpdateToolForm";
+
+import { createRequest } from "@/utils/requests";
+import checkJwtHasExpired from "@/utils/check-user-token-expiration";
+import getUserTokenData from "@/utils/get-user-token-data";
 
 import styles from "./toolCard.module.scss";
-import DeleteToolForm from "./DeleteToolForm/DeleteToolForm";
-import UpdateToolForm from "./UpdateToolForm/UpdateToolForm";
-import checkJwtHasExpired from "../../utils/check-user-token-expiration";
-import { createRequest } from "../../utils/requests";
-import getUserTokenData from "../../utils/get-user-token-data";
 
 interface ToolCardProps {
   backendResponseDeleteTool?: { status: number; message: string };

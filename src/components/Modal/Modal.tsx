@@ -1,8 +1,9 @@
 "use client";
 
 import { MouseEventHandler } from "react";
-import Backdrop from "../Backdrop/Backdrop";
-import Button from "../Button/Button";
+
+import Backdrop from "@/components/Backdrop/Backdrop";
+import Button from "@/components/Button/Button";
 
 import styles from "./modal.module.scss";
 

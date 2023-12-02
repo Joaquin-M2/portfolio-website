@@ -7,9 +7,12 @@ import {
   useEffect,
   useState,
 } from "react";
-import Form from "../../Form/Form";
-import Modal from "../../Modal/Modal";
-import { createRequest } from "../../../utils/requests";
+
+import Form from "@/components/Form/Form";
+import Modal from "@/components/Modal/Modal";
+
+import { createRequest } from "@/utils/requests";
+
 import styles from "./deleteToolForm.module.scss";
 
 interface DeleteToolFormProps {

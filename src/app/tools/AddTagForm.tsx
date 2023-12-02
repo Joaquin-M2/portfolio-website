@@ -7,14 +7,16 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import Modal from "../../components/Modal/Modal";
-import Form from "../../components/Form/Form";
-import Input from "../../components/Form/Input/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { createRequest } from "../../utils/requests";
+
+import Form from "@/components/Form/Form";
+import Input from "@/components/Form/Input/Input";
+import ListContainer from "@/components/ListContainer/ListContainer";
+import Modal from "@/components/Modal/Modal";
+
+import { createRequest } from "@/utils/requests";
 
 import styles from "./tools.module.scss";
-import ListContainer from "../../components/ListContainer/ListContainer";
 
 interface AddToolFormProps {
   formIsOpen: boolean;

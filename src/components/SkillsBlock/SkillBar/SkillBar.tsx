@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import styles from './skillBar.module.scss';
+import { useRef } from "react";
 
-import { useRef } from 'react';
+import styles from "./skillBar.module.scss";
 
 interface SkillBarProps {
   children: string;
@@ -29,7 +29,7 @@ export default function SkillBar({
         } else {
           percentage++;
           if (percentageRef.current) {
-            percentageRef.current.textContent = percentage + '%';
+            percentageRef.current.textContent = percentage + "%";
           } else {
             return;
           }
@@ -52,9 +52,9 @@ export default function SkillBar({
       return parseInt(h, 16);
     } // convert a hex value to decimal
 
-    weight = typeof weight !== 'undefined' ? weight : 50; // set the weight to 50%, if that argument is omitted
+    weight = typeof weight !== "undefined" ? weight : 50; // set the weight to 50%, if that argument is omitted
 
-    let color = '#';
+    let color = "#";
 
     for (let i = 0; i <= 5; i += 2) {
       // loop through each of the 3 hex pairs—red, green, and blue
@@ -65,7 +65,7 @@ export default function SkillBar({
 
       while (val.length < 2) {
         // prepend a '0' if val results in a single digit
-        val = '0' + val;
+        val = "0" + val;
       }
 
       color += val; // concatenate val to our new color string
@@ -121,8 +121,8 @@ export default function SkillBar({
                 100% {
                   width: ${progressPercentage}%;
                   background-color: ${mix(
-                    'ffff00',
-                    '008000',
+                    "ffff00",
+                    "008000",
                     (100 - +progressPercentage) * 2
                   )};
                 }

@@ -2,25 +2,27 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import ToolCard from "../../components/ToolCard/ToolCard";
-import FiltersBar2 from "../../components/FiltersBar2/FiltersBar2";
+import FiltersBar2 from "@/components/FiltersBar2/FiltersBar2";
+import MenuCard from "@/components/MenuCard/MenuCard";
+import Modal from "@/components/Modal/Modal";
+import ToolCard from "@/components/ToolCard/ToolCard";
+
+import { createRequest } from "@/utils/requests";
+import checkJwtTokenHasExpired from "@/utils/check-user-token-expiration";
+import getUserTokenData from "@/utils/get-user-token-data";
+
+import AddIconForm from "./AddIconForm";
+import AddTagForm from "./AddTagForm";
+import AddToolForm from "./AddToolForm";
+import DeleteIconForm from "./DeleteIconForm";
+import DeleteTagForm from "./DeleteTagForm";
+import DeleteUserForm from "./DeleteUserForm";
+import LoginAndSignupForms from "./LoginAndSignupForms";
+import UpdateIconForm from "./UpdateIconForm";
+import UpdateTagForm from "./UpdateTagForm";
+import UpdateUserForm from "./UpdateUserForm";
 
 import styles from "./tools.module.scss";
-import { createRequest } from "../../utils/requests";
-import MenuCard from "../../components/MenuCard/MenuCard";
-import LoginAndSignupForms from "./LoginAndSignupForms";
-import AddToolForm from "./AddToolForm";
-import AddTagForm from "./AddTagForm";
-import UpdateTagForm from "./UpdateTagForm";
-import DeleteTagForm from "./DeleteTagForm";
-import UpdateUserForm from "./UpdateUserForm";
-import DeleteUserForm from "./DeleteUserForm";
-import Modal from "../../components/Modal/Modal";
-import checkJwtTokenHasExpired from "../../utils/check-user-token-expiration";
-import AddIconForm from "./AddIconForm";
-import UpdateIconForm from "./UpdateIconForm";
-import DeleteIconForm from "./DeleteIconForm";
-import getUserTokenData from "../../utils/get-user-token-data";
 
 interface Tool {
   _id: string;
