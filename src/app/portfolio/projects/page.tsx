@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
-import FiltersBar from '../../../components/FiltersBar/FiltersBar';
-import Slider from '../../../components/Slider/Slider';
+import FiltersBar from "@/components/FiltersBar/FiltersBar";
+import Slider from "@/components/Slider/Slider";
 
-import SliderThumbnailsContainer from '../../../components/Slider/SliderThumbnailsContainer/SliderThumbnailsContainer';
-import MoveSlideButton from '../../../components/Slider/MoveSlideButton/MoveSlideButton';
-import SliderThumbnail from '../../../components/Slider/SliderThumbnailsContainer/SliderThumbnail/SliderThumbnail';
+import SliderThumbnailsContainer from "@/components/Slider/SliderThumbnailsContainer/SliderThumbnailsContainer";
+import MoveSlideButton from "@/components/Slider/MoveSlideButton/MoveSlideButton";
+import SliderThumbnail from "@/components/Slider/SliderThumbnailsContainer/SliderThumbnail/SliderThumbnail";
 
-import tech from '../../../data/techs-names';
-import projects from '../../../data/projects';
+import tech from "@/data/techs-names";
+import projects from "@/data/projects";
 
-import styles from '../portfolio.module.scss';
+import styles from "../portfolio.module.scss";
 
 export default function Page() {
   const [activeThumbnail, setActiveThumbnail] = useState(1);
@@ -103,7 +103,7 @@ export default function Page() {
             additionalStyles={styles.PortfolioFiltersBar}
             changeFilter={(event) =>
               addOrRemoveFilter(
-                event.target.closest('li').textContent.replace(/OnOff/g, '')
+                event.target.closest("li").textContent.replace(/OnOff/g, "")
               )
             }
             filterButtons={[
