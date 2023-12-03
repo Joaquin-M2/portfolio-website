@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+
+import Backdrop from "@/components/Backdrop/Backdrop";
 import FilterButton from "./FilterButton/FilterButton";
 
 import styles from "./filtersBar.module.scss";
-import Backdrop from "@/components/Backdrop/Backdrop";
 
 export default function FiltersBar({
   additionalStyles,
