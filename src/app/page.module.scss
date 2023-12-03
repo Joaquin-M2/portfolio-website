@@ -1,5 +1,5 @@
-@import '../sass/abstracts/variables.scss';
-@import '../sass/abstracts/mixins.scss';
+@import "../sass/abstracts/variables.scss";
+@import "../sass/abstracts/mixins.scss";
 
 .positionMainElements {
   display: flex;
@@ -130,7 +130,7 @@ $dotSize: 0.9;
   z-index: -1;
   overflow: hidden;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .binaryDropLine {
@@ -148,7 +148,7 @@ $dotSize: 0.9;
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     width: $dotSize + vw;
     height: $dotSize + vw;
