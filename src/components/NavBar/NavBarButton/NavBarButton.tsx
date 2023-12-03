@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 
-import styles from './navBarButton.module.scss';
+import styles from "./navBarButton.module.scss";
 
 interface NavBarButton {
   children: string;
@@ -19,7 +19,7 @@ function NavBarButton({
   pathnameStartsWith,
   borderRadiusPosition,
 }: NavBarButton) {
-  const pathname = usePathname();
+  const pathname = usePathname() || "/";
 
   let homeButtonIsActive: boolean;
 
@@ -34,19 +34,19 @@ function NavBarButton({
       pathnameStartsWith.length > 1) ||
     homeButtonIsActive;
 
-  let borderRadiusPositionStyles = '';
+  let borderRadiusPositionStyles = "";
 
   switch (borderRadiusPosition) {
-    case 'top-left':
+    case "top-left":
       borderRadiusPositionStyles = styles.borderRadiusTopLeft;
       break;
-    case 'top-right':
+    case "top-right":
       borderRadiusPositionStyles = styles.borderRadiusTopRight;
       break;
-    case 'bottom-left':
+    case "bottom-left":
       borderRadiusPositionStyles = styles.borderRadiusBottomLeft;
       break;
-    case 'bottom-right':
+    case "bottom-right":
       borderRadiusPositionStyles = styles.borderRadiusBottomRight;
       break;
   }
@@ -55,9 +55,9 @@ function NavBarButton({
     <Link href={href}>
       <button
         className={`${styles.navBarButton} ${
-          buttonIsActive ? styles.active : ''
+          buttonIsActive ? styles.active : ""
         } ${borderRadiusPositionStyles}`}
-        type='button'
+        type="button"
       >
         {children}
       </button>
