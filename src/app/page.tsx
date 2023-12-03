@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import styles from './page.module.scss';
-import NavBarButton from '../components/NavBar/NavBarButton/NavBarButton';
+import NavBarButton from "@/components/NavBar/NavBarButton/NavBarButton";
+
+import styles from "./page.module.scss";
 
 export default function Page() {
   return (
@@ -22,17 +22,17 @@ export default function Page() {
               Do you need a ninja-level web developer for your project?
             </p>
             <p className={styles.answer}>
-              If so, have a look at{' '}
+              If so, have a look at{" "}
               <NavBarButton
-                href='/portfolio/projects'
-                pathnameStartsWith='/portfolio'
+                href="/portfolio/projects"
+                pathnameStartsWith="/portfolio"
               >
                 my portfolio
-              </NavBarButton>{' '}
-              and{' '}
-              <NavBarButton href='/contact' pathnameStartsWith='/contact'>
+              </NavBarButton>{" "}
+              and{" "}
+              <NavBarButton href="/contact" pathnameStartsWith="/contact">
                 drop me a line
-              </NavBarButton>{' '}
+              </NavBarButton>{" "}
               .
             </p>
           </div>
