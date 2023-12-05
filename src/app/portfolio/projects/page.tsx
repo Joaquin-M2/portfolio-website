@@ -28,7 +28,7 @@ export default function Page() {
   for (const project of projects) {
     if (
       activeFilters.length === 0 ||
-      activeFilters.every((filtro) => project.technologies.includes(filtro))
+      activeFilters.every((filter) => project.technologies.includes(filter))
     ) {
       thumbnails.push(
         <SliderThumbnail
