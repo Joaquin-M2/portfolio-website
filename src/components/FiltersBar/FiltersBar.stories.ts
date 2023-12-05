@@ -11,6 +11,7 @@ const meta = {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
+  tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     additionalStyles: {
@@ -21,6 +22,7 @@ const meta = {
     changeFilter: {
       description:
         "Function that uses the enabled buttons to filter the results.",
+      type: "function",
     },
     filterButtons: {
       control: "object",
