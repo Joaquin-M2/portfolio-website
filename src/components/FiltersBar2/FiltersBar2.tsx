@@ -1,10 +1,21 @@
 "use client";
 
 import { useState } from "react";
+
 import Tag from "@/components/Tag/Tag";
+import Backdrop from "@/components/Backdrop/Backdrop";
 
 import styles from "./filtersBar2.module.scss";
-import Backdrop from "@/components/Backdrop/Backdrop";
+
+type Tag = { name: string; _id: string };
+
+interface FiltersBar2Props {
+  filterBySearchFunction?: (event: any) => void;
+  filterByTagFunction: (event: any) => void;
+  handleRemoveFilterTag: (event: any) => void;
+  selectedFilterTags: string[];
+  tags: Tag[];
+}
 
 function FiltersBar2({
   filterBySearchFunction,
@@ -12,7 +23,7 @@ function FiltersBar2({
   selectedFilterTags,
   handleRemoveFilterTag,
   tags,
-}) {
+}: FiltersBar2Props) {
   const [buttonIsChecked, setButtonIsChecked] = useState(false);
 
   const dropdownOptions = tags.length ? (
