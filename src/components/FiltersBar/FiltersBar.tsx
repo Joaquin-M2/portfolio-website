@@ -7,11 +7,17 @@ import FilterButton from "./FilterButton/FilterButton";
 
 import styles from "./filtersBar.module.scss";
 
+interface FiltersBarProps {
+  additionalStyles?: string;
+  changeFilter: (event: any) => void;
+  filterButtons: string[];
+}
+
 export default function FiltersBar({
   additionalStyles,
   changeFilter,
   filterButtons,
-}) {
+}: FiltersBarProps) {
   const [buttonIsChecked, setButtonIsChecked] = useState(false);
 
   ///////////////////////////
