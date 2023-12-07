@@ -17,7 +17,7 @@ interface InputProps {
   id: string;
   placeholder: string;
   allOptions?: any[];
-  toolTags?: any[];
+  //toolTags?: any[];
   type: string;
   watchedValue: string;
   [x: string]: any;
@@ -39,7 +39,7 @@ const Input = forwardRef<
       id,
       placeholder,
       allOptions,
-      toolTags,
+      //toolTags,
       type,
       ...props
     },
