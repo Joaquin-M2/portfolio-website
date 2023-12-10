@@ -5,7 +5,7 @@ import ListContainer from "./ListContainer";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Core/ListContainer",
+  title: "Core/List Container",
   component: ListContainer,
   decorators: [
     (Story) => (
