@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState } from "react";
 
-import SkillsBlock from '../../../components/SkillsBlock/SkillsBlock';
-import SkillBar from '../../../components/SkillsBlock/SkillBar/SkillBar';
-import SkillModal from '../../../components/SkillsBlock/SkillModal/SkillModal';
+import SkillsBlock from "@/components/SkillsBlock/SkillsBlock";
+import SkillBar from "@/components/SkillsBlock/SkillBar/SkillBar";
+import SkillModal from "@/components/SkillsBlock/SkillModal/SkillModal";
 
-import tech from '../../../data/techs-names';
-import technologies from '../../../data/skills-frontend';
+import tech from "@/data/techs-names";
+import technologies from "@/data/skills-frontend";
 
-import stylesFrontendPage from './frontendPage.module.scss';
-import styles from '../skills.module.scss';
+import stylesFrontendPage from "./frontendPage.module.scss";
+import styles from "../skills.module.scss";
 
 function Page() {
   const [technology, setTechnology] = useState(tech.HTML);
@@ -18,11 +18,7 @@ function Page() {
   function showModal(event) {
     setModalIsShown(true);
 
-    setTechnology(event.target.closest('li').querySelector('span').textContent);
-  }
-
-  function closeModal() {
-    setModalIsShown(false);
+    setTechnology(event.target.closest("li").querySelector("span").textContent);
   }
 
   const currentTechnology = technologies.find(
@@ -198,13 +194,13 @@ function Page() {
         <main className={stylesFrontendPage.MainContainer}>
           {skills}
           <SkillModal
-            showingModal={modalIsShown}
-            closeFromOuterModal={() => closeModal()}
-            stopPropagation={(event) => event.stopPropagation()}
-            closeFromButton={() => closeModal()}
+            modalIsShown={modalIsShown}
+            closeFromBackdrop={() => setModalIsShown(false)}
+            closeFromButton={() => setModalIsShown(false)}
             title={currentTechnology.name}
-            description={currentTechnology.description}
-          />
+          >
+            {currentTechnology.description}
+          </SkillModal>
         </main>
       </div>
     </>
