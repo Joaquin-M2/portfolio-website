@@ -1,4 +1,4 @@
-@import '../../../sass/abstracts/mixins.scss';
+@import "@/sass/abstracts/mixins.scss";
 
 .Button {
   font-size: 3rem;
@@ -24,4 +24,43 @@
 .Button:active {
   color: rgba(255, 255, 255, 0.9);
   background-color: rgba(51, 51, 51, 0.7);
+}
+.Button:hover .RightwardsArrow {
+  animation: moveArrowNext 1.5s infinite;
+}
+
+@keyframes moveArrowNext {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(2rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.Button:hover .LeftwardsArrow {
+  animation: moveArrowPrevious 1.5s infinite;
+}
+
+@keyframes moveArrowPrevious {
+  0% {
+    transform: translateX(0) scale(-1, 1);
+  }
+  50% {
+    transform: translateX(-1.6rem) scale(-1, 1);
+  }
+  100% {
+    transform: translateX(0) scale(-1, 1);
+  }
+}
+
+.LeftwardsArrow {
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
 }
