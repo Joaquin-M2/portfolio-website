@@ -1,22 +1,32 @@
-import styles from './skillModal.module.scss';
+import styles from "./skillModal.module.scss";
 
-export default function SkillModal(props) {
+interface SkillModalProps {
+  children: JSX.Element | JSX.Element[];
+  closeFromBackdrop: () => void;
+  closeFromButton: () => void;
+  modalIsShown: boolean;
+  title: string;
+}
+
+export default function SkillModal({
+  children,
+  closeFromBackdrop,
+  closeFromButton,
+  modalIsShown,
+  title,
+}: SkillModalProps) {
   return (
     <div
-      className={`${styles.outerModal} ${
-        props.showingModal ? styles.showModal : ''
-      }`}
-      onClick={props.closeFromOuterModal}
+      className={`${styles.backdrop} ${modalIsShown ? styles.showModal : ""}`}
+      onClick={closeFromBackdrop}
     >
       <div
-        className={`${styles.modal} ${
-          props.showingModal ? styles.showModal : ''
-        }`}
-        onClick={props.stopPropagation}
+        className={`${styles.modal} ${modalIsShown ? styles.showModal : ""}`}
+        onClick={(event) => event.stopPropagation()}
       >
-        <span onClick={props.closeFromButton}>X</span>
-        <h3>{props.title}</h3>
-        <div className={styles.descriptionDiv}>{props.description}</div>
+        <span onClick={closeFromButton}>X</span>
+        <h3>{title}</h3>
+        <div className={styles.descriptionDiv}>{children}</div>
       </div>
     </div>
   );
