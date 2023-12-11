@@ -1,5 +1,5 @@
-@import '../../sass/abstracts/variables.scss';
-@import '../../sass/abstracts/mixins.scss';
+@import "@/sass/abstracts/variables.scss";
+@import "@/sass/abstracts/mixins.scss";
 
 .SupraMainContainer {
   display: flex;
@@ -40,47 +40,4 @@
 
 .nonActiveThumbnailImage {
   border-radius: 0rem !important;
-}
-
-/////////////////////////////
-// PREV - NEXT BUTTONS
-
-.PrevButton:hover div {
-  animation: moveArrowPrevious 1.5s infinite;
-}
-
-@keyframes moveArrowPrevious {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(1.6rem);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.NextButton:hover div {
-  animation: moveArrowNext 1.5s infinite;
-}
-
-@keyframes moveArrowNext {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(2rem);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.PrevButton {
-  -moz-transform: scale(-1, 1);
-  -webkit-transform: scale(-1, 1);
-  -o-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
-  transform: scale(-1, 1);
 }
