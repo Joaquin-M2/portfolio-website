@@ -129,6 +129,7 @@ export default function Page() {
               <MoveSlideButton
                 additionalStyles={styles.PrevButton}
                 changeSlide={() => prevProjectHandler()}
+                leftwardsArrow
               />
               <Slider
                 additionalStyles={styles.PortfolioSlider}
