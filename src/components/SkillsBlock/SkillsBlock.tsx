@@ -1,9 +1,15 @@
-import styles from './skillsBlock.module.scss';
+import styles from "./skillsBlock.module.scss";
 
-export default function SkillsBlock(props) {
+interface SkillsBlockProps {
+  children: JSX.Element | JSX.Element[];
+  additionalStyles?: string;
+}
+
+export default function SkillsBlock({
+  additionalStyles,
+  children,
+}: SkillsBlockProps) {
   return (
-    <div className={`${styles.Container} ${props.additionalStyles}`}>
-      {props.children}
-    </div>
+    <div className={`${styles.Container} ${additionalStyles}`}>{children}</div>
   );
 }
