@@ -27,7 +27,7 @@ const meta = {
     },
     image: {
       description: "Path of the image to load as thumbnail.",
-      type: "boolean",
+      type: "string",
     },
     updateStateForActiveThumbnail: {
       description:
