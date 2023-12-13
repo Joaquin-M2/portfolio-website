@@ -28,7 +28,7 @@ export default function Page() {
   for (const project of projects) {
     if (
       activeFilters.length === 0 ||
-      activeFilters.every((filtro) => project.technologies.includes(filtro))
+      activeFilters.every((filter) => project.technologies.includes(filter))
     ) {
       thumbnails.push(
         <SliderThumbnail
@@ -39,17 +39,7 @@ export default function Page() {
           updateStateForActiveThumbnail={() =>
             setActiveThumbnail(projects[project.id - 1].id)
           }
-          setCheckedButton={activeThumbnail === projects[project.id - 1].id}
-          styleActiveThumbnail={
-            activeThumbnail === projects[project.id - 1].id
-              ? styles.activateLabelStyle
-              : null
-          }
-          styleNonActiveThumbnail={
-            activeThumbnail === projects[project.id - 1].id
-              ? styles.nonActiveThumbnailImage
-              : null
-          }
+          setButtonIsChecked={activeThumbnail === projects[project.id - 1].id}
         />
       );
     }
