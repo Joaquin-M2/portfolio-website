@@ -3,8 +3,7 @@
 }
 
 .LabelThumbnailImageContainer {
-  height: 70%;
-  //margin-bottom: .8rem;
+  //height: 70%;
   border-radius: 0.08rem;
 
   display: block;
@@ -12,11 +11,10 @@
 }
 
 .ThumbnailImageContainer {
-  // Las proporciones de la imagen principal (la mostrada en el slider) son de 100% de ancho 80% de alto.
-  // En las imágenes del thumbnail se busca crear la misma proporción.
-  height: 100%;
-  width: 6rem;
-  //background-color: white;
+  // Proportion of the main image (the one shown on the slider) tries to be 16:9.
+  // Thumbnail images should keep that same proportion.
+  height: 5.625rem;
+  width: 10rem;
   cursor: pointer;
 }
 
@@ -24,5 +22,13 @@
   height: 100%;
   width: 100%;
 
+  border-radius: 0;
+}
+
+.activeThumbnail {
+  box-shadow: 0 0 0 0.8rem green;
+}
+
+.inactiveThumbnail {
   border-radius: 0.5rem;
 }
