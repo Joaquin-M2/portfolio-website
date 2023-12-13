@@ -15,7 +15,7 @@
 
 .SlideAndButtonsContainer {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   height: 70%;
   padding-bottom: 2rem;
   overflow: hidden;
@@ -40,4 +40,8 @@
 
 .nonActiveThumbnailImage {
   border-radius: 0rem !important;
+}
+
+.PortfolioSlider {
+  margin: 0 2rem;
 }
