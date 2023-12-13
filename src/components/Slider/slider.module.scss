@@ -1,5 +1,5 @@
-@import '../../sass/abstracts/a-master';
-@import '../../sass/abstracts/variables';
+@import "@/sass/abstracts/a-master";
+@import "@/sass/abstracts/variables";
 
 .Container {
   display: flex;
@@ -15,7 +15,7 @@
 .Slider {
   display: flex;
   height: 100%;
-  width: 60vw;
+  width: 75vw;
   background-color: $color-pale-grey;
 
   border-radius: 0.5rem;
@@ -37,7 +37,7 @@
 .ImageContainer {
   position: relative;
   height: 100%;
-  width: 65%;
+  width: 100%;
   background: linear-gradient(
     270deg,
     rgba($color-pale-grey, 1) 0%,
@@ -107,14 +107,14 @@
 }
 
 .CurtainButtonContent::before {
-  content: '\21BF';
+  content: "\21BF";
   font-weight: bold;
   transform: rotate(0deg) translateY(-10%);
   margin: 0 0.8rem;
 }
 
 .CurtainButtonContent::after {
-  content: '\21BE';
+  content: "\21BE";
   font-weight: bold;
   transform: rotate(0deg) translateY(-10%);
   margin: 0 0.8rem;
@@ -194,7 +194,7 @@
 
 .Description {
   height: 100%;
-  width: 35%;
+  width: 40rem;
 
   display: flex;
   flex-direction: column;
