@@ -3,11 +3,35 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 
-import ResponsivePicture from "@/components/ResponsivePicture/ResponsivePicture";
+import Image, { StaticImageData } from "next/image";
 
 import styles from "./slider.module.scss";
 
-export default function Slider(props) {
+interface SliderProps {
+  activeThumbnail: string | number;
+  additionalStyles?: string;
+  children: JSX.Element | JSX.Element[] | string | string[];
+  imageSrc: string | StaticImageData;
+  liveProjectLink: string;
+  nextProject: () => void;
+  prevProject: () => void;
+  projectDescription: string;
+  projectTitle: string;
+  repositoryLink: string;
+}
+
+export default function Slider({
+  activeThumbnail,
+  additionalStyles,
+  children,
+  imageSrc,
+  liveProjectLink,
+  nextProject,
+  prevProject,
+  projectDescription,
+  projectTitle,
+  repositoryLink,
+}: SliderProps) {
   ///////////////////
   // TOUCH SLIDER
   // Credits: https://codepen.io/cconceicao/pen/PBQawy
@@ -22,8 +46,6 @@ export default function Slider(props) {
   const fadeOldSlideCSS = styles.OldSlide;
   const appearNewSlideCSSFromRight = styles.NewSlideFromRight;
   const appearNewSlideCSSFromLeft = styles.NewSlideFromLeft;
-
-  const { activeThumbnail, prevProject, nextProject } = props;
 
   useEffect(() => {
     let posInitial,
@@ -114,18 +136,24 @@ export default function Slider(props) {
   return (
     <>
       <div
-        className={`${styles.Slider} ${props.additionalStyles}`}
+        className={`${styles.Slider} ${additionalStyles}`}
         ref={slider}
         onTouchStart={() => dragStartHandler.current()}
         onTouchMove={() => dragActionHandler.current()}
         onTouchEnd={() => dragEndHandler.current()}
       >
         <div className={styles.ImageContainer}>
-          <ResponsivePicture
-            nameOfClass={styles.Image}
-            path={props.srcAttribute}
+          <Image
+            className={styles.Image}
+            src={
+              `${imageSrc}-medium.jpg` ||
+              `${imageSrc}-small.jpg` ||
+              `${imageSrc}.jpg` ||
+              imageSrc
+            }
+            alt={`Preview image of ${projectTitle}.`}
+            fill
           />
-          {/* <img className={styles.Image} src={props.srcAttribute} /> */}
           <input
             className={styles.CurtainCheckbox}
             type="checkbox"
@@ -137,11 +165,11 @@ export default function Slider(props) {
           </label>
           <div className={styles.Curtain}>
             <div className={styles.CurtainRelativeContainer}>
-              <ul className={styles.CurtainDetails}>{props.children}</ul>
+              <ul className={styles.CurtainDetails}>{children}</ul>
             </div>
             <a
               className={styles.CurtainDetails_CheckCodeLink}
-              href={props.checkTheCode}
+              href={repositoryLink}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -150,13 +178,11 @@ export default function Slider(props) {
           </div>
         </div>
         <div className={styles.Description}>
-          <h4 className={styles.Description_Title}>{props.projectTitle}</h4>
+          <h4 className={styles.Description_Title}>{projectTitle}</h4>
           <div className={styles.Description_TextContainer}>
-            <p className={styles.Description_Text}>
-              {props.projectDescription}
-            </p>
+            <p className={styles.Description_Text}>{projectDescription}</p>
           </div>
-          <Link href={props.checkTheProject}>
+          <Link href={liveProjectLink}>
             <button className={styles.Description_ButtonCheckProject}>
               Check the Project
             </button>
