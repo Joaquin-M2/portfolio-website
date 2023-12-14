@@ -124,12 +124,12 @@ export default function Page() {
               <Slider
                 additionalStyles={styles.PortfolioSlider}
                 projectTitle={projects[currentSelectedProject].title}
-                srcAttribute={projects[currentSelectedProject].image}
+                imageSrc={projects[currentSelectedProject].image}
                 projectDescription={
                   projects[currentSelectedProject].description
                 }
-                checkTheCode={projects[currentSelectedProject].linkToCode}
-                checkTheProject={projects[currentSelectedProject].linkToProject}
+                repositoryLink={projects[currentSelectedProject].linkToCode}
+                liveProjectLink={projects[currentSelectedProject].linkToProject}
                 activeThumbnail={activeThumbnail}
                 prevProject={prevProjectHandler}
                 nextProject={nextProjectHandler}
