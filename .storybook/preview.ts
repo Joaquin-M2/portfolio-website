@@ -16,6 +16,9 @@ const preview: Preview = {
         order: ["Core", "Pages", "*"],
       },
     },
+    nextjs: {
+      appDirectory: true,
+    },
   },
 };
 
