@@ -3,13 +3,28 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import GithubLogo from "@/components/SVG-icons/github";
 import ReturnLogo from "@/components/SVG-icons/return";
 
-import styles from "./tongues.module.scss";
+import styles from "./tongue.module.scss";
 
-const ReturnTongue: React.FC = () => {
+interface TongueProps {
+  isGithubLink?: boolean;
+  githubPath?: string;
+}
+
+const Tongue = ({ githubPath, isGithubLink }: TongueProps) => {
   const pathname = usePathname();
-  return (
+  return isGithubLink ? (
+    <a className={styles.link} href={githubPath} target="_blank">
+      <div className={`${styles.container} ${styles.github}`}>
+        <div className={styles.icon}>
+          <GithubLogo />
+        </div>
+        <div className={styles.text}>Check the code</div>
+      </div>
+    </a>
+  ) : (
     <Link
       className={styles.link}
       href={
@@ -28,4 +43,4 @@ const ReturnTongue: React.FC = () => {
   );
 };
 
-export default ReturnTongue;
+export default Tongue;
