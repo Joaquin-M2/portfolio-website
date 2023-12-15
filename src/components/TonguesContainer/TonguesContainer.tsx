@@ -3,13 +3,13 @@ import Tongue from "./Tongue/Tongue";
 import styles from "./tonguesContainer.module.scss";
 
 interface TonguesContainerProps {
-  checkCodePath: string;
+  CheckCodePath: string;
 }
 
-const TonguesContainer = ({ checkCodePath }: TonguesContainerProps) => {
+const TonguesContainer = ({ CheckCodePath }: TonguesContainerProps) => {
   return (
     <div className={styles.container}>
-      <Tongue isGithubLink githubPath={checkCodePath} />
+      <Tongue isGithubLink githubPath={CheckCodePath} />
       <Tongue />
     </div>
   );
