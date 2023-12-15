@@ -1,17 +1,16 @@
-import CheckCodeTag from './Tongues/CheckCode';
-import ReturnTag from './Tongues/Return';
+import Tongue from "./Tongue/Tongue";
 
-import styles from './tonguesContainer.module.scss';
+import styles from "./tonguesContainer.module.scss";
 
 interface TonguesContainerProps {
-  CheckCodePath: string;
+  checkCodePath: string;
 }
 
-const TonguesContainer: React.FC<TonguesContainerProps> = (props) => {
+const TonguesContainer = ({ checkCodePath }: TonguesContainerProps) => {
   return (
     <div className={styles.container}>
-      <CheckCodeTag GithubPath={props.CheckCodePath} />
-      <ReturnTag />
+      <Tongue isGithubLink githubPath={checkCodePath} />
+      <Tongue />
     </div>
   );
 };
