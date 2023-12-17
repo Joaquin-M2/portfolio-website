@@ -23,7 +23,6 @@ import styles from "../tools.module.scss";
 interface AddIconFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  id?: string;
   resetFormValues?: boolean;
   setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
   icons?: any[];
@@ -37,7 +36,6 @@ interface FormInputs {
 function AddIconForm({
   formIsOpen,
   hideModal,
-  id,
   resetFormValues,
   setToolsFrontend,
   icons,
@@ -84,7 +82,7 @@ function AddIconForm({
         message: result.message,
       });
 
-      setToolsFrontend((prevValue) => [...prevValue, id]);
+      setToolsFrontend((prevValue) => [...prevValue]);
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -99,12 +97,12 @@ function AddIconForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`add-icon-form-${id}`}
+      targetForm={`add-icon-form`}
       title="Add Icon"
     >
       <Form
         hasFieldset
-        id={`add-icon-form-${id}`}
+        id={`add-icon-form`}
         legend="Add icon form"
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
