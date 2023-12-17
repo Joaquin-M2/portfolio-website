@@ -1,44 +1,46 @@
 "use client";
 
-import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  MouseEventHandler,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import Form from "@/components/Form/Form";
 import Input from "@/components/Form/Input/Input";
 import Modal from "@/components/Modal/Modal";
+import Tag from "@/components/Tag/Tag";
 
 import { createRequest } from "@/utils/requests";
 
-import styles from "./tools.module.scss";
+import styles from "../tools.module.scss";
 
-interface DeleteUserFormProps {
+interface DeleteTagFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
   id?: string;
   resetFormValues?: boolean;
+  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
+  tags?: any[];
 }
 
-function DeleteUserForm({
+function DeleteTagForm({
   formIsOpen,
   hideModal,
   id,
   resetFormValues,
-}: DeleteUserFormProps) {
+  setToolsFrontend,
+  tags,
+}: DeleteTagFormProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
     message: "",
   });
   const selectSingleInput = useRef<HTMLSelectElement>();
-  const [selectedUserEmail, setSelectedUserEmail] = useState("");
-  const [users, setUsers] = useState([]);
-  const [usersFrontend, setUsersFrontend] = useState([]);
-
-  useEffect(() => {
-    if (users.length) {
-      setSelectedUserEmail(
-        selectSingleInput.current.selectedOptions[0].innerText
-      );
-    }
-  }, [users]);
+  const [selectedTagName, setSelectedTagName] = useState("");
 
   useEffect(() => {
     if (!formIsOpen) {
@@ -47,20 +49,17 @@ function DeleteUserForm({
       }, 500); // Time until CSS transition finishes.
     }
     if (formIsOpen) {
-      fetch(createRequest({ urlPath: "/user" }))
-        .then((response) => response.json())
-        .then((data) => {
-          setUsers(data.users);
-        })
-        .catch((error) => console.log(error));
+      setSelectedTagName(
+        selectSingleInput.current.selectedOptions[0].innerText
+      );
     }
-  }, [formIsOpen, usersFrontend]);
+  }, [formIsOpen]);
 
   const onSubmit = async () => {
     try {
       const response = await fetch(
         createRequest({
-          urlPath: `/user/${selectSingleInput.current.value}`,
+          urlPath: `/tags/${selectSingleInput.current.value}`,
           method: "DELETE",
         })
       );
@@ -74,14 +73,14 @@ function DeleteUserForm({
 
       if (response.status >= 200 && response.status < 400) {
         if (selectSingleInput.current.selectedOptions[0].nextElementSibling) {
-          setSelectedUserEmail(
+          setSelectedTagName(
             (
               selectSingleInput.current.selectedOptions[0]
                 .nextElementSibling as HTMLElement
             ).innerText
           );
         } else {
-          setSelectedUserEmail(
+          setSelectedTagName(
             (
               selectSingleInput.current.selectedOptions[0]
                 .parentElement[0] as HTMLElement
@@ -89,7 +88,7 @@ function DeleteUserForm({
           );
         }
       }
-      setUsersFrontend((prevValue) => [...prevValue, id]);
+      setToolsFrontend((prevValue) => [...prevValue, id]);
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -104,36 +103,35 @@ function DeleteUserForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`delete-user-form-${id}`}
-      title="Delete User"
+      targetForm={`delete-tag-form-${id}`}
+      title="Delete Tag"
     >
       <Form
         hasFieldset
-        id={`delete-user-form-${id}`}
-        legend="Delete user form"
+        id={`delete-tag-form-${id}`}
+        legend="Delete tag form"
         onSubmit={async (e) => {
           e.preventDefault();
           onSubmit();
         }}
         resetFormValues={resetFormValues}
       >
-        <div className={styles.smallFormInnerContainerVertical}>
+        <div className={styles.smallFormInnerContainer}>
           <Input
-            allOptions={users}
+            allOptions={tags}
             formIsOpen={formIsOpen}
-            placeholder="Choose user"
+            placeholder="Choose tag"
             type="selectSingle"
             ref={selectSingleInput}
             onChange={() => {
-              setSelectedUserEmail(
+              setSelectedTagName(
                 selectSingleInput.current.selectedOptions[0].innerText
               );
             }}
           />
-          {selectedUserEmail && (
-            <p className={styles.deleteUserQuestion}>
-              Delete user "
-              <span className={styles.userEmail}>{selectedUserEmail}</span>"?
+          {selectedTagName && (
+            <p className={styles.deleteTagQuestion}>
+              Delete <Tag>{selectedTagName}</Tag> tag?
             </p>
           )}
         </div>
@@ -142,4 +140,4 @@ function DeleteUserForm({
   );
 }
 
-export default DeleteUserForm;
+export default DeleteTagForm;

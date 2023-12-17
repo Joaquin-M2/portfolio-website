@@ -9,7 +9,7 @@ import Modal from "@/components/Modal/Modal";
 
 import { createRequest } from "@/utils/requests";
 
-import styles from "./tools.module.scss";
+import styles from "../tools.module.scss";
 
 interface UpdateUserFormProps {
   formIsOpen: boolean;

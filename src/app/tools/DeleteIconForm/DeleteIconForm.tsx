@@ -8,39 +8,39 @@ import React, {
   useRef,
   useState,
 } from "react";
+import Image from "next/image";
 
 import Form from "@/components/Form/Form";
 import Input from "@/components/Form/Input/Input";
 import Modal from "@/components/Modal/Modal";
-import Tag from "@/components/Tag/Tag";
 
 import { createRequest } from "@/utils/requests";
 
-import styles from "./tools.module.scss";
+import styles from "../tools.module.scss";
 
-interface DeleteTagFormProps {
+interface DeleteToolFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
   id?: string;
   resetFormValues?: boolean;
   setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
-  tags?: any[];
+  icons?: any[];
 }
 
-function DeleteTagForm({
+function DeleteIconForm({
   formIsOpen,
   hideModal,
   id,
   resetFormValues,
   setToolsFrontend,
-  tags,
-}: DeleteTagFormProps) {
+  icons,
+}: DeleteToolFormProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
     message: "",
   });
   const selectSingleInput = useRef<HTMLSelectElement>();
-  const [selectedTagName, setSelectedTagName] = useState("");
+  const [selectedIconName, setSelectedIconName] = useState("");
 
   useEffect(() => {
     if (!formIsOpen) {
@@ -49,17 +49,18 @@ function DeleteTagForm({
       }, 500); // Time until CSS transition finishes.
     }
     if (formIsOpen) {
-      setSelectedTagName(
+      setSelectedIconName(
         selectSingleInput.current.selectedOptions[0].innerText
       );
     }
   }, [formIsOpen]);
 
   const onSubmit = async () => {
+    console.dir(selectSingleInput.current.selectedOptions[0]);
     try {
       const response = await fetch(
         createRequest({
-          urlPath: `/tags/${selectSingleInput.current.value}`,
+          urlPath: `/icons/${selectSingleInput.current.value}`,
           method: "DELETE",
         })
       );
@@ -73,14 +74,14 @@ function DeleteTagForm({
 
       if (response.status >= 200 && response.status < 400) {
         if (selectSingleInput.current.selectedOptions[0].nextElementSibling) {
-          setSelectedTagName(
+          setSelectedIconName(
             (
               selectSingleInput.current.selectedOptions[0]
                 .nextElementSibling as HTMLElement
             ).innerText
           );
         } else {
-          setSelectedTagName(
+          setSelectedIconName(
             (
               selectSingleInput.current.selectedOptions[0]
                 .parentElement[0] as HTMLElement
@@ -88,7 +89,10 @@ function DeleteTagForm({
           );
         }
       }
-      setToolsFrontend((prevValue) => [...prevValue, id]);
+      setToolsFrontend((prevValue) => [
+        ...prevValue,
+        selectSingleInput.current.value,
+      ]);
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -103,36 +107,44 @@ function DeleteTagForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`delete-tag-form-${id}`}
-      title="Delete Tag"
+      targetForm={`delete-icon-form-${id}`}
+      title="Delete Icon"
     >
       <Form
         hasFieldset
-        id={`delete-tag-form-${id}`}
-        legend="Delete tag form"
+        id={`delete-icon-form-${id}`}
+        legend="Delete icon form"
         onSubmit={async (e) => {
           e.preventDefault();
           onSubmit();
         }}
         resetFormValues={resetFormValues}
       >
-        <div className={styles.smallFormInnerContainer}>
+        <div className={styles.smallFormInnerContainerVertical}>
           <Input
-            allOptions={tags}
+            allOptions={icons}
             formIsOpen={formIsOpen}
-            placeholder="Choose tag"
+            placeholder="Choose icon"
             type="selectSingle"
             ref={selectSingleInput}
             onChange={() => {
-              setSelectedTagName(
+              setSelectedIconName(
                 selectSingleInput.current.selectedOptions[0].innerText
               );
             }}
           />
-          {selectedTagName && (
-            <p className={styles.deleteTagQuestion}>
-              Delete <Tag>{selectedTagName}</Tag> tag?
-            </p>
+          {selectedIconName && (
+            <div className={styles.iconConfirmDelete}>
+              <p className={styles.deleteTagQuestion}>
+                Delete "{selectedIconName}" icon?
+              </p>
+              <Image
+                src={icons.find((icon) => icon.name === selectedIconName).url}
+                alt={"Icon preview"}
+                width={60}
+                height={60}
+              />
+            </div>
           )}
         </div>
       </Form>
@@ -140,4 +152,4 @@ function DeleteTagForm({
   );
 }
 
-export default DeleteTagForm;
+export default DeleteIconForm;

@@ -1,14 +1,6 @@
 "use client";
 
-import React, {
-  Dispatch,
-  MouseEventHandler,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import Image from "next/image";
+import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 
 import Form from "@/components/Form/Form";
 import Input from "@/components/Form/Input/Input";
@@ -16,31 +8,37 @@ import Modal from "@/components/Modal/Modal";
 
 import { createRequest } from "@/utils/requests";
 
-import styles from "./tools.module.scss";
+import styles from "../tools.module.scss";
 
-interface DeleteToolFormProps {
+interface DeleteUserFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
   id?: string;
   resetFormValues?: boolean;
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
-  icons?: any[];
 }
 
-function DeleteIconForm({
+function DeleteUserForm({
   formIsOpen,
   hideModal,
   id,
   resetFormValues,
-  setToolsFrontend,
-  icons,
-}: DeleteToolFormProps) {
+}: DeleteUserFormProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
     message: "",
   });
   const selectSingleInput = useRef<HTMLSelectElement>();
-  const [selectedIconName, setSelectedIconName] = useState("");
+  const [selectedUserEmail, setSelectedUserEmail] = useState("");
+  const [users, setUsers] = useState([]);
+  const [usersFrontend, setUsersFrontend] = useState([]);
+
+  useEffect(() => {
+    if (users.length) {
+      setSelectedUserEmail(
+        selectSingleInput.current.selectedOptions[0].innerText
+      );
+    }
+  }, [users]);
 
   useEffect(() => {
     if (!formIsOpen) {
@@ -49,18 +47,20 @@ function DeleteIconForm({
       }, 500); // Time until CSS transition finishes.
     }
     if (formIsOpen) {
-      setSelectedIconName(
-        selectSingleInput.current.selectedOptions[0].innerText
-      );
+      fetch(createRequest({ urlPath: "/user" }))
+        .then((response) => response.json())
+        .then((data) => {
+          setUsers(data.users);
+        })
+        .catch((error) => console.log(error));
     }
-  }, [formIsOpen]);
+  }, [formIsOpen, usersFrontend]);
 
   const onSubmit = async () => {
-    console.dir(selectSingleInput.current.selectedOptions[0]);
     try {
       const response = await fetch(
         createRequest({
-          urlPath: `/icons/${selectSingleInput.current.value}`,
+          urlPath: `/user/${selectSingleInput.current.value}`,
           method: "DELETE",
         })
       );
@@ -74,14 +74,14 @@ function DeleteIconForm({
 
       if (response.status >= 200 && response.status < 400) {
         if (selectSingleInput.current.selectedOptions[0].nextElementSibling) {
-          setSelectedIconName(
+          setSelectedUserEmail(
             (
               selectSingleInput.current.selectedOptions[0]
                 .nextElementSibling as HTMLElement
             ).innerText
           );
         } else {
-          setSelectedIconName(
+          setSelectedUserEmail(
             (
               selectSingleInput.current.selectedOptions[0]
                 .parentElement[0] as HTMLElement
@@ -89,10 +89,7 @@ function DeleteIconForm({
           );
         }
       }
-      setToolsFrontend((prevValue) => [
-        ...prevValue,
-        selectSingleInput.current.value,
-      ]);
+      setUsersFrontend((prevValue) => [...prevValue, id]);
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -107,13 +104,13 @@ function DeleteIconForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`delete-icon-form-${id}`}
-      title="Delete Icon"
+      targetForm={`delete-user-form-${id}`}
+      title="Delete User"
     >
       <Form
         hasFieldset
-        id={`delete-icon-form-${id}`}
-        legend="Delete icon form"
+        id={`delete-user-form-${id}`}
+        legend="Delete user form"
         onSubmit={async (e) => {
           e.preventDefault();
           onSubmit();
@@ -122,29 +119,22 @@ function DeleteIconForm({
       >
         <div className={styles.smallFormInnerContainerVertical}>
           <Input
-            allOptions={icons}
+            allOptions={users}
             formIsOpen={formIsOpen}
-            placeholder="Choose icon"
+            placeholder="Choose user"
             type="selectSingle"
             ref={selectSingleInput}
             onChange={() => {
-              setSelectedIconName(
+              setSelectedUserEmail(
                 selectSingleInput.current.selectedOptions[0].innerText
               );
             }}
           />
-          {selectedIconName && (
-            <div className={styles.iconConfirmDelete}>
-              <p className={styles.deleteTagQuestion}>
-                Delete "{selectedIconName}" icon?
-              </p>
-              <Image
-                src={icons.find((icon) => icon.name === selectedIconName).url}
-                alt={"Icon preview"}
-                width={60}
-                height={60}
-              />
-            </div>
+          {selectedUserEmail && (
+            <p className={styles.deleteUserQuestion}>
+              Delete user "
+              <span className={styles.userEmail}>{selectedUserEmail}</span>"?
+            </p>
           )}
         </div>
       </Form>
@@ -152,4 +142,4 @@ function DeleteIconForm({
   );
 }
 
-export default DeleteIconForm;
+export default DeleteUserForm;

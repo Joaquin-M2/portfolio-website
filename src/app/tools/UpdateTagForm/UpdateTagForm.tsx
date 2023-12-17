@@ -5,20 +5,20 @@ import React, {
   MouseEventHandler,
   SetStateAction,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Form from "@/components/Form/Form";
 import Input from "@/components/Form/Input/Input";
-import ListContainer from "@/components/ListContainer/ListContainer";
 import Modal from "@/components/Modal/Modal";
 
 import { createRequest } from "@/utils/requests";
 
-import styles from "./tools.module.scss";
+import styles from "../tools.module.scss";
 
-interface AddToolFormProps {
+interface UpdateTagFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
   id?: string;
@@ -31,20 +31,24 @@ interface FormInputs {
   name: string;
 }
 
-function AddTagForm({
+function UpdateTagForm({
   formIsOpen,
   hideModal,
   id,
   resetFormValues,
   setToolsFrontend,
   tags,
-}: AddToolFormProps) {
+}: UpdateTagFormProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
     message: "",
   });
+  const selectSingleInput = useRef<HTMLSelectElement>();
 
   useEffect(() => {
+    if (formIsOpen) {
+      setValue("name", selectSingleInput.current.selectedOptions[0].innerText);
+    }
     if (!formIsOpen) {
       reset();
       setTimeout(() => {
@@ -58,6 +62,7 @@ function AddTagForm({
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
     watch,
   } = useForm<FormInputs>();
 
@@ -65,8 +70,8 @@ function AddTagForm({
     try {
       const response = await fetch(
         createRequest({
-          urlPath: "/tags",
-          method: "POST",
+          urlPath: `/tags/${selectSingleInput.current.value}`,
+          method: "PATCH",
           requestBody: data,
         })
       );
@@ -93,18 +98,30 @@ function AddTagForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`add-tag-form-${id}`}
-      title="Add Tag"
+      targetForm={`update-tag-form-${id}`}
+      title="Update Tag"
     >
       <Form
         hasFieldset
-        id={`add-tag-form-${id}`}
-        legend="Add tag form"
+        id={`update-tag-form-${id}`}
+        legend="Update tag form"
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
       >
         <div className={styles.smallFormInnerContainer}>
-          <ListContainer items={tags} title="All tags" />
+          <Input
+            allOptions={tags}
+            formIsOpen={formIsOpen}
+            placeholder="Choose tag"
+            type="selectSingle"
+            ref={selectSingleInput}
+            onChange={() =>
+              setValue(
+                "name",
+                selectSingleInput.current.selectedOptions[0].innerText
+              )
+            }
+          />
           <Input
             aria-invalid={errors.name ? true : false}
             watchedValue={watch("name")}
@@ -112,8 +129,8 @@ function AddTagForm({
               errors.name && "Tag name needs to be between 2 and 50 characters."
             }
             formIsOpen={formIsOpen}
-            id="add-tag-title-input"
-            placeholder="Tag name"
+            id="update-tag-title-input"
+            placeholder="Update tag name"
             required
             type="text"
             {...register("name", {
@@ -128,4 +145,4 @@ function AddTagForm({
   );
 }
 
-export default AddTagForm;
+export default UpdateTagForm;

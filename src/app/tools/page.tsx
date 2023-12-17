@@ -11,16 +11,16 @@ import { createRequest } from "@/utils/requests";
 import checkJwtTokenHasExpired from "@/utils/check-user-token-expiration";
 import getUserTokenData from "@/utils/get-user-token-data";
 
-import AddIconForm from "./AddIconForm";
-import AddTagForm from "./AddTagForm";
-import AddToolForm from "./AddToolForm";
-import DeleteIconForm from "./DeleteIconForm";
-import DeleteTagForm from "./DeleteTagForm";
-import DeleteUserForm from "./DeleteUserForm";
-import LoginAndSignupForms from "./LoginAndSignupForms";
-import UpdateIconForm from "./UpdateIconForm";
-import UpdateTagForm from "./UpdateTagForm";
-import UpdateUserForm from "./UpdateUserForm";
+import AddIconForm from "./AddIconForm/AddIconForm";
+import AddTagForm from "./AddTagForm/AddTagForm";
+import AddToolForm from "./AddToolForm/AddToolForm";
+import DeleteIconForm from "./DeleteIconForm/DeleteIconForm";
+import DeleteTagForm from "./DeleteTagForm/DeleteTagForm";
+import DeleteUserForm from "./DeleteUserForm/DeleteUserForm";
+import LoginAndSignupForms from "./LoginAndSignupForms/LoginAndSignupForms";
+import UpdateIconForm from "./UpdateIconForm/UpdateIconForm";
+import UpdateTagForm from "./UpdateTagForm/UpdateTagForm";
+import UpdateUserForm from "./UpdateUserForm/UpdateUserForm";
 
 import styles from "./tools.module.scss";
 
