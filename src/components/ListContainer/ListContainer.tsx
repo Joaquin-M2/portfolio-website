@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./listContainer.module.scss";
 
 interface ListContainerProps {
-  items: any[];
+  items: { _id: string; name: string; url: string }[];
   title: string;
   usesIconPreview?: boolean;
 }
