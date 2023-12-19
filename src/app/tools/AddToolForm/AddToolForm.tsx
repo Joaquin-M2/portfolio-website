@@ -27,7 +27,6 @@ interface AddToolFormProps {
   handleRemoveTag?: (event) => void;
   hideModal: MouseEventHandler;
   icons: any[];
-  id?: string;
   requestMethod: string;
   requestUrlPath: string;
   resetFormValues?: boolean;
@@ -50,7 +49,6 @@ function AddToolForm({
   handleRemoveTag,
   hideModal,
   icons,
-  id,
   requestMethod,
   requestUrlPath,
   resetFormValues,
@@ -89,7 +87,7 @@ function AddToolForm({
       requestUrlPath.startsWith("/tools")
     ) {
       setTimeout(() => {
-        setToolsFrontend((prevValue) => [...prevValue, id]);
+        setToolsFrontend((prevValue) => [...prevValue]);
       }, 500); // Time until CSS transition finishes.
     }
   }, [formIsOpen]);
@@ -147,13 +145,13 @@ function AddToolForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`add-tool-form-${id}`}
+      targetForm={`add-tool-form`}
       title="Add Tool"
       requestIsSuccessful={requestIsSuccessful}
     >
       <Form
         hasFieldset
-        id={`add-tool-form-${id}`}
+        id={`add-tool-form`}
         legend="Add tool form"
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
