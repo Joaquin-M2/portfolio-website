@@ -21,7 +21,6 @@ import styles from "../tools.module.scss";
 interface AddToolFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  id?: string;
   resetFormValues?: boolean;
   setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
   tags?: any[];
@@ -34,7 +33,6 @@ interface FormInputs {
 function AddTagForm({
   formIsOpen,
   hideModal,
-  id,
   resetFormValues,
   setToolsFrontend,
   tags,
@@ -78,7 +76,7 @@ function AddTagForm({
         message: result.message,
       });
 
-      setToolsFrontend((prevValue) => [...prevValue, id]);
+      setToolsFrontend((prevValue) => [...prevValue]);
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -93,12 +91,12 @@ function AddTagForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`add-tag-form-${id}`}
+      targetForm={`add-tag-form`}
       title="Add Tag"
     >
       <Form
         hasFieldset
-        id={`add-tag-form-${id}`}
+        id={`add-tag-form`}
         legend="Add tag form"
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
