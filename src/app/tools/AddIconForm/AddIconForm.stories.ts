@@ -37,16 +37,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const randomTagsSet = new Set(
+const randomNamesSet = new Set(
   Array(20)
     .fill(null)
     .map(() => faker.vehicle.manufacturer())
 );
 
-const randomIcons = [...randomTagsSet]
+const randomIcons = [...randomNamesSet]
   .sort((a, b) => a.localeCompare(b))
-  .map((tagName) => ({
-    name: tagName,
+  .map((iconName) => ({
+    name: iconName,
     url: faker.image.urlLoremFlickr({ width: 60, height: 60 }),
     _id: faker.string.uuid(),
   }));
