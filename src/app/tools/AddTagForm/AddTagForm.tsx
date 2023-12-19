@@ -102,7 +102,7 @@ function AddTagForm({
         resetFormValues={resetFormValues}
       >
         <div className={styles.smallFormInnerContainer}>
-          <ListContainer items={tags} title="All tags" />
+          <ListContainer items={tags} title="All added tags" />
           <Input
             aria-invalid={errors.name ? true : false}
             watchedValue={watch("name")}
@@ -111,7 +111,7 @@ function AddTagForm({
             }
             formIsOpen={formIsOpen}
             id="add-tag-title-input"
-            placeholder="Tag name"
+            placeholder="New tag name"
             required
             type="text"
             {...register("name", {
