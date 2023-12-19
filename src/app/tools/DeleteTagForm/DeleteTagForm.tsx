@@ -21,16 +21,14 @@ import styles from "../tools.module.scss";
 interface DeleteTagFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  id?: string;
-  resetFormValues?: boolean;
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
-  tags?: any[];
+  resetFormValues: boolean;
+  setToolsFrontend: Dispatch<SetStateAction<any[]>>;
+  tags: any[];
 }
 
 function DeleteTagForm({
   formIsOpen,
   hideModal,
-  id,
   resetFormValues,
   setToolsFrontend,
   tags,
@@ -88,7 +86,7 @@ function DeleteTagForm({
           );
         }
       }
-      setToolsFrontend((prevValue) => [...prevValue, id]);
+      setToolsFrontend((prevValue) => [...prevValue]);
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -103,12 +101,12 @@ function DeleteTagForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`delete-tag-form-${id}`}
+      targetForm={`delete-tag-form`}
       title="Delete Tag"
     >
       <Form
         hasFieldset
-        id={`delete-tag-form-${id}`}
+        id={`delete-tag-form`}
         legend="Delete tag form"
         onSubmit={async (e) => {
           e.preventDefault();

@@ -13,14 +13,12 @@ import styles from "../tools.module.scss";
 interface DeleteUserFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  id?: string;
-  resetFormValues?: boolean;
+  resetFormValues: boolean;
 }
 
 function DeleteUserForm({
   formIsOpen,
   hideModal,
-  id,
   resetFormValues,
 }: DeleteUserFormProps) {
   const [formResponse, setFormResponse] = useState({
@@ -89,7 +87,7 @@ function DeleteUserForm({
           );
         }
       }
-      setUsersFrontend((prevValue) => [...prevValue, id]);
+      setUsersFrontend((prevValue) => [...prevValue]);
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -104,12 +102,12 @@ function DeleteUserForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`delete-user-form-${id}`}
+      targetForm={`delete-user-form`}
       title="Delete User"
     >
       <Form
         hasFieldset
-        id={`delete-user-form-${id}`}
+        id={`delete-user-form`}
         legend="Delete user form"
         onSubmit={async (e) => {
           e.preventDefault();

@@ -21,16 +21,14 @@ import styles from "../tools.module.scss";
 interface DeleteToolFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  id?: string;
-  resetFormValues?: boolean;
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
-  icons?: any[];
+  resetFormValues: boolean;
+  setToolsFrontend: Dispatch<SetStateAction<any[]>>;
+  icons: any[];
 }
 
 function DeleteIconForm({
   formIsOpen,
   hideModal,
-  id,
   resetFormValues,
   setToolsFrontend,
   icons,
@@ -107,12 +105,12 @@ function DeleteIconForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`delete-icon-form-${id}`}
+      targetForm={`delete-icon-form`}
       title="Delete Icon"
     >
       <Form
         hasFieldset
-        id={`delete-icon-form-${id}`}
+        id={`delete-icon-form`}
         legend="Delete icon form"
         onSubmit={async (e) => {
           e.preventDefault();

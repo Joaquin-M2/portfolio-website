@@ -21,10 +21,9 @@ import styles from "../tools.module.scss";
 interface UpdateTagFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  id?: string;
-  resetFormValues?: boolean;
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
-  tags?: any[];
+  resetFormValues: boolean;
+  setToolsFrontend: Dispatch<SetStateAction<any[]>>;
+  tags: any[];
 }
 
 interface FormInputs {
@@ -34,7 +33,6 @@ interface FormInputs {
 function UpdateTagForm({
   formIsOpen,
   hideModal,
-  id,
   resetFormValues,
   setToolsFrontend,
   tags,
@@ -83,7 +81,7 @@ function UpdateTagForm({
         message: result.message,
       });
 
-      setToolsFrontend((prevValue) => [...prevValue, id]);
+      setToolsFrontend((prevValue) => [...prevValue]);
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -98,12 +96,12 @@ function UpdateTagForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`update-tag-form-${id}`}
+      targetForm={`update-tag-form`}
       title="Update Tag"
     >
       <Form
         hasFieldset
-        id={`update-tag-form-${id}`}
+        id={`update-tag-form`}
         legend="Update tag form"
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}

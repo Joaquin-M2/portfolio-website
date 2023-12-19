@@ -14,8 +14,7 @@ import styles from "../tools.module.scss";
 interface UpdateUserFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  id?: string;
-  resetFormValues?: boolean;
+  resetFormValues: boolean;
 }
 
 interface FormInputs {
@@ -26,7 +25,6 @@ interface FormInputs {
 function UpdateUserForm({
   formIsOpen,
   hideModal,
-  id,
   resetFormValues,
 }: UpdateUserFormProps) {
   const [formResponse, setFormResponse] = useState({
@@ -87,7 +85,7 @@ function UpdateUserForm({
         message: result.message,
       });
 
-      setUsersFrontend((prevValue) => [...prevValue, id]);
+      setUsersFrontend((prevValue) => [...prevValue]);
     } catch (error) {
       setFormResponse({
         status: 500,
@@ -102,12 +100,12 @@ function UpdateUserForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`update-user-form-${id}`}
+      targetForm={`update-user-form`}
       title="Update User"
     >
       <Form
         hasFieldset
-        id={`update-user-form-${id}`}
+        id={`update-user-form`}
         legend="Update user form"
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}

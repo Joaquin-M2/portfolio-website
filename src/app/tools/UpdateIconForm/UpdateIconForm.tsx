@@ -24,10 +24,9 @@ import styles from "../tools.module.scss";
 interface UpdateIconFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  id?: string;
-  resetFormValues?: boolean;
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
-  icons?: any[];
+  resetFormValues: boolean;
+  setToolsFrontend: Dispatch<SetStateAction<any[]>>;
+  icons: any[];
 }
 
 interface FormInputs {
@@ -38,7 +37,6 @@ interface FormInputs {
 function UpdateIconForm({
   formIsOpen,
   hideModal,
-  id,
   resetFormValues,
   setToolsFrontend,
   icons,
@@ -121,12 +119,12 @@ function UpdateIconForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`update-icon-form-${id}`}
+      targetForm={`update-icon-form`}
       title="Update Icon"
     >
       <Form
         hasFieldset
-        id={`update-icon-form-${id}`}
+        id={`update-icon-form`}
         legend="Update icon form"
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
