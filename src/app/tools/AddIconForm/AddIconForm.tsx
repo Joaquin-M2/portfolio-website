@@ -23,9 +23,9 @@ import styles from "../tools.module.scss";
 interface AddIconFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  resetFormValues?: boolean;
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
-  icons?: any[];
+  resetFormValues: boolean;
+  setToolsFrontend: Dispatch<SetStateAction<any[]>>;
+  icons: any[];
 }
 
 interface FormInputs {

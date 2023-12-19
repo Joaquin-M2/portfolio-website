@@ -21,9 +21,9 @@ import styles from "../tools.module.scss";
 interface AddToolFormProps {
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
-  resetFormValues?: boolean;
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
-  tags?: any[];
+  resetFormValues: boolean;
+  setToolsFrontend: Dispatch<SetStateAction<any[]>>;
+  tags: any[];
 }
 
 interface FormInputs {

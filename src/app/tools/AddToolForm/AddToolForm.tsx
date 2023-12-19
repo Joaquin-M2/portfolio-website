@@ -23,16 +23,16 @@ import styles from "../tools.module.scss";
 
 interface AddToolFormProps {
   formIsOpen: boolean;
-  handleAddTag?: (event) => void;
-  handleRemoveTag?: (event) => void;
+  handleAddTag: (event) => void;
+  handleRemoveTag: (event) => void;
   hideModal: MouseEventHandler;
   icons: any[];
   requestMethod: string;
   requestUrlPath: string;
-  resetFormValues?: boolean;
-  selectedTagsAddToolForm?: any[];
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
-  tags?: any[];
+  resetFormValues: boolean;
+  selectedTagsAddToolForm: any[];
+  setToolsFrontend: Dispatch<SetStateAction<any[]>>;
+  tags: any[];
 }
 
 interface FormInputs {
