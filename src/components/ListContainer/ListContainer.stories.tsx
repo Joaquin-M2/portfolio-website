@@ -49,6 +49,7 @@ const randomUsersSet = new Set(
 const randomUsers = [...randomUsersSet]
   .sort((a, b) => a.localeCompare(b))
   .map((tagName) => ({
+    _id: faker.string.uuid(),
     name: tagName,
     url: faker.image.avatarGitHub(),
   }));
