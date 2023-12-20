@@ -19,11 +19,9 @@ interface LoginAndSignupFormsProps {
   formIsOpen: boolean;
   formType: "login" | "signup";
   hideModal: MouseEventHandler;
-  id?: string;
   requestMethod: string;
   requestUrlPath: string;
-  resetFormValues?: boolean;
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
+  resetFormValues: boolean;
 }
 
 interface FormInputs {
@@ -35,11 +33,9 @@ function LoginAndSignupForms({
   formIsOpen,
   formType,
   hideModal,
-  id,
   requestMethod,
   requestUrlPath,
   resetFormValues,
-  setToolsFrontend,
 }: LoginAndSignupFormsProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
@@ -55,15 +51,6 @@ function LoginAndSignupForms({
       setTimeout(() => {
         setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
         setRequestIsSuccessful(false);
-      }, 500); // Time until CSS transition finishes.
-    }
-    if (
-      !formIsOpen &&
-      formResponse.message &&
-      requestUrlPath.startsWith("/tools")
-    ) {
-      setTimeout(() => {
-        setToolsFrontend((prevValue) => [...prevValue, id]);
       }, 500); // Time until CSS transition finishes.
     }
   }, [formIsOpen]);
@@ -154,13 +141,13 @@ function LoginAndSignupForms({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`${formType}-form-${id}`}
+      targetForm={`${formType}-form`}
       title={modalTitle}
       requestIsSuccessful={requestIsSuccessful}
     >
       <Form
         hasFieldset
-        id={`${formType}-form-${id}`}
+        id={`${formType}-form`}
         legend={formLegend}
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
