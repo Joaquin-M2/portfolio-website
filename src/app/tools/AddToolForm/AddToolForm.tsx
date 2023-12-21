@@ -54,7 +54,6 @@ function AddToolForm({
   resetFormValues,
   selectedTagsAddToolForm,
   setToolsFrontend,
-
   tags,
 }: AddToolFormProps) {
   const [formResponse, setFormResponse] = useState({
