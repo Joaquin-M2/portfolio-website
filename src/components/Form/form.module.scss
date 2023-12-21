@@ -16,3 +16,11 @@
     font-size: 3.5rem;
   }
 }
+
+.buttonsContainer {
+  width: 90%;
+  margin: 3rem auto 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
