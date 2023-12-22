@@ -177,7 +177,7 @@ export default function Contact() {
             <ul>
               <li>
                 <a
-                  href="#"
+                  href="mailto:joaquin.mmol@gmail.com"
                   className={`${styles.EmailLogo} ${styles.ContactLogos}`}
                   target="_blank"
                 >
@@ -187,7 +187,7 @@ export default function Contact() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/joaquin-m2/"
                   className={`${styles.LinkedinLogo} ${styles.ContactLogos}`}
                   target="_blank"
                 >
@@ -197,7 +197,7 @@ export default function Contact() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://github.com/Joaquin-M2"
                   className={`${styles.GithubLogo} ${styles.ContactLogos}`}
                   target="_blank"
                 >
@@ -205,21 +205,6 @@ export default function Contact() {
                   GitHub
                 </a>
               </li>
-              {/* <li>
-                <a
-                  href='#'
-                  className={`${styles.TwitterLogo} ${styles.ContactLogos}`}
-                  target='_blank'
-                >
-                  <TwitterLogo />
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a href='#' target='_blank'>
-                  ---
-                </a>
-              </li> */}
             </ul>
             <p>
               If you prefer a direct call, just send me an email so we can
