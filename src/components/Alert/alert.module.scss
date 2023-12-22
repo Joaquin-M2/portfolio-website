@@ -1,0 +1,27 @@
+@import "@/sass/abstracts/variables.scss";
+
+.wrapper {
+  margin: auto;
+}
+
+.baseStyling {
+  border-radius: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.error,
+.success {
+  padding: 1rem;
+}
+
+.error {
+  color: red;
+  background-image: radial-gradient($color-pale-red, white);
+}
+
+.success {
+  color: green;
+  background-image: radial-gradient($color-pale-green, white);
+}
