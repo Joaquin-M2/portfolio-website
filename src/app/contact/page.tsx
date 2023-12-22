@@ -1,19 +1,175 @@
-import ContactForm from '../../components/ContactForm/ContactForm';
+"use client";
 
-import EmailLogo from '../../components/SVG-icons/email';
-import LinkedinLogo from '../../components/SVG-icons/linkedin';
-import GithubLogo from '../../components/SVG-icons/github';
-//import TwitterLogo from '../../components/SVG-icons/twitter';
+import EmailLogo from "@/components/SVG-icons/email";
+import LinkedinLogo from "@/components/SVG-icons/linkedin";
+import GithubLogo from "@/components/SVG-icons/github";
+//import TwitterLogo from '@/components/SVG-icons/twitter';
 
-import styles from './contact.module.scss';
+import styles from "./contact.module.scss";
+import Form from "@/components/Form/Form";
+import Input from "@/components/Form/Input/Input";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useState } from "react";
+import { emailRegExp } from "@/utils/regular-expressions";
+
+interface FormInputs {
+  access_key: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 export default function Contact() {
+  const [formResponse, setFormResponse] = useState({
+    status: 500,
+    message: "",
+  });
+  const [formIsPending, setFormIsPending] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    watch,
+  } = useForm<FormInputs>();
+
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    setFormIsPending(true);
+    await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data, null, 2),
+    })
+      .then(async (response) => {
+        let json = await response.json();
+        console.log(json);
+        if (json.success) {
+          setFormResponse({
+            status: 201,
+            message: "Form sent successfully!",
+          });
+          reset({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          });
+        } else {
+          setFormResponse({
+            status: 500,
+            message:
+              "Something went wrong. Please, email me directly to joaquin.mmol@gmail.com",
+          });
+        }
+        setFormIsPending(false);
+      })
+      .catch((error) => {
+        setFormResponse({
+          status: 500,
+          message:
+            "Client Error. Please check the console.log for more info or email me directly to joaquin.mmol@gmail.com",
+        });
+        console.log(error);
+        setFormIsPending(false);
+      });
+  };
+
   return (
     <>
       <div className={styles.positionMainElements}>
         <main className={styles.Container}>
           <div className={styles.FormContainer}>
-            <ContactForm />
+            <Form
+              hasFieldset
+              id="contact-form"
+              legend="Contact form"
+              onSubmit={handleSubmit(onSubmit)}
+              usesItsOwnButtons
+              backendResponse={formResponse}
+              isPending={formIsPending}
+              onReset={() => {
+                reset({
+                  name: "",
+                  email: "",
+                  subject: "",
+                  message: "",
+                });
+              }}
+            >
+              <input
+                type="hidden"
+                value="fe6697fb-809f-4b14-9754-3b0e1293af59"
+                {...register("access_key")}
+              />
+              <Input
+                aria-invalid={errors.name ? true : false}
+                watchedValue={watch("name")}
+                error={
+                  errors.name && "Name needs to be between 3 and 50 characters."
+                }
+                formIsOpen
+                placeholder="Your name"
+                required
+                type="text"
+                {...register("name", {
+                  required: true,
+                  minLength: 3,
+                  maxLength: 50,
+                })}
+              />
+              <Input
+                aria-invalid={errors.email ? true : false}
+                watchedValue={watch("email")}
+                error={
+                  errors.email &&
+                  "Invalid email. Accepted format: <username>@<domain>"
+                }
+                formIsOpen
+                placeholder="Your email"
+                required
+                type="email"
+                {...register("email", { required: true, pattern: emailRegExp })}
+              />
+              <Input
+                aria-invalid={errors.subject ? true : false}
+                watchedValue={watch("subject")}
+                error={
+                  errors.subject &&
+                  "Subject needs to be between 3 and 50 characters."
+                }
+                formIsOpen
+                placeholder="Your message subject"
+                required
+                type="text"
+                {...register("subject", {
+                  required: true,
+                  minLength: 3,
+                  maxLength: 50,
+                })}
+              />
+              <Input
+                aria-invalid={errors.message ? true : false}
+                watchedValue={watch("message")}
+                error={
+                  errors.message &&
+                  "Your message needs to be between 10 and 250 characters."
+                }
+                formIsOpen
+                placeholder="Message"
+                required
+                type="textarea"
+                {...register("message", {
+                  required: true,
+                  minLength: 10,
+                  maxLength: 250,
+                })}
+              />
+            </Form>
           </div>
           <div className={styles.OtherContactMeansContainer}>
             <h2>Not a big fan of forms?</h2>
@@ -21,9 +177,9 @@ export default function Contact() {
             <ul>
               <li>
                 <a
-                  href='#'
+                  href="#"
                   className={`${styles.EmailLogo} ${styles.ContactLogos}`}
-                  target='_blank'
+                  target="_blank"
                 >
                   <EmailLogo />
                   Email
@@ -31,9 +187,9 @@ export default function Contact() {
               </li>
               <li>
                 <a
-                  href='#'
+                  href="#"
                   className={`${styles.LinkedinLogo} ${styles.ContactLogos}`}
-                  target='_blank'
+                  target="_blank"
                 >
                   <LinkedinLogo />
                   LinkedIn
@@ -41,9 +197,9 @@ export default function Contact() {
               </li>
               <li>
                 <a
-                  href='#'
+                  href="#"
                   className={`${styles.GithubLogo} ${styles.ContactLogos}`}
-                  target='_blank'
+                  target="_blank"
                 >
                   <GithubLogo />
                   GitHub
