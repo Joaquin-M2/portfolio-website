@@ -206,9 +206,9 @@ export default function Contact() {
                 </a>
               </li>
             </ul>
-            <p>
-              If you prefer a direct call, just send me an email so we can
-              arrange a meeting. No UTC preference on my side.
+            <p className={styles.bottomParagraph}>
+              If you prefer a direct call, feel free to send me an email so we
+              can arrange a meeting.
             </p>
           </div>
         </main>

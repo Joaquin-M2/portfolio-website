@@ -1,5 +1,5 @@
-@import '../../sass/abstracts/variables.scss';
-@import '../../sass/abstracts/mixins.scss';
+@import "@/sass/abstracts/variables.scss";
+@import "@/sass/abstracts/mixins.scss";
 
 .positionMainElements {
   display: flex;
@@ -86,20 +86,20 @@
     text-decoration: none;
     font-size: 2rem;
     font-weight: bold;
-    color: $color-intense-grey;
+    color: $color-pale-grey;
     letter-spacing: 0.2rem;
 
     display: inline-flex;
     align-items: center;
 
-    & span {
+    & svg {
       margin-right: 1.6rem;
     }
   }
 }
 
-.OtherContactMeansContainer p {
-  font-size: 1.2rem;
+.bottomParagraph {
+  font-size: 1.5rem;
   font-weight: bold;
   color: $color-pale-grey;
   text-align: justify;
@@ -112,5 +112,5 @@
 }
 
 .ContactLogos {
-  fill: red;
+  fill: $color-intense-grey;
 }
