@@ -1,4 +1,4 @@
-@import '../../sass/abstracts/variables.scss';
+@import "@/sass/abstracts/variables.scss";
 
 .container {
   position: fixed;
@@ -10,6 +10,8 @@
   border-top-right-radius: 35%;
 
   box-shadow: 0 0 1rem 0.1rem black;
+
+  z-index: 2;
 }
 
 .navBarBottom {
