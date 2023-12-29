@@ -1,5 +1,5 @@
-import Skill from '../utils/create-skill';
-import tech from './techs-names';
+import Skill from "@/utils/create-skill";
+import tech from "./techs-names";
 
 const technologies = [
   new Skill(
