@@ -1,19 +1,76 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import styles from "./skillBar.module.scss";
 
 interface SkillBarProps {
-  children: string;
+  children?: JSX.Element | JSX.Element[];
+  color?: "red" | "blue" | "orange";
+  href: string;
+  isMidLevel?: boolean;
+  isSubLevel?: boolean;
   progressPercentage: number;
+  title: string;
 }
 
 export default function SkillBar({
   children,
+  color = "red",
+  href,
+  isMidLevel,
+  isSubLevel,
   progressPercentage,
+  title,
 }: SkillBarProps) {
   const percentageRef = useRef<HTMLParagraphElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    progressPercentage >= 80 &&
+      percentageRef.current.animate(
+        [
+          {
+            color: "black",
+          },
+          {
+            color: "white",
+          },
+        ],
+        {
+          duration: 1000,
+          fill: "forwards",
+        }
+      );
+
+    barRef.current.animate(
+      [
+        {
+          width: "0%",
+          backgroundColor: "red",
+          animationTimingFunction: "cubic-bezier(0.8, 0.46, 0.84, 0.82)",
+        },
+        {
+          width: "50%",
+          backgroundColor: "yellow",
+          animationTimingFunction: "cubic-bezier(0.28, 0.89, 0.77, 0.97)",
+        },
+        {
+          width: `${progressPercentage}%`,
+          backgroundColor: `${mix(
+            "ffff00",
+            "008000",
+            (100 - +progressPercentage) * 2
+          )}`,
+        },
+      ],
+      {
+        duration: 1500,
+        fill: "forwards",
+        //easing: "cubic-bezier(0.8, 0.46, 0.84, 0.82)",
+      }
+    );
+  }, []);
 
   let animationLength = 2;
 
@@ -74,62 +131,37 @@ export default function SkillBar({
     return color; // PROFIT!
   };
 
-  const uuid = crypto.randomUUID();
-
   return (
     <>
-      <div className={styles.Container}>
-        <span className={styles.TechTag}>{children}</span>
-        <div className={styles.ProgressBarContainer}>
-          <p className={styles.PercentageQuantity} ref={percentageRef}>
-            {/* {'123' + '%'} */}
-          </p>
-          <div>
-            <style jsx>{`
-              div {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-
-                animation: progressBar-${uuid} ${animationLength}s forwards;
-              }
-
-              @keyframes progressBar-${uuid} {
-                0% {
-                  width: 0%;
-                  background-color: red;
-                  animation-timing-function: cubic-bezier(
-                    0.8,
-                    0.46,
-                    0.84,
-                    0.82
-                  );
-                }
-
-                50% {
-                  width: 50%;
-                  background-color: yellow;
-                  animation-timing-function: cubic-bezier(
-                    0.28,
-                    0.89,
-                    0.77,
-                    0.97
-                  );
-                }
-
-                100% {
-                  width: ${progressPercentage}%;
-                  background-color: ${mix(
-                    "ffff00",
-                    "008000",
-                    (100 - +progressPercentage) * 2
-                  )};
-                }
-              }
-            `}</style>
+      <div className={styles.wrapper}>
+        <a
+          className={`
+          ${styles.anchor}
+        ${isSubLevel && styles.isSubLevel} 
+        ${isMidLevel && styles.isMidLevel}
+        `}
+          target="_blank"
+          href={href}
+        >
+          <div className={styles.Container}>
+            <span
+              className={`${styles.TechTag} ${
+                color === "blue" && styles.TechTagBlue
+              } ${color === "orange" && styles.TechTagOrange}`}
+            >
+              {title}
+            </span>
+            <div
+              className={`${styles.ProgressBarContainer} ${
+                color === "blue" && styles.ProgressBarContainerBlue
+              } ${color === "orange" && styles.ProgressBarContainerOrange}`}
+            >
+              <p className={styles.PercentageQuantity} ref={percentageRef}></p>
+              <div className={styles.progressBar} ref={barRef}></div>
+            </div>
           </div>
-        </div>
+        </a>
+        {children && <div className={styles.childrenWrapper}>{children}</div>}
       </div>
     </>
   );
