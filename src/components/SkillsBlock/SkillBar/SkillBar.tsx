@@ -8,7 +8,7 @@ interface SkillBarProps {
   children?: JSX.Element | JSX.Element[];
   color?: "red" | "blue" | "orange";
   href: string;
-  isMidLevel?: boolean;
+  isSubLevelWithChild?: boolean;
   isSubLevel?: boolean;
   progressPercentage: number;
   title: string;
@@ -18,7 +18,7 @@ export default function SkillBar({
   children,
   color = "red",
   href,
-  isMidLevel,
+  isSubLevelWithChild,
   isSubLevel,
   progressPercentage,
   title,
@@ -138,7 +138,7 @@ export default function SkillBar({
           className={`
           ${styles.anchor}
         ${isSubLevel && styles.isSubLevel} 
-        ${isMidLevel && styles.isMidLevel}
+        ${isSubLevelWithChild && styles.isSubLevelWithChild}
         `}
           target="_blank"
           href={href}

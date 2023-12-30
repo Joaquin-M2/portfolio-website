@@ -89,8 +89,8 @@ function Page() {
               color="orange"
               title="React"
               progressPercentage={80}
-              isMidLevel
               isSubLevel
+              isSubLevelWithChild
               href="https://react.dev/"
             >
               <SkillBar
@@ -133,8 +133,8 @@ function Page() {
               color="orange"
               title="Jest"
               progressPercentage={70}
-              isMidLevel
               isSubLevel
+              isSubLevelWithChild
               href="https://jestjs.io/"
             >
               <SkillBar

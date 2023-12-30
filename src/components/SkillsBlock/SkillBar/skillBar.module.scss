@@ -36,10 +36,10 @@
   }
 }
 
-.isMidLevel {
+.isSubLevelWithChild {
   > *::after {
     content: "";
-    //height: 3.7rem; La altura tiene que ser dinámica dependiendo de la cantidad de elementos que englobe "entre medias" (isMidLevel).
+    //height: 3.7rem; La altura tiene que ser dinámica dependiendo de la cantidad de elementos que englobe "entre medias" (isSubLevelWithChild).
     min-height: 20rem;
     position: absolute;
     top: -11.5rem;
@@ -49,7 +49,7 @@
     border-top: 0 none transparent;
     border-right: 0 none transparent;
     z-index: 0;
-    //transform: scaleY(-1) translateY(-95%); La altura tiene que ser dinámica dependiendo de la cantidad de elementos que englobe "entre medias" (isMidLevel).
+    //transform: scaleY(-1) translateY(-95%); La altura tiene que ser dinámica dependiendo de la cantidad de elementos que englobe "entre medias" (isSubLevelWithChild).
     transform: scaleY(-1) translateY(-49%);
   }
 }
