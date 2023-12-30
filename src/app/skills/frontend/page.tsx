@@ -1,188 +1,165 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import SkillsBlock from "@/components/SkillsBlock/SkillsBlock";
-import SkillBar from "@/components/SkillsBlock/SkillBar/SkillBar";
-import SkillModal from "@/components/SkillsBlock/SkillModal/SkillModal";
-
-import tech from "@/data/techs-names";
-import technologies from "@/data/skills-frontend";
 
 import stylesFrontendPage from "./frontendPage.module.scss";
 import styles from "../skills.module.scss";
+import SkillBar from "@/components/SkillsBlock/SkillBar/SkillBar";
 
 function Page() {
-  const [technology, setTechnology] = useState(tech.HTML);
-  const [modalIsShown, setModalIsShown] = useState(false);
-  function showModal(event) {
-    setModalIsShown(true);
-
-    setTechnology(event.target.closest("li").querySelector("span").textContent);
-  }
-
-  const currentTechnology = technologies.find(
-    (tech) => tech.name === technology
-  );
-
-  ////////////////////////////////////////////////////////////////////
-  // FUNCTION TRYING TO SIMPLIFY (DRY) THE CREATION OF SKILL BLOCKS
-  // Unfinished
-
-  // function block(...[liContent, progressPercentage, nesting]) {
-  //   let mainUl = <ul className={`${styles.unorderedList} ${styles.mainUnorderedList}`}></ul>
-  //   let nestingLi = <li className={styles.listElement}>
-  //                     <div className={styles.listElementContainer} onClick={(event) => showModal(event)}>
-  //                       <SkillBar progressPercentage={progressPercentage}>
-  //                         {liContent}
-  //                       </SkillBar>
-  //                     </div>
-  //                     {li}
-  //                   </li>
-  //   let ul = <ul className={styles.unorderedList}></ul>
-  //   let li = <li className={styles.listElement}>
-  //               <div className={styles.listElementContainer} onClick={(event) => showModal(event)}>
-  //                 <SkillBar progressPercentage={progressPercentage}>
-  //                   {liContent}
-  //                 </SkillBar>
-  //               </div>
-  //             </li>
-  //   const skillsetPerDepthLevel = []
-  //   for (const skill of [liContent, progressPercentage, nesting]) {
-  //     if (!nesting) {
-  //       skillsetPerDepthLevel.push(li);
-  //     } else {
-
-  //     }
-  //   }
-  // }
-
   // It is necessary to use the "useMemo()" hook in order to avoid re-renders on the progress bars
   // whenever the "useState()" hook is updated.
   const skills = useMemo(() => {
     return (
       <>
         <SkillsBlock additionalStyles={styles.HTMLSkillsBlock}>
-          <ul className={`${styles.unorderedList} ${styles.mainUnorderedList}`}>
-            <li className={`${styles.listElement} ${styles.firstListElement}`}>
-              <div
-                className={`${styles.listElementContainer} ${styles.firstListElementContainer}`}
-                onClick={(event) => showModal(event)}
-              >
-                <SkillBar progressPercentage={90}>{tech.HTML}</SkillBar>
-              </div>
-              <ul className={styles.unorderedList}>
-                <li className={styles.listElement}>
-                  <div
-                    className={styles.listElementContainer}
-                    onClick={(event) => showModal(event)}
-                  >
-                    <SkillBar progressPercentage={55}>
-                      {tech.ACCESSIBILITY}
-                    </SkillBar>
-                  </div>
-                </li>
-                <li className={styles.listElement}>
-                  <div
-                    className={styles.listElementContainer}
-                    onClick={(event) => showModal(event)}
-                  >
-                    <SkillBar progressPercentage={70}>{tech.SEO}</SkillBar>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <SkillBar
+            title="HTML"
+            progressPercentage={90}
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+          >
+            <SkillBar
+              title="Accessibility"
+              progressPercentage={55}
+              isSubLevel
+              href="https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility"
+            />
+            <SkillBar
+              title="SEO"
+              progressPercentage={50}
+              isSubLevel
+              href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+            />
+          </SkillBar>
         </SkillsBlock>
         <SkillsBlock additionalStyles={styles.CSSSkillsBlock}>
-          <ul className={`${styles.unorderedList} ${styles.mainUnorderedList}`}>
-            <li className={`${styles.listElement} ${styles.firstListElement}`}>
-              <div
-                className={`${styles.listElementContainer} ${styles.firstListElementContainer}`}
-                onClick={(event) => showModal(event)}
-              >
-                <SkillBar progressPercentage={90}>{tech.CSS}</SkillBar>
-              </div>
-              <ul className={styles.unorderedList}>
-                <li className={styles.listElement}>
-                  <div
-                    className={styles.listElementContainer}
-                    onClick={(event) => showModal(event)}
-                  >
-                    <SkillBar progressPercentage={75}>{tech.SASS}</SkillBar>
-                  </div>
-                </li>
-                <li className={styles.listElement}>
-                  <div
-                    className={styles.listElementContainer}
-                    onClick={(event) => showModal(event)}
-                  >
-                    <SkillBar progressPercentage={50}>{tech.UXandUI}</SkillBar>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <SkillBar
+            color="blue"
+            title="CSS"
+            progressPercentage={90}
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+          >
+            <SkillBar
+              color="blue"
+              title="SASS"
+              progressPercentage={80}
+              isSubLevel
+              href="https://sass-lang.com/"
+            />
+            <SkillBar
+              color="blue"
+              title="Tailwind"
+              progressPercentage={60}
+              isSubLevel
+              href="https://tailwindcss.com/"
+            />
+            <SkillBar
+              color="blue"
+              title="Bootstrap"
+              progressPercentage={50}
+              isSubLevel
+              href="https://getbootstrap.com/"
+            />
+            <SkillBar
+              color="blue"
+              title="UX & UI"
+              progressPercentage={50}
+              isSubLevel
+              href="https://web.dev/articles/ux-basics"
+            />
+          </SkillBar>
         </SkillsBlock>
         <SkillsBlock additionalStyles={styles.JavaScriptSkillsBlock}>
-          <ul className={`${styles.unorderedList} ${styles.mainUnorderedList}`}>
-            <li className={`${styles.listElement} ${styles.firstListElement}`}>
-              <div
-                className={`${styles.listElementContainer} ${styles.firstListElementContainer}`}
-                onClick={(event) => showModal(event)}
-              >
-                <SkillBar progressPercentage={90}>{tech.JAVASCRIPT}</SkillBar>
-              </div>
-              <ul className={styles.unorderedList}>
-                <li className={styles.listElement}>
-                  <div
-                    className={styles.listElementContainer}
-                    onClick={(event) => showModal(event)}
-                  >
-                    <SkillBar progressPercentage={80}>
-                      {tech.TYPESCRIPT}
-                    </SkillBar>
-                  </div>
-                </li>
-                <li className={styles.listElement}>
-                  <div
-                    className={styles.listElementContainer}
-                    onClick={(event) => showModal(event)}
-                  >
-                    <SkillBar progressPercentage={75}>{tech.REACT}</SkillBar>
-                  </div>
-                  <ul className={styles.unorderedList}>
-                    <li className={styles.listElement}>
-                      <div
-                        className={styles.listElementContainer}
-                        onClick={(event) => showModal(event)}
-                      >
-                        <SkillBar progressPercentage={70}>
-                          {tech.REDUX}
-                        </SkillBar>
-                      </div>
-                    </li>
-                    <li className={styles.listElement}>
-                      <div
-                        className={styles.listElementContainer}
-                        onClick={(event) => showModal(event)}
-                      >
-                        <SkillBar progressPercentage={80}>{tech.NEXT}</SkillBar>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-                <li className={styles.listElement}>
-                  <div
-                    className={styles.listElementContainer}
-                    onClick={(event) => showModal(event)}
-                  >
-                    <SkillBar progressPercentage={60}>{tech.JEST}</SkillBar>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <SkillBar
+            color="orange"
+            title="JavaScript"
+            progressPercentage={85}
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+          >
+            <SkillBar
+              color="orange"
+              title="TypeScript"
+              progressPercentage={70}
+              isSubLevel
+              href="https://www.typescriptlang.org/"
+            />
+            <SkillBar
+              color="orange"
+              title="React"
+              progressPercentage={80}
+              isMidLevel
+              isSubLevel
+              href="https://react.dev/"
+            >
+              <SkillBar
+                color="orange"
+                title="Redux"
+                progressPercentage={65}
+                isSubLevel
+                href="https://redux.js.org/"
+              />
+              <SkillBar
+                color="orange"
+                title="RHF"
+                progressPercentage={75}
+                isSubLevel
+                href="https://react-hook-form.com/"
+              />
+              <SkillBar
+                color="orange"
+                title="Next.js"
+                progressPercentage={80}
+                isSubLevel
+                href="https://nextjs.org/"
+              />
+            </SkillBar>
+            <SkillBar
+              color="orange"
+              title="Vue.js"
+              progressPercentage={70}
+              isSubLevel
+              href="https://vuejs.org/"
+            />
+            <SkillBar
+              color="orange"
+              title="Storybook"
+              progressPercentage={80}
+              isSubLevel
+              href="https://storybook.js.org/"
+            />
+            <SkillBar
+              color="orange"
+              title="Jest"
+              progressPercentage={70}
+              isMidLevel
+              isSubLevel
+              href="https://jestjs.io/"
+            >
+              <SkillBar
+                color="orange"
+                title="RTL"
+                progressPercentage={80}
+                isSubLevel
+                href="https://testing-library.com/docs/react-testing-library/intro/"
+              />
+            </SkillBar>
+            <SkillBar
+              color="orange"
+              title="Cypress"
+              progressPercentage={65}
+              isSubLevel
+              href="https://www.cypress.io/"
+            />
+            <SkillBar
+              color="orange"
+              title="Postman"
+              progressPercentage={70}
+              isSubLevel
+              href="https://www.postman.com/"
+            />
+          </SkillBar>
         </SkillsBlock>
       </>
     );
@@ -191,17 +168,7 @@ function Page() {
   return (
     <>
       <div className={stylesFrontendPage.positionMainElements}>
-        <main className={stylesFrontendPage.MainContainer}>
-          {skills}
-          <SkillModal
-            modalIsShown={modalIsShown}
-            closeFromBackdrop={() => setModalIsShown(false)}
-            closeFromButton={() => setModalIsShown(false)}
-            title={currentTechnology.name}
-          >
-            {currentTechnology.description}
-          </SkillModal>
-        </main>
+        <main className={stylesFrontendPage.MainContainer}>{skills}</main>
       </div>
     </>
   );
