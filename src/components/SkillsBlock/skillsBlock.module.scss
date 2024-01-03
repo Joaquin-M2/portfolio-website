@@ -8,8 +8,9 @@
   background-color: white;
   overflow: auto;
 
-  @include responsiveDesign(1000) {
+  @include responsiveDesign(1024) {
     padding: 3.5rem 2.4rem;
+    height: auto;
   }
 
   &::-webkit-scrollbar {
