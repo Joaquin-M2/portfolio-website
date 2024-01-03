@@ -68,7 +68,15 @@ function Page() {
               progressPercentage={50}
               isSubLevel
               href="https://web.dev/articles/ux-basics"
-            />
+            >
+              <SkillBar
+                color="blue"
+                title="Figma"
+                progressPercentage={50}
+                isSubLevel
+                href="https://www.figma.com/"
+              />
+            </SkillBar>
           </SkillBar>
         </SkillsBlock>
         <SkillsBlock additionalStyles={styles.JavaScriptSkillsBlock}>
@@ -99,6 +107,13 @@ function Page() {
                 progressPercentage={65}
                 isSubLevel
                 href="https://redux.js.org/"
+              />
+              <SkillBar
+                color="orange"
+                title="MUI"
+                progressPercentage={70}
+                isSubLevel
+                href="https://mui.com/"
               />
               <SkillBar
                 color="orange"
