@@ -3,10 +3,9 @@
 import { useMemo } from "react";
 
 import SkillsBlock from "@/components/SkillsBlock/SkillsBlock";
-
-import stylesFrontendPage from "./frontendPage.module.scss";
-import styles from "../skills.module.scss";
 import SkillBar from "@/components/SkillsBlock/SkillBar/SkillBar";
+
+import styles from "./frontendPage.module.scss";
 
 function Page() {
   // It is necessary to use the "useMemo()" hook in order to avoid re-renders on the progress bars
@@ -182,8 +181,8 @@ function Page() {
 
   return (
     <>
-      <div className={stylesFrontendPage.positionMainElements}>
-        <main className={stylesFrontendPage.MainContainer}>{skills}</main>
+      <div className={styles.positionMainElements}>
+        <main className={styles.MainContainer}>{skills}</main>
       </div>
     </>
   );
