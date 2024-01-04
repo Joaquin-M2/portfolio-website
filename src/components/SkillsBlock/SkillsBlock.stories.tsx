@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import SkillsBlock from "./SkillsBlock";
+import SkillBar from "./SkillBar/SkillBar";
+import { Base as BaseSkillBar } from "./SkillBar/SkillBar.stories";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -21,7 +23,7 @@ const meta = {
     },
     children: {
       description:
-        "Content of the block. Usually it is a group of 'ul', 'li' and 'SkillBar' elements.",
+        "Content of the block. Usually it is a group of 'SkillBar' elements.",
     },
   },
 } satisfies Meta<typeof SkillsBlock>;
@@ -32,12 +34,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Base: Story = {
   args: {
-    //additionalStyles: "",
-    children: (
-      <p>
-        Content of the block. Usually it is a group of 'ul', 'li' and 'SkillBar'
-        elements.
-      </p>
-    ),
+    color: "green",
+    children: <SkillBar {...BaseSkillBar.args} />,
   },
 };
