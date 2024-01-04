@@ -13,7 +13,7 @@ function Page() {
   const skills = useMemo(() => {
     return (
       <>
-        <SkillsBlock additionalStyles={styles.nodeSkillsBlock}>
+        <SkillsBlock color="green" additionalStyles={styles.nodeSkillsBlock}>
           <SkillBar
             color="blue"
             title="Node.js"
@@ -43,7 +43,7 @@ function Page() {
             />
           </SkillBar>
         </SkillsBlock>
-        <SkillsBlock additionalStyles={styles.pythonSkillsBlock}>
+        <SkillsBlock color="yellow" additionalStyles={styles.pythonSkillsBlock}>
           <SkillBar
             color="blue"
             title="Python"

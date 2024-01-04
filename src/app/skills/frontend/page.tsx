@@ -13,7 +13,7 @@ function Page() {
   const skills = useMemo(() => {
     return (
       <>
-        <SkillsBlock additionalStyles={styles.HTMLSkillsBlock}>
+        <SkillsBlock color="red" additionalStyles={styles.HTMLSkillsBlock}>
           <SkillBar
             title="HTML"
             progressPercentage={90}
@@ -33,7 +33,7 @@ function Page() {
             />
           </SkillBar>
         </SkillsBlock>
-        <SkillsBlock additionalStyles={styles.CSSSkillsBlock}>
+        <SkillsBlock color="green" additionalStyles={styles.CSSSkillsBlock}>
           <SkillBar
             color="blue"
             title="CSS"
@@ -78,7 +78,10 @@ function Page() {
             </SkillBar>
           </SkillBar>
         </SkillsBlock>
-        <SkillsBlock additionalStyles={styles.JavaScriptSkillsBlock}>
+        <SkillsBlock
+          color="yellow"
+          additionalStyles={styles.JavaScriptSkillsBlock}
+        >
           <SkillBar
             color="orange"
             title="JavaScript"
