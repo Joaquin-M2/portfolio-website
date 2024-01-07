@@ -17,6 +17,7 @@ function Alert({ backendResponse }: AlertProps) {
           backendResponse.status < 400 &&
           styles.success
         }`}
+        aria-label={backendResponse.message}
         role="alert"
       >
         {backendResponse.message}
