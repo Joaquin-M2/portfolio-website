@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Backdrop from "./Backdrop";
 import userEvent from "@testing-library/user-event";
