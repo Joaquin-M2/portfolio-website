@@ -1,5 +1,5 @@
-@import "../../sass/abstracts/variables.scss";
-@import "../../sass/abstracts/mixins.scss";
+@import "@/sass/abstracts/variables.scss";
+@import "@/sass/abstracts/mixins.scss";
 
 .container,
 .innerContainer {
@@ -30,6 +30,10 @@
 
   z-index: 3;
   margin-top: auto;
+}
+
+.showFiltersBar {
+  transform: translateY(0%);
 }
 
 .titleFieldset,

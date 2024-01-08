@@ -38,23 +38,25 @@ export default function FiltersBar({
   return (
     <>
       <Backdrop
-        forLeftAside
         isShown={buttonIsChecked}
         hideBackdrop={() => setButtonIsChecked(false)}
+      />
+      <aside
+        className={`${styles.FiltersBar} ${
+          buttonIsChecked && styles.showFilterBar
+        } ${additionalStyles}`}
       >
-        <aside className={`${styles.FiltersBar} ${additionalStyles}`}>
-          <label
-            className={styles.FiltersPanelButton}
-            onClick={() => {
-              setButtonIsChecked((prevState) => !prevState);
-            }}
-          ></label>
-          <h3 className={styles.FiltersBar_Title}>Filter per Technology</h3>
-          <ul className={styles.FiltersBar_List}>
-            {createFilterButton(filterButtons)}
-          </ul>
-        </aside>
-      </Backdrop>
+        <label
+          className={styles.FiltersPanelButton}
+          onClick={() => {
+            setButtonIsChecked((prevState) => !prevState);
+          }}
+        ></label>
+        <h3 className={styles.FiltersBar_Title}>Filter per Technology</h3>
+        <ul className={styles.FiltersBar_List}>
+          {createFilterButton(filterButtons)}
+        </ul>
+      </aside>
     </>
   );
 }

@@ -1,5 +1,5 @@
-@import "../../sass/abstracts/variables.scss";
-@import "../../sass/abstracts/mixins.scss";
+@import "@/sass/abstracts/variables.scss";
+@import "@/sass/abstracts/mixins.scss";
 
 .FiltersBar {
   position: absolute;
@@ -16,7 +16,7 @@
 
   background-color: #000048;
 
-  z-index: 2;
+  z-index: 4;
 
   transition: $default-transition, z-index 0.5s 0.5s;
 
@@ -63,6 +63,10 @@
     width: 0.4rem;
     background-color: darkgrey;
   }
+}
+
+.showFilterBar {
+  transform: translateX(0%);
 }
 
 //////////////////////////////////

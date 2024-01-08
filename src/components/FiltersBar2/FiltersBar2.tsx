@@ -41,46 +41,48 @@ function FiltersBar2({
   return (
     <>
       <Backdrop
-        forTopAside
         isShown={buttonIsChecked}
         hideBackdrop={() => setButtonIsChecked(false)}
+      />
+      <aside
+        className={`${styles.container} ${
+          buttonIsChecked && styles.showFiltersBar
+        }`}
       >
-        <aside className={styles.container}>
-          <label
-            className={styles.FiltersPanelButton}
-            onClick={() => {
-              setButtonIsChecked((prevState) => !prevState);
-            }}
-          ></label>
-          <fieldset className={styles.titleFieldset}>
-            <legend className={styles.titleLegend}>Filter by Title</legend>
-            <input
-              className={styles.searchInput}
-              type="search"
-              placeholder="Search by tool title - Case sensitive"
-              maxLength={25}
-              onChange={filterBySearchFunction}
-            />
-          </fieldset>
-          <fieldset className={styles.tagFieldset}>
-            <legend className={styles.tagLegend}>Filter by Tag</legend>
-            <select className={styles.selectInput} name="tags" multiple>
-              {dropdownOptions}
-            </select>
-            <div className={styles.tagsContainer}>
-              {selectedFilterTags.map((tag, id) => (
-                <Tag
-                  key={id}
-                  isFilterButton
-                  handleRemoveFilterTag={handleRemoveFilterTag}
-                >
-                  {tag}
-                </Tag>
-              ))}
-            </div>
-          </fieldset>
-        </aside>
-      </Backdrop>
+        <label
+          className={styles.FiltersPanelButton}
+          onClick={() => {
+            setButtonIsChecked((prevState) => !prevState);
+          }}
+        ></label>
+        <fieldset className={styles.titleFieldset}>
+          <legend className={styles.titleLegend}>Filter by Title</legend>
+          <input
+            className={styles.searchInput}
+            type="search"
+            placeholder="Search by tool title - Case sensitive"
+            maxLength={25}
+            onChange={filterBySearchFunction}
+          />
+        </fieldset>
+        <fieldset className={styles.tagFieldset}>
+          <legend className={styles.tagLegend}>Filter by Tag</legend>
+          <select className={styles.selectInput} name="tags" multiple>
+            {dropdownOptions}
+          </select>
+          <div className={styles.tagsContainer}>
+            {selectedFilterTags.map((tag, id) => (
+              <Tag
+                key={id}
+                isFilterButton
+                handleRemoveFilterTag={handleRemoveFilterTag}
+              >
+                {tag}
+              </Tag>
+            ))}
+          </div>
+        </fieldset>
+      </aside>
     </>
   );
 }

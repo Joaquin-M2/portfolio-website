@@ -54,44 +54,41 @@ function Modal({
 
   return (
     <>
-      <Backdrop isShown={isShown} hideBackdrop={hideModal}>
-        <div
-          role="dialog"
-          aria-labelledby={`${targetForm}-modal-title`}
-          aria-describedby={`${targetForm}-modal-description`}
-          className={`${styles.container} ${
-            isShown && styles.containerIsShown
-          }`}
-        >
-          <h4 className={styles.title} id={`${targetForm}-modal-title`}>
-            {title}
-          </h4>
+      <Backdrop isShown={isShown} hideBackdrop={hideModal} />
+      <div
+        role="dialog"
+        aria-labelledby={`${targetForm}-modal-title`}
+        aria-describedby={`${targetForm}-modal-description`}
+        className={`${styles.container} ${isShown && styles.containerIsShown}`}
+      >
+        <h4 className={styles.title} id={`${targetForm}-modal-title`}>
+          {title}
+        </h4>
 
-          <div
-            className={styles.mainContent}
-            id={`${targetForm}-modal-description`}
-          >
-            {children}
-            {backendResponse && (
-              <p
-                className={`${styles.backendResponse} ${
-                  backendResponse.message &&
-                  backendResponse.status >= 400 &&
-                  styles.backendResponseError
-                } ${
-                  backendResponse.message &&
-                  backendResponse.status < 400 &&
-                  styles.backendResponseSuccess
-                }`}
-                role="alert"
-              >
-                {backendResponse.message}
-              </p>
-            )}
-          </div>
-          <div className={styles.bottomButtonsContainer}>{bottomButtons}</div>
+        <div
+          className={styles.mainContent}
+          id={`${targetForm}-modal-description`}
+        >
+          {children}
+          {backendResponse && (
+            <p
+              className={`${styles.backendResponse} ${
+                backendResponse.message &&
+                backendResponse.status >= 400 &&
+                styles.backendResponseError
+              } ${
+                backendResponse.message &&
+                backendResponse.status < 400 &&
+                styles.backendResponseSuccess
+              }`}
+              role="alert"
+            >
+              {backendResponse.message}
+            </p>
+          )}
         </div>
-      </Backdrop>
+        <div className={styles.bottomButtonsContainer}>{bottomButtons}</div>
+      </div>
     </>
   );
 }
