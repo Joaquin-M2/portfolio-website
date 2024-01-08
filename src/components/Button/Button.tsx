@@ -19,16 +19,16 @@ function Button({
   form,
   onClick,
   small,
-  type,
+  type = "button",
 }: ButtonProps) {
   return (
     <button
-      className={`${styles.button} ${small && styles.buttonSmall} ${
-        disabled && styles.buttonDisabled
+      className={`${styles.button} ${small && styles.small} ${
+        disabled && styles.disabled
       }`}
       form={form}
       onClick={onClick}
-      type={type || "button"}
+      type={type}
     >
       {children}
     </button>

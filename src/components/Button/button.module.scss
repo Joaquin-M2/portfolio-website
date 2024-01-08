@@ -72,12 +72,12 @@
   }
 }
 
-.buttonSmall {
+.small {
   padding: 1rem;
 }
 
-.buttonDisabled,
-.buttonDisabled:hover {
+.disabled,
+.disabled:hover {
   background-color: $color-intense-grey;
   cursor: not-allowed;
 
