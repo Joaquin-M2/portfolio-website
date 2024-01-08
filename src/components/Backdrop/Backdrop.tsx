@@ -5,21 +5,11 @@ import { MouseEventHandler, useEffect, useRef } from "react";
 import styles from "./backdrop.module.scss";
 
 interface BackdropProps {
-  additionalStyles?: string;
-  children: JSX.Element | JSX.Element[];
-  forLeftAside?: boolean;
-  forTopAside?: boolean;
   isShown: boolean;
   hideBackdrop?: MouseEventHandler;
 }
 
-function Backdrop({
-  children,
-  forLeftAside,
-  forTopAside,
-  isShown,
-  hideBackdrop,
-}: BackdropProps) {
+function Backdrop({ isShown, hideBackdrop }: BackdropProps) {
   const toggleButton = useRef<HTMLInputElement>();
   const backdrop = useRef<HTMLDivElement>();
 
@@ -41,17 +31,13 @@ function Backdrop({
     <>
       <input
         ref={toggleButton}
-        className={`
-        ${styles.backdropCheckbox} 
-        ${forTopAside && styles.forTopAside} 
-        ${forLeftAside && styles.forLeftAside}
-        `}
+        className={styles.backdropCheckbox}
         type="checkbox"
         name="black-sail"
         defaultChecked={isShown}
       />
-      {children}
       <div
+        role="presentation"
         ref={backdrop}
         className={styles.backdrop}
         onClick={hideBackdrop}
