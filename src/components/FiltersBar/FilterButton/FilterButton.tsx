@@ -1,15 +1,20 @@
-import styles from './FilterButton.module.scss';
+import { ChangeEvent } from "react";
+import styles from "./FilterButton.module.scss";
 
-export default function FilterButton(props) {
+interface FilterButtonProps {
+  children: JSX.Element | JSX.Element[] | string;
+  addAndRemoveFilter: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function FilterButton({
+  children,
+  addAndRemoveFilter,
+}: FilterButtonProps) {
   return (
     <li className={styles.listElement}>
-      {props.children}
+      {children}
       <label className={styles.rocker}>
-        <input
-          type='checkbox'
-          onChange={props.addAndRemoveFilter}
-          checked={props.setCheckedStatus}
-        />
+        <input type="checkbox" onChange={addAndRemoveFilter} />
         <span className={styles.switchLeft}>On</span>
         <span className={styles.switchRight}>Off</span>
       </label>
