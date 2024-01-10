@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import Backdrop from "@/components/Backdrop/Backdrop";
 import FilterButton from "./FilterButton/FilterButton";
@@ -9,7 +9,7 @@ import styles from "./filtersBar.module.scss";
 
 interface FiltersBarProps {
   additionalStyles?: string;
-  changeFilter: (event: any) => void;
+  changeFilter: (event: ChangeEvent<HTMLInputElement>) => void;
   filterButtons: string[];
 }
 
