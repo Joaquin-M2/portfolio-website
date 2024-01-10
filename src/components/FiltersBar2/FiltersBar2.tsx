@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 
 import Tag from "@/components/Tag/Tag";
 import Backdrop from "@/components/Backdrop/Backdrop";
@@ -10,9 +10,9 @@ import styles from "./filtersBar2.module.scss";
 type Tag = { name: string; _id: string };
 
 interface FiltersBar2Props {
-  filterBySearchFunction?: (event: any) => void;
-  filterByTagFunction: (event: any) => void;
-  handleRemoveFilterTag: (event: any) => void;
+  filterBySearchFunction?: (event: ChangeEvent<HTMLInputElement>) => void;
+  filterByTagFunction: (event: MouseEvent<HTMLOptionElement>) => void;
+  handleRemoveFilterTag: (event: MouseEvent<HTMLButtonElement>) => void;
   selectedFilterTags: string[];
   tags: Tag[];
 }
