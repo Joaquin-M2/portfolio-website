@@ -6,7 +6,7 @@ const filterButtons = ["Button #1", "Button #2", "Button #3"];
 const mockChangeFilterFunction = jest.fn();
 
 describe("<FiltersBar /> component", () => {
-  it("renders as many <FilterButton /> as given in an array in the 'filterButtons' prop", () => {
+  it("is shown or hidden whenever the user clicks on the 'FILTERS' button", async () => {
     render(
       <FiltersBar
         filterButtons={filterButtons}
@@ -14,8 +14,26 @@ describe("<FiltersBar /> component", () => {
       />
     );
 
-    const asideElement = screen.getByRole("complementary");
-    const renderedFilterButtons = within(asideElement).getAllByRole("checkbox");
+    const filtersContainer = screen.getByRole("complementary");
+    const showFiltersButton =
+      within(filtersContainer).getAllByRole("checkbox")[0];
+
+    await userEvent.click(showFiltersButton);
+    expect(filtersContainer).toHaveClass("showFilterBar");
+    await userEvent.click(showFiltersButton);
+    expect(filtersContainer).not.toHaveClass("showFilterBar");
+  });
+
+  it("renders as many <FilterButton /> as given in an array in the 'filterButtons' prop", async () => {
+    render(
+      <FiltersBar
+        filterButtons={filterButtons}
+        changeFilter={mockChangeFilterFunction}
+      />
+    );
+
+    const ulElement = screen.getByRole("list");
+    const renderedFilterButtons = within(ulElement).getAllByRole("checkbox");
 
     expect(renderedFilterButtons).toHaveLength(filterButtons.length);
   });
@@ -28,8 +46,8 @@ describe("<FiltersBar /> component", () => {
       />
     );
 
-    const asideElement = screen.getByRole("complementary");
-    const firstFilterButton = within(asideElement).getAllByRole("checkbox")[0];
+    const ulElement = screen.getByRole("list");
+    const firstFilterButton = within(ulElement).getAllByRole("checkbox")[0];
     await userEvent.click(firstFilterButton);
 
     expect(mockChangeFilterFunction).toHaveBeenCalled();
