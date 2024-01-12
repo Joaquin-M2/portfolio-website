@@ -65,46 +65,27 @@
   }
 }
 
-.showFilterBar {
+.showFiltersBar {
   transform: translateX(0%);
 }
 
 //////////////////////////////////
 // ACTIVATION FILTERS PANEL BUTTON (for screens < 1280px)
 
-.FiltersPanelButton::after {
-  content: "FILTERS";
-  display: block;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-}
-
 .FiltersPanelButton {
-  display: block;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-70%);
-  right: -3.3rem;
-  cursor: pointer;
-  padding: 0.8rem;
-  font-size: 1.6rem;
-  color: white;
   background-color: red;
   border-radius: 0 1rem 1rem 0;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: $titles-fonts;
+  font-size: 1.6rem;
+  padding: 0.8rem;
+  position: absolute;
+  right: -3.3rem;
+  text-orientation: upright;
+  top: 50%;
+  transform: translateY(-70%);
+  writing-mode: vertical-rl;
   z-index: 2;
-
-  &::after {
-    content: "FILTERS";
-    display: block;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    transition: all 0.5s ease-out;
-
-    @include responsiveDesign(800) {
-      content: "FILTERS";
-      display: block;
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-    }
-  }
 }

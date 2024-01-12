@@ -43,15 +43,19 @@ export default function FiltersBar({
       />
       <aside
         className={`${styles.FiltersBar} ${
-          buttonIsChecked && styles.showFilterBar
+          buttonIsChecked && styles.showFiltersBar
         } ${additionalStyles}`}
       >
-        <label
+        <button
+          role="checkbox"
+          aria-checked={buttonIsChecked}
           className={styles.FiltersPanelButton}
           onClick={() => {
             setButtonIsChecked((prevState) => !prevState);
           }}
-        ></label>
+        >
+          FILTERS
+        </button>
         <h3 className={styles.FiltersBar_Title}>Filter per Technology</h3>
         <ul className={styles.FiltersBar_List}>
           {createFilterButton(filterButtons)}
