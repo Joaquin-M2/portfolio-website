@@ -19,9 +19,9 @@ describe("<FiltersBar /> component", () => {
       within(filtersContainer).getAllByRole("checkbox")[0];
 
     await userEvent.click(showFiltersButton);
-    expect(filtersContainer).toHaveClass("showFilterBar");
+    expect(filtersContainer).toHaveClass("showFiltersBar");
     await userEvent.click(showFiltersButton);
-    expect(filtersContainer).not.toHaveClass("showFilterBar");
+    expect(filtersContainer).not.toHaveClass("showFiltersBar");
   });
 
   it("renders as many <FilterButton /> as given in an array in the 'filterButtons' prop", async () => {
