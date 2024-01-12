@@ -49,12 +49,16 @@ function FiltersBar2({
           buttonIsChecked && styles.showFiltersBar
         }`}
       >
-        <label
+        <button
+          role="checkbox"
+          aria-checked={buttonIsChecked}
           className={styles.FiltersPanelButton}
           onClick={() => {
             setButtonIsChecked((prevState) => !prevState);
           }}
-        ></label>
+        >
+          FILTERS
+        </button>
         <fieldset className={styles.titleFieldset}>
           <legend className={styles.titleLegend}>Filter by Title</legend>
           <input
@@ -70,7 +74,7 @@ function FiltersBar2({
           <select className={styles.selectInput} name="tags" multiple>
             {dropdownOptions}
           </select>
-          <div className={styles.tagsContainer}>
+          <div className={styles.tagsContainer} role="list">
             {selectedFilterTags.map((tag, id) => (
               <Tag
                 key={id}
