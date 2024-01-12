@@ -11,6 +11,7 @@ function Tag({ children, isFilterButton, handleRemoveFilterTag }: TagProps) {
     <>
       {isFilterButton ? (
         <button
+          role="listitem"
           className={styles.tagButton}
           type="button"
           onClick={handleRemoveFilterTag}
@@ -18,7 +19,9 @@ function Tag({ children, isFilterButton, handleRemoveFilterTag }: TagProps) {
           {children}
         </button>
       ) : (
-        <span className={styles.tag}>{children}</span>
+        <span role="listitem" className={styles.tag}>
+          {children}
+        </span>
       )}
     </>
   );
