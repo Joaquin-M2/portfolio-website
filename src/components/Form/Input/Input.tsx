@@ -18,7 +18,14 @@ interface InputProps {
   placeholder: string;
   allOptions?: any[];
   //toolTags?: any[];
-  type: string;
+  type:
+    | "email"
+    | "password"
+    | "selectMultiple"
+    | "selectSingle"
+    | "text"
+    | "textarea"
+    | "url";
   watchedValue: string;
   [x: string]: any;
 }
