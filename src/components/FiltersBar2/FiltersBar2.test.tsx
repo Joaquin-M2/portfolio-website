@@ -13,6 +13,26 @@ const mockFilterByTagFunction = jest.fn();
 const mockHandleRemoveFilterTagFunction = jest.fn();
 
 describe("<FiltersBar2 /> component", () => {
+  it("is shown or hidden whenever the user clicks on the 'FILTERS' button", async () => {
+    render(
+      <FiltersBar2
+        filterBySearchFunction={mockFilterBySearchFunction}
+        filterByTagFunction={mockFilterByTagFunction}
+        selectedFilterTags={selectedTags}
+        handleRemoveFilterTag={mockHandleRemoveFilterTagFunction}
+        tags={tags}
+      />
+    );
+
+    const filtersContainer = screen.getByRole("complementary");
+    const showFiltersButton = within(filtersContainer).getByRole("checkbox");
+
+    await userEvent.click(showFiltersButton);
+    expect(filtersContainer).toHaveClass("showFiltersBar");
+    await userEvent.click(showFiltersButton);
+    expect(filtersContainer).not.toHaveClass("showFiltersBar");
+  });
+
   it("triggers a filter function every time the user types in the search input field", async () => {
     render(
       <FiltersBar2
@@ -93,7 +113,8 @@ describe("<FiltersBar2 /> component", () => {
       />
     );
 
-    const selectedFilterTags = screen.getAllByRole("button");
+    const tagsContainer = screen.getByRole("list");
+    const selectedFilterTags = within(tagsContainer).getAllByRole("listitem");
     await userEvent.click(selectedFilterTags[0]);
 
     expect(mockHandleRemoveFilterTagFunction).toHaveBeenCalled();
