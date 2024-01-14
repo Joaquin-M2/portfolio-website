@@ -15,9 +15,6 @@ function MenuCard({ children, isVisible, position, ...props }: MenuCardProps) {
       className={`${styles.menuCard} ${isVisible && styles.menuCardIsVisible} ${
         position === "bottom-left" && styles.menuCardBottomLeft
       }`}
-      onClick={(e) => {
-        e.preventDefault();
-      }}
       {...props}
     >
       <ul className={styles.menuList}>{children}</ul>
