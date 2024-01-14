@@ -210,7 +210,7 @@ const Input = forwardRef<
               >
                 {createAllOptionsList()}
               </select>
-              <div className={styles.tagsContainer}>
+              <div className={styles.tagsContainer} role="list">
                 {allOptions &&
                 allOptions.length &&
                 selectedTagsAddToolForm &&
