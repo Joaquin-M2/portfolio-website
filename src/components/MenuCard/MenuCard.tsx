@@ -12,6 +12,7 @@ interface MenuCardProps {
 function MenuCard({ children, isVisible, position, ...props }: MenuCardProps) {
   return (
     <div
+      data-testid="menuCardWrapperDiv"
       className={`${styles.menuCard} ${isVisible && styles.menuCardIsVisible} ${
         position === "bottom-left" && styles.menuCardBottomLeft
       }`}
