@@ -57,18 +57,15 @@ function Form({
 
   return hasFieldset ? (
     <form id={id} onSubmit={onSubmit} ref={form} role="form">
-      {legend ? (
         <fieldset className={styles.fieldset}>
-          <legend className={styles.legend}>{legend}</legend>
+        {legend && (
+          <legend className={styles.legend} role="heading" aria-level={2}>
+            {legend}
+          </legend>
+        )}
           {children}
           {usesItsOwnButtons && formButtons}
         </fieldset>
-      ) : (
-        <>
-          {children}
-          {usesItsOwnButtons && formButtons}
-        </>
-      )}
     </form>
   ) : (
     <form id={id} onSubmit={onSubmit} ref={form} role="form">
