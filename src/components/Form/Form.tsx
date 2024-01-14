@@ -56,7 +56,7 @@ function Form({
   );
 
   return hasFieldset ? (
-    <form id={id} onSubmit={onSubmit} ref={form}>
+    <form id={id} onSubmit={onSubmit} ref={form} role="form">
       {legend ? (
         <fieldset className={styles.fieldset}>
           <legend className={styles.legend}>{legend}</legend>
@@ -71,7 +71,7 @@ function Form({
       )}
     </form>
   ) : (
-    <form id={id} onSubmit={onSubmit} ref={form}>
+    <form id={id} onSubmit={onSubmit} ref={form} role="form">
       {children}
       {usesItsOwnButtons && formButtons}
     </form>
