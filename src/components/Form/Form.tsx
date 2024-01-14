@@ -9,7 +9,7 @@ import Alert from "../Alert/Alert";
 interface FormProps {
   children: JSX.Element | JSX.Element[];
   hasFieldset?: boolean;
-  id?: string;
+  id: string;
   legend?: string;
   onSubmit: FormEventHandler<HTMLFormElement>;
   resetFormValues?: boolean;
@@ -57,15 +57,15 @@ function Form({
 
   return hasFieldset ? (
     <form id={id} onSubmit={onSubmit} ref={form} role="form">
-        <fieldset className={styles.fieldset}>
+      <fieldset className={styles.fieldset}>
         {legend && (
           <legend className={styles.legend} role="heading" aria-level={2}>
             {legend}
           </legend>
         )}
-          {children}
-          {usesItsOwnButtons && formButtons}
-        </fieldset>
+        {children}
+        {usesItsOwnButtons && formButtons}
+      </fieldset>
     </form>
   ) : (
     <form id={id} onSubmit={onSubmit} ref={form} role="form">
