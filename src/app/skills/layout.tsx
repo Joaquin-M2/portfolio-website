@@ -10,14 +10,14 @@ function Layout({ children }) {
         <NavBarButton
           href="/skills/frontend"
           pathnameStartsWith="/skills/frontend"
-          borderRadiusPosition="bottom-left"
+          increasedBorderRadiusPosition="bottom-left"
         >
           Frontend
         </NavBarButton>
         <NavBarButton
           href="/skills/backend"
           pathnameStartsWith="/skills/backend"
-          borderRadiusPosition="bottom-right"
+          increasedBorderRadiusPosition="bottom-right"
         >
           Backend
         </NavBarButton>

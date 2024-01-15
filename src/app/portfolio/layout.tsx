@@ -1,21 +1,21 @@
-import NavBar from '../../components/NavBar/NavBar';
-import NavBarButton from '../../components/NavBar/NavBarButton/NavBarButton';
+import NavBar from "@/components/NavBar/NavBar";
+import NavBarButton from "@/components/NavBar/NavBarButton/NavBarButton";
 
 function Layout({ children }) {
   return (
     <>
       <NavBar top narrow>
         <NavBarButton
-          href='/portfolio/projects'
-          pathnameStartsWith='/portfolio/projects'
-          borderRadiusPosition='bottom-left'
+          href="/portfolio/projects"
+          pathnameStartsWith="/portfolio/projects"
+          increasedBorderRadiusPosition="bottom-left"
         >
           Projects
         </NavBarButton>
         <NavBarButton
-          href='/portfolio/labs'
-          pathnameStartsWith='/portfolio/labs'
-          borderRadiusPosition='bottom-right'
+          href="/portfolio/labs"
+          pathnameStartsWith="/portfolio/labs"
+          increasedBorderRadiusPosition="bottom-right"
         >
           Labs
         </NavBarButton>

@@ -10,14 +10,14 @@ interface NavBarButton {
   children: string;
   href: string;
   pathnameStartsWith: string;
-  borderRadiusPosition?: string;
+  increasedBorderRadiusPosition?: string;
 }
 
 function NavBarButton({
   children,
   href,
   pathnameStartsWith,
-  borderRadiusPosition,
+  increasedBorderRadiusPosition,
 }: NavBarButton) {
   const pathname = usePathname() || "/";
 
@@ -34,20 +34,23 @@ function NavBarButton({
       pathnameStartsWith.length > 1) ||
     homeButtonIsActive;
 
-  let borderRadiusPositionStyles = "";
+  let increasedBorderRadiusPositionStyles = "";
 
-  switch (borderRadiusPosition) {
+  switch (increasedBorderRadiusPosition) {
     case "top-left":
-      borderRadiusPositionStyles = styles.borderRadiusTopLeft;
+      increasedBorderRadiusPositionStyles = styles.increasedBorderRadiusTopLeft;
       break;
     case "top-right":
-      borderRadiusPositionStyles = styles.borderRadiusTopRight;
+      increasedBorderRadiusPositionStyles =
+        styles.increasedBorderRadiusTopRight;
       break;
     case "bottom-left":
-      borderRadiusPositionStyles = styles.borderRadiusBottomLeft;
+      increasedBorderRadiusPositionStyles =
+        styles.increasedBorderRadiusBottomLeft;
       break;
     case "bottom-right":
-      borderRadiusPositionStyles = styles.borderRadiusBottomRight;
+      increasedBorderRadiusPositionStyles =
+        styles.increasedBorderRadiusBottomRight;
       break;
   }
 
@@ -56,7 +59,7 @@ function NavBarButton({
       <button
         className={`${styles.navBarButton} ${
           buttonIsActive ? styles.active : ""
-        } ${borderRadiusPositionStyles}`}
+        } ${increasedBorderRadiusPositionStyles}`}
         type="button"
       >
         {children}

@@ -29,7 +29,7 @@ export default function RootLayout({
           <NavBarButton
             href="/portfolio/projects"
             pathnameStartsWith="/portfolio"
-            borderRadiusPosition="top-left"
+            increasedBorderRadiusPosition="top-left"
           >
             Portfolio
           </NavBarButton>
@@ -45,7 +45,7 @@ export default function RootLayout({
           <NavBarButton
             href="/tools"
             pathnameStartsWith="/tools"
-            borderRadiusPosition="top-right"
+            increasedBorderRadiusPosition="top-right"
           >
             Tools
           </NavBarButton>

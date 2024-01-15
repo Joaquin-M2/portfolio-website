@@ -23,7 +23,7 @@ const meta = {
         "Beginning of the path where the button takes the user to. IF the user is on that path, the button styling changes to 'Active button'.",
       type: "string",
     },
-    borderRadiusPosition: {
+    increasedBorderRadiusPosition: {
       description:
         "Set if the button should have some border radius, and in which corner.",
       type: "string",
@@ -43,7 +43,7 @@ export const Base: Story = {
   args: {
     href: "/",
     pathnameStartsWith: "/123",
-    //borderRadiusPosition: "",
+    //increasedBorderRadiusPosition: "",
     children: "NavBar Button",
   },
 };
@@ -52,7 +52,7 @@ export const Active: Story = {
   args: {
     href: "/",
     pathnameStartsWith: "/",
-    //borderRadiusPosition: "",
+    //increasedBorderRadiusPosition: "",
     children: "NavBar Button",
   },
 };
@@ -61,7 +61,7 @@ export const BorderRadiusTL: Story = {
   args: {
     href: "/",
     pathnameStartsWith: "/123",
-    borderRadiusPosition: "top-left",
+    increasedBorderRadiusPosition: "top-left",
     children: "NavBar Button",
   },
 };
@@ -70,7 +70,7 @@ export const BorderRadiusTR: Story = {
   args: {
     href: "/",
     pathnameStartsWith: "/123",
-    borderRadiusPosition: "top-right",
+    increasedBorderRadiusPosition: "top-right",
     children: "NavBar Button",
   },
 };
@@ -79,7 +79,7 @@ export const BorderRadiusBL: Story = {
   args: {
     href: "/",
     pathnameStartsWith: "/123",
-    borderRadiusPosition: "bottom-left",
+    increasedBorderRadiusPosition: "bottom-left",
     children: "NavBar Button",
   },
 };
@@ -88,7 +88,7 @@ export const BorderRadiusBR: Story = {
   args: {
     href: "/",
     pathnameStartsWith: "/123",
-    borderRadiusPosition: "bottom-right",
+    increasedBorderRadiusPosition: "bottom-right",
     children: "NavBar Button",
   },
 };
