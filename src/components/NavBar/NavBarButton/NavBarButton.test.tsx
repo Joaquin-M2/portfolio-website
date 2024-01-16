@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import NavBarButton from "./NavBarButton";
 
-describe("<ListContainer /> component", () => {
+describe("<NavBarButton /> component", () => {
   it("can be rendered", () => {
     render(
       <NavBarButton
