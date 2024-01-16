@@ -10,6 +10,7 @@ interface NavBarProps {
 function NavBar({ children, additionalStyles, top, narrow }: NavBarProps) {
   return (
     <div
+      data-testid="navBarWrapperDiv"
       className={`${styles.container} ${top && styles.containerTop} ${
         narrow && styles.containerNarrow
       }`}
