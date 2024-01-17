@@ -3,7 +3,7 @@ import styles from "./skillsBlock.module.scss";
 interface SkillsBlockProps {
   children: JSX.Element | JSX.Element[];
   additionalStyles?: string;
-  color: "red" | "green" | "yellow";
+  color?: "red" | "green" | "yellow";
 }
 
 export default function SkillsBlock({
@@ -13,6 +13,7 @@ export default function SkillsBlock({
 }: SkillsBlockProps) {
   return (
     <div
+      role="tree"
       className={`${styles.Container} ${color === "red" && styles.red} ${
         color === "green" && styles.green
       } ${color === "yellow" && styles.yellow} ${additionalStyles}`}
