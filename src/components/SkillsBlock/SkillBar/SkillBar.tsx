@@ -133,7 +133,7 @@ export default function SkillBar({
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} role="treeitem">
         <a
           className={`
           ${styles.anchor}
@@ -145,6 +145,7 @@ export default function SkillBar({
         >
           <div className={styles.Container}>
             <span
+              id="progressBarTitle"
               className={`${styles.TechTag} ${
                 color === "blue" && styles.TechTagBlue
               } ${color === "orange" && styles.TechTagOrange}`}
@@ -152,6 +153,11 @@ export default function SkillBar({
               {title}
             </span>
             <div
+              role="progressbar"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={progressPercentage}
+              aria-labelledby="progressBarTitle"
               className={`${styles.ProgressBarContainer} ${
                 color === "blue" && styles.ProgressBarContainerBlue
               } ${color === "orange" && styles.ProgressBarContainerOrange}`}
