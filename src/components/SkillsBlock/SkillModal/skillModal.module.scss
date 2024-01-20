@@ -1,24 +1,6 @@
 @import "@/sass/abstracts/variables.scss";
 @import "@/sass/abstracts/mixins.scss";
 
-.backdrop {
-  background-color: rgba(0, 0, 0, 0.7);
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  visibility: hidden;
-  opacity: 0;
-
-  z-index: 4;
-
-  transition: all 0.3s ease-out;
-}
-
 .modal {
   position: absolute;
   top: 41%;
@@ -38,7 +20,7 @@
   visibility: hidden;
   opacity: 0;
 
-  z-index: 2;
+  z-index: 3;
 
   transition: all 0.3s ease-out;
 
