@@ -30,6 +30,9 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+    </li>
+    <li>
+      <a href="#site-sections">Site Sections</a>
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
@@ -43,14 +46,8 @@
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -71,6 +68,8 @@
 <p>This repository only concerns to the frontend side of my personal website, which is hosted at <a href="https://vercel.com/" target="_blank">Vercel</a>. If you are curious about the backend, feel free to visit <a href="https://github.com/Joaquin-M2/portfolio-website-backend" target="_blank">its repository</a>.</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Site Sections
 
 ### Home
 
