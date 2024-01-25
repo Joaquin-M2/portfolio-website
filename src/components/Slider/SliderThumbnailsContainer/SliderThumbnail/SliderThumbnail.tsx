@@ -28,6 +28,7 @@ export default function SliderThumbnail({
         name="slider thumbnails"
       />
       <label
+        data-testid="label"
         className={`${styles.LabelThumbnailImageContainer} ${
           setButtonIsChecked && styles.activeThumbnail
         }`}
