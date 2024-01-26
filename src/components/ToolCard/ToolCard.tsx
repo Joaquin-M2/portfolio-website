@@ -170,7 +170,7 @@ export default function ToolCard({
                   )}
                 </div>
               </div>
-              <p>{description}</p>
+              <p role="paragraph">{description}</p>
             </div>
           </div>
           <div className={styles.horizontalBar}></div>
