@@ -134,6 +134,8 @@ export default function ToolCard({
                     checked={favoriteButtonIsChecked}
                   />
                   <label
+                    role="button"
+                    aria-description="Favorite button"
                     className={styles.toggleHeartLabel}
                     htmlFor={id.toString()}
                   >
@@ -149,6 +151,8 @@ export default function ToolCard({
                   </label>
                   {getUserTokenData("role") === "admin" && (
                     <div
+                      role="button"
+                      aria-description="Tool configuration button"
                       className={styles.menuButtonContainer}
                       onClick={(e) => {
                         e.preventDefault();
