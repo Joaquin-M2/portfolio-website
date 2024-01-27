@@ -114,7 +114,7 @@ export default function ToolCard({
             <div className={styles.logoContainer}>
               <Image
                 src={logo}
-                alt="Logo image from the website providing the tool."
+                alt={`Logo image of the ${title} tool.`}
                 width={60}
                 height={60}
               />
