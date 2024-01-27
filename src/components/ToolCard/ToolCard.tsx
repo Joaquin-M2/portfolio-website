@@ -174,7 +174,7 @@ export default function ToolCard({
             </div>
           </div>
           <div className={styles.horizontalBar}></div>
-          <div className={styles.tagsContainer}>
+          <div role="list" className={styles.tagsContainer}>
             {toolTags.map((tag, id) => (
               <Tag key={id}>{tag.name}</Tag>
             ))}
