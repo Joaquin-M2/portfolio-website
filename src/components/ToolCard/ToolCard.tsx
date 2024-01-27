@@ -122,7 +122,10 @@ export default function ToolCard({
             <div className={styles.titleIconsDescriptionContainer}>
               <div className={styles.titleIconsContainer}>
                 <h3 className={styles.cardTitle}>{title}</h3>
-                <div className={styles.toggleIconsContainer}>
+                <div
+                  className={styles.toggleIconsContainer}
+                  data-testid="iconsContainer"
+                >
                   <input
                     className={styles.toggleHeartInput}
                     id={id.toString()}
