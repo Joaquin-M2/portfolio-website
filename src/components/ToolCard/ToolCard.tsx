@@ -135,6 +135,8 @@ export default function ToolCard({
                     htmlFor={id.toString()}
                   >
                     <svg
+                      role="img"
+                      aria-label="Heart icon"
                       xmlns="http://www.w3.org/2000/svg"
                       height="1em"
                       viewBox="0 0 512 512"
@@ -153,6 +155,8 @@ export default function ToolCard({
                       tabIndex={0}
                     >
                       <svg
+                        role="img"
+                        aria-label="Gear icon"
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
                         viewBox="0 0 512 512"
