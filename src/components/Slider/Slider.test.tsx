@@ -23,7 +23,7 @@ describe("<Slider /> component", () => {
       </Slider>
     );
 
-    const divContainer = screen.getByTestId("div");
+    const divContainer = screen.getByTestId("sliderDiv");
 
     expect(divContainer).toBeInTheDocument();
   });
@@ -44,7 +44,7 @@ describe("<Slider /> component", () => {
       </Slider>
     );
 
-    const divContainer = screen.getByTestId("div");
+    const divContainer = screen.getByTestId("sliderDiv");
     await userEvent.pointer([
       { keys: "[TouchA>]", target: divContainer },
       { pointerName: "TouchA", coords: { x: 300, y: 0 } },
@@ -70,7 +70,7 @@ describe("<Slider /> component", () => {
       </Slider>
     );
 
-    const divContainer = screen.getByTestId("div");
+    const divContainer = screen.getByTestId("sliderDiv");
     await userEvent.
     
     expect(divContainer).toBeInTheDocument();

@@ -35,7 +35,7 @@ describe("<SliderThumbnail /> component", () => {
       />
     );
 
-    const label = screen.getByTestId("label");
+    const label = screen.getByTestId("sliderThumbnailLabel");
     const image = screen.getByRole("img");
 
     expect(label).not.toHaveClass("activeThumbnail");

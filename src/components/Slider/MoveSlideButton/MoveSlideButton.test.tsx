@@ -17,7 +17,7 @@ describe("<MoveSlideButton /> component", () => {
   it("can use the 'Rightwards' arrow as its content", () => {
     render(<MoveSlideButton />);
 
-    const div = screen.getByTestId("div");
+    const div = screen.getByTestId("moveSlideButtonDiv");
 
     expect(div).toHaveClass("RightwardsArrow");
   });
@@ -25,7 +25,7 @@ describe("<MoveSlideButton /> component", () => {
   it("can use the 'Leftwards' arrow as its content", () => {
     render(<MoveSlideButton leftwardsArrow />);
 
-    const div = screen.getByTestId("div");
+    const div = screen.getByTestId("moveSlideButtonDiv");
 
     expect(div).toHaveClass("LeftwardsArrow");
   });
