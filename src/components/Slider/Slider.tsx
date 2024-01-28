@@ -136,7 +136,7 @@ export default function Slider({
   return (
     <>
       <div
-        data-testid="div"
+        data-testid="sliderDiv"
         className={`${styles.Slider} ${additionalStyles}`}
         ref={slider}
         onTouchStart={() => dragStartHandler.current()}

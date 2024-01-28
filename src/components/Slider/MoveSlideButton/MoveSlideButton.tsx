@@ -17,7 +17,7 @@ export default function MoveSlideButton({
       onClick={changeSlide}
     >
       <div
-        data-testid="div"
+        data-testid="moveSlideButtonDiv"
         className={
           leftwardsArrow ? styles.LeftwardsArrow : styles.RightwardsArrow
         }
