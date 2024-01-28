@@ -25,7 +25,7 @@ export default function SliderThumbnail({
         onChange={updateStateForActiveThumbnail}
         checked={setButtonIsChecked}
         type="radio"
-        name="slider thumbnails"
+        name="slider thumbnail"
       />
       <label
         data-testid="sliderThumbnailLabel"
