@@ -15,8 +15,12 @@ export default function FilterButton({
       {children}
       <label className={styles.rocker}>
         <input type="checkbox" onChange={addAndRemoveFilter} />
-        <span className={styles.switchLeft}>On</span>
-        <span className={styles.switchRight}>Off</span>
+        <span role="button" className={styles.switchLeft}>
+          On
+        </span>
+        <span role="button" className={styles.switchRight}>
+          Off
+        </span>
       </label>
     </li>
   );
