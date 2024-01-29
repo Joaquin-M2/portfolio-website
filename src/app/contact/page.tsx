@@ -143,7 +143,7 @@ export default function Contact() {
                   "Subject needs to be between 3 and 50 characters."
                 }
                 formIsOpen
-                placeholder="Your message subject"
+                placeholder="Message subject"
                 required
                 type="text"
                 {...register("subject", {
