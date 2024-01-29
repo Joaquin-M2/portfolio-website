@@ -54,4 +54,29 @@ describe("<PortfolioProjects /> page", () => {
 
     expect(sliderTitle).not.toBe(sliderNextToolTitle);
   });
+
+  it("changes thumbnail to the last one when the first one is selected and the 'MoveSlideButton (left)' is clicked", async () => {
+    render(<PortfolioProjects />);
+
+    const thumbnails = screen.getAllByTestId("sliderThumbnailLabel");
+    const lastThumbnail = screen.getAllByTestId("sliderThumbnailLabel")[
+      thumbnails.length - 1
+    ];
+    const moveSlideButtonLeft = screen.getAllByTestId("moveSlideButtonDiv")[0];
+    await userEvent.click(moveSlideButtonLeft);
+
+    expect(lastThumbnail).toHaveClass("activeThumbnail");
+  });
+
+  it("changes thumbnail to the first one when the last one is selected and the 'MoveSlideButton (right)' is clicked", async () => {
+    render(<PortfolioProjects />);
+
+    const firstThumbnail = screen.getAllByTestId("sliderThumbnailLabel")[0];
+    const moveSlideButtonLeft = screen.getAllByTestId("moveSlideButtonDiv")[0];
+    const moveSlideButtonRight = screen.getAllByTestId("moveSlideButtonDiv")[1];
+    await userEvent.click(moveSlideButtonLeft);
+    await userEvent.click(moveSlideButtonRight);
+
+    expect(firstThumbnail).toHaveClass("activeThumbnail");
+  });
 });
