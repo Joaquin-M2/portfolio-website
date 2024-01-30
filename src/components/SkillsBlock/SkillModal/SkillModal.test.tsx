@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import SkillModal from "./SkillModal";
-import { userEvent } from "@storybook/test";
+import userEvent from "@testing-library/user-event";
 
 const closeFromButtonFunction = jest.fn();
 const closeFromBackdropFunction = jest.fn();
