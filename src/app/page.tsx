@@ -14,7 +14,9 @@ export default function Page() {
       <div className={styles.positionMainElements}>
         <main className={styles.container}>
           <div className={styles.title}>
-            <h1 className={styles.welcome}>Welcome to Joaquín M2's Website</h1>
+            <h1 className={styles.welcome} data-test="hero-heading">
+              Welcome to Joaquín M2's Website
+            </h1>
             <h2 className={styles.position}>Full-Stack Web Developer</h2>
           </div>
           <div className={styles.questionAnswer}>
