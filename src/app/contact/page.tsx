@@ -107,6 +107,7 @@ export default function Contact() {
                 {...register("access_key")}
               />
               <Input
+                data-cy="contact-name-input"
                 aria-invalid={errors.name ? true : false}
                 watchedValue={watch("name")}
                 error={
@@ -123,6 +124,7 @@ export default function Contact() {
                 })}
               />
               <Input
+                data-cy="contact-email-input"
                 aria-invalid={errors.email ? true : false}
                 watchedValue={watch("email")}
                 error={
@@ -136,6 +138,7 @@ export default function Contact() {
                 {...register("email", { required: true, pattern: emailRegExp })}
               />
               <Input
+                data-cy="contact-subject-input"
                 aria-invalid={errors.subject ? true : false}
                 watchedValue={watch("subject")}
                 error={
@@ -153,6 +156,7 @@ export default function Contact() {
                 })}
               />
               <Input
+                data-cy="contact-message-input"
                 aria-invalid={errors.message ? true : false}
                 watchedValue={watch("message")}
                 error={
