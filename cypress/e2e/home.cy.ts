@@ -1,7 +1,10 @@
 describe("Home page", () => {
-  it("has a <h1> heading", () => {
+  beforeEach(() => {
     cy.visit("/");
-    cy.get("[data-test='hero-heading']")
+  });
+
+  it("has a <h1> heading", () => {
+    cy.getByData("home-heading")
       .should("exist")
       .contains("Welcome to Joaquín M2's Website");
   });
