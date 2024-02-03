@@ -8,6 +8,7 @@ function Alert({ backendResponse }: AlertProps) {
   return (
     <div className={styles.wrapper}>
       <p
+        data-cy="alert-message"
         className={`${styles.baseStyling} ${
           backendResponse.message &&
           backendResponse.status >= 400 &&
