@@ -15,7 +15,7 @@ describe("Contact page", () => {
       "This is a test made with Cypress."
     );
     cy.get('[type="submit"]').click({ force: true });
-    cy.wait("@submit");
+    cy.wait("@submit"); // Not really necessary in this case.
     cy.getByData("alert-message").should("exist");
   });
 });
