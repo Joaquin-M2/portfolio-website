@@ -27,3 +27,28 @@ test("can send a contact form", async ({ page }) => {
     page.getByRole("alert", { name: "Form sent successfully!" })
   ).toBeVisible();
 });
+
+test("can send users to alternative means of contact", async ({ page }) => {
+  await page.goto("/contact");
+
+  // EMAIL BUTTON
+  const emailButton = await page.getByRole("link", {
+    name: "Email logo Email",
+  });
+  await expect(emailButton).toHaveAttribute(
+    "href",
+    "mailto:joaquin.mmol@gmail.com"
+  );
+
+  // LINKEDIN BUTTON - Opens new tab
+  const page1Promise = page.waitForEvent("popup");
+  await page.getByRole("link", { name: "LinkedIn logo LinkedIn" }).click();
+  const page1 = await page1Promise;
+  await expect(page1).toHaveURL("https://www.linkedin.com/in/joaquin-m2/");
+
+  // GITHUB BUTTON - Opens new tab
+  const page2Promise = page.waitForEvent("popup");
+  await page.getByRole("link", { name: "GitHub Logo GitHub" }).click();
+  const page2 = await page2Promise;
+  await expect(page2).toHaveURL("https://github.com/Joaquin-M2");
+});
