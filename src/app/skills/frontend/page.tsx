@@ -164,10 +164,10 @@ function Page() {
             </SkillBar>
             <SkillBar
               color="orange"
-              title="Cypress"
+              title="Playwright"
               progressPercentage={65}
               isSubLevel
-              href="https://www.cypress.io/"
+              href="https://playwright.dev/"
             />
             <SkillBar
               color="orange"
