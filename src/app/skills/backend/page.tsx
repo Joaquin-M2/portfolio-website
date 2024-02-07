@@ -41,6 +41,13 @@ function Page() {
               isSubLevel
               href="https://sequelize.org/"
             />
+            <SkillBar
+              color="blue"
+              title="Postman"
+              progressPercentage={70}
+              isSubLevel
+              href="https://www.postman.com/"
+            />
           </SkillBar>
         </SkillsBlock>
         <SkillsBlock color="yellow" additionalStyles={styles.pythonSkillsBlock}>
@@ -55,6 +62,7 @@ function Page() {
               title="Django"
               progressPercentage={50}
               isSubLevel
+              isSubLevelWithChild
               href="https://www.djangoproject.com/"
             >
               <SkillBar
@@ -65,6 +73,13 @@ function Page() {
                 href="https://www.django-rest-framework.org/"
               />
             </SkillBar>
+            <SkillBar
+              color="blue"
+              title="Postman"
+              progressPercentage={70}
+              isSubLevel
+              href="https://www.postman.com/"
+            />
           </SkillBar>
         </SkillsBlock>
       </>

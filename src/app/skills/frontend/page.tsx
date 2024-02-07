@@ -171,10 +171,10 @@ function Page() {
             />
             <SkillBar
               color="orange"
-              title="Postman"
-              progressPercentage={70}
+              title="Cypress"
+              progressPercentage={50}
               isSubLevel
-              href="https://www.postman.com/"
+              href="https://www.cypress.io/"
             />
           </SkillBar>
         </SkillsBlock>
