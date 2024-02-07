@@ -1,7 +1,11 @@
 import { test, expect } from "@playwright/test";
 
+test.beforeEach(async ({ page }) => {
+  await page.goto("/contact");
+});
+
 test("can send a contact form", async ({ page }) => {
-  // Mock the api call before navigating
+  // Mock the email webform api call
   await page.route("https://api.web3forms.com/submit", async (route) => {
     const json = {
       status: 201,
@@ -10,7 +14,6 @@ test("can send a contact form", async ({ page }) => {
     await route.fulfill({ json });
   });
 
-  await page.goto("/contact");
   await page.getByPlaceholder("Your name").click();
   await page.getByPlaceholder("Your name").fill("Joaquín");
   await page.getByPlaceholder("Your email").click();
@@ -29,8 +32,6 @@ test("can send a contact form", async ({ page }) => {
 });
 
 test("can send users to alternative means of contact", async ({ page }) => {
-  await page.goto("/contact");
-
   // EMAIL BUTTON
   const emailButton = await page.getByRole("link", {
     name: "Email logo Email",
