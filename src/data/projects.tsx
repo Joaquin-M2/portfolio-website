@@ -1,5 +1,5 @@
-import Project from '../utils/create-project';
-import techs from './techs-names';
+import Project from "../utils/create-project";
+import techs from "./techs-names";
 
 // id --> The ID of the first element has to be 1.
 // image path
@@ -11,9 +11,9 @@ import techs from './techs-names';
 
 const projects = [
   new Project(
-    1,
-    'Portfolio website',
-    '/projects/portfolio-website/portfolio-website',
+    0,
+    "Portfolio website",
+    "/projects/portfolio-website/portfolio-website",
     [
       techs.HTML,
       techs.CSS,
@@ -40,17 +40,17 @@ const projects = [
         development notes, blog posts and tools I work with.
       </span>
     ),
-    'https://github.com/Joaquin-M2/portfolio-website',
-    '/',
-    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (Next + TS);',
-    'Uses routing to navigate between pages;',
-    'Designed and coded from 0;',
-    'Still under construction.'
+    "https://github.com/Joaquin-M2/portfolio-website",
+    "/",
+    "HTML (JSX) | CSS (SCSS) | JS (TS) | React (Next + TS);",
+    "Uses routing to navigate between pages;",
+    "Designed and coded from 0;",
+    "Still under construction."
   ),
   new Project(
-    2,
-    'Tattoo Parlor',
-    '/projects/tattoo-parlor/tattoo-parlor',
+    1,
+    "Tattoo Parlor",
+    "/projects/tattoo-parlor/tattoo-parlor",
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     (
       <span>
@@ -68,18 +68,18 @@ const projects = [
         The design is inspired on Jonas Schmedtmann "Natours" project.
       </span>
     ),
-    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/tattoo-parlor/index.tsx',
-    '/portfolio/projects/tattoo-parlor',
-    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
-    'Homepage for businesses demonstrator;',
-    'It uses some custom fonts;',
-    'All icons and logos are SVG;',
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/tattoo-parlor/index.tsx",
+    "/portfolio/projects/tattoo-parlor",
+    "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
+    "Homepage for businesses demonstrator;",
+    "It uses some custom fonts;",
+    "All icons and logos are SVG;",
     'Design inspired by Jonas Schmedtmann "Natours" project.'
   ),
   new Project(
-    3,
-    'Legal Hub',
-    '/projects/legal-hub/legal-hub',
+    2,
+    "Legal Hub",
+    "/projects/legal-hub/legal-hub",
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     (
       <span>
@@ -100,38 +100,38 @@ const projects = [
         (SCSS), to React + TypeScript.
       </span>
     ),
-    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/legal-hub/index.tsx',
-    '/portfolio/projects/legal-hub',
-    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
-    'Description page of a law firm offering its services;',
-    'It is part of a full business project I am developing;',
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/legal-hub/index.tsx",
+    "/portfolio/projects/legal-hub",
+    "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
+    "Description page of a law firm offering its services;",
+    "It is part of a full business project I am developing;",
     'Design inspired on Jonas Schmedtmann\'s "Trillo" project. It will be modified in order to adapt it to the needs of the full project.'
   ),
   new Project(
-    4,
-    'Test project 4',
-    '/test-projects-4',
-    ['HTML', 'CSS', 'JavaScript', 'TypeScript'],
-    '44444 Project: Nullam congue, sapien ut cursus pharetra, dui augue ultricies ex, quis tempor diam magna in enim. Duis ac lacus et sapien cursus imperdiet eget vel dui. Pellentesque vitae lorem et tortor commodo dictum.',
-    'https://www.google.com',
-    '/portfolio/projects/project4',
-    'Bloblo',
-    'BlobloBloblo',
-    'Bloblo Bloblo Bloblo',
-    'Bloblo Bloblo Bloblo Bloblo'
+    3,
+    "Test project 4",
+    "/test-projects-4",
+    ["HTML", "CSS", "JavaScript", "TypeScript"],
+    "44444 Project: Nullam congue, sapien ut cursus pharetra, dui augue ultricies ex, quis tempor diam magna in enim. Duis ac lacus et sapien cursus imperdiet eget vel dui. Pellentesque vitae lorem et tortor commodo dictum.",
+    "https://www.google.com",
+    "/portfolio/projects/project4",
+    "Bloblo",
+    "BlobloBloblo",
+    "Bloblo Bloblo Bloblo",
+    "Bloblo Bloblo Bloblo Bloblo"
   ),
   new Project(
-    5,
-    'Test project 5',
-    '/test-projects-5',
-    ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React'],
-    '55555 Project: Quisque convallis sapien ac velit dictum molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut porttitor vehicula fermentum. Sed luctus in arcu in porta.',
-    'https://www.google.com',
-    '/portfolio/projects/project5',
-    'Blublu',
-    'Blublu Blublu',
-    'Blublu Blublu Blublu',
-    'BlubluBlublu Blublu Blublu'
+    4,
+    "Test project 5",
+    "/test-projects-5",
+    ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
+    "55555 Project: Quisque convallis sapien ac velit dictum molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut porttitor vehicula fermentum. Sed luctus in arcu in porta.",
+    "https://www.google.com",
+    "/portfolio/projects/project5",
+    "Blublu",
+    "Blublu Blublu",
+    "Blublu Blublu Blublu",
+    "BlubluBlublu Blublu Blublu"
   ),
 ];
 
