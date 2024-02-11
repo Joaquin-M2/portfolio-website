@@ -1,16 +1,7 @@
-.InputThumbnailImageContainer {
-  display: none;
-}
-
-.LabelThumbnailImageContainer {
-  //height: 70%;
+.wrapper {
   border-radius: 0.08rem;
-
-  display: block;
   margin: 1rem 3rem;
-}
 
-.ThumbnailImageContainer {
   // Proportion of the main image (the one shown on the slider) tries to be 16:9.
   // Thumbnail images should keep that same proportion.
   height: 5.625rem;
@@ -18,7 +9,7 @@
   cursor: pointer;
 }
 
-.ThumbnailImageContainer_Image {
+.image {
   height: 100%;
   width: 100%;
 
