@@ -9,26 +9,22 @@ describe("<SliderThumbnail /> component", () => {
   it("shows a specific style when selected", () => {
     render(
       <SliderThumbnail
-        forAttribute="1"
-        id="2"
         image={faker.image.urlLoremFlickr()}
         updateStateForActiveThumbnail={updateStateForActiveThumbnailFunction}
         setButtonIsChecked={true}
       />
     );
 
-    const label = screen.getByTestId("label");
+    const wrappingDiv = screen.getByTestId("sliderThumbnailLabel");
     const image = screen.getByRole("img");
 
-    expect(label).toHaveClass("activeThumbnail");
+    expect(wrappingDiv).toHaveClass("activeThumbnail");
     expect(image).not.toHaveClass("inactiveThumbnail");
   });
 
   it("shows a specific style when unselected", () => {
     render(
       <SliderThumbnail
-        forAttribute="1"
-        id="2"
         image={faker.image.urlLoremFlickr()}
         updateStateForActiveThumbnail={updateStateForActiveThumbnailFunction}
         setButtonIsChecked={false}
@@ -45,16 +41,14 @@ describe("<SliderThumbnail /> component", () => {
   it("calls the 'updateStateForActiveThumbnailFunction' when clicked", async () => {
     render(
       <SliderThumbnail
-        forAttribute="1"
-        id="2"
         image={faker.image.urlLoremFlickr()}
         updateStateForActiveThumbnail={updateStateForActiveThumbnailFunction}
         setButtonIsChecked={false}
       />
     );
 
-    const input = screen.getByRole("radio");
-    await userEvent.click(input);
+    const wrappingDiv = screen.getByTestId("sliderThumbnailLabel");
+    await userEvent.click(wrappingDiv);
 
     expect(updateStateForActiveThumbnailFunction).toHaveBeenCalled();
   });
