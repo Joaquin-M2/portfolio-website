@@ -1,5 +1,5 @@
-import Lab from '../utils/create-project';
-import techs from './techs-names';
+import Lab from "../utils/create-project";
+import techs from "./techs-names";
 
 // id --> The ID of the first element has to be 1.
 // default image path
@@ -11,20 +11,20 @@ import techs from './techs-names';
 
 const projects = [
   new Lab(
-    1,
-    'Cinema Seats Booking',
-    '/labs/cinema-seats-booking/cinema-seats-booking',
+    0,
+    "Cinema Seats Booking",
+    "/labs/cinema-seats-booking/cinema-seats-booking",
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
-    'Small application in which you can book seats in a movie theater.',
-    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/movie-seats-booking/index.tsx',
-    '/portfolio/labs/movie-seats-booking',
-    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
-    'The state of the seats of every movie is generated randomly and kept when changing between movies.'
+    "Small application in which you can book seats in a movie theater.",
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/movie-seats-booking/index.tsx",
+    "/portfolio/labs/movie-seats-booking",
+    "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
+    "The state of the seats of every movie is generated randomly and kept when changing between movies."
   ),
   new Lab(
-    2,
-    'Breakout Game',
-    '/labs/breakout-game/breakout-game',
+    1,
+    "Breakout Game",
+    "/labs/breakout-game/breakout-game",
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     (
       <span>
@@ -37,16 +37,16 @@ const projects = [
         You can move the paddle with your keyboard arrow keys!
       </span>
     ),
-    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/breakout-game/index.tsx',
-    '/portfolio/labs/breakout-game',
-    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
-    'The application consists of a dynamic HTML5 canvas;',
-    'Use your keyboard arrow keys to move the paddle!'
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/breakout-game/index.tsx",
+    "/portfolio/labs/breakout-game",
+    "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
+    "The application consists of a dynamic HTML5 canvas;",
+    "Use your keyboard arrow keys to move the paddle!"
   ),
   new Lab(
-    3,
-    'Custom Video Player',
-    '/labs/custom-video-player/custom-video-player',
+    2,
+    "Custom Video Player",
+    "/labs/custom-video-player/custom-video-player",
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     (
       <span>
@@ -60,16 +60,16 @@ const projects = [
         For the creation of this video player it was used the HTML5 video API.
       </span>
     ),
-    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-video-player/index.tsx',
-    '/portfolio/labs/custom-video-player',
-    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
-    'The application consists of a basic (but fully customized) video player;',
-    'It uses the HTML5 video API.'
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-video-player/index.tsx",
+    "/portfolio/labs/custom-video-player",
+    "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
+    "The application consists of a basic (but fully customized) video player;",
+    "It uses the HTML5 video API."
   ),
   new Lab(
-    4,
-    'Custom Audio Player',
-    '/labs/custom-audio-player/custom-audio-player',
+    3,
+    "Custom Audio Player",
+    "/labs/custom-audio-player/custom-audio-player",
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     (
       <span>
@@ -90,20 +90,20 @@ const projects = [
         volume manager and a songs picker, among others.
       </span>
     ),
-    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-audio-player/index.tsx',
-    '/portfolio/labs/custom-audio-player',
-    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
-    'Basic custom audio player with some CSS effects;',
-    'It uses the HTML5 audio API.'
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-audio-player/index.tsx",
+    "/portfolio/labs/custom-audio-player",
+    "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
+    "Basic custom audio player with some CSS effects;",
+    "It uses the HTML5 audio API."
   ),
   new Lab(
-    5,
-    'Real Time Search',
-    '/labs/real-time-search/real-time-search',
+    4,
+    "Real Time Search",
+    "/labs/real-time-search/real-time-search",
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     (
       <span>
-        Real-time search component connected to the{' '}
+        Real-time search component connected to the{" "}
         <a
           href="http://www.penguinrandomhouse.biz/webservices/rest/"
           target="_blank"
@@ -132,12 +132,12 @@ const projects = [
         It is ready ot be used as a component in a navigation bar.
       </span>
     ),
-    'https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/real-time-search/index.tsx',
-    '/portfolio/labs/real-time-search',
-    'HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);',
-    'Connected to a RESTful API;',
-    'It shows a CSS-made spinner while the HTTP Request is being performed;',
-    'It uses CSS Flexbox and CSS Grid to organize the design.'
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/real-time-search/index.tsx",
+    "/portfolio/labs/real-time-search",
+    "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
+    "Connected to a RESTful API;",
+    "It shows a CSS-made spinner while the HTTP Request is being performed;",
+    "It uses CSS Flexbox and CSS Grid to organize the design."
   ),
 ];
 
