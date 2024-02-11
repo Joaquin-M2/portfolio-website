@@ -10,68 +10,63 @@ import MoveSlideButton from "@/components/Slider/MoveSlideButton/MoveSlideButton
 import SliderThumbnail from "@/components/Slider/SliderThumbnailsContainer/SliderThumbnail/SliderThumbnail";
 
 import tech from "@/data/techs-names";
-import projects from "@/data/labs";
+import labsData from "@/data/labs";
 
 import styles from "../portfolio.module.scss";
 
 export default function Page() {
-  const [activeThumbnail, setActiveThumbnail] = useState(1);
+  const [activeThumbnail, setActiveThumbnail] = useState(0);
   const [activeFilters, setActiveFilters] = useState([]);
+  const [labs, setLabs] = useState(labsData);
   const sliderAndButtonsContainer = useRef();
 
-  const currentSelectedProject = projects.findIndex(
-    (project) => project.id === activeThumbnail
-  );
+  ////////////////
+  // THUMBNAILS
 
   let thumbnails = [];
 
-  for (const project of projects) {
+  for (const [idx, lab] of labs.entries()) {
     if (
       activeFilters.length === 0 ||
-      activeFilters.every((filter) => project.technologies.includes(filter))
+      activeFilters.every((filter) => lab.technologies.includes(filter))
     ) {
       thumbnails.push(
         <SliderThumbnail
-          forAttribute={projects[project.id - 1].id}
-          id={projects[project.id - 1].id}
-          image={projects[project.id - 1].image}
-          key={projects[project.id - 1].id}
-          updateStateForActiveThumbnail={() =>
-            setActiveThumbnail(projects[project.id - 1].id)
-          }
-          setButtonIsChecked={activeThumbnail === projects[project.id - 1].id}
+          image={lab.image}
+          key={lab.id}
+          updateStateForActiveThumbnail={() => setActiveThumbnail(idx)}
+          setButtonIsChecked={activeThumbnail === idx}
         />
       );
     }
   }
 
-  // Change the "activeThumbnail" state when the thumbnail itself changes. The "useEffect()" hook is
-  // necessary to update the "activeFilters" state when the "thumbnails" variable has been updated after
-  // the re-rendering process, NOT before.
   useEffect(() => {
-    if (
-      !thumbnails.some((thumbnail) => thumbnail.props.id === activeThumbnail)
-    ) {
-      setActiveThumbnail(thumbnails[0].props.id);
-    }
+    setActiveThumbnail(0);
+
+    setLabs(
+      labsData.filter((lab) =>
+        activeFilters.every((filter) => lab.technologies.includes(filter))
+      )
+    );
   }, [activeFilters]);
 
   ////////////////
   // FUNCTIONS
 
   const prevProjectHandler = () => {
-    if (activeThumbnail > thumbnails[0].props.id) {
+    if (activeThumbnail > 0) {
       setActiveThumbnail((prevState) => prevState - 1);
     } else {
-      setActiveThumbnail(thumbnails[thumbnails.length - 1].props.id);
+      setActiveThumbnail(thumbnails.length - 1);
     }
   };
 
   const nextProjectHandler = () => {
-    if (activeThumbnail < projects.length) {
+    if (activeThumbnail < labs.length - 1) {
       setActiveThumbnail((prevState) => prevState + 1);
     } else {
-      setActiveThumbnail(thumbnails[0].props.id);
+      setActiveThumbnail(0);
     }
   };
 
@@ -123,18 +118,16 @@ export default function Page() {
               />
               <Slider
                 additionalStyles={styles.PortfolioSlider}
-                projectTitle={projects[currentSelectedProject].title}
-                imageSrc={projects[currentSelectedProject].image}
-                projectDescription={
-                  projects[currentSelectedProject].description
-                }
-                repositoryLink={projects[currentSelectedProject].linkToCode}
-                liveProjectLink={projects[currentSelectedProject].linkToProject}
+                projectTitle={labs[activeThumbnail].title}
+                imageSrc={labs[activeThumbnail].image}
+                projectDescription={labs[activeThumbnail].description}
+                repositoryLink={labs[activeThumbnail].linkToCode}
+                liveProjectLink={labs[activeThumbnail].linkToProject}
                 activeThumbnail={activeThumbnail}
                 prevProject={prevProjectHandler}
                 nextProject={nextProjectHandler}
               >
-                {projects[currentSelectedProject].details}
+                {labs[activeThumbnail].details}
               </Slider>
               <MoveSlideButton
                 additionalStyles={styles.NextButton}
