@@ -68,7 +68,7 @@ const projects = [
         The design is inspired on Jonas Schmedtmann "Natours" project.
       </span>
     ),
-    "https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/tattoo-parlor/index.tsx",
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/projects/tattoo-parlor/page.tsx",
     "/portfolio/projects/tattoo-parlor",
     "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
     "Homepage for businesses demonstrator;",
@@ -100,7 +100,7 @@ const projects = [
         (SCSS), to React + TypeScript.
       </span>
     ),
-    "https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/legal-hub/index.tsx",
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/projects/legal-hub/page.tsx",
     "/portfolio/projects/legal-hub",
     "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
     "Description page of a law firm offering its services;",
