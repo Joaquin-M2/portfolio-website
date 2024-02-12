@@ -15,7 +15,7 @@ describe("<SliderThumbnail /> component", () => {
       />
     );
 
-    const wrappingDiv = screen.getByTestId("sliderThumbnailLabel");
+    const wrappingDiv = screen.getByTestId("sliderThumbnail");
     const image = screen.getByRole("img");
 
     expect(wrappingDiv).toHaveClass("activeThumbnail");
@@ -31,7 +31,7 @@ describe("<SliderThumbnail /> component", () => {
       />
     );
 
-    const label = screen.getByTestId("sliderThumbnailLabel");
+    const label = screen.getByTestId("sliderThumbnail");
     const image = screen.getByRole("img");
 
     expect(label).not.toHaveClass("activeThumbnail");
@@ -47,7 +47,7 @@ describe("<SliderThumbnail /> component", () => {
       />
     );
 
-    const wrappingDiv = screen.getByTestId("sliderThumbnailLabel");
+    const wrappingDiv = screen.getByTestId("sliderThumbnail");
     await userEvent.click(wrappingDiv);
 
     expect(updateStateForActiveThumbnailFunction).toHaveBeenCalled();

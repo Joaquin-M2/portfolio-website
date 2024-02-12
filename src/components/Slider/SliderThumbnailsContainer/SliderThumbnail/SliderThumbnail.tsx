@@ -16,7 +16,7 @@ export default function SliderThumbnail({
   return (
     <>
       <div
-        data-testid="sliderThumbnailLabel"
+        data-testid="sliderThumbnail"
         className={`${styles.wrapper} ${
           setButtonIsChecked && styles.activeThumbnail
         }`}
