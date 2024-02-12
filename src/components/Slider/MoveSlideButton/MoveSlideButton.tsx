@@ -22,8 +22,11 @@ export default function MoveSlideButton({
           leftwardsArrow ? styles.LeftwardsArrow : styles.RightwardsArrow
         }
       >
-        &#10148;
+        {leftwardsArrow ? <>&#129092;</> : <>&#129094;</>}
       </div>
+      <span className={styles.arrowText}>
+        {leftwardsArrow ? "Previous" : "Next"}
+      </span>
     </button>
   );
 }
