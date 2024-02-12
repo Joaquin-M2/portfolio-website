@@ -12,7 +12,10 @@
     "test": "jest --verbose --testPathIgnorePatterns=/e2e/",
     "test:watch": "jest --watch --testPathIgnorePatterns=/e2e/",
     "cypress:gui": "cypress open",
-    "cypress:cli": "cypress run"
+    "cypress:cli": "cypress run",
+    "pw:gui": "playwright test --ui",
+    "pw:cli": "playwright test",
+    "pw:headed": "playwright test --headed"
   },
   "dependencies": {
     "next": "13.4.6",
