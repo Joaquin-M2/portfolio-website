@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import BG_ShowRulesSidebar from '../../../../components/z-labs/breakout-game/show-rules-sidebar/show-rules-sidebar';
-import BG_Title from '../../../../components/z-labs/breakout-game/title/title';
-import BG_Canvas from '../../../../components/z-labs/breakout-game/canvas/canvas';
+import BG_ShowRulesSidebar from "@/components/z-labs/breakout-game/show-rules-sidebar/show-rules-sidebar";
+import BG_Title from "@/components/z-labs/breakout-game/title/title";
+import BG_Canvas from "@/components/z-labs/breakout-game/canvas/canvas";
 
-import TonguesContainer from '../../../../components/TonguesContainer/TonguesContainer';
+import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
-import styles from './breakout-game.module.scss';
+import styles from "./breakout-game.module.scss";
 
 const BreakoutGame: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState(null);
@@ -16,7 +16,7 @@ const BreakoutGame: React.FC = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     // GLOBAL VARIABLES
 
@@ -85,7 +85,7 @@ const BreakoutGame: React.FC = () => {
         0,
         Math.PI * 2
       );
-      ctx.fillStyle = 'red';
+      ctx.fillStyle = "red";
       ctx.fill();
       ctx.closePath();
     }
@@ -98,7 +98,7 @@ const BreakoutGame: React.FC = () => {
         paddleProperties.width,
         paddleProperties.height
       );
-      ctx.fillStyle = 'red';
+      ctx.fillStyle = "red";
       ctx.fill();
       ctx.closePath();
     }
@@ -113,7 +113,7 @@ const BreakoutGame: React.FC = () => {
         column.forEach((brick) => {
           ctx.beginPath();
           ctx.rect(brick.x, brick.y, brick.width, brick.height);
-          ctx.fillStyle = brick.visible ? 'red' : 'transparent';
+          ctx.fillStyle = brick.visible ? "red" : "transparent";
           ctx.fill();
           ctx.closePath();
         });
@@ -250,26 +250,26 @@ const BreakoutGame: React.FC = () => {
     // Update the paddle position
 
     function keyDown(event) {
-      if (event.key === 'ArrowRight' || event.key === 'Right') {
+      if (event.key === "ArrowRight" || event.key === "Right") {
         paddleProperties.directionX = paddleProperties.speed;
-      } else if (event.key === 'ArrowLeft' || event.key === 'Left') {
+      } else if (event.key === "ArrowLeft" || event.key === "Left") {
         paddleProperties.directionX = -paddleProperties.speed;
       }
     }
 
     function keyUp(event) {
       if (
-        event.key === 'ArrowRight' ||
-        event.key === 'Right' ||
-        event.key === 'ArrowLeft' ||
-        event.key === 'Left'
+        event.key === "ArrowRight" ||
+        event.key === "Right" ||
+        event.key === "ArrowLeft" ||
+        event.key === "Left"
       ) {
         paddleProperties.directionX = 0;
       }
     }
 
-    document.addEventListener('keydown', keyDown);
-    document.addEventListener('keyup', keyUp);
+    document.addEventListener("keydown", keyDown);
+    document.addEventListener("keyup", keyUp);
 
     setWindowWidth(window.innerWidth);
   }, [windowWidth]);
@@ -281,7 +281,7 @@ const BreakoutGame: React.FC = () => {
         <BG_Canvas ref={canvasRef} />
         <BG_ShowRulesSidebar />
       </div>
-      <TonguesContainer CheckCodePath='https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/breakout-game/index.tsx' />
+      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/breakout-game/index.tsx" />
     </>
   );
 };

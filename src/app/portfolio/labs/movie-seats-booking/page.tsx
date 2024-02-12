@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
-import MoviesContainer from '../../../../components/z-labs/movie-seats-booking/movies-container/movies-container';
-import SeatsLegend from '../../../../components/z-labs/movie-seats-booking/seats-legend/seats-legend';
-import CinemaRoom from '../../../../components/z-labs/movie-seats-booking/cinema-room/cinema-room';
-import SeatsBookingMessage from '../../../../components/z-labs/movie-seats-booking/seats-booking-message/seats-booking-message';
+import MoviesContainer from "@/components/z-labs/movie-seats-booking/movies-container/movies-container";
+import SeatsLegend from "@/components/z-labs/movie-seats-booking/seats-legend/seats-legend";
+import CinemaRoom from "@/components/z-labs/movie-seats-booking/cinema-room/cinema-room";
+import SeatsBookingMessage from "@/components/z-labs/movie-seats-booking/seats-booking-message/seats-booking-message";
 
-import TonguesContainer from '../../../../components/TonguesContainer/TonguesContainer';
+import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
-import styles from './movie-seats-booking.module.scss';
+import styles from "./movie-seats-booking.module.scss";
 
 const Page: React.FC = () => {
   const [currentMovie, setCurrentMovie] = useState<number>(0);
@@ -109,7 +109,7 @@ const Page: React.FC = () => {
           totalPrice={moviePrice * selectedSeats}
         />
       </div>
-      <TonguesContainer CheckCodePath='https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/movie-seats-booking/index.tsx' />
+      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/movie-seats-booking/index.tsx" />
     </>
   );
 };

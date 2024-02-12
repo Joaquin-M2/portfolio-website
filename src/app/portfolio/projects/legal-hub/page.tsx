@@ -1,10 +1,10 @@
-import TopBar from '../../../../components/z-projects/legal-hub/top-bar/top-bar';
-import NavSidebar from '../../../../components/z-projects/legal-hub/nav-sidebar/nav-sidebar';
-import MainContent from '../../../../components/z-projects/legal-hub/main-content/main-content';
+import TopBar from "@/components/z-projects/legal-hub/top-bar/top-bar";
+import NavSidebar from "@/components/z-projects/legal-hub/nav-sidebar/nav-sidebar";
+import MainContent from "@/components/z-projects/legal-hub/main-content/main-content";
 
-import TonguesContainer from '../../../../components/TonguesContainer/TonguesContainer';
+import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
-import styles from './legal-hub.module.scss';
+import styles from "./legal-hub.module.scss";
 
 const Page: React.FC = () => {
   return (
@@ -18,7 +18,7 @@ const Page: React.FC = () => {
           </div>
         </div>
       </div>
-      <TonguesContainer CheckCodePath='https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/legal-hub/index.tsx' />
+      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/legal-hub/index.tsx" />
     </>
   );
 };

@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import Title from '../../../../components/z-labs/custom-video-player/title/title';
-import VideoScreen from '../../../../components/z-labs/custom-video-player/video-screen/video-screen';
-import VideoControls from '../../../../components/z-labs/custom-video-player/video-controls/video-controls';
+import Title from "@/components/z-labs/custom-video-player/title/title";
+import VideoScreen from "@/components/z-labs/custom-video-player/video-screen/video-screen";
+import VideoControls from "@/components/z-labs/custom-video-player/video-controls/video-controls";
 
-import TonguesContainer from '../../../../components/TonguesContainer/TonguesContainer';
+import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
-import styles from './custom-video-player.module.scss';
+import styles from "./custom-video-player.module.scss";
 
 const Page: React.FC = () => {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
@@ -17,8 +17,8 @@ const Page: React.FC = () => {
    * These states, used by the timer (check the returned componed given by this React.FC), need to
    * be of type "string" even though they are numbers.
    */
-  const [minutes, setMinutes] = useState('00');
-  const [seconds, setSeconds] = useState('00');
+  const [minutes, setMinutes] = useState("00");
+  const [seconds, setSeconds] = useState("00");
 
   /**
    * Attention to the fact that these "refs" are applied to custom components, not native JSX
@@ -106,12 +106,12 @@ const Page: React.FC = () => {
      * Event listeners applied on elements referenced by "useRef()" need to be defined inside the
      * "useEffect()" react hook.
      */
-    video.addEventListener('timeupdate', () => {
+    video.addEventListener("timeupdate", () => {
       updateBarVideoProgress();
       updateTimer();
     });
-    videoProgress.addEventListener('change', setVideoTime);
-    videoProgress.previousElementSibling.addEventListener('click', stopVideo);
+    videoProgress.addEventListener("change", setVideoTime);
+    videoProgress.previousElementSibling.addEventListener("click", stopVideo);
   }, [videoIsPlaying]);
 
   return (
@@ -120,8 +120,8 @@ const Page: React.FC = () => {
         <Title>Custom Video Player</Title>
         <VideoScreen
           ref={videoScreenRef}
-          poster='/labs/custom-video-player/poster.png'
-          src='/labs/custom-video-player/ibiza-formentera.mp4'
+          poster="/labs/custom-video-player/poster.png"
+          src="/labs/custom-video-player/ibiza-formentera.mp4"
           onClick={() => setVideoIsPlaying((prevState) => !prevState)}
         />
         <VideoControls
@@ -136,7 +136,7 @@ const Page: React.FC = () => {
           timestampContent={`${minutes}:${seconds}`}
         />
       </div>
-      <TonguesContainer CheckCodePath='https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-video-player/index.tsx' />
+      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-video-player/index.tsx" />
     </>
   );
 };

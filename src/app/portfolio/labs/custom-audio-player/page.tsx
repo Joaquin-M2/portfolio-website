@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
-import Title from '../../../../components/z-labs/custom-audio-player/title/title';
-import MainContainer from '../../../../components/z-labs/custom-audio-player/main-container/main-container';
+import Title from "@/components/z-labs/custom-audio-player/title/title";
+import MainContainer from "@/components/z-labs/custom-audio-player/main-container/main-container";
 
-import SongInfo from '../../../../components/z-labs/custom-audio-player/main-container/song-info/song-info';
-import SongImage from '../../../../components/z-labs/custom-audio-player/main-container/image-container/image-container';
+import SongInfo from "@/components/z-labs/custom-audio-player/main-container/song-info/song-info";
+import SongImage from "@/components/z-labs/custom-audio-player/main-container/image-container/image-container";
 
-import AudioAPI from '../../../../components/z-labs/custom-audio-player/main-container/audio-API/audio-API';
+import AudioAPI from "@/components/z-labs/custom-audio-player/main-container/audio-API/audio-API";
 
-import NavControls from '../../../../components/z-labs/custom-audio-player/main-container/navigation-controls/navigation-controls';
-import NavButton from '../../../../components/z-labs/custom-audio-player/main-container/navigation-controls/button/button';
-import Prev from '../../../../components/SVG-icons/portfolio/labs/custom-audio-player/prev';
-import Play from '../../../../components/SVG-icons/portfolio/labs/custom-audio-player/play';
-import Pause from '../../../../components/SVG-icons/portfolio/labs/custom-audio-player/pause';
-import Next from '../../../../components/SVG-icons/portfolio/labs/custom-audio-player/next';
+import NavControls from "@/components/z-labs/custom-audio-player/main-container/navigation-controls/navigation-controls";
+import NavButton from "@/components/z-labs/custom-audio-player/main-container/navigation-controls/button/button";
+import Prev from "@/components/SVG-icons/portfolio/labs/custom-audio-player/prev";
+import Play from "@/components/SVG-icons/portfolio/labs/custom-audio-player/play";
+import Pause from "@/components/SVG-icons/portfolio/labs/custom-audio-player/pause";
+import Next from "@/components/SVG-icons/portfolio/labs/custom-audio-player/next";
 
-import TonguesContainer from '../../../../components/TonguesContainer/TonguesContainer';
+import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
-import styles from './custom-audio-player.module.scss';
+import styles from "./custom-audio-player.module.scss";
 
-const songs = ['Hip Jazz', 'Samba', 'High Octane'];
+const songs = ["Hip Jazz", "Samba", "High Octane"];
 
 const Page: React.FC = () => {
   const [musicIsPlaying, setMusicIsPlaying] = useState(false);
@@ -105,25 +105,25 @@ const Page: React.FC = () => {
     // ===== EVENT LISTENERS =====
     // For buttons
 
-    prevButton.addEventListener('click', prevSong);
-    playButton.addEventListener('click', playSong);
-    pauseButton.addEventListener('click', pauseSong);
-    nextButton.addEventListener('click', nextSong);
+    prevButton.addEventListener("click", prevSong);
+    playButton.addEventListener("click", playSong);
+    pauseButton.addEventListener("click", pauseSong);
+    nextButton.addEventListener("click", nextSong);
 
     // For progress bar
 
-    audio.addEventListener('timeupdate', updateProgressBar);
-    progressBar.parentElement.addEventListener('click', changeProgress);
+    audio.addEventListener("timeupdate", updateProgressBar);
+    progressBar.parentElement.addEventListener("click", changeProgress);
 
     // For end of song
 
-    audio.addEventListener('ended', nextSong);
+    audio.addEventListener("ended", nextSong);
   }, []);
 
   return (
     <>
       <div className={styles.appContainer}>
-        <Title title='Custom Music Player' />
+        <Title title="Custom Music Player" />
         <MainContainer>
           <SongImage
             songImage={`/labs/custom-audio-player/songs/${currentSong}.jpg`}
@@ -163,7 +163,7 @@ const Page: React.FC = () => {
           </NavControls>
         </MainContainer>
       </div>
-      <TonguesContainer CheckCodePath='https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-audio-player/index.tsx' />
+      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-audio-player/index.tsx" />
     </>
   );
 };
