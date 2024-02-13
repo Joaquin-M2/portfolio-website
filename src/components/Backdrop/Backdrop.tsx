@@ -37,6 +37,7 @@ function Backdrop({ isShown, hideBackdrop }: BackdropProps) {
         defaultChecked={isShown}
       />
       <div
+        data-testid="backdrop"
         role="presentation"
         ref={backdrop}
         className={styles.backdrop}
