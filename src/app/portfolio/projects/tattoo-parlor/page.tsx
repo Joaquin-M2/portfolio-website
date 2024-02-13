@@ -11,6 +11,8 @@ import TP_Footer from "@/components/z-projects/tattoo-parlor/07.- Footer/footer"
 
 import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
+import projectsData from "@/data/projects";
+
 import styles from "./tattoo-parlor.module.scss";
 
 const Page: React.FC = () => {
@@ -44,7 +46,12 @@ const Page: React.FC = () => {
           <TP_Footer />
         </main>
       </div>
-      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/tattoo-parlor/index.tsx" />
+      <TonguesContainer
+        CheckCodePath={
+          projectsData.find((project) => project.title === "Tattoo Parlor")
+            .linkToCode
+        }
+      />
     </>
   );
 };
