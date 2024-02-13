@@ -1,9 +1,11 @@
-import styles from './footer.module.scss';
+import styles from "./footer.module.scss";
 
-import Button from './block-info/button/button';
-import BlockInfo from './block-info/block-info';
-import TP_Isotype from '../../../SVG-icons/portfolio/projects/TattooParlor/isotype';
-import TP_Logotype from '../../../SVG-icons/portfolio/projects/TattooParlor/logotype';
+import Button from "./block-info/button/button";
+import BlockInfo from "./block-info/block-info";
+import TP_Isotype from "@/components/SVG-icons/portfolio/projects/TattooParlor/isotype";
+import TP_Logotype from "@/components/SVG-icons/portfolio/projects/TattooParlor/logotype";
+
+import projectsData from "@/data/projects";
 
 const Footer: React.FC = () => {
   return (
@@ -16,32 +18,38 @@ const Footer: React.FC = () => {
         <BlockInfo additionalStyles={styles.navBlock}>
           <ul className={styles.list}>
             <li className={styles.listItem}>
-              <Button path='#'>Company</Button>
+              <Button path="#">Company</Button>
             </li>
             <li className={styles.listItem}>
-              <Button path='#'>Contact us</Button>
+              <Button path="#">Contact us</Button>
             </li>
             <li className={styles.listItem}>
-              <Button path='#'>Careers</Button>
+              <Button path="#">Careers</Button>
             </li>
             <li className={styles.listItem}>
-              <Button path='#'>Privacy policy</Button>
+              <Button path="#">Privacy policy</Button>
             </li>
             <li className={styles.listItem}>
-              <Button path='#'>Terms</Button>
+              <Button path="#">Terms</Button>
             </li>
           </ul>
         </BlockInfo>
         <BlockInfo additionalStyles={styles.copyrightBlock}>
           <p className={styles.copyright}>
-            Built by{' '}
-            <Button path='https://www.linkedin.com/in/joaquin-m2/'>
+            Built by{" "}
+            <Button path="https://www.linkedin.com/in/joaquin-m2/">
               Joaquín M2
             </Button>
             . <br />
             Design inspired by Jonas Schmedtmann "Natours" project. <br />
-            Feel free to{' '}
-            <Button path='https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/tattoo-parlor/index.tsx'>
+            Feel free to{" "}
+            <Button
+              path={
+                projectsData.find(
+                  (project) => project.title === "Tattoo Parlor"
+                ).linkToCode
+              }
+            >
               check the code
             </Button>
             .
