@@ -4,6 +4,8 @@ import MainContent from "@/components/z-projects/legal-hub/main-content/main-con
 
 import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
+import projectsData from "@/data/projects";
+
 import styles from "./legal-hub.module.scss";
 
 const Page: React.FC = () => {
@@ -18,7 +20,12 @@ const Page: React.FC = () => {
           </div>
         </div>
       </div>
-      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/projects/legal-hub/index.tsx" />
+      <TonguesContainer
+        CheckCodePath={
+          projectsData.find((project) => project.title === "Legal Hub")
+            .linkToCode
+        }
+      />
     </>
   );
 };
