@@ -16,7 +16,7 @@ const projects = [
     "/labs/cinema-seats-booking/cinema-seats-booking",
     [techs.HTML, techs.CSS, techs.JAVASCRIPT, techs.TYPESCRIPT, techs.REACT],
     "Small application in which you can book seats in a movie theater.",
-    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/movie-seats-booking/page.tsx",
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/movie-seats-booking",
     "/portfolio/labs/movie-seats-booking",
     "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
     "The state of the seats of every movie is generated randomly and kept when changing between movies."
@@ -37,7 +37,7 @@ const projects = [
         You can move the paddle with your keyboard arrow keys!
       </span>
     ),
-    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/breakout-game/page.tsx",
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/breakout-game",
     "/portfolio/labs/breakout-game",
     "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
     "The application consists of a dynamic HTML5 canvas;",
@@ -60,7 +60,7 @@ const projects = [
         For the creation of this video player it was used the HTML5 video API.
       </span>
     ),
-    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/custom-video-player/page.tsx",
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/custom-video-player",
     "/portfolio/labs/custom-video-player",
     "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
     "The application consists of a basic (but fully customized) video player;",
@@ -90,7 +90,7 @@ const projects = [
         volume manager and a songs picker, among others.
       </span>
     ),
-    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/custom-audio-player/page.tsx",
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/custom-audio-player",
     "/portfolio/labs/custom-audio-player",
     "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
     "Basic custom audio player with some CSS effects;",
@@ -132,7 +132,7 @@ const projects = [
         It is ready ot be used as a component in a navigation bar.
       </span>
     ),
-    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/real-time-search/page.tsx",
+    "https://github.com/Joaquin-M2/portfolio-website/blob/master/src/app/portfolio/labs/real-time-search",
     "/portfolio/labs/real-time-search",
     "HTML (JSX) | CSS (SCSS) | JS (TS) | React (TS);",
     "Connected to a RESTful API;",
