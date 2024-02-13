@@ -9,6 +9,8 @@ import SeatsBookingMessage from "@/components/z-labs/movie-seats-booking/seats-b
 
 import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
+import labsData from "@/data/labs";
+
 import styles from "./movie-seats-booking.module.scss";
 
 const Page: React.FC = () => {
@@ -109,7 +111,12 @@ const Page: React.FC = () => {
           totalPrice={moviePrice * selectedSeats}
         />
       </div>
-      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/movie-seats-booking/index.tsx" />
+      <TonguesContainer
+        CheckCodePath={
+          labsData.find((project) => project.title === "Cinema Seats Booking")
+            .linkToCode
+        }
+      />
     </>
   );
 };

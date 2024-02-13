@@ -8,6 +8,8 @@ import VideoControls from "@/components/z-labs/custom-video-player/video-control
 
 import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
+import labsData from "@/data/labs";
+
 import styles from "./custom-video-player.module.scss";
 
 const Page: React.FC = () => {
@@ -136,7 +138,12 @@ const Page: React.FC = () => {
           timestampContent={`${minutes}:${seconds}`}
         />
       </div>
-      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-video-player/index.tsx" />
+      <TonguesContainer
+        CheckCodePath={
+          labsData.find((project) => project.title === "Custom Video Player")
+            .linkToCode
+        }
+      />
     </>
   );
 };

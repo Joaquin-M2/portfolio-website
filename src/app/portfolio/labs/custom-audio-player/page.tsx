@@ -19,6 +19,8 @@ import Next from "@/components/SVG-icons/portfolio/labs/custom-audio-player/next
 
 import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
+import labsData from "@/data/labs";
+
 import styles from "./custom-audio-player.module.scss";
 
 const songs = ["Hip Jazz", "Samba", "High Octane"];
@@ -163,7 +165,12 @@ const Page: React.FC = () => {
           </NavControls>
         </MainContainer>
       </div>
-      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/custom-audio-player/index.tsx" />
+      <TonguesContainer
+        CheckCodePath={
+          labsData.find((project) => project.title === "Custom Audio Player")
+            .linkToCode
+        }
+      />
     </>
   );
 };

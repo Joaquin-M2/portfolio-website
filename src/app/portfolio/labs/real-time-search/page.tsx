@@ -5,6 +5,8 @@ import SearchResultsContainer from "@/components/z-labs/real-time-search/Navigat
 
 import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
+import labsData from "@/data/labs";
+
 import styles from "./real-time-search.module.scss";
 
 const Page: React.FC = () => {
@@ -17,7 +19,12 @@ const Page: React.FC = () => {
             <SearchResultsContainer />
           </SearchFormContainer>
         </NavBar>
-        <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/real-time-search/index.tsx" />
+        <TonguesContainer
+          CheckCodePath={
+            labsData.find((project) => project.title === "Real Time Search")
+              .linkToCode
+          }
+        />
       </div>
     </>
   );

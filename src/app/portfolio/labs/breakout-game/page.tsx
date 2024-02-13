@@ -8,6 +8,8 @@ import BG_Canvas from "@/components/z-labs/breakout-game/canvas/canvas";
 
 import TonguesContainer from "@/components/TonguesContainer/TonguesContainer";
 
+import labsData from "@/data/labs";
+
 import styles from "./breakout-game.module.scss";
 
 const BreakoutGame: React.FC = () => {
@@ -281,7 +283,12 @@ const BreakoutGame: React.FC = () => {
         <BG_Canvas ref={canvasRef} />
         <BG_ShowRulesSidebar />
       </div>
-      <TonguesContainer CheckCodePath="https://github.com/Joaquin-M2/portfolio-website/blob/master/pages/portfolio/labs/breakout-game/index.tsx" />
+      <TonguesContainer
+        CheckCodePath={
+          labsData.find((project) => project.title === "Breakout Game")
+            .linkToCode
+        }
+      />
     </>
   );
 };
