@@ -227,18 +227,18 @@ If you want to setup this website in your own localhost, it is as simple as:
 
 - [x] Finish Tools section v1.0
 - [ ] Fill the Tools section with real tools
-- [ ] Finish unit tests for core components
-- [ ] Integration tests
-  - [ ] Home
-  - [ ] Portfolio
-  - [ ] Skills
-  - [ ] Contact
-  - [ ] Tools
+- [x] Finish unit tests for core components
+- [x] Integration tests
+  - [x] Home
+  - [x] Portfolio
+  - [x] Skills
+  - [x] Contact
+  - [x] Tools
 - [ ] E2E tests
-  - [ ] Home
-  - [ ] Portfolio
-  - [ ] Skills
-  - [ ] Contact
+  - [x] Home
+  - [x] Portfolio
+  - [x] Skills
+  - [x] Contact
   - [ ] Tools
 - [ ] Fix accessibility issues
   - [ ] Test with NVDA
