@@ -36,5 +36,33 @@ test.beforeEach(async ({ page }) => {
 test.describe("User is NOT logged in", () => {
   test("can save tools and keep them as favorite after reloading the page", async ({
     page,
-  }) => {});
+  }) => {
+    const favoriteButtonTool3 = await page
+      .getByRole("link")
+      .filter({ has: page.getByRole("heading", { name: "Title #1234" }) })
+      .getByTestId("iconsContainer")
+      .getByRole("button")
+      .first();
+
+    const favoriteButtonTool8 = await page
+      .getByRole("link")
+      .filter({
+        has: page.getByRole("heading", { name: "Tool found on Twitter - 17" }),
+      })
+      .getByTestId("iconsContainer")
+      .getByRole("button")
+      .first();
+
+    await favoriteButtonTool3.click();
+    await favoriteButtonTool8.click();
+    await page.reload();
+
+    // Favorite tools are arranged in descending order (i.e. last favorited goes first on the Tools list):
+    await expect(
+      page.getByRole("link").first().getByRole("heading")
+    ).toContainText("Tool found on Twitter - 17");
+    await expect(
+      page.getByRole("link").nth(1).getByRole("heading")
+    ).toContainText("Title #1234");
+  });
 });
