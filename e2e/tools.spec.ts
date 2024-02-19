@@ -34,6 +34,19 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", () => {
+  test("shows a 'Loading...' state while tools are being retrieved from the backend", async ({
+    page,
+  }) => {
+    await expect(
+      page.getByRole("heading", { name: "Loading..." })
+    ).toBeInViewport();
+    const tools = page.getByRole("main").getByRole("link");
+    await tools.first().waitFor();
+    await expect(
+      page.getByRole("heading", { name: "Loading..." })
+    ).not.toBeInViewport();
+  });
+
   test("can filter tools by text and tag and open one of the results", async ({
     page,
   }) => {
@@ -47,6 +60,47 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
 
     await expect(page.getByRole("main").getByRole("link")).toHaveCount(1);
+  });
+
+  test("shows 'No tools found.' message if filters show no results", async ({
+    page,
+  }) => {
+    await page.getByRole("checkbox", { name: "FILTERS" }).click();
+    await page.getByPlaceholder("Search by tool title - Case").click();
+    await page.getByPlaceholder("Search by tool title - Case").fill("t00l");
+    await page.getByRole("checkbox", { name: "FILTERS" }).click();
+
+    await expect(page.getByText("No tools found.")).toBeInViewport();
+  });
+
+  test("shows all tools after removing filters", async ({ page }) => {
+    const tools = page.getByRole("main").getByRole("link");
+    await tools.first().waitFor();
+    const toolsQuantity = await tools.count();
+
+    await page.getByRole("checkbox", { name: "FILTERS" }).click();
+    await page.getByPlaceholder("Search by tool title - Case").click();
+    await page.getByPlaceholder("Search by tool title - Case").fill("t00l");
+    await page.getByPlaceholder("Search by tool title - Case").fill("");
+    await page.getByRole("checkbox", { name: "FILTERS" }).click();
+
+    await expect(page.getByRole("main").getByRole("link")).toHaveCount(
+      toolsQuantity
+    );
+  });
+
+  test("opens a new tab with the tool address when clicking on a tool", async ({
+    page,
+  }) => {
+    const firstTool = page.getByRole("main").getByRole("link").first();
+    await firstTool.waitFor();
+
+    const page1Promise = page.waitForEvent("popup");
+    await firstTool.click();
+    const page1 = await page1Promise;
+    await expect(page1).toHaveURL(
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/multiple"
+    );
   });
 });
 
@@ -138,5 +192,31 @@ test.describe("User is NOT logged in", () => {
     await page.getByRole("button", { name: "Accept" }).click();
 
     await expect(page.getByText("Logged in")).toBeInViewport();
+  });
+});
+
+test.describe("User IS logged in", () => {
+  test.beforeEach(async ({ page }) => {
+    // Mock JWT (user with role 'user').
+    await page.evaluate(() => {
+      window.localStorage.setItem(
+        "userToken",
+        JSON.stringify(
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBvcnRmb2xpby13ZWItOUB0ZXN0LmNvbSIsInVzZXJJZCI6IjY1MmU2OTQ3ZjUzZDE1ZDk4YWI5NmI0NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzA2NTU3NTMxLCJleHAiOjE3MDY1NjExMzF9.alTlweQsc_nSVp-3KGw2INnJti-eXYvzxeb4XQoqM7o"
+        )
+      );
+    });
+  });
+
+  test("will show a 'Log Out' button but NOT a 'Log in' nor 'Sign Up' buttons", async ({
+    page,
+  }) => {
+    await expect(page.getByRole("button", { name: "Log Out" })).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Log In" })
+    ).not.toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Sign Up" })
+    ).not.toBeVisible();
   });
 });
