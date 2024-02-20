@@ -205,6 +205,17 @@ test.describe("User IS logged in", () => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBvcnRmb2xpby13ZWItOUB0ZXN0LmNvbSIsInVzZXJJZCI6IjY1MmU2OTQ3ZjUzZDE1ZDk4YWI5NmI0NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzA2NTU3NTMxLCJleHAiOjE3MDY1NjExMzF9.alTlweQsc_nSVp-3KGw2INnJti-eXYvzxeb4XQoqM7o"
         )
       );
+      window.localStorage.setItem(
+        "accountFavoriteToolsId",
+        JSON.stringify([
+          "654cd4e74b3cba38c11b3618",
+          "654cd3a54b3cba38c11b3611",
+          "6529d4eb2190cd511fc2b378",
+          "654686604eb64a3aad849d0d",
+          "652ce2fe8655c5eae57a8160",
+          "654cc0764b3cba38c11b35c3",
+        ])
+      );
     });
   });
 
