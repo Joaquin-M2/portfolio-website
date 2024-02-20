@@ -230,4 +230,32 @@ test.describe("User IS logged in", () => {
       page.getByRole("button", { name: "Sign Up" })
     ).not.toBeVisible();
   });
+
+  test("will show the 'Log In' and 'Sign Up' after the user logs out", async ({
+    page,
+  }) => {
+    await page.getByRole("button", { name: "Log Out" }).click();
+    await expect(
+      page.getByRole("button", { name: "Log Out" })
+    ).not.toBeVisible();
+    await expect(page.getByRole("button", { name: "Log In" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Sign Up" })).toBeVisible();
+  });
+
+  test("localStorage property 'accountFavoriteToolsId' sets favorite tools correctly", async ({
+    page,
+  }) => {
+    const tools = await page.getByRole("main").getByRole("link");
+    const userFavoriteTools = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem("accountFavoriteToolsId"))
+    );
+
+    for (let i = 0; i < userFavoriteTools.length; i++) {
+      await expect(tools.nth(i).locator("input")).toHaveAttribute(
+        "id",
+        userFavoriteTools.at((i + 1) * -1) // Last tool set as "favorite" by the user goes first on the tools list:
+      );
+    }
+  });
+});
 });
