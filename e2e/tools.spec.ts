@@ -258,4 +258,29 @@ test.describe("User IS logged in", () => {
     }
   });
 });
+
+test.describe("User IS logged in AND has 'admin' role", () => {
+  test.beforeEach(async ({ page }) => {
+    // Mock JWT (user with role 'admin').
+    await page.evaluate(() => {
+      window.localStorage.setItem(
+        "userToken",
+        JSON.stringify(
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHBmLXdlYnNpdGUuY29tIiwidXNlcklkIjoiNjUyZjZlNDNmMGMzZDI4OTg2ZGM1NjAwIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzA4NDYyNDI3LCJleHAiOjE3MDg0NjYwMjd9.K31yrBXwM_Ix_px_Uq9vtS5WHw6L491n591-CTSFlng"
+        )
+      );
+    });
+  });
+  test("shows a configuration button on each tool", async ({ page }) => {
+    const configureToolButton = await page
+      .getByRole("link")
+      .filter({ has: page.getByRole("heading", { name: "Title #1234" }) })
+      .getByTestId("iconsContainer")
+      .getByRole("button")
+      .nth(1);
+
+    await configureToolButton.click();
+    await expect(configureToolButton.getByText("Modify tool")).toBeInViewport();
+    await expect(configureToolButton.getByText("Delete tool")).toBeInViewport();
+  });
 });
