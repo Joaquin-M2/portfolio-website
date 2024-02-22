@@ -283,4 +283,54 @@ test.describe("User IS logged in AND has 'admin' role", () => {
     await expect(configureToolButton.getByText("Modify tool")).toBeInViewport();
     await expect(configureToolButton.getByText("Delete tool")).toBeInViewport();
   });
+  test("'Modify Tool'", async ({ page }) => {
+    await page.route("*/**/api/v1/tools/*", async (route) => {
+      const json = {
+        _id: "654cc0764b3cba38c11b35c3",
+        title: "title test UPDATED",
+        description: "desc testtt - Updated too",
+        tags: [
+          "652cd5da8f02277a97b76e01",
+          "652cd6008f02277a97b76e0b",
+          "652cd6068f02277a97b76e0d",
+          "652cd60c8f02277a97b76e0f",
+          "652cd61b8f02277a97b76e13",
+          "652cd6228f02277a97b76e15",
+          "652cd6268f02277a97b76e17",
+        ],
+        iconUrl: "https://account.mongodb.com/static/images/favicon.ico",
+        url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/multiple",
+        __v: 0,
+      };
+      await route.fulfill({ json });
+    });
+
+    const configureToolButton = await page
+      .getByRole("link")
+      .filter({
+        has: page.getByRole("heading", { name: "title test UPDATED" }),
+      })
+      .getByTestId("iconsContainer")
+      .getByRole("button")
+      .nth(1);
+
+    await configureToolButton.click();
+    await configureToolButton.getByText("Modify tool").click();
+    // PATCHing the tool goes to the same endpoint, but using the PATCH method instead of GET:
+    await page.route("*/**/api/v1/tools/*", async (route) => {
+      const json = {
+        status: 201,
+        message: "✅ Tool updated successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+    await page
+      .locator(
+        "div[aria-labelledby='update-tool-form-654cc0764b3cba38c11b35c3-modal-title']"
+      )
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("Tool updated successfully")).toBeInViewport();
+  });
 });
