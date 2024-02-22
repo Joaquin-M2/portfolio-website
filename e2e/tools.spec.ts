@@ -266,7 +266,7 @@ test.describe("User IS logged in AND has 'admin' role", () => {
       window.localStorage.setItem(
         "userToken",
         JSON.stringify(
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHBmLXdlYnNpdGUuY29tIiwidXNlcklkIjoiNjUyZjZlNDNmMGMzZDI4OTg2ZGM1NjAwIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzA4NDYyNDI3LCJleHAiOjE3MDg0NjYwMjd9.K31yrBXwM_Ix_px_Uq9vtS5WHw6L491n591-CTSFlng"
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHBmLXdlYnNpdGUuY29tIiwidXNlcklkIjoiNjUyZjZlNDNmMGMzZDI4OTg2ZGM1NjAwIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzA4NDYyNDI3LCJleHAiOjk3MDg0NjYwMjd9.CIoTt61-ASsuZ6Ou9QD5LVeA2Ty4jIQ0oGtvMRkNB7g"
         )
       );
     });
@@ -332,5 +332,34 @@ test.describe("User IS logged in AND has 'admin' role", () => {
       .click();
 
     await expect(page.getByText("Tool updated successfully")).toBeInViewport();
+  });
+  test("'Delete Tool'", async ({ page }) => {
+    await page.route("*/**/api/v1/tools/*", async (route) => {
+      const json = {
+        status: 200,
+        message: "✅ Tool deleted successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+
+    const configureToolButton = await page
+      .getByRole("link")
+      .filter({
+        has: page.getByRole("heading", { name: "title test UPDATED" }),
+      })
+      .getByTestId("iconsContainer")
+      .getByRole("button")
+      .nth(1);
+
+    await configureToolButton.click();
+    await configureToolButton.getByText("Delete tool").click();
+    await page
+      .locator(
+        "div[aria-labelledby='delete-tool-form-654cc0764b3cba38c11b35c3-modal-title']"
+      )
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("Tool deleted successfully")).toBeInViewport();
   });
 });
