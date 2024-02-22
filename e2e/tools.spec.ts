@@ -362,4 +362,43 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("Tool deleted successfully")).toBeInViewport();
   });
+  test("'Add Tool'", async ({ page }) => {
+    await page.getByRole("button", { name: "Add Tool" }).click();
+
+    await page.getByLabel("Add Tool").getByPlaceholder("Tool URL").click();
+    await page
+      .getByLabel("Add Tool")
+      .getByPlaceholder("Tool URL")
+      .fill("https://toolurl.com");
+    await page.getByLabel("Add Tool").getByPlaceholder("Title").click();
+    await page
+      .getByLabel("Add Tool")
+      .getByPlaceholder("Title")
+      .fill("New tool title");
+    await page.getByLabel("Add Tool").getByPlaceholder("Description").click();
+    await page
+      .getByLabel("Add Tool")
+      .getByPlaceholder("Description")
+      .fill("Description for the new tool.");
+
+    await page
+      .locator("div[aria-labelledby='add-tool-form-modal-title']")
+      .getByRole("option", { name: "Accessibility" })
+      .click();
+
+    await page.route("*/**/api/v1/tools", async (route) => {
+      const json = {
+        status: 201,
+        message: "✅ Tool added successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+
+    await page
+      .locator("div[aria-labelledby='add-tool-form-modal-title']")
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("Tool added successfully")).toBeInViewport();
+  });
 });
