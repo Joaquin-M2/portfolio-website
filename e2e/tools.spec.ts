@@ -401,4 +401,35 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("Tool added successfully")).toBeInViewport();
   });
+  test("'Add Icon'", async ({ page }) => {
+    await page.getByRole("button", { name: "Icons" }).click();
+    await page.getByTestId("menuCardWrapperDiv").getByText("Add icon").click();
+
+    await page.getByLabel("Add Icon").getByPlaceholder("Icon name").click();
+    await page
+      .getByLabel("Add Icon")
+      .getByPlaceholder("Icon name")
+      .fill("New icon name");
+
+    await page.getByLabel("Add Icon").getByPlaceholder("Icon url").click();
+    await page
+      .getByLabel("Add Icon")
+      .getByPlaceholder("Icon url")
+      .fill(
+        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/X%20(Twitter).jpg"
+      );
+    await page.route("*/**/api/v1/icons", async (route) => {
+      const json = {
+        status: 200,
+        message: "✅ Icon added successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+    await page
+      .locator("div[aria-labelledby='add-icon-form-modal-title']")
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("Icon added successfully")).toBeInViewport();
+  });
 });
