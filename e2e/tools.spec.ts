@@ -458,4 +458,25 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("Icon updated successfully")).toBeInViewport();
   });
+  test("'Delete Icon'", async ({ page }) => {
+    await page.getByRole("button", { name: "Icons" }).click();
+    await page
+      .getByTestId("menuCardWrapperDiv")
+      .getByText("Delete icon")
+      .click();
+
+    await page.route("*/**/api/v1/icons/*", async (route) => {
+      const json = {
+        status: 200,
+        message: "✅ Icon deleted successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+    await page
+      .locator("div[aria-labelledby='delete-icon-form-modal-title']")
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("Icon deleted successfully")).toBeInViewport();
+  });
 });
