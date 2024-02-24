@@ -575,4 +575,25 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("User updated successfully")).toBeInViewport();
   });
+  test("'Delete User'", async ({ page }) => {
+    await page.getByRole("button", { name: "Users" }).click();
+    await page
+      .getByTestId("menuCardWrapperDiv")
+      .getByText("Delete User")
+      .click();
+
+    await page.route("*/**/api/v1/user/*", async (route) => {
+      const json = {
+        status: 200,
+        message: "✅ User deleted successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+    await page
+      .locator("div[aria-labelledby='delete-user-form-modal-title']")
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("User deleted successfully")).toBeInViewport();
+  });
 });
