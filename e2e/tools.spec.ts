@@ -479,4 +479,27 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("Icon deleted successfully")).toBeInViewport();
   });
+  test("'Add Tag'", async ({ page }) => {
+    await page.getByRole("button", { name: "Tags" }).click();
+    await page.getByTestId("menuCardWrapperDiv").getByText("Add tag").click();
+
+    await page
+      .getByLabel("Add Tag")
+      .getByPlaceholder("New tag name")
+      .fill("Name for new tag");
+
+    await page.route("*/**/api/v1/tags", async (route) => {
+      const json = {
+        status: 200,
+        message: "✅ Tag added successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+    await page
+      .locator("div[aria-labelledby='add-tag-form-modal-title']")
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("Tag added successfully")).toBeInViewport();
+  });
 });
