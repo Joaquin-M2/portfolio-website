@@ -502,4 +502,30 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("Tag added successfully")).toBeInViewport();
   });
+  test("'Modify Tag'", async ({ page }) => {
+    await page.getByRole("button", { name: "Tags" }).click();
+    await page
+      .getByTestId("menuCardWrapperDiv")
+      .getByText("Update tag")
+      .click();
+
+    await page
+      .getByLabel("Update Tag")
+      .getByPlaceholder("Update tag name")
+      .fill("Updated tag name");
+
+    await page.route("*/**/api/v1/tags/*", async (route) => {
+      const json = {
+        status: 200,
+        message: "✅ Tag updated successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+    await page
+      .locator("div[aria-labelledby='update-tag-form-modal-title']")
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("Tag updated successfully")).toBeInViewport();
+  });
 });
