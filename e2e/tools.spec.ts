@@ -426,4 +426,36 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("Icon added successfully")).toBeInViewport();
   });
+  test("'Modify Icon'", async ({ page }) => {
+    await page.getByRole("button", { name: "Icons" }).click();
+    await page
+      .getByTestId("menuCardWrapperDiv")
+      .getByText("Update icon")
+      .click();
+
+    await page
+      .getByLabel("Update Icon")
+      .getByPlaceholder("Update icon name")
+      .fill("Updated icon name");
+
+    await page
+      .getByLabel("Update Icon")
+      .getByPlaceholder("Update icon url")
+      .fill(
+        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/X%20(Twitter).jpg"
+      );
+    await page.route("*/**/api/v1/icons/*", async (route) => {
+      const json = {
+        status: 200,
+        message: "✅ Icon updated successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+    await page
+      .locator("div[aria-labelledby='update-icon-form-modal-title']")
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("Icon updated successfully")).toBeInViewport();
+  });
 });
