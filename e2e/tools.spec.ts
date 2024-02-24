@@ -549,4 +549,30 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("Tag deleted successfully")).toBeInViewport();
   });
+  test("'Modify User'", async ({ page }) => {
+    await page.getByRole("button", { name: "Users" }).click();
+    await page
+      .getByTestId("menuCardWrapperDiv")
+      .getByText("Update User")
+      .click();
+
+    await page
+      .getByLabel("Update User")
+      .getByPlaceholder("Update user email")
+      .fill("new@user.email");
+
+    await page.route("*/**/api/v1/user/*", async (route) => {
+      const json = {
+        status: 200,
+        message: "✅ User updated successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+    await page
+      .locator("div[aria-labelledby='update-user-form-modal-title']")
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("User updated successfully")).toBeInViewport();
+  });
 });
