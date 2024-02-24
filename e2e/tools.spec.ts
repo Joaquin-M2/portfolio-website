@@ -528,4 +528,25 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("Tag updated successfully")).toBeInViewport();
   });
+  test("'Delete Tag'", async ({ page }) => {
+    await page.getByRole("button", { name: "Tags" }).click();
+    await page
+      .getByTestId("menuCardWrapperDiv")
+      .getByText("Delete tag")
+      .click();
+
+    await page.route("*/**/api/v1/tags/*", async (route) => {
+      const json = {
+        status: 200,
+        message: "✅ Tag deleted successfully ✅",
+      };
+      await route.fulfill({ json });
+    });
+    await page
+      .locator("div[aria-labelledby='delete-tag-form-modal-title']")
+      .getByRole("button", { name: "Accept" })
+      .click();
+
+    await expect(page.getByText("Tag deleted successfully")).toBeInViewport();
+  });
 });
