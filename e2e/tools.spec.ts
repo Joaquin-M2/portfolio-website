@@ -51,7 +51,6 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
     page,
   }) => {
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
-    await page.getByPlaceholder("Search by tool title - Case").click();
     await page.getByPlaceholder("Search by tool title - Case").fill("tool");
     await page
       .getByRole("complementary")
@@ -365,17 +364,14 @@ test.describe("User IS logged in AND has 'admin' role", () => {
   test("'Add Tool'", async ({ page }) => {
     await page.getByRole("button", { name: "Add Tool" }).click();
 
-    await page.getByLabel("Add Tool").getByPlaceholder("Tool URL").click();
     await page
       .getByLabel("Add Tool")
       .getByPlaceholder("Tool URL")
       .fill("https://toolurl.com");
-    await page.getByLabel("Add Tool").getByPlaceholder("Title").click();
     await page
       .getByLabel("Add Tool")
       .getByPlaceholder("Title")
       .fill("New tool title");
-    await page.getByLabel("Add Tool").getByPlaceholder("Description").click();
     await page
       .getByLabel("Add Tool")
       .getByPlaceholder("Description")
@@ -405,13 +401,11 @@ test.describe("User IS logged in AND has 'admin' role", () => {
     await page.getByRole("button", { name: "Icons" }).click();
     await page.getByTestId("menuCardWrapperDiv").getByText("Add icon").click();
 
-    await page.getByLabel("Add Icon").getByPlaceholder("Icon name").click();
     await page
       .getByLabel("Add Icon")
       .getByPlaceholder("Icon name")
       .fill("New icon name");
 
-    await page.getByLabel("Add Icon").getByPlaceholder("Icon url").click();
     await page
       .getByLabel("Add Icon")
       .getByPlaceholder("Icon url")
