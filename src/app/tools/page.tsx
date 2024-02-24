@@ -503,7 +503,7 @@ function Page() {
         tags={tags}
       />
       <div className={styles.buttonsContainer}>
-        {userIsAdmin ? (
+        {userIsAdmin && userIsLoggedIn ? (
           <div className={styles.adminManagementButtons}>
             {renderAdminManagementButtons()}
           </div>
