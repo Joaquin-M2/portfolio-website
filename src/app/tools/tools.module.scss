@@ -1,15 +1,23 @@
-@import "../../sass/abstracts/variables.scss";
+@import "@/sass/abstracts/variables.scss";
+@import "@/sass/abstracts/mixins.scss";
 
 .mainContainer {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, 60rem);
   justify-content: center;
-  gap: 2rem;
 
   padding: 5rem 2rem 10rem;
 
   min-height: 100%;
+
+  @include responsiveDesign(1280) {
+    grid-template-columns: auto auto;
+  }
+
+  @include responsiveDesign(800) {
+    grid-template-columns: auto;
+  }
 }
 
 .buttonsContainer {
