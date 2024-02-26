@@ -234,12 +234,12 @@ If you want to setup this website in your own localhost, it is as simple as:
   - [x] Skills
   - [x] Contact
   - [x] Tools
-- [ ] E2E tests
+- [x] E2E tests
   - [x] Home
   - [x] Portfolio
   - [x] Skills
   - [x] Contact
-  - [ ] Tools
+  - [x] Tools
 - [ ] Fix accessibility issues
   - [ ] Test with NVDA
   - [ ] Test with VoiceOver
