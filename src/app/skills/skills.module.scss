@@ -5,6 +5,8 @@
 
 .wrapper {
   height: 100%;
+  max-width: 140rem;
+  margin: auto;
 
   @include responsiveDesign(1024) {
     margin: 12rem 0;
