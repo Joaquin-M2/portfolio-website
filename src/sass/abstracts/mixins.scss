@@ -55,3 +55,11 @@
     }
   }
 }
+
+@mixin responsiveDesignMobileFirst($breakpoint) {
+  @if $breakpoint == 1400 {
+    @media only screen and (min-width: 87.5em) {
+      @content;
+    }
+  }
+}
