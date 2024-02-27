@@ -9,8 +9,6 @@
 
   padding: 5rem 2rem 10rem;
 
-  min-height: 100%;
-
   @include responsiveDesign(1280) {
     grid-template-columns: auto auto;
   }
