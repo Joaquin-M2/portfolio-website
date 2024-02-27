@@ -21,7 +21,13 @@ function NavBar({ children, additionalStyles, top, narrow }: NavBarProps) {
         } ${narrow && styles.narrow}`}
         id="navBarBottom"
       >
-        <div className={styles.buttonsContainer}>{children}</div>
+        <div
+          className={`${styles.buttonsContainer} ${
+            top && styles.buttonsContainerTop
+          }`}
+        >
+          {children}
+        </div>
       </nav>
     </div>
   );
