@@ -37,6 +37,10 @@
   @include responsiveDesign(800) {
     text-align: center;
   }
+
+  @include responsiveDesignMobileFirst(1400) {
+    text-align: center;
+  }
 }
 
 .welcome {
@@ -89,6 +93,12 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+.questionAnswer {
+  @include responsiveDesignMobileFirst(1400) {
+    text-align: center;
   }
 }
 
