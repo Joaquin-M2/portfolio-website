@@ -32,6 +32,14 @@
   }
 }
 
+.formInnerContainer,
+.otherContactMeansInnerContainer {
+  @include responsiveDesignMobileFirst(1400) {
+    width: 60rem;
+    margin: auto;
+  }
+}
+
 // RIGHT SIDE
 .OtherContactMeansContainer {
   width: 50%;
