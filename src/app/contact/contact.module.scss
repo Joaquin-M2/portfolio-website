@@ -160,9 +160,9 @@
     animation: lime-line-background 0.2s linear forwards;
   }
 
-  &:active::before {
-    background-color: $color-intense-grey;
-  }
+  /* &:active::before {
+    background: $color-intense-grey;
+  } */
 }
 
 .logo {
