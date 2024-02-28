@@ -183,9 +183,11 @@ export default function Contact() {
           </div>
           <div className={styles.OtherContactMeansContainer}>
             <div className={styles.otherContactMeansInnerContainer}>
-              <h2>Not a big fan of forms?</h2>
-              <h3>You can also contact me over here:</h3>
-              <ul>
+              <h2 className={styles.secondaryTitle}>Not a big fan of forms?</h2>
+              <h3 className={styles.tertiaryTitle}>
+                You can also contact me over here:
+              </h3>
+              <ul className={styles.contactList}>
                 <li className={styles.contactListElement}>
                   <a
                     href="mailto:joaquin.mmol@gmail.com"
