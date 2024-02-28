@@ -86,7 +86,7 @@
   margin-left: 5%;
 }
 
-.OtherContactMeansContainer li {
+.contactListElement {
   list-style: none;
   margin-bottom: 2rem;
 
@@ -119,6 +119,82 @@
   }
 }
 
-.ContactLogos {
-  fill: $color-intense-grey;
+.preLogoSpan {
+  width: 0.2rem;
+  height: 100%;
+  transform: scaleY(0);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s;
+}
+
+.contactListElement:hover .preLogoSpan {
+  transform: scaleY(1);
+  background-color: lime;
+}
+
+.contactLink {
+  fill: $color-pale-grey;
+  position: relative;
+  padding: 1rem;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    background-color: black;
+    width: 0.2rem;
+    height: 100%;
+    transform: scaleY(0);
+
+    transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s; // Atención al transition delay de ".2s", para que el inicio del "transition: width" coincida con el final de la ejecución de "transition: transform .2s".
+  }
+
+  &:hover::before {
+    transform: scaleY(1);
+    width: 100%;
+    animation: lime-line-background 0.2s linear forwards;
+  }
+
+  &:active::before {
+    background-color: $color-intense-grey;
+  }
+}
+
+.logo {
+  animation: tilt-shaking 1s linear infinite;
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes lime-line-background {
+  0% {
+    background: linear-gradient(to right, lime, black 99%);
+  }
+  99% {
+    background: linear-gradient(to right, lime, black 50%);
+  }
+  100% {
+    background: linear-gradient(to right, lime, black 3%);
+  }
 }

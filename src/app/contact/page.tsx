@@ -186,33 +186,33 @@ export default function Contact() {
               <h2>Not a big fan of forms?</h2>
               <h3>You can also contact me over here:</h3>
               <ul>
-                <li>
+                <li className={styles.contactListElement}>
                   <a
                     href="mailto:joaquin.mmol@gmail.com"
-                    className={`${styles.EmailLogo} ${styles.ContactLogos}`}
+                    className={`${styles.EmailLogo} ${styles.contactLink}`}
                     target="_blank"
                   >
-                    <EmailLogo />
+                    <EmailLogo EmailLogoStyles={styles.logo} />
                     Email
                   </a>
                 </li>
-                <li>
+                <li className={styles.contactListElement}>
                   <a
                     href="https://www.linkedin.com/in/joaquin-m2/"
-                    className={`${styles.LinkedinLogo} ${styles.ContactLogos}`}
+                    className={`${styles.LinkedinLogo} ${styles.contactLink}`}
                     target="_blank"
                   >
-                    <LinkedinLogo />
+                    <LinkedinLogo LinkedinLogoStyles={styles.logo} />
                     LinkedIn
                   </a>
                 </li>
-                <li>
+                <li className={styles.contactListElement}>
                   <a
                     href="https://github.com/Joaquin-M2"
-                    className={`${styles.GithubLogo} ${styles.ContactLogos}`}
+                    className={`${styles.GithubLogo} ${styles.contactLink}`}
                     target="_blank"
                   >
-                    <GithubLogo />
+                    <GithubLogo GithubLogoStyles={styles.logo} />
                     GitHub
                   </a>
                 </li>
