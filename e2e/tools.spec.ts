@@ -49,7 +49,12 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
 
   test("can filter tools by text and tag and open one of the results", async ({
     page,
+    browserName,
   }) => {
+    test.skip(
+      browserName === "webkit",
+      "Playwright has troubles finding <option> elements on webkit browsers."
+    );
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
     await page.getByPlaceholder("Search by tool title - Case").fill("tool");
     await page
@@ -361,7 +366,11 @@ test.describe("User IS logged in AND has 'admin' role", () => {
 
     await expect(page.getByText("Tool deleted successfully")).toBeInViewport();
   });
-  test("'Add Tool'", async ({ page }) => {
+  test("'Add Tool'", async ({ page, browserName }) => {
+    test.skip(
+      browserName === "webkit",
+      "Playwright has troubles finding <option> elements on webkit browsers."
+    );
     await page.getByRole("button", { name: "Add Tool" }).click();
 
     await page
