@@ -2,18 +2,27 @@ import styles from "./navBar.module.scss";
 
 interface NavBarProps {
   additionalStyles?: string;
-  top?: boolean;
-  narrow?: boolean;
   children: JSX.Element | JSX.Element[];
+  leftSided?: boolean;
+  narrow?: boolean;
+  rightSided?: boolean;
+  top?: boolean;
 }
 
-function NavBar({ children, additionalStyles, top, narrow }: NavBarProps) {
+function NavBar({
+  additionalStyles,
+  children,
+  leftSided,
+  narrow,
+  rightSided,
+  top,
+}: NavBarProps) {
   return (
     <div
       data-testid="navBarWrapperDiv"
       className={`${styles.container} ${top && styles.containerTop} ${
         narrow && styles.containerNarrow
-      }`}
+      } ${leftSided && styles.leftSided} ${rightSided && styles.rightSided}`}
     >
       <nav
         className={`${styles.navBarBottom} ${additionalStyles} ${

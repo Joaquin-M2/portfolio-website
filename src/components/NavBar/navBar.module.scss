@@ -80,3 +80,26 @@
   padding: 2rem 4rem;
   gap: 4rem;
 }
+
+.leftSided {
+  left: auto;
+  right: 0;
+  transform: translateX(0%);
+}
+
+.rightSided {
+  left: 0;
+  transform: translateX(0%);
+  right: auto;
+}
+
+.leftSided,
+.rightSided {
+  & .buttonsContainer {
+    gap: 2rem;
+  }
+
+  & .narrow {
+    padding: 0.5rem 3rem 1rem;
+  }
+}
