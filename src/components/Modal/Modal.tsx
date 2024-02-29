@@ -33,20 +33,15 @@ function Modal({
   title,
 }: ModalProps) {
   const bottomButtons = requestIsSuccessful ? (
-    <Button form={targetForm} onClick={hideModal} type="reset" small>
+    <Button form={targetForm} onClick={hideModal} type="reset">
       Close
     </Button>
   ) : (
     <>
-      <Button
-        form={targetForm}
-        type="submit"
-        small
-        disabled={acceptButtonIsDisabled}
-      >
+      <Button form={targetForm} type="submit" disabled={acceptButtonIsDisabled}>
         {acceptButtonTitle ? acceptButtonTitle : "Accept"}
       </Button>
-      <Button form={targetForm} onClick={hideModal} type="reset" small>
+      <Button form={targetForm} onClick={hideModal} type="reset">
         {cancelButtonTitle ? cancelButtonTitle : "Cancel"}
       </Button>
     </>
