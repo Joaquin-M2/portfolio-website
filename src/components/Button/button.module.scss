@@ -76,6 +76,20 @@
   padding: 1rem;
 }
 
+.active:hover,
+.active {
+  background-image: radial-gradient(
+    $color-intense-green 40%,
+    $color-pale-green
+  );
+  box-shadow: 0.2rem 0.2rem 0.1rem 0.1rem #000 inset;
+  border-color: #999999;
+
+  &:hover::after {
+    display: none;
+  }
+}
+
 .disabled,
 .disabled:hover {
   background-color: $color-intense-grey;
@@ -88,4 +102,20 @@
   &::after {
     display: none;
   }
+}
+
+.increasedBorderRadiusTopLeft {
+  border-top-left-radius: 40%;
+}
+
+.increasedBorderRadiusTopRight {
+  border-top-right-radius: 40%;
+}
+
+.increasedBorderRadiusBottomLeft {
+  border-bottom-left-radius: 40%;
+}
+
+.increasedBorderRadiusBottomRight {
+  border-bottom-right-radius: 40%;
 }

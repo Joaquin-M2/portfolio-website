@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { usePathname } from "next/navigation";
 
-import styles from "./navBarButton.module.scss";
+import Button from "@/components/Button/Button";
 
 interface NavBarButton {
   children: string;
@@ -34,36 +34,14 @@ function NavBarButton({
       pathnameStartsWith.length > 1) ||
     homeButtonIsActive;
 
-  let increasedBorderRadiusPositionStyles = "";
-
-  switch (increasedBorderRadiusPosition) {
-    case "top-left":
-      increasedBorderRadiusPositionStyles = styles.increasedBorderRadiusTopLeft;
-      break;
-    case "top-right":
-      increasedBorderRadiusPositionStyles =
-        styles.increasedBorderRadiusTopRight;
-      break;
-    case "bottom-left":
-      increasedBorderRadiusPositionStyles =
-        styles.increasedBorderRadiusBottomLeft;
-      break;
-    case "bottom-right":
-      increasedBorderRadiusPositionStyles =
-        styles.increasedBorderRadiusBottomRight;
-      break;
-  }
-
   return (
     <Link href={href}>
-      <button
-        className={`${styles.navBarButton} ${
-          buttonIsActive ? styles.active : ""
-        } ${increasedBorderRadiusPositionStyles}`}
-        type="button"
+      <Button
+        isActive={buttonIsActive}
+        increasedBorderRadiusPosition={increasedBorderRadiusPosition}
       >
         {children}
-      </button>
+      </Button>
     </Link>
   );
 }
