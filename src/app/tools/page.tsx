@@ -23,6 +23,8 @@ import UpdateTagForm from "./UpdateTagForm/UpdateTagForm";
 import UpdateUserForm from "./UpdateUserForm/UpdateUserForm";
 
 import styles from "./tools.module.scss";
+import Button from "@/components/Button/Button";
+import NavBar from "@/components/NavBar/NavBar";
 
 interface Tool {
   _id: string;
@@ -309,40 +311,46 @@ function Page() {
       <>
         {userIsLoggedIn ? (
           <>
-            <button
-              className={styles.managementButton}
-              onClick={() => {
-                logoutUser();
-                setUserIsAdmin(false);
-              }}
-            >
-              Log Out
-            </button>
+            <NavBar top narrow leftSided>
+              <Button
+                small
+                onClick={() => {
+                  logoutUser();
+                  setUserIsAdmin(false);
+                }}
+              >
+                Log Out
+              </Button>
+            </NavBar>
           </>
         ) : (
           <>
-            <button
-              className={styles.managementButton}
-              onClick={() => {
-                setModalsState((prevValue) => ({
-                  ...prevValue,
-                  logInModalIsShown: true,
-                }));
-              }}
-            >
-              Log In
-            </button>
-            <button
-              className={styles.managementButton}
-              onClick={() => {
-                setModalsState((prevValue) => ({
-                  ...prevValue,
-                  signUpModalIsShown: true,
-                }));
-              }}
-            >
-              Sign Up
-            </button>
+            <NavBar top narrow leftSided>
+              <Button
+                small
+                onClick={() => {
+                  setModalsState((prevValue) => ({
+                    ...prevValue,
+                    logInModalIsShown: true,
+                  }));
+                }}
+                isActive={modalsState.logInModalIsShown}
+              >
+                Log In
+              </Button>
+              <Button
+                small
+                onClick={() => {
+                  setModalsState((prevValue) => ({
+                    ...prevValue,
+                    signUpModalIsShown: true,
+                  }));
+                }}
+                isActive={modalsState.signUpModalIsShown}
+              >
+                Sign Up
+              </Button>
+            </NavBar>
           </>
         )}
       </>
@@ -376,115 +384,121 @@ function Page() {
     | JSX.Element[] = () => {
     return (
       <>
-        <button
-          className={styles.managementButton}
-          onClick={() => {
-            checkTokenHasExpired("addToolModalIsShown");
-            setIconsMenuCardIsVisible(false);
-            setTagsMenuCardIsVisible(false);
-            setUsersMenuCardIsVisible(false);
-          }}
-        >
-          Add Tool
-        </button>
-        <div className={styles.menuButtonContainer}>
-          <button
-            className={styles.managementButton}
+        <NavBar top narrow rightSided>
+          <Button
+            small
             onClick={() => {
-              setIconsMenuCardIsVisible((prevValue) => !prevValue);
+              checkTokenHasExpired("addToolModalIsShown");
+              setIconsMenuCardIsVisible(false);
               setTagsMenuCardIsVisible(false);
               setUsersMenuCardIsVisible(false);
             }}
+            isActive={modalsState.addToolModalIsShown}
           >
-            Icons
-          </button>
-          <MenuCard isVisible={iconsMenuCardIsVisible} position="bottom-left">
-            <li
+            Add Tool
+          </Button>
+          <div className={styles.menuButtonContainer}>
+            <Button
+              small
               onClick={() => {
-                checkTokenHasExpired("addIconModalIsShown");
+                setIconsMenuCardIsVisible((prevValue) => !prevValue);
+                setTagsMenuCardIsVisible(false);
+                setUsersMenuCardIsVisible(false);
               }}
+              isActive={iconsMenuCardIsVisible}
             >
-              Add icon
-            </li>
-            <li
+              Icons
+            </Button>
+            <MenuCard isVisible={iconsMenuCardIsVisible} position="bottom-left">
+              <li
+                onClick={() => {
+                  checkTokenHasExpired("addIconModalIsShown");
+                }}
+              >
+                Add icon
+              </li>
+              <li
+                onClick={() => {
+                  checkTokenHasExpired("updateIconModalIsShown");
+                }}
+              >
+                Update icon
+              </li>
+              <li
+                onClick={() => {
+                  checkTokenHasExpired("deleteIconModalIsShown");
+                }}
+              >
+                Delete icon
+              </li>
+            </MenuCard>
+          </div>
+          <div className={styles.menuButtonContainer}>
+            <Button
+              small
               onClick={() => {
-                checkTokenHasExpired("updateIconModalIsShown");
+                setIconsMenuCardIsVisible(false);
+                setTagsMenuCardIsVisible((prevValue) => !prevValue);
+                setUsersMenuCardIsVisible(false);
               }}
+              isActive={tagsMenuCardIsVisible}
             >
-              Update icon
-            </li>
-            <li
+              Tags
+            </Button>
+            <MenuCard isVisible={tagsMenuCardIsVisible} position="bottom-left">
+              <li
+                onClick={() => {
+                  checkTokenHasExpired("addTagModalIsShown");
+                }}
+              >
+                Add tag
+              </li>
+              <li
+                onClick={() => {
+                  checkTokenHasExpired("updateTagModalIsShown");
+                }}
+              >
+                Update tag
+              </li>
+              <li
+                onClick={() => {
+                  checkTokenHasExpired("deleteTagModalIsShown");
+                }}
+              >
+                Delete tag
+              </li>
+            </MenuCard>
+          </div>
+          <div className={styles.menuButtonContainer}>
+            <Button
+              small
               onClick={() => {
-                checkTokenHasExpired("deleteIconModalIsShown");
+                setIconsMenuCardIsVisible(false);
+                setTagsMenuCardIsVisible(false);
+                setUsersMenuCardIsVisible((prevValue) => !prevValue);
               }}
+              isActive={usersMenuCardIsVisible}
             >
-              Delete icon
-            </li>
-          </MenuCard>
-        </div>
-        <div className={styles.menuButtonContainer}>
-          <button
-            className={styles.managementButton}
-            onClick={() => {
-              setIconsMenuCardIsVisible(false);
-              setTagsMenuCardIsVisible((prevValue) => !prevValue);
-              setUsersMenuCardIsVisible(false);
-            }}
-          >
-            Tags
-          </button>
-          <MenuCard isVisible={tagsMenuCardIsVisible} position="bottom-left">
-            <li
-              onClick={() => {
-                checkTokenHasExpired("addTagModalIsShown");
-              }}
-            >
-              Add tag
-            </li>
-            <li
-              onClick={() => {
-                checkTokenHasExpired("updateTagModalIsShown");
-              }}
-            >
-              Update tag
-            </li>
-            <li
-              onClick={() => {
-                checkTokenHasExpired("deleteTagModalIsShown");
-              }}
-            >
-              Delete tag
-            </li>
-          </MenuCard>
-        </div>
-        <div className={styles.menuButtonContainer}>
-          <button
-            className={styles.managementButton}
-            onClick={() => {
-              setIconsMenuCardIsVisible(false);
-              setTagsMenuCardIsVisible(false);
-              setUsersMenuCardIsVisible((prevValue) => !prevValue);
-            }}
-          >
-            Users
-          </button>
-          <MenuCard isVisible={usersMenuCardIsVisible} position="bottom-left">
-            <li
-              onClick={() => {
-                checkTokenHasExpired("updateUserModalIsShown");
-              }}
-            >
-              Update user
-            </li>
-            <li
-              onClick={() => {
-                checkTokenHasExpired("deleteUserModalIsShown");
-              }}
-            >
-              Delete user
-            </li>
-          </MenuCard>
-        </div>
+              Users
+            </Button>
+            <MenuCard isVisible={usersMenuCardIsVisible} position="bottom-left">
+              <li
+                onClick={() => {
+                  checkTokenHasExpired("updateUserModalIsShown");
+                }}
+              >
+                Update user
+              </li>
+              <li
+                onClick={() => {
+                  checkTokenHasExpired("deleteUserModalIsShown");
+                }}
+              >
+                Delete user
+              </li>
+            </MenuCard>
+          </div>
+        </NavBar>
       </>
     );
   };
@@ -502,18 +516,8 @@ function Page() {
         handleRemoveFilterTag={handleRemoveFilterTag}
         tags={tags}
       />
-      <div className={styles.buttonsContainer}>
-        {userIsAdmin && userIsLoggedIn ? (
-          <div className={styles.adminManagementButtons}>
-            {renderAdminManagementButtons()}
-          </div>
-        ) : (
-          <div></div>
-        )}
-        <div className={styles.userManagementButtons}>
-          {renderUserManagementButtons()}
-        </div>
-      </div>
+      {userIsAdmin && userIsLoggedIn && renderAdminManagementButtons()}
+      {renderUserManagementButtons()}
 
       <AddToolForm
         formIsOpen={modalsState.addToolModalIsShown}
