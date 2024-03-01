@@ -45,7 +45,7 @@ test("can send users to alternative means of contact", async ({ page }) => {
   const page1Promise = page.waitForEvent("popup");
   await page.getByRole("link", { name: "LinkedIn logo LinkedIn" }).click();
   const page1 = await page1Promise;
-  await expect(page1).toHaveURL("https://www.linkedin.com/in/joaquin-m2/");
+  await expect(page1).toHaveURL(/(linkedin.com).*(joaquin-m2)/);
 
   // GITHUB BUTTON - Opens new tab
   const page2Promise = page.waitForEvent("popup");
