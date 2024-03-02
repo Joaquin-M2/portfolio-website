@@ -68,8 +68,7 @@ function AddToolForm({
     if (formIsOpen) {
       setCurrentIconUrl(
         icons.find(
-          (icon) =>
-            icon.name === selectSingleInput.current.selectedOptions[0].innerText
+          (icon) => icon._id === "655c3872473ea18c182edf70" // "NO IMAGE" icon.
         ).url
       );
     }
@@ -108,6 +107,7 @@ function AddToolForm({
     data.tags = selectedTagsAddToolForm.map((selectedTag) => {
       return selectedTag._id;
     }); // Otherwise it would just pick the tags marked in the "Select tag(s)" dropdown.
+    data.iconUrl = currentIconUrl; // So there is actually a url in the form, even if the user didn't select anything on the dropdown.
     try {
       const response = await fetch(
         createRequest({
