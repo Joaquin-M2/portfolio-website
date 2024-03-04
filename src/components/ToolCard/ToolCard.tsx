@@ -35,7 +35,8 @@ interface ToolCardProps {
   logo: string | StaticImageData;
   setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
   selectedTagsAddToolForm: any[];
-  allOptions: any[];
+  allIcons: any[];
+  allTags: any[];
   toolTags: { _id: string; name: string }[];
   title: string;
   userAllFavoriteTools: string[];
@@ -56,7 +57,8 @@ export default function ToolCard({
   hideUpdateToolModal,
   id,
   logo,
-  allOptions,
+  allIcons,
+  allTags,
   toolTags,
   title,
   userAllFavoriteTools,
@@ -198,7 +200,8 @@ export default function ToolCard({
         requestMethod="PATCH"
         requestUrlPath={`/tools/${id}`}
         selectedTagsAddToolForm={selectedTagsAddToolForm}
-        allOptions={allOptions}
+        allIcons={allIcons}
+        allTags={allTags}
         id={id}
         setToolsFrontend={setToolsFrontend}
         handleAddTag={handleAddTag}

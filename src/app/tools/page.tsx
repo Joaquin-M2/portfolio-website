@@ -274,7 +274,8 @@ function Page() {
               id={_id.toString()}
               key={_id}
               logo={iconUrl}
-              allOptions={tags}
+              allIcons={icons}
+              allTags={tags}
               toolTags={toolTags}
               title={title}
               description={description}

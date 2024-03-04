@@ -5,9 +5,11 @@ import React, {
   MouseEventHandler,
   SetStateAction,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Image from "next/image";
 
 import Form from "@/components/Form/Form";
 import Input from "@/components/Form/Input/Input";
@@ -16,8 +18,11 @@ import Modal from "@/components/Modal/Modal";
 import { createRequest } from "@/utils/requests";
 import { urlRegExp } from "@/utils/regular-expressions";
 
+import styles from "./updateToolForm.module.scss";
+
 interface UpdateToolFormProps {
-  allOptions: any[];
+  allIcons: any[];
+  allTags: any[];
   formIsOpen: boolean;
   handleAddTag: (event) => void;
   handleRemoveTag: (event) => void;
@@ -35,10 +40,12 @@ interface FormInputs {
   tags: string[];
   title: string;
   url: string;
+  _id?: string;
 }
 
 function UpdateToolForm({
-  allOptions,
+  allIcons,
+  allTags,
   formIsOpen,
   handleAddTag,
   handleRemoveTag,
@@ -55,10 +62,13 @@ function UpdateToolForm({
   });
   const [requestIsSuccessful, setRequestIsSuccessful] = useState(false);
   const [toolData, setToolData] = useState<FormInputs>();
+  const selectSingleInput = useRef<HTMLSelectElement>(null);
+  const [currentIconUrl, setCurrentIconUrl] = useState("");
 
   useEffect(() => {
     if (!formIsOpen) {
       reset();
+      setCurrentIconUrl("");
       setTimeout(() => {
         setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
         setRequestIsSuccessful(false);
@@ -73,7 +83,7 @@ function UpdateToolForm({
         setToolsFrontend((prevValue) => [...prevValue, id]);
       }, 500); // Time until CSS transition finishes.
     }
-    if (formIsOpen && !toolData) {
+    if (formIsOpen) {
       fetch(createRequest({ urlPath: requestUrlPath }))
         .then((response) => response.json())
         .then((data) => {
@@ -188,7 +198,7 @@ function UpdateToolForm({
           handleAddTag={handleAddTag}
           handleRemoveTag={handleRemoveTag}
           selectedTagsAddToolForm={selectedTagsAddToolForm}
-          allOptions={allOptions}
+          allOptions={allTags}
           aria-invalid={errors.tags ? true : false}
           watchedValue={watch("tags")}
           error={errors.tags && "You need to select at least 1 tag."}
@@ -198,21 +208,45 @@ function UpdateToolForm({
           type="selectMultiple"
           {...register("tags")}
         />
-        <Input
-          aria-invalid={errors.iconUrl ? true : false}
-          watchedValue={watch("iconUrl")}
-          error={
-            errors.iconUrl && "Invalid URL. Accepted format: <domain>/<path>"
-          }
-          formIsOpen={formIsOpen}
-          id={`update-tool-icon-url-input-${id}`}
-          placeholder="Icon URL"
-          required
-          type="url"
-          {...register("iconUrl", {
-            pattern: urlRegExp,
-          })}
-        />
+
+        {toolData ? (
+          <>
+            <Input
+              allOptions={allIcons}
+              formIsOpen={formIsOpen}
+              placeholder="Choose icon"
+              type="selectSingle"
+              onChange={() => {
+                const selectedIconUrl = allIcons.find(
+                  (icon) =>
+                    icon.name ===
+                    selectSingleInput.current.selectedOptions[0].innerText
+                ).url;
+                setCurrentIconUrl(selectedIconUrl);
+                setValue("iconUrl", selectedIconUrl);
+              }}
+              name="iconUrl"
+              ref={selectSingleInput}
+              selectedOptionByDefault={
+                allIcons.find((icon) => icon.url === toolData.iconUrl)
+                  ? allIcons.find((icon) => icon.url === toolData.iconUrl)._id
+                  : null
+              }
+            />
+            <div className={styles.iconWrapper}>
+              <h5 className={styles.iconTitle}>Icon preview</h5>
+              <Image
+                src={currentIconUrl || toolData.iconUrl}
+                alt={"Icon preview"}
+                width={60}
+                height={60}
+              />
+            </div>
+          </>
+        ) : (
+          <p>"Loading..."</p>
+        )}
+
         <Input
           aria-invalid={errors.url ? true : false}
           watchedValue={watch("url")}
