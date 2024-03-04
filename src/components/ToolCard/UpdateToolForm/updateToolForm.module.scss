@@ -1,0 +1,12 @@
+@import "@/sass/abstracts/variables.scss";
+
+.iconWrapper {
+  text-align: center;
+}
+
+.iconTitle {
+  color: $color-intense-grey;
+  font-family: $titles-fonts;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
