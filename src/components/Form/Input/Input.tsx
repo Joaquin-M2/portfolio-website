@@ -16,7 +16,7 @@ interface InputProps {
   handleRemoveTag?: (event) => void;
   id: string;
   placeholder: string;
-  allOptions?: any[];
+  selectedOptionByDefault?: string;
   //toolTags?: any[];
   type:
     | "email"
@@ -45,7 +45,7 @@ const Input = forwardRef<
       formIsOpen,
       id,
       placeholder,
-      allOptions,
+      selectedOptionByDefault,
       //toolTags,
       type,
       ...props
@@ -238,6 +238,7 @@ const Input = forwardRef<
             className={styles.selectInput}
             name="tags"
             ref={ref as React.Ref<HTMLSelectElement>}
+            defaultValue={selectedOptionByDefault}
             {...props}
           >
             {createAllOptionsList()}
