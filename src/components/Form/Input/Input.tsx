@@ -9,15 +9,16 @@ import { emailRegExp, urlRegExp } from "@/utils/regular-expressions";
 import styles from "./input.module.scss";
 
 interface InputProps {
-  handleAddTag?: (event) => void;
-  selectedTagsAddToolForm?: any[];
+  //toolTags?: any[];
+  allOptions?: any[];
   error: string;
   formIsOpen: boolean;
+  handleAddTag?: (event) => void;
   handleRemoveTag?: (event) => void;
   id: string;
   placeholder: string;
   selectedOptionByDefault?: string;
-  //toolTags?: any[];
+  selectedTagsAddToolForm?: any[];
   type:
     | "email"
     | "password"
@@ -36,18 +37,19 @@ const Input = forwardRef<
 >(
   (
     {
-      handleAddTag,
-      selectedTagsAddToolForm,
-      handleRemoveTagInForm,
-      handleRemoveTag,
-      watchedValue,
+      //toolTags,
+      allOptions,
       error,
       formIsOpen,
+      handleAddTag,
+      handleRemoveTag,
+      handleRemoveTagInForm,
       id,
       placeholder,
       selectedOptionByDefault,
-      //toolTags,
+      selectedTagsAddToolForm,
       type,
+      watchedValue,
       ...props
     },
     ref
