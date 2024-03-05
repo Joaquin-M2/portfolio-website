@@ -72,7 +72,10 @@ const meta = {
       description:
         "When updating a tool, the newly selected tags for that tool.",
     },
-    allOptions: {
+    allIcons: {
+      description: "All available icons. Required for the form 'Modify tool'.",
+    },
+    allTags: {
       description: "Available tags for a tool that we may want to update.",
     },
     toolTags: {
@@ -110,6 +113,14 @@ const randomTags = [...randomTagsSet]
 
 const selectedTags = randomTags.splice(3, 5);
 
+const randomIcons = Array(20)
+  .fill(null)
+  .map(() => ({
+    name: faker.lorem.word(),
+    url: faker.image.urlLoremFlickr(),
+    _id: faker.database.mongodbObjectId(),
+  }));
+
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Base: Story = {
   loaders: [
@@ -132,7 +143,8 @@ export const Base: Story = {
     logo: faker.image.urlLoremFlickr({ width: 60, height: 60 }),
     //setToolsFrontend: () => {},
     selectedTagsAddToolForm: [],
-    allOptions: randomTags,
+    allIcons: randomIcons,
+    allTags: randomTags,
     toolTags: selectedTags,
     title: "Tool title",
     userAllFavoriteTools: [],
@@ -164,7 +176,8 @@ export const UserIsAdmin: Story = {
     logo: faker.image.urlLoremFlickr({ width: 60, height: 60 }),
     //setToolsFrontend: () => {},
     selectedTagsAddToolForm: [],
-    allOptions: randomTags,
+    allIcons: randomIcons,
+    allTags: randomTags,
     toolTags: selectedTags,
     title: "Tool title",
     userAllFavoriteTools: [],
