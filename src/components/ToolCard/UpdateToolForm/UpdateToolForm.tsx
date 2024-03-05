@@ -160,6 +160,20 @@ function UpdateToolForm({
         onSubmit={handleSubmit(onSubmit)}
       >
         <Input
+          aria-invalid={errors.url ? true : false}
+          watchedValue={watch("url")}
+          error={errors.url && "Invalid URL. Accepted format: <domain>/<path>"}
+          formIsOpen={formIsOpen}
+          id={`update-tool-url-input-${id}`}
+          placeholder="Tool URL"
+          required
+          type="url"
+          {...register("url", {
+            required: true,
+            pattern: urlRegExp,
+          })}
+        />
+        <Input
           aria-invalid={errors.title ? true : false}
           watchedValue={watch("title")}
           error={
@@ -246,21 +260,6 @@ function UpdateToolForm({
         ) : (
           <p>"Loading..."</p>
         )}
-
-        <Input
-          aria-invalid={errors.url ? true : false}
-          watchedValue={watch("url")}
-          error={errors.url && "Invalid URL. Accepted format: <domain>/<path>"}
-          formIsOpen={formIsOpen}
-          id={`update-tool-url-input-${id}`}
-          placeholder="Tool URL"
-          required
-          type="url"
-          {...register("url", {
-            required: true,
-            pattern: urlRegExp,
-          })}
-        />
       </Form>
     </Modal>
   );
