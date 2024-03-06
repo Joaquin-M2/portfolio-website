@@ -21,11 +21,10 @@ import getUserTokenData from "@/utils/get-user-token-data";
 import styles from "./toolCard.module.scss";
 
 interface ToolCardProps {
+  allIcons: any[];
+  allTags: any[];
   backendResponseDeleteTool?: { status: number; message: string };
-  setDeleteToolModalIsShown: MouseEventHandler;
-  setUpdateToolModalIsShown: MouseEventHandler;
   deleteToolModalIsShown: boolean;
-  updateToolModalIsShown: boolean;
   description: string;
   handleAddTag: (event) => void;
   handleRemoveTag: (event) => void;
@@ -33,23 +32,21 @@ interface ToolCardProps {
   hideUpdateToolModal: MouseEventHandler;
   id: string;
   logo: string | StaticImageData;
-  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
   selectedTagsAddToolForm: any[];
-  allIcons: any[];
-  allTags: any[];
-  toolTags: { _id: string; name: string }[];
+  setDeleteToolModalIsShown: MouseEventHandler;
+  setToolsFrontend?: Dispatch<SetStateAction<any[]>>;
+  setUpdateToolModalIsShown: MouseEventHandler;
   title: string;
-  userAllFavoriteTools: string[];
+  toolTags: { _id: string; name: string }[];
+  updateToolModalIsShown: boolean;
   url: string;
+  userAllFavoriteTools: string[];
 }
 
 export default function ToolCard({
-  setDeleteToolModalIsShown,
-  setUpdateToolModalIsShown,
-  setToolsFrontend,
-  selectedTagsAddToolForm,
+  allIcons,
+  allTags,
   deleteToolModalIsShown,
-  updateToolModalIsShown,
   description,
   handleAddTag,
   handleRemoveTag,
@@ -57,12 +54,15 @@ export default function ToolCard({
   hideUpdateToolModal,
   id,
   logo,
-  allIcons,
-  allTags,
-  toolTags,
+  selectedTagsAddToolForm,
+  setDeleteToolModalIsShown,
+  setToolsFrontend,
+  setUpdateToolModalIsShown,
   title,
-  userAllFavoriteTools,
+  toolTags,
+  updateToolModalIsShown,
   url,
+  userAllFavoriteTools,
 }: ToolCardProps) {
   const [favoriteButtonIsChecked, setFavoriteButtonIsChecked] = useState(false);
   useEffect(() => {
