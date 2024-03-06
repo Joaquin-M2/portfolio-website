@@ -15,8 +15,11 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    allOptions: {
-      description: "Description of the tool to be deleted.",
+    allIcons: {
+      description: "All available icons. Required for the form 'Modify tool'.",
+    },
+    allTags: {
+      description: "Available tags for a tool that we may want to update.",
     },
     formIsOpen: {
       description: "Checks if the modal form is open.",
@@ -69,10 +72,19 @@ const randomTags = [...randomTagsSet]
 
 //const selectedTags = randomTags.splice(3, 5);
 
+const randomIcons = Array(20)
+  .fill(null)
+  .map(() => ({
+    name: faker.lorem.word(),
+    url: faker.image.urlLoremFlickr(),
+    _id: faker.database.mongodbObjectId(),
+  }));
+
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Base: Story = {
   args: {
-    allOptions: randomTags,
+    allIcons: randomIcons,
+    allTags: randomTags,
     formIsOpen: true,
     //handleAddTag: () => {},
     //handleRemoveTag: () => {},
