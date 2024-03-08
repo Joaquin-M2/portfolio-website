@@ -60,14 +60,45 @@ function FiltersBar2({
           FILTERS
         </button>
         <fieldset className={styles.titleFieldset}>
-          <legend className={styles.titleLegend}>Filter by Title</legend>
+            <legend className={styles.titleLegend}>
+              Filter by{" "}
+              {`${
+                selectedRadioButton === "by-title" ? "Title" : "Description"
+              }`}
+            </legend>
           <input
             className={styles.searchInput}
             type="search"
-            placeholder="Search by tool title - Case sensitive"
+              placeholder={`Search by tool ${
+                selectedRadioButton === "by-title" ? "title" : "description"
+              } - Case sensitive`}
             maxLength={25}
             onChange={filterBySearchFunction}
-          />
+            />
+            <div className={styles.searchRadioButtons}>
+              <div className={styles.radioButton}>
+                <input
+                  type="radio"
+                  id="by-title"
+                  name="search-input"
+                  value="by-title"
+                  checked={selectedRadioButton === "by-title"}
+                  onChange={() => setSelectedRadioButton("by-title")}
+                />
+                <label htmlFor="by-title">By Title</label>
+              </div>
+              <div className={styles.radioButton}>
+                <input
+                  type="radio"
+                  id="by-description"
+                  name="search-input"
+                  value="by-description"
+                  checked={selectedRadioButton === "by-description"}
+                  onChange={() => setSelectedRadioButton("by-description")}
+                />
+                <label htmlFor="by-description">By Description</label>
+              </div>
+            </div>
         </fieldset>
         <fieldset className={styles.tagFieldset}>
           <legend className={styles.tagLegend}>Filter by Tag</legend>
