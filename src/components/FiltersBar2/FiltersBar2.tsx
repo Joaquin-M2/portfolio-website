@@ -1,6 +1,12 @@
 "use client";
 
-import { ChangeEvent, MouseEvent, useState } from "react";
+import {
+  ChangeEvent,
+  MouseEvent,
+  forwardRef,
+  useEffect,
+  useState,
+} from "react";
 
 import Tag from "@/components/Tag/Tag";
 import Backdrop from "@/components/Backdrop/Backdrop";
@@ -18,68 +24,74 @@ interface FiltersBar2Props {
   [x: string]: any;
 }
 
-function FiltersBar2({
-  filterBySearchFunction,
-  filterByTagFunction,
-  selectedFilterTags,
-  handleRemoveFilterTag,
-  tags,
+const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
+  (
+    {
+      filterBySearchFunction,
+      filterByTagFunction,
+      selectedFilterTags,
+      handleRemoveFilterTag,
+      tags,
       pushSearchType,
-  const [buttonIsChecked, setButtonIsChecked] = useState(false);
+    },
+    ref
+  ) => {
+    const [buttonIsChecked, setButtonIsChecked] = useState(false);
     const [selectedRadioButton, setSelectedRadioButton] = useState("by-title");
 
-  const dropdownOptions = tags.length ? (
-    tags
-      .filter((tag) => !selectedFilterTags.includes(tag.name))
-      .map((tag, id) => (
-        <option key={id} value={tag.name} onClick={filterByTagFunction}>
-          {tag.name}
-        </option>
-      ))
-  ) : (
-    <option>Loading...</option>
-  );
+    const dropdownOptions = tags.length ? (
+      tags
+        .filter((tag) => !selectedFilterTags.includes(tag.name))
+        .map((tag, id) => (
+          <option key={id} value={tag.name} onClick={filterByTagFunction}>
+            {tag.name}
+          </option>
+        ))
+    ) : (
+      <option>Loading...</option>
+    );
 
     useEffect(() => {
       pushSearchType(selectedRadioButton);
     }, [selectedRadioButton]);
 
-  return (
-    <>
-      <Backdrop
-        isShown={buttonIsChecked}
-        hideBackdrop={() => setButtonIsChecked(false)}
-      />
-      <aside
-        className={`${styles.container} ${
-          buttonIsChecked && styles.showFiltersBar
-        }`}
-      >
-        <button
-          role="checkbox"
-          aria-checked={buttonIsChecked}
-          className={styles.FiltersPanelButton}
-          onClick={() => {
-            setButtonIsChecked((prevState) => !prevState);
-          }}
+    return (
+      <>
+        <Backdrop
+          isShown={buttonIsChecked}
+          hideBackdrop={() => setButtonIsChecked(false)}
+        />
+        <aside
+          className={`${styles.container} ${
+            buttonIsChecked && styles.showFiltersBar
+          }`}
         >
-          FILTERS
-        </button>
-        <fieldset className={styles.titleFieldset}>
+          <button
+            role="checkbox"
+            aria-checked={buttonIsChecked}
+            className={styles.FiltersPanelButton}
+            onClick={() => {
+              setButtonIsChecked((prevState) => !prevState);
+            }}
+          >
+            FILTERS
+          </button>
+          <fieldset className={styles.titleFieldset}>
             <legend className={styles.titleLegend}>
               Filter by{" "}
               {`${
                 selectedRadioButton === "by-title" ? "Title" : "Description"
               }`}
             </legend>
-          <input
-            className={styles.searchInput}
-            type="search"
+            <input
+              className={styles.searchInput}
+              type="search"
               placeholder={`Search by tool ${
                 selectedRadioButton === "by-title" ? "title" : "description"
               } - Case sensitive`}
-            maxLength={25}
-            onChange={filterBySearchFunction}
+              maxLength={25}
+              onChange={filterBySearchFunction}
+              ref={ref as React.Ref<HTMLInputElement>}
             />
             <div className={styles.searchRadioButtons}>
               <div className={styles.radioButton}>
@@ -105,26 +117,27 @@ function FiltersBar2({
                 <label htmlFor="by-description">By Description</label>
               </div>
             </div>
-        </fieldset>
-        <fieldset className={styles.tagFieldset}>
-          <legend className={styles.tagLegend}>Filter by Tag</legend>
-          <select className={styles.selectInput} name="tags" multiple>
-            {dropdownOptions}
-          </select>
-          <div className={styles.tagsContainer} role="list">
-            {selectedFilterTags.map((tag, id) => (
-              <Tag
-                key={id}
-                isFilterButton
-                handleRemoveFilterTag={handleRemoveFilterTag}
-              >
-                {tag}
-              </Tag>
-            ))}
-          </div>
-        </fieldset>
-      </aside>
-    </>
-  );
-}
+          </fieldset>
+          <fieldset className={styles.tagFieldset}>
+            <legend className={styles.tagLegend}>Filter by Tag</legend>
+            <select className={styles.selectInput} name="tags" multiple>
+              {dropdownOptions}
+            </select>
+            <div className={styles.tagsContainer} role="list">
+              {selectedFilterTags.map((tag, id) => (
+                <Tag
+                  key={id}
+                  isFilterButton
+                  handleRemoveFilterTag={handleRemoveFilterTag}
+                >
+                  {tag}
+                </Tag>
+              ))}
+            </div>
+          </fieldset>
+        </aside>
+      </>
+    );
+  }
+);
 export default FiltersBar2;
