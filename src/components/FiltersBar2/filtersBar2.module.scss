@@ -77,6 +77,25 @@
 }
 
 //////////////////////////////////
+// SEARCH BY TEXT
+
+.searchRadioButtons {
+  display: flex;
+  margin: 0.5rem 0.5rem 0;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.radioButton {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: $texts-fonts;
+  font-size: 1.2rem;
+}
+
+//////////////////////////////////
 // ACTIVATION FILTERS PANEL BUTTON
 
 .FiltersPanelButton {
