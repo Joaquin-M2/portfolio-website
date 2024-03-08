@@ -127,8 +127,10 @@ function Page() {
   /////////////////////////////
   // SEARCH INPUT FILTER
 
-  const filterBySearch = (event) => {
-    if (event.target.value.length > searchFieldValue.length) {
+  const pullSearchType = (searchType) => {
+    // This function is pulling the search type (by-title | by-description) from <FiltersBar2>.
+    setSearchType(searchType);
+  };
       setFilteredTools((prevValue) =>
         prevValue.filter((tool) => {
           return tool.title.includes(event.target.value);
@@ -515,6 +517,7 @@ function Page() {
         filterByTagFunction={filterByTag}
         selectedFilterTags={selectedFilterTags}
         handleRemoveFilterTag={handleRemoveFilterTag}
+        pushSearchType={pullSearchType}
         tags={tags}
       />
       {userIsAdmin && userIsLoggedIn && renderAdminManagementButtons()}
