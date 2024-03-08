@@ -15,6 +15,7 @@ interface FiltersBar2Props {
   handleRemoveFilterTag: (event: MouseEvent<HTMLButtonElement>) => void;
   selectedFilterTags: string[];
   tags: Tag[];
+  [x: string]: any;
 }
 
 function FiltersBar2({
@@ -23,8 +24,9 @@ function FiltersBar2({
   selectedFilterTags,
   handleRemoveFilterTag,
   tags,
-}: FiltersBar2Props) {
+      pushSearchType,
   const [buttonIsChecked, setButtonIsChecked] = useState(false);
+    const [selectedRadioButton, setSelectedRadioButton] = useState("by-title");
 
   const dropdownOptions = tags.length ? (
     tags
@@ -37,6 +39,10 @@ function FiltersBar2({
   ) : (
     <option>Loading...</option>
   );
+
+    useEffect(() => {
+      pushSearchType(selectedRadioButton);
+    }, [selectedRadioButton]);
 
   return (
     <>
