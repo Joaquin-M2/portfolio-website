@@ -45,11 +45,13 @@ function Page() {
   const [tools, setTools] = useState([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>();
   const [searchFieldValue, setSearchFieldValue] = useState("");
+  const [searchType, setSearchType] = useState("");
   const [selectedFilterTags, setSelectedFilterTags] = useState([]);
   const [tags, setTags] = useState([]);
   const [icons, setIcons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const previousFilterTagsQuantity = useRef(selectedFilterTags.length);
+  const searchField = useRef<HTMLInputElement>();
   const searchFieldTools = useRef([]);
   const [modalsState, setModalsState] = useState({
     expiredTokenModalIsShown: false,
@@ -131,11 +133,42 @@ function Page() {
     // This function is pulling the search type (by-title | by-description) from <FiltersBar2>.
     setSearchType(searchType);
   };
-      setFilteredTools((prevValue) =>
-        prevValue.filter((tool) => {
-          return tool.title.includes(event.target.value);
-        })
-      );
+
+  const filterBySearchType = (keepFilteredTools = true) => {
+    if (keepFilteredTools) {
+      if (searchType === "by-title") {
+        setFilteredTools((prevValue) =>
+          prevValue.filter((tool) => {
+            return tool.title.includes(searchField.current.value);
+          })
+        );
+      } else {
+        setFilteredTools((prevValue) =>
+          prevValue.filter((tool) => {
+            return tool.description.includes(searchField.current.value);
+          })
+        );
+      }
+    } else {
+      if (searchType === "by-title") {
+        setFilteredTools(
+          tools.filter((tool) => {
+            return tool.title.includes(searchField.current.value);
+          })
+        );
+      } else {
+        setFilteredTools(
+          tools.filter((tool) => {
+            return tool.description.includes(searchField.current.value);
+          })
+        );
+      }
+    }
+  };
+
+  const filterBySearch = () => {
+    if (searchField.current.value.length > searchFieldValue.length) {
+      filterBySearchType();
     } else {
       if (selectedFilterTags.length) {
         setFilteredTools((prevValue) =>
@@ -145,24 +178,21 @@ function Page() {
             );
           })
         );
-        setFilteredTools((prevValue) =>
-          prevValue.filter((tool) => {
-            return tool.title.includes(event.target.value);
-          })
-        );
+        filterBySearchType();
       } else {
-        setFilteredTools(
-          tools.filter((tool) => {
-            return tool.title.includes(event.target.value);
-          })
-        );
+        filterBySearchType(false);
       }
     }
-    setSearchFieldValue(event.target.value);
+    setSearchFieldValue(searchField.current.value);
     searchFieldTools.current = tools.filter((tool) => {
       return tool.title.includes(searchFieldValue);
     });
   };
+
+  useEffect(() => {
+    setFilteredTools(tools);
+    filterBySearch();
+  }, [searchType]);
 
   /////////////////////////////
   // TAG INPUT FILTER
@@ -519,6 +549,7 @@ function Page() {
         handleRemoveFilterTag={handleRemoveFilterTag}
         pushSearchType={pullSearchType}
         tags={tags}
+        ref={searchField}
       />
       {userIsAdmin && userIsLoggedIn && renderAdminManagementButtons()}
       {renderUserManagementButtons()}
