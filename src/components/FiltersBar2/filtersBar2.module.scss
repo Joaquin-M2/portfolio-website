@@ -1,35 +1,28 @@
 @import "@/sass/abstracts/variables.scss";
 @import "@/sass/abstracts/mixins.scss";
 
-.container,
-.innerContainer {
-  position: absolute;
-  top: 0;
-  left: 12.5%;
-  width: 75%;
-
-  display: flex;
-
-  border-bottom-left-radius: 35%;
-  border-bottom-right-radius: 35%;
-
-  transition: $default-transition, z-index 0.5s 0.5s;
-}
-
 .container {
+  display: flex;
   align-items: flex-start;
   gap: 1rem;
 
+  position: absolute;
+  top: 0;
+  //left: 12.5%;
   transform: translateY(-100%);
+  z-index: 3;
 
-  padding: 2rem 6rem;
-  background-color: #999999;
+  margin-top: auto;
+  padding: 2rem 6rem 3rem;
+  width: 100%;
 
+  border-bottom-left-radius: 20%;
+  border-bottom-right-radius: 20%;
   box-shadow: inset 0rem 0rem 0.4rem 1.44rem rgba(255, 255, 255, 0.3),
     inset 0rem 0rem 0.4rem 0.4rem rgba(255, 255, 255, 0.7);
+  background-color: #999999;
 
-  z-index: 3;
-  margin-top: auto;
+  transition: $default-transition, z-index 0.5s 0.5s;
 }
 
 .showFiltersBar {
@@ -46,7 +39,6 @@
   gap: 1.5rem;
 
   width: 100%;
-  border-bottom-right-radius: 20%;
 
   & .tagsContainer {
     display: flex;
@@ -56,6 +48,10 @@
 
     max-height: 7rem;
     overflow: auto;
+  }
+
+  &:nth-of-type(3) {
+    border-bottom-right-radius: 20%;
   }
 }
 
@@ -73,6 +69,7 @@
 .selectInput {
   border-radius: 1rem;
   min-width: 10rem;
+  min-height: 15rem;
   padding: 0.5rem;
 }
 
@@ -102,7 +99,7 @@
   background-color: red;
   border-radius: 0 0 1rem 1rem;
   border: none;
-  bottom: -20%;
+  bottom: -15%;
   color: white;
   cursor: pointer;
   display: block;
