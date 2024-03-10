@@ -18,8 +18,13 @@ type Tag = { name: string; _id: string };
 interface FiltersBar2Props {
   filterBySearchFunction?: (event: ChangeEvent<HTMLInputElement>) => void;
   filterByTagFunction: (event: MouseEvent<HTMLOptionElement>) => void;
+  filterByExcludingTagFunction: (event: MouseEvent<HTMLOptionElement>) => void;
   handleRemoveFilterTag: (event: MouseEvent<HTMLButtonElement>) => void;
+  handleRemoveExcludingFilterTag: (
+    event: MouseEvent<HTMLButtonElement>
+  ) => void;
   selectedFilterTags: string[];
+  selectedExcludingFilterTags: string[];
   tags: Tag[];
   [x: string]: any;
 }
@@ -29,8 +34,11 @@ const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
     {
       filterBySearchFunction,
       filterByTagFunction,
+      filterByExcludingTagFunction,
       selectedFilterTags,
+      selectedExcludingFilterTags,
       handleRemoveFilterTag,
+      handleRemoveExcludingFilterTag,
       tags,
       pushSearchType,
     },
@@ -39,11 +47,35 @@ const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
     const [buttonIsChecked, setButtonIsChecked] = useState(false);
     const [selectedRadioButton, setSelectedRadioButton] = useState("by-title");
 
-    const dropdownOptions = tags.length ? (
+    const selectedFilterTagsOptions = tags.length ? (
       tags
-        .filter((tag) => !selectedFilterTags.includes(tag.name))
+        .filter(
+          (tag) =>
+            !selectedFilterTags.includes(tag.name) &&
+            !selectedExcludingFilterTags.includes(tag.name)
+        )
         .map((tag, id) => (
           <option key={id} value={tag.name} onClick={filterByTagFunction}>
+            {tag.name}
+          </option>
+        ))
+    ) : (
+      <option>Loading...</option>
+    );
+
+    const selectedExcludingFilterTagsOptions = tags.length ? (
+      tags
+        .filter(
+          (tag) =>
+            !selectedFilterTags.includes(tag.name) &&
+            !selectedExcludingFilterTags.includes(tag.name)
+        )
+        .map((tag, id) => (
+          <option
+            key={id}
+            value={tag.name}
+            onClick={filterByExcludingTagFunction}
+          >
             {tag.name}
           </option>
         ))
@@ -119,9 +151,11 @@ const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
             </div>
           </fieldset>
           <fieldset className={styles.tagFieldset}>
-            <legend className={styles.tagLegend}>Filter by Tag</legend>
+            <legend className={styles.tagLegend}>
+              Filter by Tag(s) - Included
+            </legend>
             <select className={styles.selectInput} name="tags" multiple>
-              {dropdownOptions}
+              {selectedFilterTagsOptions}
             </select>
             <div className={styles.tagsContainer} role="list">
               {selectedFilterTags.map((tag, id) => (
@@ -129,6 +163,25 @@ const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
                   key={id}
                   isFilterButton
                   handleRemoveFilterTag={handleRemoveFilterTag}
+                >
+                  {tag}
+                </Tag>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset className={styles.tagFieldset}>
+            <legend className={styles.tagLegend}>
+              Filter by Tag(s) - Excluded
+            </legend>
+            <select className={styles.selectInput} name="tags" multiple>
+              {selectedExcludingFilterTagsOptions}
+            </select>
+            <div className={styles.tagsContainer} role="list">
+              {selectedExcludingFilterTags.map((tag, id) => (
+                <Tag
+                  key={id}
+                  isFilterButton
+                  handleRemoveFilterTag={handleRemoveExcludingFilterTag}
                 >
                   {tag}
                 </Tag>
