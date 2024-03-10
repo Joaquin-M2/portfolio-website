@@ -47,6 +47,10 @@ function Page() {
   const [searchFieldValue, setSearchFieldValue] = useState("");
   const [searchType, setSearchType] = useState("");
   const [selectedFilterTags, setSelectedFilterTags] = useState([]);
+  const [selectedExcludingFilterTags, setSelectedExcludingFilterTags] =
+    useState([]);
+  const allSelectedTagsQuantity =
+    selectedFilterTags.length + selectedExcludingFilterTags.length;
   const [tags, setTags] = useState([]);
   const [icons, setIcons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -166,17 +170,35 @@ function Page() {
     }
   };
 
+  const setSearchFieldTools = () => {
+    if (searchType === "by-title") {
+      searchFieldTools.current = tools.filter((tool) => {
+        return tool.title.includes(searchFieldValue);
+      });
+    } else {
+      searchFieldTools.current = tools.filter((tool) => {
+        return tool.description.includes(searchFieldValue);
+      });
+    }
+  };
+
   const filterBySearch = () => {
     if (searchField.current.value.length > searchFieldValue.length) {
       filterBySearchType();
     } else {
-      if (selectedFilterTags.length) {
-        setFilteredTools((prevValue) =>
-          prevValue.filter((tool) => {
-            return selectedFilterTags.every((filterTag) =>
-              tool.tags.some((tag) => tag.name === filterTag)
-            );
-          })
+      if (allSelectedTagsQuantity) {
+        setFilteredTools(
+          tools
+            .filter((tool) => {
+              return selectedFilterTags.every((filterTag) =>
+                tool.tags.some((tag) => tag.name === filterTag)
+              );
+            })
+            .filter((tool) => {
+              return selectedExcludingFilterTags.every((excludingFilterTag) =>
+                tool.tags.every((tag) => tag.name !== excludingFilterTag)
+              );
+            })
         );
         filterBySearchType();
       } else {
@@ -184,9 +206,7 @@ function Page() {
       }
     }
     setSearchFieldValue(searchField.current.value);
-    searchFieldTools.current = tools.filter((tool) => {
-      return tool.title.includes(searchFieldValue);
-    });
+    setSearchFieldTools();
   };
 
   useEffect(() => {
@@ -205,32 +225,53 @@ function Page() {
       prevValue.filter((tag) => tag !== event.target.textContent)
     );
   };
-  useEffect(() => {
-    // Required in order to have "selectedFilterTags" updated before executing "setFilteredTools".
-    searchFieldTools.current = tools.filter((tool) => {
-      return tool.title.includes(searchFieldValue);
-    });
 
-    if (selectedFilterTags.length > previousFilterTagsQuantity.current) {
+  const filterByExcludingTag = (event) => {
+    setSelectedExcludingFilterTags((prevValue) => [
+      ...prevValue,
+      event.target.value,
+    ]);
+  };
+  const handleRemoveExcludingFilterTag = (event) => {
+    setSelectedExcludingFilterTags((prevValue) =>
+      prevValue.filter((tag) => tag !== event.target.textContent)
+    );
+  };
+  useEffect(() => {
+    setSearchFieldTools(); // Required in order to have "selectedFilterTags" updated before executing "setFilteredTools".
+
+    if (allSelectedTagsQuantity > previousFilterTagsQuantity.current) {
       setFilteredTools((prevValue) =>
-        prevValue.filter((tool) => {
-          return selectedFilterTags.every((filterTag) =>
-            tool.tags.some((tag) => tag.name === filterTag)
-          );
-        })
+        prevValue
+          .filter((tool) => {
+            return selectedFilterTags.every((filterTag) =>
+              tool.tags.some((tag) => tag.name === filterTag)
+            );
+          })
+          .filter((tool) => {
+            return selectedExcludingFilterTags.every((excludingFilterTag) =>
+              tool.tags.every((tag) => tag.name !== excludingFilterTag)
+            );
+          })
       );
-    } else if (selectedFilterTags.length < previousFilterTagsQuantity.current) {
+    } else if (allSelectedTagsQuantity < previousFilterTagsQuantity.current) {
       setFilteredTools(
-        searchFieldTools.current.filter((tool) => {
-          return selectedFilterTags.every((filterTag) =>
-            tool.tags.some((tag) => tag.name === filterTag)
-          );
-        })
+        searchFieldTools.current
+          .filter((tool) => {
+            return selectedFilterTags.every((filterTag) =>
+              tool.tags.some((tag) => tag.name === filterTag)
+            );
+          })
+          .filter((tool) => {
+            return selectedExcludingFilterTags.every((excludingFilterTag) =>
+              tool.tags.every((tag) => tag.name !== excludingFilterTag)
+            );
+          })
       );
     }
 
-    previousFilterTagsQuantity.current = selectedFilterTags.length;
-  }, [selectedFilterTags]);
+    previousFilterTagsQuantity.current = allSelectedTagsQuantity;
+  }, [selectedFilterTags, selectedExcludingFilterTags]);
 
   /////////////////////////////
   // TOOL CARDS
@@ -545,8 +586,11 @@ function Page() {
       <FiltersBar2
         filterBySearchFunction={filterBySearch}
         filterByTagFunction={filterByTag}
+        filterByExcludingTagFunction={filterByExcludingTag}
         selectedFilterTags={selectedFilterTags}
+        selectedExcludingFilterTags={selectedExcludingFilterTags}
         handleRemoveFilterTag={handleRemoveFilterTag}
+        handleRemoveExcludingFilterTag={handleRemoveExcludingFilterTag}
         pushSearchType={pullSearchType}
         tags={tags}
         ref={searchField}
