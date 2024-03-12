@@ -593,6 +593,7 @@ function Page() {
         handleRemoveExcludingFilterTag={handleRemoveExcludingFilterTag}
         pushSearchType={pullSearchType}
         tags={tags}
+        toolsQuantity={filteredTools.length}
         ref={searchField}
       />
       {userIsAdmin && userIsLoggedIn && renderAdminManagementButtons()}
