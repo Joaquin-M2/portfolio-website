@@ -29,6 +29,21 @@
   transform: translateY(0%);
 }
 
+.toolsFoundAndSearchWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.toolsFound {
+  font-size: 2rem;
+  margin-left: auto;
+
+  & .toolsFoundSpan {
+    text-decoration: underline;
+  }
+}
+
 .titleFieldset,
 .tagFieldset {
   padding: 1rem;

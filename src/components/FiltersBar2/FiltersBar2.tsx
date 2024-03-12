@@ -26,6 +26,7 @@ interface FiltersBar2Props {
   selectedFilterTags: string[];
   selectedExcludingFilterTags: string[];
   tags: Tag[];
+  toolsQuantity: number;
   [x: string]: any;
 }
 
@@ -40,6 +41,7 @@ const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
       handleRemoveFilterTag,
       handleRemoveExcludingFilterTag,
       tags,
+      toolsQuantity,
       pushSearchType,
     },
     ref
@@ -108,48 +110,54 @@ const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
           >
             FILTERS
           </button>
-          <fieldset className={styles.titleFieldset}>
-            <legend className={styles.titleLegend}>
-              Filter by{" "}
-              {`${
-                selectedRadioButton === "by-title" ? "Title" : "Description"
-              }`}
-            </legend>
-            <input
-              className={styles.searchInput}
-              type="search"
-              placeholder={`Search by tool ${
-                selectedRadioButton === "by-title" ? "title" : "description"
-              } - Case sensitive`}
-              maxLength={25}
-              onChange={filterBySearchFunction}
-              ref={ref as React.Ref<HTMLInputElement>}
-            />
-            <div className={styles.searchRadioButtons}>
-              <div className={styles.radioButton}>
-                <input
-                  type="radio"
-                  id="by-title"
-                  name="search-input"
-                  value="by-title"
-                  checked={selectedRadioButton === "by-title"}
-                  onChange={() => setSelectedRadioButton("by-title")}
-                />
-                <label htmlFor="by-title">By Title</label>
+          <div className={styles.toolsFoundAndSearchWrapper}>
+            <fieldset className={styles.titleFieldset}>
+              <legend className={styles.titleLegend}>
+                Filter by{" "}
+                {`${
+                  selectedRadioButton === "by-title" ? "Title" : "Description"
+                }`}
+              </legend>
+              <input
+                className={styles.searchInput}
+                type="search"
+                placeholder={`Search by tool ${
+                  selectedRadioButton === "by-title" ? "title" : "description"
+                } - Case sensitive`}
+                maxLength={25}
+                onChange={filterBySearchFunction}
+                ref={ref as React.Ref<HTMLInputElement>}
+              />
+              <div className={styles.searchRadioButtons}>
+                <div className={styles.radioButton}>
+                  <input
+                    type="radio"
+                    id="by-title"
+                    name="search-input"
+                    value="by-title"
+                    checked={selectedRadioButton === "by-title"}
+                    onChange={() => setSelectedRadioButton("by-title")}
+                  />
+                  <label htmlFor="by-title">By Title</label>
+                </div>
+                <div className={styles.radioButton}>
+                  <input
+                    type="radio"
+                    id="by-description"
+                    name="search-input"
+                    value="by-description"
+                    checked={selectedRadioButton === "by-description"}
+                    onChange={() => setSelectedRadioButton("by-description")}
+                  />
+                  <label htmlFor="by-description">By Description</label>
+                </div>
               </div>
-              <div className={styles.radioButton}>
-                <input
-                  type="radio"
-                  id="by-description"
-                  name="search-input"
-                  value="by-description"
-                  checked={selectedRadioButton === "by-description"}
-                  onChange={() => setSelectedRadioButton("by-description")}
-                />
-                <label htmlFor="by-description">By Description</label>
-              </div>
-            </div>
-          </fieldset>
+            </fieldset>
+            <p className={styles.toolsFound}>
+              <span className={styles.toolsFoundSpan}>Tools found:</span>{" "}
+              {toolsQuantity}
+            </p>
+          </div>
           <fieldset className={styles.tagFieldset}>
             <legend className={styles.tagLegend}>
               Filter by Tag(s) - Included
