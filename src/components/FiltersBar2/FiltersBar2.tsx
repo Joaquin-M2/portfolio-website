@@ -153,7 +153,7 @@ const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
                 </div>
               </div>
             </fieldset>
-            <p className={styles.toolsFound}>
+            <p className={styles.toolsFound} data-testid="toolsFoundP">
               <span className={styles.toolsFoundSpan}>Tools found:</span>{" "}
               {toolsQuantity}
             </p>
