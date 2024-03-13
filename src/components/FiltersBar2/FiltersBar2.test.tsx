@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import FiltersBar2 from "./FiltersBar2";
 import userEvent from "@testing-library/user-event";
 
@@ -70,6 +70,62 @@ describe("<FiltersBar2 /> component", () => {
     );
   });
 
+  it("triggers a filter function every time the user types in the search input field after selecting 'By Description'", async () => {
+    render(
+      <FiltersBar2
+        filterBySearchFunction={mockFilterBySearchFunction}
+        filterByTagFunction={mockFilterByTagFunction}
+        filterByExcludingTagFunction={mockFilterByExcludingTagFunction}
+        selectedFilterTags={selectedTags}
+        selectedExcludingFilterTags={selectedExcludingTags}
+        handleRemoveFilterTag={mockHandleRemoveFilterTagFunction}
+        handleRemoveExcludingFilterTag={
+          mockHandleRemoveExcludingFilterTagFunction
+        }
+        pushSearchType={mockPullSearchType}
+        tags={tags}
+      />
+    );
+
+    const byDescriptionRadioButton = screen.getByRole("radio", {
+      name: "By Description",
+    });
+    await userEvent.click(byDescriptionRadioButton);
+
+    const userSearchText = "Test";
+    const searchInput = screen.getByRole("searchbox");
+    await userEvent.type(searchInput, userSearchText);
+
+    expect(mockFilterBySearchFunction).toHaveBeenCalled(); // '.toHaveBeenCalledTimes()' is keeping the triggers from the previous test.
+  });
+
+  it("renders the quantity of tools found", async () => {
+    const toolsQuantity = 123;
+
+    render(
+      <FiltersBar2
+        filterBySearchFunction={mockFilterBySearchFunction}
+        filterByTagFunction={mockFilterByTagFunction}
+        filterByExcludingTagFunction={mockFilterByExcludingTagFunction}
+        selectedFilterTags={selectedTags}
+        selectedExcludingFilterTags={selectedExcludingTags}
+        handleRemoveFilterTag={mockHandleRemoveFilterTagFunction}
+        handleRemoveExcludingFilterTag={
+          mockHandleRemoveExcludingFilterTagFunction
+        }
+        pushSearchType={mockPullSearchType}
+        tags={tags}
+        toolsQuantity={toolsQuantity}
+      />
+    );
+
+    const toolsFoundP = screen.getByTestId("toolsFoundP");
+
+    expect(toolsFoundP).toContainHTML(
+      `<p class="toolsFound" data-testid="toolsFoundP"><span class="toolsFoundSpan">Tools found:</span> ${toolsQuantity}</p>`
+    );
+  });
+
   it("renders a list of 'including' filter tags", () => {
     render(
       <FiltersBar2
@@ -92,6 +148,30 @@ describe("<FiltersBar2 /> component", () => {
       within(includingTagsList).getAllByRole("option");
 
     expect(availableFilterTags.length).toBe(tags.length);
+  });
+
+  it("renders a list of 'excluding' filter tags", () => {
+    render(
+      <FiltersBar2
+        filterBySearchFunction={mockFilterBySearchFunction}
+        filterByTagFunction={mockFilterByTagFunction}
+        filterByExcludingTagFunction={mockFilterByExcludingTagFunction}
+        selectedFilterTags={[]}
+        selectedExcludingFilterTags={[]}
+        handleRemoveFilterTag={mockHandleRemoveFilterTagFunction}
+        handleRemoveExcludingFilterTag={
+          mockHandleRemoveExcludingFilterTagFunction
+        }
+        pushSearchType={mockPullSearchType}
+        tags={tags}
+      />
+    );
+
+    const excludingTagsList = screen.getAllByRole("listbox")[1];
+    const availableExcludingFilterTags =
+      within(excludingTagsList).getAllByRole("option");
+
+    expect(availableExcludingFilterTags.length).toBe(tags.length);
   });
 
   it("renders a list of 'filter tags' with 'selected tags' being subtracted", () => {
@@ -163,5 +243,31 @@ describe("<FiltersBar2 /> component", () => {
     await userEvent.click(selectedFilterTags[0]);
 
     expect(mockHandleRemoveFilterTagFunction).toHaveBeenCalled();
+  });
+
+  it("triggers a filter function when the user clicks on a selected filter tag ('Excluding' tags) to remove it", async () => {
+    render(
+      <FiltersBar2
+        filterBySearchFunction={mockFilterBySearchFunction}
+        filterByTagFunction={mockFilterByTagFunction}
+        filterByExcludingTagFunction={mockFilterByExcludingTagFunction}
+        selectedFilterTags={selectedTags}
+        selectedExcludingFilterTags={selectedExcludingTags}
+        handleRemoveFilterTag={mockHandleRemoveFilterTagFunction}
+        handleRemoveExcludingFilterTag={
+          mockHandleRemoveExcludingFilterTagFunction
+        }
+        pushSearchType={mockPullSearchType}
+        tags={tags}
+      />
+    );
+
+    const excludingTagsContainer = screen.getAllByRole("list")[1];
+    const selectedExcludingFilterTags = within(
+      excludingTagsContainer
+    ).getAllByRole("listitem");
+    await userEvent.click(selectedExcludingFilterTags[0]);
+
+    expect(mockHandleRemoveExcludingFilterTagFunction).toHaveBeenCalled();
   });
 });
