@@ -43,7 +43,7 @@ interface Tool {
 function Page() {
   const [userAllFavoriteTools, setUserAllFavoriteTools] = useState([]);
   const [tools, setTools] = useState([]);
-  const [filteredTools, setFilteredTools] = useState<Tool[]>();
+  const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
   const [searchFieldValue, setSearchFieldValue] = useState("");
   const [searchType, setSearchType] = useState("");
   const [selectedFilterTags, setSelectedFilterTags] = useState([]);
