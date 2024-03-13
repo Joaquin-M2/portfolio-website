@@ -47,7 +47,7 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
     ).not.toBeInViewport();
   });
 
-  test("can filter tools by text and tag and open one of the results", async ({
+  test("can filter tools by text (tool title) and tag (include and exclude) and open one of the results", async ({
     page,
     browserName,
   }) => {
@@ -59,7 +59,14 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
     await page.getByPlaceholder("Search by tool title - Case").fill("tool");
     await page
       .getByRole("complementary")
+      .getByRole("option", { name: "UX" })
+      .nth(0)
+      .click();
+
+    await page
+      .getByRole("complementary")
       .getByRole("option", { name: "Accessibility" })
+      .nth(1)
       .click();
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
 
