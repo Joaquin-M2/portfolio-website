@@ -73,6 +73,35 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
     await expect(page.getByRole("main").getByRole("link")).toHaveCount(1);
   });
 
+  test("can filter tools by text (tool description) and tag (include and exclude) and open one of the results", async ({
+    page,
+    browserName,
+  }) => {
+    test.skip(
+      browserName === "webkit",
+      "Playwright has troubles finding <option> elements on webkit browsers."
+    );
+    await page.getByRole("checkbox", { name: "FILTERS" }).click();
+    await page.getByRole("radio", { name: "By Description" }).click();
+    await page
+      .getByPlaceholder("Search by tool description - Case")
+      .fill("description");
+    await page
+      .getByRole("complementary")
+      .getByRole("option", { name: "Accessibility" })
+      .nth(0)
+      .click();
+
+    await page
+      .getByRole("complementary")
+      .getByRole("option", { name: "UX" })
+      .nth(1)
+      .click();
+    await page.getByRole("checkbox", { name: "FILTERS" }).click();
+
+    await expect(page.getByRole("main").getByRole("link")).toHaveCount(1);
+  });
+
   test("shows 'No tools found.' message if filters show no results", async ({
     page,
   }) => {
