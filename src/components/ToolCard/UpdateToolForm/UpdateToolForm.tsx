@@ -242,9 +242,7 @@ function UpdateToolForm({
               name="iconUrl"
               ref={selectSingleInput}
               selectedOptionByDefault={
-                allIcons.find((icon) => icon.url === toolData.iconUrl)
-                  ? allIcons.find((icon) => icon.url === toolData.iconUrl)._id
-                  : null
+                  allIcons.find((icon) => icon.url === toolData.iconUrl)._id
               }
             />
             <div className={styles.iconWrapper}>
