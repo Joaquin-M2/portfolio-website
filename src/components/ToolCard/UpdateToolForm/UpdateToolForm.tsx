@@ -67,9 +67,9 @@ function UpdateToolForm({
 
   useEffect(() => {
     if (!formIsOpen) {
-      reset();
-      setCurrentIconUrl("");
       setTimeout(() => {
+        reset();
+        setCurrentIconUrl("");
         setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
         setRequestIsSuccessful(false);
       }, 500); // Time until CSS transition finishes.
@@ -225,26 +225,30 @@ function UpdateToolForm({
 
         {toolData ? (
           <>
-            <Input
-              allOptions={allIcons}
-              formIsOpen={formIsOpen}
-              placeholder="Choose icon"
-              type="selectSingle"
-              onChange={() => {
-                const selectedIconUrl = allIcons.find(
-                  (icon) =>
-                    icon.name ===
-                    selectSingleInput.current.selectedOptions[0].innerText
-                ).url;
-                setCurrentIconUrl(selectedIconUrl);
-                setValue("iconUrl", selectedIconUrl);
-              }}
-              name="iconUrl"
-              ref={selectSingleInput}
-              selectedOptionByDefault={
+            <div
+              key={allIcons.find((icon) => icon.url === toolData.iconUrl)._id}
+            >
+              <Input
+                allOptions={allIcons}
+                formIsOpen={formIsOpen}
+                placeholder="Choose icon"
+                type="selectSingle"
+                onChange={() => {
+                  const selectedIconUrl = allIcons.find(
+                    (icon) =>
+                      icon.name ===
+                      selectSingleInput.current.selectedOptions[0].innerText
+                  ).url;
+                  setCurrentIconUrl(selectedIconUrl);
+                  setValue("iconUrl", selectedIconUrl);
+                }}
+                name="iconUrl"
+                ref={selectSingleInput}
+                selectedOptionByDefault={
                   allIcons.find((icon) => icon.url === toolData.iconUrl)._id
-              }
-            />
+                }
+              />
+            </div>
             <div className={styles.iconWrapper}>
               <h5 className={styles.iconTitle}>Icon preview</h5>
               <Image
