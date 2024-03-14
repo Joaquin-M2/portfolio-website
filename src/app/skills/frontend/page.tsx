@@ -42,7 +42,7 @@ function Page() {
           >
             <SkillBar
               color="blue"
-              title="SASS"
+              title="Sass"
               progressPercentage={80}
               isSubLevel
               href="https://sass-lang.com/"
