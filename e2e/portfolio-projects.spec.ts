@@ -142,7 +142,12 @@ test.describe("Projects links", () => {
 
   test("will check the links related to the 'Tattoo Parlor' project work as expected", async ({
     page,
+    browserName,
   }) => {
+    test.skip(
+      browserName === "webkit",
+      "Playwright closes the browser window too soon on webkit browsers."
+    );
     await page
       .getByRole("img", {
         name: "Thumbnail image for /projects/tattoo-parlor/tattoo-parlor",
