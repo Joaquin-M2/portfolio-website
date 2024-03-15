@@ -7,7 +7,7 @@ describe("<PortfolioLabs /> page", () => {
     render(<PortfolioLabs />);
 
     const filtersAside = screen.getByText("Filter per Technology");
-    const thumbnails = screen.getAllByTestId("sliderThumbnailLabel");
+    const thumbnails = screen.getAllByTestId("sliderThumbnail");
     const moveSlideButtons = screen.getAllByTestId("moveSlideButtonDiv");
     const slider = screen.getByTestId("sliderDiv");
 
@@ -24,9 +24,9 @@ describe("<PortfolioLabs /> page", () => {
     const filterButton = within(filterButtonsList).getAllByRole("button", {
       name: "On",
     })[4];
-    const unfilteredThumbnails = screen.getAllByTestId("sliderThumbnailLabel");
+    const unfilteredThumbnails = screen.getAllByTestId("sliderThumbnail");
     await userEvent.click(filterButton);
-    const filteredThumbnails = screen.getAllByTestId("sliderThumbnailLabel");
+    const filteredThumbnails = screen.getAllByTestId("sliderThumbnail");
 
     expect(filteredThumbnails.length).toBeLessThanOrEqual(
       unfilteredThumbnails.length
@@ -38,7 +38,7 @@ describe("<PortfolioLabs /> page", () => {
 
     const slider = screen.getByTestId("sliderDiv");
     const sliderTitle = within(slider).getByRole("heading").textContent;
-    const thumbnails = screen.getAllByTestId("sliderThumbnailLabel");
+    const thumbnails = screen.getAllByTestId("sliderThumbnail");
     await userEvent.click(thumbnails[1]);
     const sliderNextToolTitle = within(slider).getByRole("heading").textContent;
 
@@ -60,10 +60,9 @@ describe("<PortfolioLabs /> page", () => {
   it("changes thumbnail to the last one when the first one is selected and the 'MoveSlideButton (left)' is clicked", async () => {
     render(<PortfolioLabs />);
 
-    const thumbnails = screen.getAllByTestId("sliderThumbnailLabel");
-    const lastThumbnail = screen.getAllByTestId("sliderThumbnailLabel")[
-      thumbnails.length - 1
-    ];
+    const thumbnails = screen.getAllByTestId("sliderThumbnail");
+    const lastThumbnail =
+      screen.getAllByTestId("sliderThumbnail")[thumbnails.length - 1];
     const moveSlideButtonLeft = screen.getAllByTestId("moveSlideButtonDiv")[0];
     await userEvent.click(moveSlideButtonLeft);
 
@@ -73,7 +72,7 @@ describe("<PortfolioLabs /> page", () => {
   it("changes thumbnail to the first one when the last one is selected and the 'MoveSlideButton (right)' is clicked", async () => {
     render(<PortfolioLabs />);
 
-    const firstThumbnail = screen.getAllByTestId("sliderThumbnailLabel")[0];
+    const firstThumbnail = screen.getAllByTestId("sliderThumbnail")[0];
     const moveSlideButtonLeft = screen.getAllByTestId("moveSlideButtonDiv")[0];
     const moveSlideButtonRight = screen.getAllByTestId("moveSlideButtonDiv")[1];
     await userEvent.click(moveSlideButtonLeft);
