@@ -144,6 +144,11 @@ function UpdateToolForm({
     }
   };
 
+  const selectedIconByDefaultId =
+    toolData && allIcons.find((icon) => icon.url === toolData.iconUrl)
+      ? allIcons.find((icon) => icon.url === toolData.iconUrl)._id
+      : null;
+
   return (
     <Modal
       backendResponse={formResponse}
@@ -225,9 +230,7 @@ function UpdateToolForm({
 
         {toolData ? (
           <>
-            <div
-              key={allIcons.find((icon) => icon.url === toolData.iconUrl)._id}
-            >
+            <div key={selectedIconByDefaultId}>
               <Input
                 allOptions={allIcons}
                 formIsOpen={formIsOpen}
@@ -244,9 +247,7 @@ function UpdateToolForm({
                 }}
                 name="iconUrl"
                 ref={selectSingleInput}
-                selectedOptionByDefault={
-                  allIcons.find((icon) => icon.url === toolData.iconUrl)._id
-                }
+                selectedOptionByDefault={selectedIconByDefaultId}
               />
             </div>
             <div className={styles.iconWrapper}>
