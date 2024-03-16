@@ -581,6 +581,15 @@ function Page() {
     if (!modalsState.addToolModalIsShown) setSelectedTagsAddToolForm([]);
   }, [modalsState.addToolModalIsShown]);
 
+  /////////////////////////////
+  // RESET FILTERS AFTER MODIFYING TOOLS LIST
+
+  useEffect(() => {
+    setSelectedFilterTags([]);
+    setSelectedExcludingFilterTags([]);
+    searchField.current.value = "";
+  }, [updatedTools]);
+
   return (
     <>
       <FiltersBar2
