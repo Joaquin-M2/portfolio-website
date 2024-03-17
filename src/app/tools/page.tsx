@@ -140,33 +140,41 @@ function Page() {
 
   const filterBySearchType = (keepFilteredTools = true) => {
     if (keepFilteredTools) {
-      if (searchType === "by-title") {
-        setFilteredTools((prevValue) =>
-          prevValue.filter((tool) => {
-            return tool.title.includes(searchField.current.value);
-          })
-        );
-      } else {
-        setFilteredTools((prevValue) =>
-          prevValue.filter((tool) => {
-            return tool.description.includes(searchField.current.value);
-          })
-        );
-      }
+      filterFilteredToolsBySearchType();
     } else {
-      if (searchType === "by-title") {
-        setFilteredTools(
-          tools.filter((tool) => {
-            return tool.title.includes(searchField.current.value);
-          })
-        );
-      } else {
-        setFilteredTools(
-          tools.filter((tool) => {
-            return tool.description.includes(searchField.current.value);
-          })
-        );
-      }
+      filterAllToolsBySearchType();
+    }
+  };
+
+  const filterFilteredToolsBySearchType = () => {
+    if (searchType === "by-title") {
+      setFilteredTools((prevValue) =>
+        prevValue.filter((tool) => {
+          return tool.title.includes(searchField.current.value);
+        })
+      );
+    } else {
+      setFilteredTools((prevValue) =>
+        prevValue.filter((tool) => {
+          return tool.description.includes(searchField.current.value);
+        })
+      );
+    }
+  };
+
+  const filterAllToolsBySearchType = () => {
+    if (searchType === "by-title") {
+      setFilteredTools(
+        tools.filter((tool) => {
+          return tool.title.includes(searchField.current.value);
+        })
+      );
+    } else {
+      setFilteredTools(
+        tools.filter((tool) => {
+          return tool.description.includes(searchField.current.value);
+        })
+      );
     }
   };
 
@@ -186,27 +194,31 @@ function Page() {
     if (searchField.current.value.length > searchFieldValue.length) {
       filterBySearchType();
     } else {
-      if (allSelectedTagsQuantity) {
-        setFilteredTools(
-          tools
-            .filter((tool) => {
-              return selectedFilterTags.every((filterTag) =>
-                tool.tags.some((tag) => tag.name === filterTag)
-              );
-            })
-            .filter((tool) => {
-              return selectedExcludingFilterTags.every((excludingFilterTag) =>
-                tool.tags.every((tag) => tag.name !== excludingFilterTag)
-              );
-            })
-        );
-        filterBySearchType();
-      } else {
-        filterBySearchType(false);
-      }
+      filterConsideringTags();
     }
     setSearchFieldValue(searchField.current.value);
     setSearchFieldTools();
+  };
+
+  const filterConsideringTags = () => {
+    if (allSelectedTagsQuantity) {
+      setFilteredTools(
+        tools
+          .filter((tool) => {
+            return selectedFilterTags.every((filterTag) =>
+              tool.tags.some((tag) => tag.name === filterTag)
+            );
+          })
+          .filter((tool) => {
+            return selectedExcludingFilterTags.every((excludingFilterTag) =>
+              tool.tags.every((tag) => tag.name !== excludingFilterTag)
+            );
+          })
+      );
+      filterBySearchType();
+    } else {
+      filterBySearchType(false);
+    }
   };
 
   useEffect(() => {
