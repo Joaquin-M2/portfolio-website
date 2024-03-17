@@ -28,23 +28,37 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+
+    // So the browser window is open full-sized.
+    launchOptions: {
+      args: ["--start-maximized"],
+    },
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        //...devices["Desktop Chrome"]
+        viewport: null, // So the browser window is open full-sized.
+      },
     },
 
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      use: {
+        //...devices["Desktop Firefox"]
+        viewport: null, // So the browser window is open full-sized.
+      },
     },
 
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      use: {
+        //...devices["Desktop Safari"]
+        viewport: null, // So the browser window is open full-sized.
+      },
     },
 
     /* Test against mobile viewports. */
