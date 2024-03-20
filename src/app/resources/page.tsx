@@ -91,11 +91,11 @@ function Page() {
   // REQUESTS ON PAGE LOAD
 
   useEffect(() => {
-    fetch(createRequest({ urlPath: "/tools" }))
+    fetch(createRequest({ urlPath: "/resources" }))
       .then((response) => response.json())
       .then((data) => {
-        setTools(data.tools);
-        setFilteredTools(data.tools);
+        setTools(data.resources);
+        setFilteredTools(data.resources);
       })
       .then(() => {
         tools.map(({ _id }) => {
