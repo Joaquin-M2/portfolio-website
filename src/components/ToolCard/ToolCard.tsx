@@ -198,7 +198,7 @@ export default function ToolCard({
         formIsOpen={updateToolModalIsShown}
         hideModal={hideUpdateToolModal}
         requestMethod="PATCH"
-        requestUrlPath={`/tools/${id}`}
+        requestUrlPath={`/resources/${id}`}
         selectedTagsAddToolForm={selectedTagsAddToolForm}
         allIcons={allIcons}
         allTags={allTags}

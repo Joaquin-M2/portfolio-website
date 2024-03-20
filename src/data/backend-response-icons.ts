@@ -4,7 +4,7 @@ export const iconsFromBackend = {
     {
       _id: "655c3872473ea18c182edf70",
       name: "NO IMAGE",
-      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/No%20image.png",
+      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/No%20image.png",
       request: {
         type: "GET",
         url: "http://localhost:3000/icons/655c3872473ea18c182edf70",
@@ -13,7 +13,7 @@ export const iconsFromBackend = {
     {
       _id: "655d62c2b85b86f19b5fed55",
       name: "test1",
-      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/No%20image.png",
+      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/No%20image.png",
       request: {
         type: "GET",
         url: "http://localhost:3000/icons/655d62c2b85b86f19b5fed55",
@@ -22,7 +22,7 @@ export const iconsFromBackend = {
     {
       _id: "655d62c6b85b86f19b5fed5b",
       name: "test2",
-      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/No%20image.png",
+      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/No%20image.png",
       request: {
         type: "GET",
         url: "http://localhost:3000/icons/655d62c6b85b86f19b5fed5b",
@@ -31,7 +31,7 @@ export const iconsFromBackend = {
     {
       _id: "655d62c8b85b86f19b5fed61",
       name: "test3",
-      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/No%20image.png",
+      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/No%20image.png",
       request: {
         type: "GET",
         url: "http://localhost:3000/icons/655d62c8b85b86f19b5fed61",
@@ -49,7 +49,7 @@ export const iconsFromBackend = {
     {
       _id: "655ab7192435d91e29df2bbc",
       name: "web.dev (Google)",
-      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/webdev%20(Google).png",
+      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/webdev%20(Google).png",
       request: {
         type: "GET",
         url: "http://localhost:3000/icons/655ab7192435d91e29df2bbc",
@@ -58,7 +58,7 @@ export const iconsFromBackend = {
     {
       _id: "655ae2342435d91e29df2be0",
       name: "web.dev (Goooooo0002ogle)",
-      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/webdev%20(Google).png",
+      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/webdev%20(Google).png",
       request: {
         type: "GET",
         url: "http://localhost:3000/icons/655ae2342435d91e29df2be0",
@@ -67,7 +67,7 @@ export const iconsFromBackend = {
     {
       _id: "6557f72cdd78fb0561dbd712",
       name: "X (Twitter)",
-      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/X%20(Twitter).jpg",
+      url: "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/X%20(Twitter).jpg",
       request: {
         type: "GET",
         url: "http://localhost:3000/icons/6557f72cdd78fb0561dbd712",

@@ -1,9 +1,9 @@
-export const toolsFromBackend = {
+export const resourcesFromBackend = {
   count: 17,
-  tools: [
+  resources: [
     {
       _id: "655f30a237ce4ddf2d0ed43a",
-      title: "New tool",
+      title: "New resource",
       description:
         "Description bla bla bla bla bla bla bla bla bla bla bla bla bla.",
       tags: [
@@ -49,16 +49,16 @@ export const toolsFromBackend = {
         },
       ],
       iconUrl:
-        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/X%20(Twitter).jpg",
+        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/X%20(Twitter).jpg",
       url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/multiple",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/655f30a237ce4ddf2d0ed43a",
+        url: "http://localhost:3000/resources/655f30a237ce4ddf2d0ed43a",
       },
     },
     {
       _id: "655f30414da9acfe376bc7e1",
-      title: "Another tool for testing",
+      title: "Another resource for testing",
       description: "Lorem ipsum blablablablabla.",
       tags: [
         {
@@ -99,11 +99,11 @@ export const toolsFromBackend = {
         },
       ],
       iconUrl:
-        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/webdev%20(Google).png",
+        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/webdev%20(Google).png",
       url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/multiple",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/655f30414da9acfe376bc7e1",
+        url: "http://localhost:3000/resources/655f30414da9acfe376bc7e1",
       },
     },
     {
@@ -140,7 +140,7 @@ export const toolsFromBackend = {
       url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654e84ece8f407917a5010f9",
+        url: "http://localhost:3000/resources/654e84ece8f407917a5010f9",
       },
     },
     {
@@ -157,7 +157,7 @@ export const toolsFromBackend = {
       url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654cd4e74b3cba38c11b3618",
+        url: "http://localhost:3000/resources/654cd4e74b3cba38c11b3618",
       },
     },
     {
@@ -174,7 +174,7 @@ export const toolsFromBackend = {
       url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/multiple",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654cd3a54b3cba38c11b3611",
+        url: "http://localhost:3000/resources/654cd3a54b3cba38c11b3611",
       },
     },
     {
@@ -215,12 +215,12 @@ export const toolsFromBackend = {
       url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/multiple",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654cc0764b3cba38c11b35c3",
+        url: "http://localhost:3000/resources/654cc0764b3cba38c11b35c3",
       },
     },
     {
       _id: "654b97c133d2adf109b1dd85",
-      title: "Dummy tool from MongoDB for testing",
+      title: "Dummy resource from MongoDB for testing",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor ante non libero fermentum pellentesque. Etiam tincidunt eleifend mi.\n\nProin sed neque sit amet ligula tempus porttitor. Cras fringilla pretium neque sed tempor.",
       tags: [
@@ -261,12 +261,12 @@ export const toolsFromBackend = {
       url: "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654b97c133d2adf109b1dd85",
+        url: "http://localhost:3000/resources/654b97c133d2adf109b1dd85",
       },
     },
     {
       _id: "654686654eb64a3aad849d11",
-      title: "Tool found on Twitter - 17",
+      title: "Resource found on Twitter - 17",
       description: "Small nitpick about React.",
       tags: [
         {
@@ -283,12 +283,12 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654686654eb64a3aad849d11",
+        url: "http://localhost:3000/resources/654686654eb64a3aad849d11",
       },
     },
     {
       _id: "654686634eb64a3aad849d0f",
-      title: "Tool found on Twitter - 16",
+      title: "Resource found on Twitter - 16",
       description: "Small nitpick about React.",
       tags: [
         {
@@ -305,12 +305,12 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654686634eb64a3aad849d0f",
+        url: "http://localhost:3000/resources/654686634eb64a3aad849d0f",
       },
     },
     {
       _id: "654686604eb64a3aad849d0d",
-      title: "Tool found on Twitter - 15",
+      title: "Resource found on Twitter - 15",
       description: "Small nitpick about React.",
       tags: [
         {
@@ -327,12 +327,12 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654686604eb64a3aad849d0d",
+        url: "http://localhost:3000/resources/654686604eb64a3aad849d0d",
       },
     },
     {
       _id: "6546865a4eb64a3aad849d0b",
-      title: "Tool found on Twitter - 14",
+      title: "Resource found on Twitter - 14",
       description: "Small nitpick about React.",
       tags: [
         {
@@ -349,12 +349,12 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/6546865a4eb64a3aad849d0b",
+        url: "http://localhost:3000/resources/6546865a4eb64a3aad849d0b",
       },
     },
     {
       _id: "654686574eb64a3aad849d09",
-      title: "Tool found on Twitter - 13",
+      title: "Resource found on Twitter - 13",
       description: "Small nitpick about React.",
       tags: [
         {
@@ -371,12 +371,12 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654686574eb64a3aad849d09",
+        url: "http://localhost:3000/resources/654686574eb64a3aad849d09",
       },
     },
     {
       _id: "654686544eb64a3aad849d07",
-      title: "Tool found on Twitter - 12",
+      title: "Resource found on Twitter - 12",
       description: "Small nitpick about React.",
       tags: [
         {
@@ -393,12 +393,12 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654686544eb64a3aad849d07",
+        url: "http://localhost:3000/resources/654686544eb64a3aad849d07",
       },
     },
     {
       _id: "654329e809d2448c770d186c",
-      title: "Tool found on Twitter - 11",
+      title: "Resource found on Twitter - 11",
       description: "Small nitpick about React.",
       tags: [
         {
@@ -415,12 +415,12 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/654329e809d2448c770d186c",
+        url: "http://localhost:3000/resources/654329e809d2448c770d186c",
       },
     },
     {
       _id: "652ce2fe8655c5eae57a8160",
-      title: "Tool found on Twitter - 10",
+      title: "Resource found on Twitter - 10",
       description: "Small nitpick about React.",
       tags: [
         {
@@ -437,12 +437,12 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/652ce2fe8655c5eae57a8160",
+        url: "http://localhost:3000/resources/652ce2fe8655c5eae57a8160",
       },
     },
     {
       _id: "652ce2e48655c5eae57a815e",
-      title: "Tool found on Twitter - 9",
+      title: "Resource found on Twitter - 9",
       description: "Small nitpick about React.",
       tags: [
         {
@@ -463,13 +463,13 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/652ce2e48655c5eae57a815e",
+        url: "http://localhost:3000/resources/652ce2e48655c5eae57a815e",
       },
     },
     {
       _id: "6529d4eb2190cd511fc2b378",
-      title: "Another tool - Modified",
-      description: "For testing the API in the sense of modifying a tool.",
+      title: "Another resource - Modified",
+      description: "For testing the API in the sense of modifying a resource.",
       tags: [
         {
           _id: "6529d5f42190cd511fc2b387",
@@ -481,7 +481,7 @@ export const toolsFromBackend = {
       url: "https://www.google.com",
       request: {
         type: "GET",
-        url: "http://localhost:3000/tools/6529d4eb2190cd511fc2b378",
+        url: "http://localhost:3000/resources/6529d4eb2190cd511fc2b378",
       },
     },
   ],

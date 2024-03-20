@@ -82,7 +82,7 @@ function AddToolForm({
     if (
       !formIsOpen &&
       formResponse.message &&
-      requestUrlPath.startsWith("/tools")
+      requestUrlPath.startsWith("/resources")
     ) {
       setTimeout(() => {
         setToolsFrontend((prevValue) => [...prevValue]);

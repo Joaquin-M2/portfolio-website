@@ -57,7 +57,7 @@ function DeleteToolForm({
     try {
       const response = await fetch(
         createRequest({
-          urlPath: `/tools/${id}`,
+          urlPath: `/resources/${id}`,
           method: "DELETE",
         })
       );
