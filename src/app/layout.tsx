@@ -43,11 +43,11 @@ export default function RootLayout({
             Contact
           </NavBarButton>
           <NavBarButton
-            href="/tools"
-            pathnameStartsWith="/tools"
+            href="/resources"
+            pathnameStartsWith="/resources"
             increasedBorderRadiusPosition="top-right"
           >
-            Tools
+            Resources
           </NavBarButton>
         </NavBar>
       </body>
