@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Page from "./page";
 
 const meta = {
-  title: "Pages/Tools page",
+  title: "Pages/Resources page",
   component: Page,
 } satisfies Meta<typeof Page>;
 
