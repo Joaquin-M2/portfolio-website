@@ -27,8 +27,11 @@ import Button from "@/components/Button/Button";
 import NavBar from "@/components/NavBar/NavBar";
 
 /**
+ * ---------------- WARNING: ----------------
+ *
  * "tool" was the original name of the "resources" page. Therefore,
  * on this page the word "Tool(s)" equals to "Resource(s)".
+ *
  */
 interface Tool {
   _id: string;
@@ -374,7 +377,7 @@ function Page() {
           );
         });
     } else {
-      return <h1 className={styles.noToolsTitle}>No tools found.</h1>;
+      return <h1 className={styles.noToolsTitle}>No resources found.</h1>;
     }
   };
 
@@ -485,7 +488,7 @@ function Page() {
             }}
             isActive={modalsState.addToolModalIsShown}
           >
-            Add Tool
+            Add Resource
           </Button>
           <div className={styles.menuButtonContainer}>
             <Button
@@ -633,7 +636,7 @@ function Page() {
           }))
         }
         requestMethod="POST"
-        requestUrlPath="/tools"
+        requestUrlPath="/resources"
         resetFormValues={!modalsState.addToolModalIsShown}
         tags={tagsAddToolForm}
         icons={icons}
