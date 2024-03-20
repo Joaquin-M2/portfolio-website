@@ -18,7 +18,7 @@ import Modal from "@/components/Modal/Modal";
 import { createRequest } from "@/utils/requests";
 import { NO_IMAGE_ICON_URL } from "@/utils/no-image-icon-url";
 
-import styles from "../tools.module.scss";
+import styles from "../resources.module.scss";
 
 interface AddIconFormProps {
   formIsOpen: boolean;

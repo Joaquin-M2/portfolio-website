@@ -16,7 +16,7 @@ import Tag from "@/components/Tag/Tag";
 
 import { createRequest } from "@/utils/requests";
 
-import styles from "../tools.module.scss";
+import styles from "../resources.module.scss";
 
 interface DeleteTagFormProps {
   formIsOpen: boolean;
