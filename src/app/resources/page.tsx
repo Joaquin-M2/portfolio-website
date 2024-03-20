@@ -22,10 +22,14 @@ import UpdateIconForm from "./UpdateIconForm/UpdateIconForm";
 import UpdateTagForm from "./UpdateTagForm/UpdateTagForm";
 import UpdateUserForm from "./UpdateUserForm/UpdateUserForm";
 
-import styles from "./tools.module.scss";
+import styles from "./resources.module.scss";
 import Button from "@/components/Button/Button";
 import NavBar from "@/components/NavBar/NavBar";
 
+/**
+ * "tool" was the original name of the "resources" page. Therefore,
+ * on this page the word "Tool(s)" equals to "Resource(s)".
+ */
 interface Tool {
   _id: string;
   title: string;
