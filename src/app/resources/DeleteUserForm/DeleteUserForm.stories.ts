@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import DeleteUserForm from "./DeleteUserForm";
 
 const meta = {
-  title: "Pages/Tools page/Delete User Form",
+  title: "Pages/Resources page/Delete User Form",
   component: DeleteUserForm,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

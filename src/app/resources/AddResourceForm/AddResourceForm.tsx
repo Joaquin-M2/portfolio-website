@@ -21,7 +21,7 @@ import { urlRegExp } from "@/utils/regular-expressions";
 
 import styles from "../resources.module.scss";
 
-interface AddToolFormProps {
+interface AddResourceFormProps {
   formIsOpen: boolean;
   handleAddTag: (event) => void;
   handleRemoveTag: (event) => void;
@@ -43,7 +43,7 @@ interface FormInputs {
   url: string;
 }
 
-function AddToolForm({
+function AddResourceForm({
   formIsOpen,
   handleAddTag,
   handleRemoveTag,
@@ -55,7 +55,7 @@ function AddToolForm({
   selectedTagsAddToolForm,
   setToolsFrontend,
   tags,
-}: AddToolFormProps) {
+}: AddResourceFormProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
     message: "",
@@ -144,14 +144,14 @@ function AddToolForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`add-tool-form`}
-      title="Add Tool"
+      targetForm={`add-resource-form`}
+      title="Add Resource"
       requestIsSuccessful={requestIsSuccessful}
     >
       <Form
         hasFieldset
-        id={`add-tool-form`}
-        legend="Add tool form"
+        id={`add-resource-form`}
+        legend="Add resource form"
         onSubmit={handleSubmit(onSubmit)}
         resetFormValues={resetFormValues}
       >
@@ -160,8 +160,8 @@ function AddToolForm({
           watchedValue={watch("url")}
           error={errors.url && "Invalid URL. Accepted format: <domain>/<path>"}
           formIsOpen={formIsOpen}
-          id="add-tool-url-input"
-          placeholder="Tool URL"
+          id="add-resource-url-input"
+          placeholder="Resource URL"
           required
           type="url"
           {...register("url", {
@@ -176,7 +176,7 @@ function AddToolForm({
             errors.title && "Title needs to be between 3 and 50 characters."
           }
           formIsOpen={formIsOpen}
-          id="add-tool-title-input"
+          id="add-resource-title-input"
           placeholder="Title"
           required
           type="text"
@@ -194,7 +194,7 @@ function AddToolForm({
             "Description needs to be between 10 and 250 characters."
           }
           formIsOpen={formIsOpen}
-          id="add-tool-description-input"
+          id="add-resource-description-input"
           placeholder="Description"
           required
           type="textarea"
@@ -213,7 +213,7 @@ function AddToolForm({
           watchedValue={watch("tags")}
           error={errors.tags && "You need to select at least 1 tag."}
           formIsOpen={formIsOpen}
-          id="add-tool-select-tag(s)-input"
+          id="add-resource-select-tag(s)-input"
           placeholder="Select tag(s)"
           required
           type="selectMultiple"
@@ -252,4 +252,4 @@ function AddToolForm({
   );
 }
 
-export default AddToolForm;
+export default AddResourceForm;

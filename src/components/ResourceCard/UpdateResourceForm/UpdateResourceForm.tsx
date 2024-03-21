@@ -18,7 +18,7 @@ import Modal from "@/components/Modal/Modal";
 import { createRequest } from "@/utils/requests";
 import { urlRegExp } from "@/utils/regular-expressions";
 
-import styles from "./updateToolForm.module.scss";
+import styles from "./updateResourceForm.module.scss";
 
 interface UpdateToolFormProps {
   allIcons: any[];
@@ -154,14 +154,14 @@ function UpdateToolForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`update-tool-form-${id}`}
-      title="Update Tool"
+      targetForm={`update-resource-form-${id}`}
+      title="Update Resource"
       requestIsSuccessful={requestIsSuccessful}
     >
       <Form
         hasFieldset
-        id={`update-tool-form-${id}`}
-        legend="Update tool form"
+        id={`update-resource-form-${id}`}
+        legend="Update resource form"
         onSubmit={handleSubmit(onSubmit)}
       >
         <Input
@@ -169,8 +169,8 @@ function UpdateToolForm({
           watchedValue={watch("url")}
           error={errors.url && "Invalid URL. Accepted format: <domain>/<path>"}
           formIsOpen={formIsOpen}
-          id={`update-tool-url-input-${id}`}
-          placeholder="Tool URL"
+          id={`update-resource-url-input-${id}`}
+          placeholder="Resource URL"
           required
           type="url"
           {...register("url", {
@@ -185,7 +185,7 @@ function UpdateToolForm({
             errors.title && "Title needs to be between 3 and 50 characters."
           }
           formIsOpen={formIsOpen}
-          id={`update-tool-title-input-${id}`}
+          id={`update-resource-title-input-${id}`}
           placeholder="Title"
           required
           type="text"
@@ -203,7 +203,7 @@ function UpdateToolForm({
             "Description needs to be between 10 and 250 characters."
           }
           formIsOpen={formIsOpen}
-          id={`update-tool-description-input-${id}`}
+          id={`update-resource-description-input-${id}`}
           placeholder="Description"
           required
           type="textarea"
@@ -222,7 +222,7 @@ function UpdateToolForm({
           watchedValue={watch("tags")}
           error={errors.tags && "You need to select at least 1 tag."}
           formIsOpen={formIsOpen}
-          id={`update-tool-select-tag(s)-input-${id}`}
+          id={`update-resource-select-tag(s)-input-${id}`}
           placeholder="Select tag(s)"
           type="selectMultiple"
           {...register("tags")}

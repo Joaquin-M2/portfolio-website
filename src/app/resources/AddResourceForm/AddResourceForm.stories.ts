@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { faker } from "@faker-js/faker";
 
-import AddToolForm from "./AddToolForm";
+import AddResourceForm from "./AddResourceForm";
 
 const meta = {
-  title: "Pages/Tools page/Add Tool Form",
-  component: AddToolForm,
+  title: "Pages/Resources page/Add Resource Form",
+  component: AddResourceForm,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
@@ -53,7 +53,7 @@ const meta = {
       description: "All available tags that are already added.",
     },
   },
-} satisfies Meta<typeof AddToolForm>;
+} satisfies Meta<typeof AddResourceForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

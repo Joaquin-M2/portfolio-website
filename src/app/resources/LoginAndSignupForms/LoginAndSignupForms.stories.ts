@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 import LoginAndSignupForms from "./LoginAndSignupForms";
 
 const meta = {
-  title: "Pages/Tools page/Login and Signup forms",
+  title: "Pages/Resources page/Login and Signup forms",
   component: LoginAndSignupForms,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

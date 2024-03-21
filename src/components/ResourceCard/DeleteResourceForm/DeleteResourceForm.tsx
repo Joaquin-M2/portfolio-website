@@ -13,9 +13,9 @@ import Modal from "@/components/Modal/Modal";
 
 import { createRequest } from "@/utils/requests";
 
-import styles from "./deleteToolForm.module.scss";
+import styles from "./deleteResourceForm.module.scss";
 
-interface DeleteToolFormProps {
+interface DeleteResourceFormProps {
   description: string;
   formIsOpen: boolean;
   hideModal: MouseEventHandler;
@@ -24,14 +24,14 @@ interface DeleteToolFormProps {
   title: string;
 }
 
-function DeleteToolForm({
+function DeleteResourceForm({
   description,
   formIsOpen,
   hideModal,
   id,
   setToolsFrontend,
   title,
-}: DeleteToolFormProps) {
+}: DeleteResourceFormProps) {
   const [formResponse, setFormResponse] = useState({
     status: 500,
     message: "",
@@ -86,30 +86,30 @@ function DeleteToolForm({
       backendResponse={formResponse}
       isShown={formIsOpen}
       hideModal={hideModal}
-      targetForm={`delete-tool-form-${id}`}
-      title="Delete Tool"
+      targetForm={`delete-resource-form-${id}`}
+      title="Delete Resource"
       requestIsSuccessful={requestIsSuccessful}
     >
       <Form
-        id={`delete-tool-form-${id}`}
-        legend="Delete tool form"
+        id={`delete-resource-form-${id}`}
+        legend="Delete resource form"
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
         }}
       >
-        <h5 className={styles.deleteToolModalQuestion}>
-          Delete the following tool?
+        <h5 className={styles.deleteResourceModalQuestion}>
+          Delete the following resource?
         </h5>
-        <ul className={styles.deleteToolModalList}>
-          <li className={styles.deleteToolModalListElement}>
-            <span className={styles.deleteToolModalListElementTitle}>
+        <ul className={styles.deleteResourceModalList}>
+          <li className={styles.deleteResourceModalListElement}>
+            <span className={styles.deleteResourceModalListElementTitle}>
               Title:
             </span>{" "}
             {title}
           </li>
-          <li className={styles.deleteToolModalListElement}>
-            <span className={styles.deleteToolModalListElementTitle}>
+          <li className={styles.deleteResourceModalListElement}>
+            <span className={styles.deleteResourceModalListElementTitle}>
               Description:
             </span>{" "}
             {description}
@@ -120,4 +120,4 @@ function DeleteToolForm({
   );
 }
 
-export default DeleteToolForm;
+export default DeleteResourceForm;

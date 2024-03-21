@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 import UpdateIconForm from "./UpdateIconForm";
 
 const meta = {
-  title: "Pages/Tools page/Update Icon Form",
+  title: "Pages/Resources page/Update Icon Form",
   component: UpdateIconForm,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

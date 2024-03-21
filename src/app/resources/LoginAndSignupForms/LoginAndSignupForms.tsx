@@ -98,21 +98,23 @@ function LoginAndSignupForms({
         if (requestUrlPath === "/user/login") {
           localStorage.setItem("userToken", result.token);
           // If tools are favorited before logging in, they are kept after logging in:
-          const accountFavoriteToolsId = JSON.parse(
-            localStorage.getItem("accountFavoriteToolsId") || "[]"
+          const accountFavoriteResourcesId = JSON.parse(
+            localStorage.getItem("accountFavoriteResourcesId") || "[]"
           );
-          accountFavoriteToolsId.unshift(...result.favoriteTools);
+          accountFavoriteResourcesId.unshift(...result.favoriteResources);
           localStorage.setItem(
-            "accountFavoriteToolsId",
-            JSON.stringify([...new Set(accountFavoriteToolsId)])
+            "accountFavoriteResourcesId",
+            JSON.stringify([...new Set(accountFavoriteResourcesId)])
           );
           // Save into the user account those tools that were favorited before logging in:
-          if (accountFavoriteToolsId.length > result.favoriteTools.length) {
+          if (
+            accountFavoriteResourcesId.length > result.favoriteResources.length
+          ) {
             fetch(
               createRequest({
                 urlPath: `/user/${getUserTokenData("userId")}`,
                 method: "PATCH",
-                requestBody: { favoriteTools: accountFavoriteToolsId },
+                requestBody: { favoriteResources: accountFavoriteResourcesId },
               })
             );
           }

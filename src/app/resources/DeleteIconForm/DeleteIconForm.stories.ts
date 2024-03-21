@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 import DeleteIconForm from "./DeleteIconForm";
 
 const meta = {
-  title: "Pages/Tools page/Delete Icon Form",
+  title: "Pages/Resources page/Delete Icon Form",
   component: DeleteIconForm,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

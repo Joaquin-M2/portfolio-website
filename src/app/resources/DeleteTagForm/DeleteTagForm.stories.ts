@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 import DeleteTagForm from "./DeleteTagForm";
 
 const meta = {
-  title: "Pages/Tools page/Delete Tag Form",
+  title: "Pages/Resources page/Delete Tag Form",
   component: DeleteTagForm,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

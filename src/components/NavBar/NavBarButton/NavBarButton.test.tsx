@@ -36,7 +36,7 @@ describe("<NavBarButton /> component", () => {
     render(
       <NavBarButton
         href="https://portfolio-website-joaquin-m2.vercel.app/"
-        pathnameStartsWith="/tools"
+        pathnameStartsWith="/resources"
       >
         Button title
       </NavBarButton>

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import DeleteToolForm from "./DeleteToolForm";
+import DeleteResourceForm from "./DeleteResourceForm";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Core/ToolCard/Delete Tool Form",
-  component: DeleteToolForm,
+  title: "Core/ResourceCard/Delete Resource Form",
+  component: DeleteResourceForm,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
@@ -34,7 +34,7 @@ const meta = {
       description: "Title of the tool to be deleted.",
     },
   },
-} satisfies Meta<typeof DeleteToolForm>;
+} satisfies Meta<typeof DeleteResourceForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -42,11 +42,11 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Base: Story = {
   args: {
-    description: "Tool description.",
+    description: "Resource description.",
     formIsOpen: true,
     //hideModal: () => {},
     id: "1",
     //setToolsFrontend: () => {},
-    title: "Tool title",
+    title: "Resource title",
   },
 };

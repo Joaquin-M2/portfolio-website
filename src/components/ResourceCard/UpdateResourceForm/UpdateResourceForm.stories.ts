@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { faker } from "@faker-js/faker";
 
-import UpdateToolForm from "./UpdateToolForm";
+import UpdateResourceForm from "./UpdateResourceForm";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Core/ToolCard/Update Tool Form",
-  component: UpdateToolForm,
+  title: "Core/ResourceCard/Update Resource Form",
+  component: UpdateResourceForm,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
@@ -52,7 +52,7 @@ const meta = {
         "Forces a rerender of the tools shown on the frontend when a tool is deleted.",
     },
   },
-} satisfies Meta<typeof UpdateToolForm>;
+} satisfies Meta<typeof UpdateResourceForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

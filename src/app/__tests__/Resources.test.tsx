@@ -4,7 +4,7 @@ import {
   waitForElementToBeRemoved,
   within,
 } from "@testing-library/react";
-import Tools from "../tools/page";
+import Resources from "../resources/page";
 import userEvent from "@testing-library/user-event";
 
 global.fetch = jest.fn(() =>
@@ -15,9 +15,9 @@ global.fetch = jest.fn(() =>
 
 global.Request = jest.fn();
 
-describe("<Tools /> page", () => {
+describe("<Resources /> page", () => {
   it("shows the 'Log In' and 'Sign Up' buttons if the user is not logged in.", () => {
-    render(<Tools />);
+    render(<Resources />);
 
     const logInButton = screen.getByRole("button", { name: "Log In" });
     const signUpButton = screen.getByRole("button", { name: "Sign Up" });
@@ -54,7 +54,7 @@ describe("<Tools /> page", () => {
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBvcnRmb2xpby13ZWItOUB0ZXN0LmNvbSIsInVzZXJJZCI6IjY1MmU2OTQ3ZjUzZDE1ZDk4YWI5NmI0NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzA2NTU3NTMxLCJleHAiOjE3MDY1NjExMzF9.alTlweQsc_nSVp-3KGw2INnJti-eXYvzxeb4XQoqM7o"
       )
     );
-    render(<Tools />);
+    render(<Resources />);
 
     const logOutButton = screen.getByRole("button", { name: "Log Out" });
     expect(logOutButton).toBeInTheDocument();
@@ -77,7 +77,7 @@ describe("<Tools /> page", () => {
       )
     );
 
-    render(<Tools />);
+    render(<Resources />);
 
     const logOutButton = screen.getByRole("button", { name: "Log Out" });
     const addToolButton = screen.getByRole("button", {

@@ -1,33 +1,12 @@
 import { render, screen, within } from "@testing-library/react";
-import ToolCard from "./ToolCard";
 import { faker } from "@faker-js/faker";
 import userEvent from "@testing-library/user-event";
+import ResourceCard from "./ResourceCard";
 
 const hideDeleteToolModalFunction = jest.fn();
 const hideUpdateToolModalFunction = jest.fn();
 const setDeleteToolModalIsShownFunction = jest.fn();
 const setUpdateToolModalIsShownFunction = jest.fn();
-const allOptions = [
-  {
-    _id: "1",
-    name: "Option #1",
-  },
-  {
-    _id: "2",
-    name: "Option #2",
-  },
-  {
-    _id: "3",
-    name: "Option #3",
-  },
-];
-
-const selectedOptions = [
-  {
-    _id: "2",
-    name: "Option #2",
-  },
-];
 
 const toolTags = [
   {
@@ -40,15 +19,39 @@ const toolTags = [
   },
 ];
 
-describe("<ToolCard /> component", () => {
+const randomTagsSet = new Set(
+  Array(20)
+    .fill(null)
+    .map(() => faker.vehicle.manufacturer())
+);
+
+const randomTags = [...randomTagsSet]
+  .sort((a, b) => a.localeCompare(b))
+  .map((tagName) => ({
+    name: tagName,
+    _id: faker.string.uuid(),
+  }));
+
+const selectedTags = randomTags.splice(3, 5);
+
+const randomIcons = Array(20)
+  .fill(null)
+  .map(() => ({
+    name: faker.lorem.word(),
+    url: faker.image.urlLoremFlickr(),
+    _id: faker.database.mongodbObjectId(),
+  }));
+
+describe("<ResourceCard /> component", () => {
   it("can be rendered", () => {
     render(
-      <ToolCard
+      <ResourceCard
         deleteToolModalIsShown={false}
         hideDeleteToolModal={hideDeleteToolModalFunction}
         setDeleteToolModalIsShown={() => {}}
-        allOptions={allOptions}
-        selectedTagsAddToolForm={selectedOptions}
+        allIcons={randomIcons}
+        allTags={randomTags}
+        selectedTagsAddToolForm={selectedTags}
         updateToolModalIsShown={false}
         hideUpdateToolModal={hideUpdateToolModalFunction}
         setUpdateToolModalIsShown={() => {}}
@@ -73,12 +76,13 @@ describe("<ToolCard /> component", () => {
 
   it("has a title", () => {
     render(
-      <ToolCard
+      <ResourceCard
         deleteToolModalIsShown={false}
         hideDeleteToolModal={hideDeleteToolModalFunction}
         setDeleteToolModalIsShown={() => {}}
-        allOptions={allOptions}
-        selectedTagsAddToolForm={selectedOptions}
+        allIcons={randomIcons}
+        allTags={randomTags}
+        selectedTagsAddToolForm={selectedTags}
         updateToolModalIsShown={false}
         hideUpdateToolModal={hideUpdateToolModalFunction}
         setUpdateToolModalIsShown={() => {}}
@@ -103,12 +107,13 @@ describe("<ToolCard /> component", () => {
 
   it("has a description", () => {
     render(
-      <ToolCard
+      <ResourceCard
         deleteToolModalIsShown={false}
         hideDeleteToolModal={hideDeleteToolModalFunction}
         setDeleteToolModalIsShown={() => {}}
-        allOptions={allOptions}
-        selectedTagsAddToolForm={selectedOptions}
+        allIcons={randomIcons}
+        allTags={randomTags}
+        selectedTagsAddToolForm={selectedTags}
         updateToolModalIsShown={false}
         hideUpdateToolModal={hideUpdateToolModalFunction}
         setUpdateToolModalIsShown={() => {}}
@@ -133,12 +138,13 @@ describe("<ToolCard /> component", () => {
 
   it("has a tool image", () => {
     render(
-      <ToolCard
+      <ResourceCard
         deleteToolModalIsShown={false}
         hideDeleteToolModal={hideDeleteToolModalFunction}
         setDeleteToolModalIsShown={() => {}}
-        allOptions={allOptions}
-        selectedTagsAddToolForm={selectedOptions}
+        allIcons={randomIcons}
+        allTags={randomTags}
+        selectedTagsAddToolForm={selectedTags}
         updateToolModalIsShown={false}
         hideUpdateToolModal={hideUpdateToolModalFunction}
         setUpdateToolModalIsShown={() => {}}
@@ -165,12 +171,13 @@ describe("<ToolCard /> component", () => {
 
   it("has as many tags as those set in the 'toolTags' prop", () => {
     render(
-      <ToolCard
+      <ResourceCard
         deleteToolModalIsShown={false}
         hideDeleteToolModal={hideDeleteToolModalFunction}
         setDeleteToolModalIsShown={() => {}}
-        allOptions={allOptions}
-        selectedTagsAddToolForm={selectedOptions}
+        allIcons={randomIcons}
+        allTags={randomTags}
+        selectedTagsAddToolForm={selectedTags}
         updateToolModalIsShown={false}
         hideUpdateToolModal={hideUpdateToolModalFunction}
         setUpdateToolModalIsShown={() => {}}
@@ -196,12 +203,13 @@ describe("<ToolCard /> component", () => {
 
   it("only has one button (Favorite) if the user doesn't have the 'admin' role", () => {
     render(
-      <ToolCard
+      <ResourceCard
         deleteToolModalIsShown={false}
         hideDeleteToolModal={hideDeleteToolModalFunction}
         setDeleteToolModalIsShown={() => {}}
-        allOptions={allOptions}
-        selectedTagsAddToolForm={selectedOptions}
+        allIcons={randomIcons}
+        allTags={randomTags}
+        selectedTagsAddToolForm={selectedTags}
         updateToolModalIsShown={false}
         hideUpdateToolModal={hideUpdateToolModalFunction}
         setUpdateToolModalIsShown={() => {}}
@@ -232,12 +240,13 @@ describe("<ToolCard /> component", () => {
       )
     );
     render(
-      <ToolCard
+      <ResourceCard
         deleteToolModalIsShown={false}
         hideDeleteToolModal={hideDeleteToolModalFunction}
         setDeleteToolModalIsShown={() => {}}
-        allOptions={allOptions}
-        selectedTagsAddToolForm={selectedOptions}
+        allIcons={randomIcons}
+        allTags={randomTags}
+        selectedTagsAddToolForm={selectedTags}
         updateToolModalIsShown={false}
         hideUpdateToolModal={hideUpdateToolModalFunction}
         setUpdateToolModalIsShown={() => {}}
@@ -270,12 +279,13 @@ describe("<ToolCard /> component", () => {
       )
     );
     render(
-      <ToolCard
+      <ResourceCard
         deleteToolModalIsShown={false}
         hideDeleteToolModal={hideDeleteToolModalFunction}
         setDeleteToolModalIsShown={setDeleteToolModalIsShownFunction}
-        allOptions={allOptions}
-        selectedTagsAddToolForm={selectedOptions}
+        allIcons={randomIcons}
+        allTags={randomTags}
+        selectedTagsAddToolForm={selectedTags}
         updateToolModalIsShown={false}
         hideUpdateToolModal={hideUpdateToolModalFunction}
         setUpdateToolModalIsShown={setUpdateToolModalIsShownFunction}
@@ -313,12 +323,13 @@ describe("<ToolCard /> component", () => {
       )
     );
     render(
-      <ToolCard
+      <ResourceCard
         deleteToolModalIsShown={false}
         hideDeleteToolModal={hideDeleteToolModalFunction}
         setDeleteToolModalIsShown={setDeleteToolModalIsShownFunction}
-        allOptions={allOptions}
-        selectedTagsAddToolForm={selectedOptions}
+        allIcons={randomIcons}
+        allTags={randomTags}
+        selectedTagsAddToolForm={selectedTags}
         updateToolModalIsShown={false}
         hideUpdateToolModal={hideUpdateToolModalFunction}
         setUpdateToolModalIsShown={setUpdateToolModalIsShownFunction}

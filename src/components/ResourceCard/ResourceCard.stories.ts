@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { faker } from "@faker-js/faker";
 
-import ToolCard from "./ToolCard";
+import ResourceCard from "./ResourceCard";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Core/ToolCard",
-  component: ToolCard,
+  title: "Core/ResourceCard",
+  component: ResourceCard,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
@@ -93,7 +93,7 @@ const meta = {
       type: "string",
     },
   },
-} satisfies Meta<typeof ToolCard>;
+} satisfies Meta<typeof ResourceCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -179,7 +179,7 @@ export const UserIsAdmin: Story = {
     allIcons: randomIcons,
     allTags: randomTags,
     toolTags: selectedTags,
-    title: "Tool title",
+    title: "Resource title",
     userAllFavoriteTools: [],
     url: "#",
   },

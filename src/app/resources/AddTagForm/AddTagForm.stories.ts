@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 import AddTagForm from "./AddTagForm";
 
 const meta = {
-  title: "Pages/Tools page/Add Tag Form",
+  title: "Pages/Resources page/Add Tag Form",
   component: AddTagForm,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

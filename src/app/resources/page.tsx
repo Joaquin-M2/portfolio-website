@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import FiltersBar2 from "@/components/FiltersBar2/FiltersBar2";
 import MenuCard from "@/components/MenuCard/MenuCard";
 import Modal from "@/components/Modal/Modal";
-import ToolCard from "@/components/ToolCard/ToolCard";
+import ResourceCard from "@/components/ResourceCard/ResourceCard";
 
 import { createRequest } from "@/utils/requests";
 import checkJwtTokenHasExpired from "@/utils/check-user-token-expiration";
@@ -13,7 +13,7 @@ import getUserTokenData from "@/utils/get-user-token-data";
 
 import AddIconForm from "./AddIconForm/AddIconForm";
 import AddTagForm from "./AddTagForm/AddTagForm";
-import AddToolForm from "./AddToolForm/AddToolForm";
+import AddToolForm from "./AddResourceForm/AddResourceForm";
 import DeleteIconForm from "./DeleteIconForm/DeleteIconForm";
 import DeleteTagForm from "./DeleteTagForm/DeleteTagForm";
 import DeleteUserForm from "./DeleteUserForm/DeleteUserForm";
@@ -33,7 +33,7 @@ import NavBar from "@/components/NavBar/NavBar";
  * on this page the word "Tool(s)" equals to "Resource(s)".
  *
  */
-interface Tool {
+interface Resource {
   _id: string;
   title: string;
   description: string;
@@ -50,7 +50,7 @@ interface Tool {
 function Page() {
   const [userAllFavoriteTools, setUserAllFavoriteTools] = useState([]);
   const [tools, setTools] = useState([]);
-  const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
+  const [filteredTools, setFilteredTools] = useState<Resource[]>([]);
   const [searchFieldValue, setSearchFieldValue] = useState("");
   const [searchType, setSearchType] = useState("");
   const [selectedFilterTags, setSelectedFilterTags] = useState([]);
@@ -293,7 +293,7 @@ function Page() {
   }, [selectedFilterTags, selectedExcludingFilterTags]);
 
   /////////////////////////////
-  // TOOL CARDS
+  // RESOURCE CARDS
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -309,7 +309,7 @@ function Page() {
     }
   }, [userIsLoggedIn]);
 
-  const renderToolCards: () => JSX.Element | JSX.Element[] = () => {
+  const renderResourceCards: () => JSX.Element | JSX.Element[] = () => {
     if (isLoading) {
       return <h1 className={styles.noToolsTitle}>Loading...</h1>;
     } else if (!isLoading && filteredTools.length) {
@@ -321,7 +321,7 @@ function Page() {
         )
         .map(({ _id, iconUrl, title, description, tags: toolTags, url }) => {
           return (
-            <ToolCard
+            <ResourceCard
               deleteToolModalIsShown={
                 modalsState[`deleteToolModalIsShown${_id}`]
               }
@@ -787,7 +787,7 @@ function Page() {
           ⛔ Expired token. Log in again ⛔
         </p>
       </Modal>
-      <main className={styles.mainContainer}>{renderToolCards()}</main>
+      <main className={styles.mainContainer}>{renderResourceCards()}</main>
     </>
   );
 }

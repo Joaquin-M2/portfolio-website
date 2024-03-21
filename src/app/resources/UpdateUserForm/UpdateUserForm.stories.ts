@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import UpdateUserForm from "./UpdateUserForm";
 
 const meta = {
-  title: "Pages/Tools page/Update User Form",
+  title: "Pages/Resources page/Update User Form",
   component: UpdateUserForm,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

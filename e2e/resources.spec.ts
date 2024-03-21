@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { iconsFromBackend } from "@/data/backend-response-icons";
-import { toolsFromBackend } from "@/data/backend-response-tools";
+import { resourcesFromBackend } from "@/data/backend-response-resources";
 import { tagsFromBackend } from "@/data/backend-response-tags";
 import { usersFromBackend } from "@/data/backend-response-users";
 
@@ -11,9 +11,9 @@ test.beforeEach(async ({ page }) => {
     await route.fulfill({ json });
   });
 
-  // Mock the response (TOOLS).
-  await page.route("*/**/api/v1/tools", async (route) => {
-    const json = toolsFromBackend;
+  // Mock the response (RESOURCES).
+  await page.route("*/**/api/v1/resources", async (route) => {
+    const json = resourcesFromBackend;
     await route.fulfill({ json });
   });
 
@@ -30,24 +30,24 @@ test.beforeEach(async ({ page }) => {
   });
 
   // Go to the page.
-  await page.goto("/tools");
+  await page.goto("/resources");
 });
 
 test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", () => {
-  test("shows a 'Loading...' state while tools are being retrieved from the backend", async ({
+  test("shows a 'Loading...' state while resources are being retrieved from the backend", async ({
     page,
   }) => {
     await expect(
       page.getByRole("heading", { name: "Loading..." })
     ).toBeInViewport();
-    const tools = page.getByRole("main").getByRole("link");
-    await tools.first().waitFor();
+    const resources = page.getByRole("main").getByRole("link");
+    await resources.first().waitFor();
     await expect(
       page.getByRole("heading", { name: "Loading..." })
     ).not.toBeInViewport();
   });
 
-  test("can filter tools by text (tool title) and tag (include and exclude) and open one of the results", async ({
+  test("can filter resources by text (resource title) and tag (include and exclude) and open one of the results", async ({
     page,
     browserName,
   }) => {
@@ -56,7 +56,9 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
       "Playwright has troubles finding <option> elements on webkit browsers."
     );
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
-    await page.getByPlaceholder("Search by tool title - Case").fill("tool");
+    await page
+      .getByPlaceholder("Search by resource title - Case")
+      .fill("resource");
     await page
       .getByRole("complementary")
       .getByRole("option", { name: "UX" })
@@ -73,7 +75,7 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
     await expect(page.getByRole("main").getByRole("link")).toHaveCount(1);
   });
 
-  test("can filter tools by text (tool description) and tag (include and exclude) and open one of the results", async ({
+  test("can filter resources by text (resource description) and tag (include and exclude) and open one of the results", async ({
     page,
     browserName,
   }) => {
@@ -84,7 +86,7 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
     await page.getByRole("radio", { name: "By Description" }).click();
     await page
-      .getByPlaceholder("Search by tool description - Case")
+      .getByPlaceholder("Search by resource description - Case")
       .fill("description");
     await page
       .getByRole("complementary")
@@ -102,34 +104,34 @@ test.describe("Common to ANY user (i.e. not logged in, logged in and admin)", ()
     await expect(page.getByRole("main").getByRole("link")).toHaveCount(1);
   });
 
-  test("shows 'No tools found.' message if filters show no results", async ({
+  test("shows 'No resources found.' message if filters show no results", async ({
     page,
   }) => {
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
-    await page.getByPlaceholder("Search by tool title - Case").click();
-    await page.getByPlaceholder("Search by tool title - Case").fill("t00l");
+    await page.getByPlaceholder("Search by resource title - Case").click();
+    await page.getByPlaceholder("Search by resource title - Case").fill("t00l");
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
 
-    await expect(page.getByText("No tools found.")).toBeInViewport();
+    await expect(page.getByText("No resources found.")).toBeInViewport();
   });
 
-  test("shows all tools after removing filters", async ({ page }) => {
-    const tools = page.getByRole("main").getByRole("link");
-    await tools.first().waitFor();
-    const toolsQuantity = await tools.count();
+  test("shows all resources after removing filters", async ({ page }) => {
+    const resources = page.getByRole("main").getByRole("link");
+    await resources.first().waitFor();
+    const resourcesQuantity = await resources.count();
 
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
-    await page.getByPlaceholder("Search by tool title - Case").click();
-    await page.getByPlaceholder("Search by tool title - Case").fill("t00l");
-    await page.getByPlaceholder("Search by tool title - Case").fill("");
+    await page.getByPlaceholder("Search by resource title - Case").click();
+    await page.getByPlaceholder("Search by resource title - Case").fill("t00l");
+    await page.getByPlaceholder("Search by resource title - Case").fill("");
     await page.getByRole("checkbox", { name: "FILTERS" }).click();
 
     await expect(page.getByRole("main").getByRole("link")).toHaveCount(
-      toolsQuantity
+      resourcesQuantity
     );
   });
 
-  test("opens a new tab with the tool address when clicking on a tool", async ({
+  test("opens a new tab with the resource address when clicking on a resource", async ({
     page,
   }) => {
     const firstTool = page.getByRole("main").getByRole("link").first();
@@ -150,7 +152,7 @@ test.describe("User is NOT logged in", () => {
     await expect(page.getByRole("button", { name: "Sign Up" })).toBeVisible();
   });
 
-  test("can save tools and keep them as favorite after reloading the page", async ({
+  test("can save resources and keep them as favorite after reloading the page", async ({
     page,
   }) => {
     const favoriteButtonTool3 = await page
@@ -163,7 +165,9 @@ test.describe("User is NOT logged in", () => {
     const favoriteButtonTool8 = await page
       .getByRole("link")
       .filter({
-        has: page.getByRole("heading", { name: "Tool found on Twitter - 17" }),
+        has: page.getByRole("heading", {
+          name: "Resource found on Twitter - 17",
+        }),
       })
       .getByTestId("iconsContainer")
       .getByRole("button")
@@ -173,10 +177,10 @@ test.describe("User is NOT logged in", () => {
     await favoriteButtonTool8.click();
     await page.reload();
 
-    // Favorite tools are arranged in descending order (i.e. last favorited goes first on the Tools list):
+    // Favorite resources are arranged in descending order (i.e. last favorited goes first on the Resources list):
     await expect(
       page.getByRole("link").first().getByRole("heading")
-    ).toContainText("Tool found on Twitter - 17");
+    ).toContainText("Resource found on Twitter - 17");
     await expect(
       page.getByRole("link").nth(1).getByRole("heading")
     ).toContainText("Title #1234");
@@ -246,7 +250,7 @@ test.describe("User IS logged in", () => {
         )
       );
       window.localStorage.setItem(
-        "accountFavoriteToolsId",
+        "accountFavoriteResourcesId",
         JSON.stringify([
           "654cd4e74b3cba38c11b3618",
           "654cd3a54b3cba38c11b3611",
@@ -282,18 +286,18 @@ test.describe("User IS logged in", () => {
     await expect(page.getByRole("button", { name: "Sign Up" })).toBeVisible();
   });
 
-  test("localStorage property 'accountFavoriteToolsId' sets favorite tools correctly", async ({
+  test("localStorage property 'accountFavoriteResourcesId' sets favorite resources correctly", async ({
     page,
   }) => {
-    const tools = await page.getByRole("main").getByRole("link");
-    const userFavoriteTools = await page.evaluate(() =>
-      JSON.parse(localStorage.getItem("accountFavoriteToolsId"))
+    const resources = await page.getByRole("main").getByRole("link");
+    const userFavoriteResources = await page.evaluate(() =>
+      JSON.parse(localStorage.getItem("accountFavoriteResourcesId"))
     );
 
-    for (let i = 0; i < userFavoriteTools.length; i++) {
-      await expect(tools.nth(i).locator("input")).toHaveAttribute(
+    for (let i = 0; i < userFavoriteResources.length; i++) {
+      await expect(resources.nth(i).locator("input")).toHaveAttribute(
         "id",
-        userFavoriteTools.at((i + 1) * -1) // Last tool set as "favorite" by the user goes first on the tools list:
+        userFavoriteResources.at((i + 1) * -1) // Last resource set as "favorite" by the user goes first on the resources list:
       );
     }
   });
@@ -311,7 +315,7 @@ test.describe("User IS logged in AND has 'admin' role", () => {
       );
     });
   });
-  test("shows a configuration button on each tool", async ({ page }) => {
+  test("shows a configuration button on each resource", async ({ page }) => {
     const configureToolButton = await page
       .getByRole("link")
       .filter({ has: page.getByRole("heading", { name: "Title #1234" }) })
@@ -320,11 +324,15 @@ test.describe("User IS logged in AND has 'admin' role", () => {
       .nth(1);
 
     await configureToolButton.click();
-    await expect(configureToolButton.getByText("Modify tool")).toBeInViewport();
-    await expect(configureToolButton.getByText("Delete tool")).toBeInViewport();
+    await expect(
+      configureToolButton.getByText("Modify resource")
+    ).toBeInViewport();
+    await expect(
+      configureToolButton.getByText("Delete resource")
+    ).toBeInViewport();
   });
-  test("'Modify Tool'", async ({ page }) => {
-    await page.route("*/**/api/v1/tools/*", async (route) => {
+  test("'Modify Resource'", async ({ page }) => {
+    await page.route("*/**/api/v1/resources/*", async (route) => {
       const json = {
         _id: "654cc0764b3cba38c11b35c3",
         title: "title test UPDATED",
@@ -355,29 +363,31 @@ test.describe("User IS logged in AND has 'admin' role", () => {
       .nth(1);
 
     await configureToolButton.click();
-    await configureToolButton.getByText("Modify tool").click();
-    // PATCHing the tool goes to the same endpoint, but using the PATCH method instead of GET:
-    await page.route("*/**/api/v1/tools/*", async (route) => {
+    await configureToolButton.getByText("Modify resource").click();
+    // PATCHing the resource goes to the same endpoint, but using the PATCH method instead of GET:
+    await page.route("*/**/api/v1/resources/*", async (route) => {
       const json = {
         status: 201,
-        message: "✅ Tool updated successfully ✅",
+        message: "✅ Resource updated successfully ✅",
       };
       await route.fulfill({ json });
     });
     await page
       .locator(
-        "div[aria-labelledby='update-tool-form-654cc0764b3cba38c11b35c3-modal-title']"
+        "div[aria-labelledby='update-resource-form-654cc0764b3cba38c11b35c3-modal-title']"
       )
       .getByRole("button", { name: "Accept" })
       .click();
 
-    await expect(page.getByText("Tool updated successfully")).toBeInViewport();
+    await expect(
+      page.getByText("Resource updated successfully")
+    ).toBeInViewport();
   });
-  test("'Delete Tool'", async ({ page }) => {
-    await page.route("*/**/api/v1/tools/*", async (route) => {
+  test("'Delete Resource'", async ({ page }) => {
+    await page.route("*/**/api/v1/resources/*", async (route) => {
       const json = {
         status: 200,
-        message: "✅ Tool deleted successfully ✅",
+        message: "✅ Resource deleted successfully ✅",
       };
       await route.fulfill({ json });
     });
@@ -392,55 +402,59 @@ test.describe("User IS logged in AND has 'admin' role", () => {
       .nth(1);
 
     await configureToolButton.click();
-    await configureToolButton.getByText("Delete tool").click();
+    await configureToolButton.getByText("Delete resource").click();
     await page
       .locator(
-        "div[aria-labelledby='delete-tool-form-654cc0764b3cba38c11b35c3-modal-title']"
+        "div[aria-labelledby='delete-resource-form-654cc0764b3cba38c11b35c3-modal-title']"
       )
       .getByRole("button", { name: "Accept" })
       .click();
 
-    await expect(page.getByText("Tool deleted successfully")).toBeInViewport();
+    await expect(
+      page.getByText("Resource deleted successfully")
+    ).toBeInViewport();
   });
-  test("'Add Tool'", async ({ page, browserName }) => {
+  test("'Add Resource'", async ({ page, browserName }) => {
     test.skip(
       browserName === "webkit",
       "Playwright has troubles finding <option> elements on webkit browsers."
     );
-    await page.getByRole("button", { name: "Add Tool" }).click();
+    await page.getByRole("button", { name: "Add Resource" }).click();
 
     await page
-      .getByLabel("Add Tool")
-      .getByPlaceholder("Tool URL")
+      .getByLabel("Add Resource")
+      .getByPlaceholder("Resource URL")
       .fill("https://toolurl.com");
     await page
-      .getByLabel("Add Tool")
+      .getByLabel("Add Resource")
       .getByPlaceholder("Title")
-      .fill("New tool title");
+      .fill("New resource title");
     await page
-      .getByLabel("Add Tool")
+      .getByLabel("Add Resource")
       .getByPlaceholder("Description")
-      .fill("Description for the new tool.");
+      .fill("Description for the new resource.");
 
     await page
-      .locator("div[aria-labelledby='add-tool-form-modal-title']")
+      .locator("div[aria-labelledby='add-resource-form-modal-title']")
       .getByRole("option", { name: "Accessibility" })
       .click();
 
-    await page.route("*/**/api/v1/tools", async (route) => {
+    await page.route("*/**/api/v1/resources", async (route) => {
       const json = {
         status: 201,
-        message: "✅ Tool added successfully ✅",
+        message: "✅ Resource added successfully ✅",
       };
       await route.fulfill({ json });
     });
 
     await page
-      .locator("div[aria-labelledby='add-tool-form-modal-title']")
+      .locator("div[aria-labelledby='add-resource-form-modal-title']")
       .getByRole("button", { name: "Accept" })
       .click();
 
-    await expect(page.getByText("Tool added successfully")).toBeInViewport();
+    await expect(
+      page.getByText("Resources added successfully")
+    ).toBeInViewport();
   });
   test("'Add Icon'", async ({ page }) => {
     await page.getByRole("button", { name: "Icons" }).click();
@@ -455,7 +469,7 @@ test.describe("User IS logged in AND has 'admin' role", () => {
       .getByLabel("Add Icon")
       .getByPlaceholder("Icon url")
       .fill(
-        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/X%20(Twitter).jpg"
+        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/X%20(Twitter).jpg"
       );
     await page.route("*/**/api/v1/icons", async (route) => {
       const json = {
@@ -487,7 +501,7 @@ test.describe("User IS logged in AND has 'admin' role", () => {
       .getByLabel("Update Icon")
       .getByPlaceholder("Update icon url")
       .fill(
-        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/tools-icons/X%20(Twitter).jpg"
+        "https://raw.githubusercontent.com/Joaquin-M2/portfolio-website-backend/master/public/resources-icons/X%20(Twitter).jpg"
       );
     await page.route("*/**/api/v1/icons/*", async (route) => {
       const json = {

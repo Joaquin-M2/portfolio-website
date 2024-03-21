@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import DeleteToolForm from "./DeleteToolForm";
+import DeleteResourceForm from "./DeleteResourceForm";
 
 const hideModalFunction = jest.fn();
 
-describe("<DeleteToolForm /> component", () => {
+describe("<DeleteResourceForm /> component", () => {
   it("can be rendered", () => {
     render(
-      <DeleteToolForm
+      <DeleteResourceForm
         description="Text for description"
         formIsOpen={true}
         hideModal={hideModalFunction}
