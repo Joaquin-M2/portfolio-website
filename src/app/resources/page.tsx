@@ -297,10 +297,10 @@ function Page() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if (JSON.parse(localStorage.getItem("accountFavoriteToolsId"))) {
+      if (JSON.parse(localStorage.getItem("accountFavoriteResourcesId"))) {
         setUserAllFavoriteTools((prevValue) => {
           const allValues = [
-            ...JSON.parse(localStorage.getItem("accountFavoriteToolsId")),
+            ...JSON.parse(localStorage.getItem("accountFavoriteResourcesId")),
             ...prevValue,
           ];
           return [...new Set(allValues)];
@@ -394,7 +394,7 @@ function Page() {
 
   const logoutUser = () => {
     localStorage.removeItem("userToken");
-    localStorage.removeItem("accountFavoriteToolsId");
+    localStorage.removeItem("accountFavoriteResourcesId");
     setUserAllFavoriteTools([]);
     setUserIsLoggedIn(false);
   };

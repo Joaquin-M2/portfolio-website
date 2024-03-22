@@ -121,7 +121,7 @@ const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
               <input
                 className={styles.searchInput}
                 type="search"
-                placeholder={`Search by tool ${
+                placeholder={`Search by resource ${
                   selectedRadioButton === "by-title" ? "title" : "description"
                 } - Case sensitive`}
                 maxLength={25}
@@ -154,7 +154,7 @@ const FiltersBar2 = forwardRef<HTMLInputElement, FiltersBar2Props>(
               </div>
             </fieldset>
             <p className={styles.toolsFound} data-testid="toolsFoundP">
-              <span className={styles.toolsFoundSpan}>Tools found:</span>{" "}
+              <span className={styles.toolsFoundSpan}>Resources found:</span>{" "}
               {toolsQuantity}
             </p>
           </div>
