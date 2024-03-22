@@ -218,7 +218,7 @@ test.describe("User is NOT logged in", () => {
         status: 201,
         message: "✅ Logged in ✅",
         token: "1234",
-        favoriteTools: [],
+        favoriteResources: [],
       };
       await route.fulfill({ json });
     });
@@ -453,7 +453,7 @@ test.describe("User IS logged in AND has 'admin' role", () => {
       .click();
 
     await expect(
-      page.getByText("Resources added successfully")
+      page.getByText("Resource added successfully")
     ).toBeInViewport();
   });
   test("'Add Icon'", async ({ page }) => {
