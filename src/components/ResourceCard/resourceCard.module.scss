@@ -23,6 +23,10 @@
   @include responsiveDesign(800) {
     width: 60rem;
   }
+
+  &:hover .container {
+    box-shadow: 0rem 0rem 1rem 1rem lime;
+  }
 }
 
 @keyframes cardOpacity {
@@ -39,6 +43,7 @@
   border-radius: 1rem;
 
   padding: 1rem;
+  transition: $quick-transition;
 }
 
 .upperHalfContainer {
