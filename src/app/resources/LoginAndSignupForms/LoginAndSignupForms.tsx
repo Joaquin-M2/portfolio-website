@@ -46,6 +46,7 @@ function LoginAndSignupForms({
         setFormResponse((prevValue) => ({ ...prevValue, message: "" }));
         setRequestIsSuccessful(false);
       }, 500); // Time until CSS transition finishes.
+      requestIsSuccessful && window.location.reload(); // Reload the page so the password is not kept in the browser "Network" tab.
     }
   }, [formIsOpen]);
 
