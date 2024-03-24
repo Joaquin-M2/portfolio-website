@@ -186,9 +186,12 @@ Technologies referenced in this section are only those used just for the persona
             <img src="https://img.shields.io/badge/React_Testing_Library-black?style=for-the-badge&logo=Testing%20Library" />
           </a>
           <br />
-          <a href="https://www.cypress.io/" target="_blank">
-            <img src="https://img.shields.io/badge/Cypress-black?style=for-the-badge&logo=Cypress" />
+          <a href="https://playwright.dev/" target="_blank">
+            <img src="https://img.shields.io/badge/playwright-black?style=for-the-badge&logo=playwright" />
           </a>
+          <!-- <a href="https://www.cypress.io/" target="_blank">
+            <img src="https://img.shields.io/badge/Cypress-black?style=for-the-badge&logo=Cypress" />
+          </a> -->
         </td>
       </tr>
     </tbody>
