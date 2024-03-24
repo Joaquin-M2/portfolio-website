@@ -38,7 +38,7 @@
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#tools">Tools</a></li>
+        <li><a href="#resources">Resources</a></li>
       </ul>
     </li>
     <li>
@@ -63,7 +63,7 @@
 
 <p>It is a project that started several years ago when I was at the beginning of my webdev career, as it can be appreciated on its "authentic" design. From a UI perspective, I would like to stay loyal to its original design as much as possible, as it helps me to remind how I started on this professional path. Nevertheless, I invite you to check the code and be as critical as you want (any improvement suggestion is very appreciated!). You can also visit the "Portfolio" section, where you can find some projects that really use professional UIs.</p>
 
-<p>Additionally, I may include some sections that don't aim to be part of an archetypical portfolio website, but that I find useful. An example is the "Tools" section, where I gather some links to websites and tweets that at some point helped me at work.</p>
+<p>Additionally, I may include some sections that don't aim to be part of an archetypical portfolio website, but that I find useful. An example is the "Resources" section, where I gather some links to websites and tweets that at some point helped me at work.</p>
 
 <p>This repository only concerns to the frontend side of my personal website, which is hosted at <a href="https://vercel.com/" target="_blank">Vercel</a>. If you are curious about the backend, feel free to visit <a href="https://github.com/Joaquin-M2/portfolio-website-backend" target="_blank">its repository</a>.</p>
 
@@ -125,16 +125,16 @@ Here you can find a form if you want to contact me via the website itself, as we
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Tools
+### Resources
 
-This section shows a collection of tools (i.e. websites and tweets) that I have found useful for web development.
+This section shows a collection of resources (i.e. websites and tweets) that I have found useful for web development.
 
 The [backend repository](https://github.com/Joaquin-M2/portfolio-website-backend) was done as a requirement for this section due to the following functionalities:
 
 - Storage in the database of the data of each tool;
-- User authentication (so the favorite tools of each user can be stored in their own account);
-- Adding, updating and deleting tools if the user account has the "Admin" role;
-- Storing "tags", so tools can be easily filtered;
+- User authentication (so the favorite resources of each user can be stored in their own account);
+- Adding, updating and deleting resources if the user account has the "Admin" role;
+- Storing "tags", so resources can be easily filtered;
 - Adding, updating and deleting tags if the user account has the "Admin" role.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -209,7 +209,7 @@ If you want to setup this website in your own localhost, it is as simple as:
    ```sh
    npm install
    ```
-2. If you want to interact with any section that uses the backend (such as the Tools section), make sure you also set it up by [following the instructions on its repository](https://github.com/Joaquin-M2/portfolio-website-backend);
+2. If you want to interact with any section that uses the backend (such as the Resources section), make sure you also set it up by [following the instructions on its repository](https://github.com/Joaquin-M2/portfolio-website-backend);
 3. If you want to run the unit tests, run the following command in your terminal:
    ```sh
    npm run jest
@@ -225,21 +225,21 @@ If you want to setup this website in your own localhost, it is as simple as:
 
 ## Roadmap
 
-- [x] Finish Tools section v1.0
-- [ ] Fill the Tools section with real tools
+- [x] Finish Resources section v1.0
+- [ ] Fill the Resources section with real resources
 - [x] Finish unit tests for core components
 - [x] Integration tests
   - [x] Home
   - [x] Portfolio
   - [x] Skills
   - [x] Contact
-  - [x] Tools
+  - [x] Resources
 - [x] E2E tests
   - [x] Home
   - [x] Portfolio
   - [x] Skills
   - [x] Contact
-  - [x] Tools
+  - [x] Resources
 - [ ] Fix accessibility issues
   - [ ] Test with NVDA
   - [ ] Test with VoiceOver
