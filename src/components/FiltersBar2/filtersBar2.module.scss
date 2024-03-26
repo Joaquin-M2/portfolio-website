@@ -147,4 +147,8 @@
   position: absolute;
   transform: translateX(-50%);
   z-index: 2;
+
+  @include responsiveDesign(1000) {
+    bottom: -6%;
+  }
 }
