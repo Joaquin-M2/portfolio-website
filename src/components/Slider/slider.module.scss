@@ -1,17 +1,6 @@
 @import "@/sass/abstracts/mixins.scss";
 @import "@/sass/abstracts/variables.scss";
 
-.Container {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-
-  height: 100%;
-  padding: 2rem 4rem;
-
-  background-color: green;
-}
-
 .Slider {
   display: flex;
   height: 100%;
