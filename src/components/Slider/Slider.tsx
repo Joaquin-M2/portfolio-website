@@ -32,6 +32,8 @@ export default function Slider({
   projectTitle,
   repositoryLink,
 }: SliderProps) {
+  const previousActiveThumbnail = useRef<number>(+activeThumbnail);
+
   ///////////////////
   // TOUCH SLIDER
   // Credits: https://codepen.io/cconceicao/pen/PBQawy
@@ -131,7 +133,33 @@ export default function Slider({
         slidedToLeft = true;
       }
     }
+
+    if (!isTouchDevice()) {
+      if (+activeThumbnail > previousActiveThumbnail.current) {
+        slider.current.classList.add(styles.NewSlideFromRight);
+        setTimeout(
+          () => {
+            slider.current.classList.remove(styles.NewSlideFromRight);
+          },
+          600 // The CSS animation duration.
+        );
+      } else if (+activeThumbnail < previousActiveThumbnail.current) {
+        slider.current.classList.add(styles.NewSlideFromLeft);
+        setTimeout(
+          () => {
+            slider.current.classList.remove(styles.NewSlideFromLeft);
+          },
+          600 // The CSS animation duration.
+        );
+      }
+    }
+
+    previousActiveThumbnail.current = +activeThumbnail;
   }, [activeThumbnail]);
+
+  function isTouchDevice() {
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  }
 
   return (
     <>
