@@ -136,18 +136,18 @@ export default function Slider({
 
     if (!isTouchDevice()) {
       if (+activeThumbnail > previousActiveThumbnail.current) {
-        slider.current.classList.add(styles.NewSlideFromRight);
+        slider.current.classList.add(appearNewSlideCSSFromRight);
         setTimeout(
           () => {
-            slider.current.classList.remove(styles.NewSlideFromRight);
+            slider.current.classList.remove(appearNewSlideCSSFromRight);
           },
           600 // The CSS animation duration.
         );
       } else if (+activeThumbnail < previousActiveThumbnail.current) {
-        slider.current.classList.add(styles.NewSlideFromLeft);
+        slider.current.classList.add(appearNewSlideCSSFromLeft);
         setTimeout(
           () => {
-            slider.current.classList.remove(styles.NewSlideFromLeft);
+            slider.current.classList.remove(appearNewSlideCSSFromLeft);
           },
           600 // The CSS animation duration.
         );
