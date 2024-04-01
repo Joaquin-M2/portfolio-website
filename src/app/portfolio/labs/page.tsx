@@ -117,15 +117,16 @@ export default function Page() {
                 leftwardsArrow
               />
               <Slider
-                additionalStyles={styles.PortfolioSlider}
-                projectTitle={labs[activeThumbnail].title}
-                imageSrc={labs[activeThumbnail].image}
-                projectDescription={labs[activeThumbnail].description}
-                repositoryLink={labs[activeThumbnail].linkToCode}
-                liveProjectLink={labs[activeThumbnail].linkToProject}
                 activeThumbnail={activeThumbnail}
-                prevProject={prevProjectHandler}
+                additionalStyles={styles.PortfolioSlider}
+                imageSrc={labs[activeThumbnail].image}
+                liveProjectLink={labs[activeThumbnail].linkToProject}
                 nextProject={nextProjectHandler}
+                prevProject={prevProjectHandler}
+                projectDescription={labs[activeThumbnail].description}
+                projectTitle={labs[activeThumbnail].title}
+                repositoryLink={labs[activeThumbnail].linkToCode}
+                thumbnailsQuantity={labs.length}
               >
                 {labs[activeThumbnail].details}
               </Slider>
