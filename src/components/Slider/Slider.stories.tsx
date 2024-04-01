@@ -78,5 +78,6 @@ export const Base: Story = {
     projectDescription: projects[2].description,
     projectTitle: faker.lorem.words(3),
     repositoryLink: faker.internet.url(),
+    thumbnailsQuantity: projects.length,
   },
 };
