@@ -18,6 +18,7 @@ interface SliderProps {
   projectDescription: string;
   projectTitle: string;
   repositoryLink: string;
+  thumbnailsQuantity: number;
 }
 
 export default function Slider({
@@ -31,6 +32,7 @@ export default function Slider({
   projectDescription,
   projectTitle,
   repositoryLink,
+  thumbnailsQuantity,
 }: SliderProps) {
   const previousActiveThumbnail = useRef<number>(+activeThumbnail);
 
