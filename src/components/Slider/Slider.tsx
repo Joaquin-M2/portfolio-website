@@ -137,7 +137,13 @@ export default function Slider({
     }
 
     if (!isTouchDevice()) {
-      if (+activeThumbnail > previousActiveThumbnail.current) {
+      if (
+        (+activeThumbnail > previousActiveThumbnail.current &&
+          +activeThumbnail - previousActiveThumbnail.current <
+            thumbnailsQuantity - 1) ||
+        (+activeThumbnail === 0 &&
+          previousActiveThumbnail.current === thumbnailsQuantity - 1)
+      ) {
         slider.current.classList.add(appearNewSlideCSSFromRight);
         setTimeout(
           () => {
@@ -145,7 +151,11 @@ export default function Slider({
           },
           600 // The CSS animation duration.
         );
-      } else if (+activeThumbnail < previousActiveThumbnail.current) {
+      } else if (
+        +activeThumbnail < previousActiveThumbnail.current ||
+        (previousActiveThumbnail.current === 0 &&
+          +activeThumbnail === thumbnailsQuantity - 1)
+      ) {
         slider.current.classList.add(appearNewSlideCSSFromLeft);
         setTimeout(
           () => {
