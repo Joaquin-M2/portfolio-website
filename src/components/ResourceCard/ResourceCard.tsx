@@ -9,9 +9,9 @@ import {
 } from "react";
 import Image, { StaticImageData } from "next/image";
 
-import DeleteResourceForm from "./DeleteResourceForm/DeleteResourceForm";
 import MenuCard from "@/components/MenuCard/MenuCard";
 import Tag from "@/components/Tag/Tag";
+import DeleteResourceForm from "./DeleteResourceForm/DeleteResourceForm";
 import UpdateResourceForm from "./UpdateResourceForm/UpdateResourceForm";
 
 import { createRequest } from "@/utils/requests";
