@@ -13,7 +13,7 @@ import getUserTokenData from "@/utils/get-user-token-data";
 
 import AddIconForm from "./AddIconForm/AddIconForm";
 import AddTagForm from "./AddTagForm/AddTagForm";
-import AddToolForm from "./AddResourceForm/AddResourceForm";
+import AddResourceForm from "./AddResourceForm/AddResourceForm";
 import DeleteIconForm from "./DeleteIconForm/DeleteIconForm";
 import DeleteTagForm from "./DeleteTagForm/DeleteTagForm";
 import DeleteUserForm from "./DeleteUserForm/DeleteUserForm";
@@ -627,7 +627,7 @@ function Page() {
       {userIsAdmin && userIsLoggedIn && renderAdminManagementButtons()}
       {renderUserManagementButtons()}
 
-      <AddToolForm
+      <AddResourceForm
         formIsOpen={modalsState.addToolModalIsShown}
         hideModal={() =>
           setModalsState((prevValue) => ({
