@@ -338,12 +338,13 @@ function Page() {
               updateToolModalIsShown={
                 modalsState[`updateToolModalIsShown${_id}`]
               }
-              hideUpdateToolModal={() =>
+              hideUpdateToolModal={() => {
                 setModalsState((prevValue) => ({
                   ...prevValue,
                   [`updateToolModalIsShown${_id}`]: false,
-                }))
-              }
+                }));
+                setTimeout(() => setSelectedTagsAddToolForm([]), 500);
+              }}
               setUpdateToolModalIsShown={() => {
                 checkTokenHasExpired(`updateToolModalIsShown${_id}`);
 
