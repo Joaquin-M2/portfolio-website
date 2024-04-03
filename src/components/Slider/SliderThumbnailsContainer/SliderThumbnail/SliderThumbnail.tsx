@@ -28,8 +28,7 @@ export default function SliderThumbnail({
           }`}
           src={`${image}.jpg`}
           alt={`Thumbnail image for ${image}`}
-          width={100}
-          height={56}
+          fill
         />
       </div>
     </>
