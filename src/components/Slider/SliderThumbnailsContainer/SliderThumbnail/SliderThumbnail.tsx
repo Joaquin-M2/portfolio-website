@@ -26,10 +26,10 @@ export default function SliderThumbnail({
           className={`${styles.image} ${
             !setButtonIsChecked && styles.inactiveThumbnail
           }`}
-          src={`${image}-thumbnail.jpg` || image}
+          src={`${image}.jpg`}
           alt={`Thumbnail image for ${image}`}
-          width={60}
-          height={60}
+          width={100}
+          height={56}
         />
       </div>
     </>

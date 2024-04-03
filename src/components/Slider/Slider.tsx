@@ -186,12 +186,7 @@ export default function Slider({
         <div className={styles.ImageContainer}>
           <Image
             className={styles.Image}
-            src={
-              `${imageSrc}-medium.jpg` ||
-              `${imageSrc}-small.jpg` ||
-              `${imageSrc}.jpg` ||
-              imageSrc
-            }
+            src={`${imageSrc}.jpg`}
             alt={`Preview image of ${projectTitle}.`}
             fill
           />
