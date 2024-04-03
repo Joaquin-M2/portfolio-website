@@ -189,6 +189,7 @@ export default function Slider({
             src={`${imageSrc}.jpg`}
             alt={`Preview image of ${projectTitle}.`}
             fill
+            sizes="(min-width: 400px) 75vw, 100vw"
           />
           <input
             className={styles.CurtainCheckbox}
